@@ -1,0 +1,158 @@
+package com.fairco.trap
+
+import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.media.AudioAttributes
+import android.media.RingtoneManager
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
+
+object NotificationHelper {
+    const val CHANNEL_TRACKING = "trap_tracking_channel"
+    const val CHANNEL_ALERTS   = "trap_alerts_channel"
+    const val CHANNEL_CAPTURED = "trap_captured_channel"
+
+    const val NOTIF_ID_TRACKING = 1001
+    const val NOTIF_ID_ALERT    = 1002
+    const val NOTIF_ID_CAPTURED = 2001
+
+    fun createChannels(context: Context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
+
+        val trackingChannel = NotificationChannel(
+            CHANNEL_TRACKING,
+            "Trap tracking",
+            NotificationManager.IMPORTANCE_LOW,
+        ).apply {
+            description = "Foreground GPS tracking for Trap"
+        }
+
+        val alertChannel = NotificationChannel(
+            CHANNEL_ALERTS,
+            "Trap alerts",
+            NotificationManager.IMPORTANCE_HIGH
+        ).apply {
+            description = "Warnings and trap hit alerts"
+        }
+
+        // High-urgency channel for capture events — uses alarm ringtone + vibration.
+        val capturedChannel = NotificationChannel(
+            CHANNEL_CAPTURED,
+            "Trap capture",
+            NotificationManager.IMPORTANCE_HIGH
+        ).apply {
+            description = "Fired when you walk into an opponent's trap"
+            enableVibration(true)
+            vibrationPattern = longArrayOf(0, 500, 200, 500, 200, 500)
+            setSound(
+                RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM),
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build()
+            )
+        }
+
+        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        manager.createNotificationChannel(trackingChannel)
+        manager.createNotificationChannel(alertChannel)
+        manager.createNotificationChannel(capturedChannel)
+
+        // Also create the proximity notifier channel here so there's one call site.
+        TrapProximityNotifier.createChannel(context)
+    }
+
+    fun buildTrackingNotification(context: Context, text: String): android.app.Notification {
+        return NotificationCompat.Builder(context, CHANNEL_TRACKING)
+            .setSmallIcon(android.R.drawable.ic_menu_mylocation)
+            .setContentTitle("Trap tracking active")
+            .setContentText(text)
+            .setOngoing(true)
+            .setOnlyAlertOnce(true)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .build()
+    }
+
+    fun showAlert(context: Context, title: String, text: String) {
+        if (!hasNotificationPermission(context)) return
+
+        val notification = NotificationCompat.Builder(context, CHANNEL_ALERTS)
+            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setContentTitle(title)
+            .setContentText(text)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .build()
+
+        NotificationManagerCompat.from(context).notify(NOTIF_ID_ALERT, notification)
+    }
+
+    /**
+     * Shows a high-priority notification when the player is captured by a trap
+     * while the app is running in the background.
+     * Tapping opens [GameActivity] which will display the TrappedOverlay.
+     */
+    fun showCapturedNotification(
+        context: Context,
+        trapName: String,
+        ownerUsername: String,
+        effectDesc: String,
+        effectKind: String,
+    ) {
+        if (!hasNotificationPermission(context)) return
+
+        val openIntent = context.packageManager
+            .getLaunchIntentForPackage(context.packageName)
+            ?.apply {
+                putExtra("showTrappedOverlay", true)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
+        val pending = PendingIntent.getActivity(
+            context, NOTIF_ID_CAPTURED,
+            openIntent ?: Intent(),
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        // Emoji prefix that reflects the trap effect.
+        val effectEmoji = when (effectKind) {
+            "timeout"  -> "⏱"
+            "laughter" -> "😂"
+            "slowdown" -> "🐌"
+            "penalty"  -> "⚡"
+            else       -> "🪤"
+        }
+
+        val byLine = if (ownerUsername.isNotBlank()) " by $ownerUsername" else ""
+        val notif = NotificationCompat.Builder(context, CHANNEL_CAPTURED)
+            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setContentTitle("$effectEmoji YOU'VE BEEN TRAPPED$byLine!")
+            .setContentText(effectDesc.ifBlank { trapName })
+            .setStyle(NotificationCompat.BigTextStyle()
+                .bigText("$effectDesc\n\nTrap set$byLine. Open the app to see the full effect.")
+            )
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
+            .setAutoCancel(true)
+            .setContentIntent(pending)
+            .setFullScreenIntent(pending, true) // shows as heads-up / lock-screen alert
+            .build()
+
+        try {
+            NotificationManagerCompat.from(context).notify(NOTIF_ID_CAPTURED, notif)
+        } catch (_: SecurityException) { /* POST_NOTIFICATIONS not granted */ }
+    }
+
+    private fun hasNotificationPermission(context: Context): Boolean {
+        if (Build.VERSION.SDK_INT < 33) return true
+        return ContextCompat.checkSelfPermission(
+            context, Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+}

@@ -1,0 +1,279 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // -------------------------------------------------------------------------
+    // Helpers
+    // -------------------------------------------------------------------------
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    // -------------------------------------------------------------------------
+    // User profiles
+    // -------------------------------------------------------------------------
+
+    match /users/{uid} {
+      allow create: if isSelf(uid)
+        && request.resource.data.keys().hasOnly(['displayName', 'email', 'captureCount', 'createdAt', 'lastSeenAt', 'platforms'])
+        && request.resource.data.captureCount == 0;
+
+      // Users may only read their own profile document.
+      allow read: if isSelf(uid);
+
+      // Users may update their own profile but cannot change captureCount or createdAt
+      // (those are controlled server-side via Cloud Functions).
+      allow update: if isSelf(uid)
+        && request.resource.data.captureCount == resource.data.captureCount
+        && request.resource.data.createdAt == resource.data.createdAt;
+
+      allow delete: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Daily state (trap allowance, refill timers) — read-only client-side
+    // -------------------------------------------------------------------------
+
+    match /daily_state/{docId} {
+      allow read: if signedIn() && resource.data.uid == request.auth.uid;
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Placed traps — any signed-in player may read active traps (needed to see
+    // others' traps on the map and get captured by them). All game logic and
+    // writes go through Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /traps/{trapId} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Player locations — fully server-managed; never readable by clients.
+    // The updatePlayerLocation Cloud Function writes these documents.
+    // -------------------------------------------------------------------------
+
+    match /player_locations/{uid} {
+      allow read:  if false;
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Leaderboard — public read; all writes go through the refreshLeaderboard
+    // Cloud Function (admin-triggered).
+    // -------------------------------------------------------------------------
+
+    match /leaderboard/{docId} {
+      allow read:  if signedIn();
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Captures — a user may read captures where they are the trap owner or the
+    // captured player; all writes go through Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /captures/{captureId} {
+      allow read: if signedIn() && (
+        resource.data.ownerUid       == request.auth.uid ||
+        resource.data.capturedUserId == request.auth.uid
+      );
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Trap definitions — public read (every player needs these to see their
+    // inventory); all writes go through admin Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /trap_definitions/{definitionId} {
+      allow read:  if signedIn();
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Conversations & messages — a participant may read their own threads;
+    // all mutations go through the messages Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /conversations/{conversationId} {
+      allow read: if signedIn()
+        && request.auth.uid in resource.data.participantUids;
+      allow write: if false;
+    }
+
+    match /conversations/{conversationId}/messages/{messageId} {
+      allow read: if signedIn()
+        && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participantUids;
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Friends & friend requests — users may only read their own relationship
+    // documents; all writes go through the social Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /friendships/{docId} {
+      allow read: if signedIn() && (
+        resource.data.uid1 == request.auth.uid ||
+        resource.data.uid2 == request.auth.uid
+      );
+      allow write: if false;
+    }
+
+    match /friend_requests/{docId} {
+      allow read: if signedIn() && (
+        resource.data.fromUid == request.auth.uid ||
+        resource.data.toUid   == request.auth.uid
+      );
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Ally groups — a member may read their own group documents;
+    // all writes go through allyDiplomacy Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /ally_groups/{groupId} {
+      allow read: if signedIn()
+        && request.auth.uid in resource.data.memberUids;
+      allow write: if false;
+    }
+
+    match /ally_group_members/{docId} {
+      allow read: if signedIn()
+        && request.auth.uid in get(/databases/$(database)/documents/ally_groups/$(resource.data.groupId)).data.memberUids;
+      allow write: if false;
+    }
+
+    match /ally_group_roles/{docId} {
+      allow read: if signedIn()
+        && request.auth.uid in get(/databases/$(database)/documents/ally_groups/$(resource.data.groupId)).data.memberUids;
+      allow write: if false;
+    }
+
+    match /enemy_relations/{docId} {
+      allow read: if signedIn() && (
+        resource.data.sourceUid == request.auth.uid ||
+        resource.data.targetUid == request.auth.uid
+      );
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Support tickets — a user may read their own tickets and threads;
+    // all writes go through the support Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /support_tickets/{ticketId} {
+      allow read: if signedIn() && resource.data.uid == request.auth.uid;
+      allow write: if false;
+    }
+
+    match /support_tickets/{ticketId}/messages/{messageId} {
+      allow read: if signedIn()
+        && get(/databases/$(database)/documents/support_tickets/$(ticketId)).data.uid == request.auth.uid;
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // App content (terms & conditions, announcements) — public read;
+    // all writes go through admin Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /app_content/{docId} {
+      allow read:  if true;
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Game settings — public read so the client can check maintenance mode
+    // and game-wide parameters; all writes go through admin Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /game_settings/{docId} {
+      allow read:  if signedIn();
+      allow write: if false;
+    }
+
+    match /general_settings/{docId} {
+      allow read:  if signedIn();
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Levels — public read (displayed in user profiles and registration);
+    // all writes go through admin Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /levels/{levelId} {
+      allow read:  if signedIn();
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Payment packages — public read so apps can list available packages.
+    // All writes go through admin Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /payment_packages/{packageId} {
+      allow read:  if signedIn();
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Subscriptions — a user may only read their own subscription records.
+    // All writes go through Cloud Functions (createRevolutCheckout, webhook).
+    // -------------------------------------------------------------------------
+
+    match /subscriptions/{subId} {
+      allow read: if signedIn() && resource.data.uid == request.auth.uid;
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Payment logs — a user may read their own payment records only.
+    // -------------------------------------------------------------------------
+
+    match /payments/{paymentId} {
+      allow read: if signedIn() && resource.data.uid == request.auth.uid;
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Admin trap generation jobs — admins can watch their own job documents
+    // for real-time progress updates. All writes go through Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /admin_trap_gen_jobs/{jobId} {
+      allow read:  if signedIn() && request.auth.token.admin == true;
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Admin audit log — admins can read audit entries for the activity log panel.
+    // All writes go through Cloud Functions.
+    // -------------------------------------------------------------------------
+
+    match /admin_audit_log/{entryId} {
+      allow read:  if signedIn() && request.auth.token.admin == true;
+      allow write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Catch-all: deny everything not explicitly matched above.
+    // This rule only fires for collections not covered by the rules above.
+    // -------------------------------------------------------------------------
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

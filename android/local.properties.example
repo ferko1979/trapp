@@ -1,0 +1,10 @@
+# Copy this file to local.properties and fill in real values.
+# local.properties is gitignored — never commit it.
+
+# Google Maps API key.
+# Create one at https://console.cloud.google.com/apis/credentials
+# Restrict it to the Android app with package name com.fairco.trap and your SHA-1 fingerprint.
+MAPS_API_KEY=your_maps_api_key_here
+
+# Android SDK location (auto-populated by Android Studio — leave blank if using Studio).
+# sdk.dir=/Users/you/Library/Android/sdk

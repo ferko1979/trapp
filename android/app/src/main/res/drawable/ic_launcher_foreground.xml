@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive icon foreground — works on any shape mask (circle, squircle, etc.)
+  Place in:  app/src/main/res/drawable/ic_launcher_foreground.xml
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="140"
+    android:viewportHeight="140">
+
+    <!-- Hex outer shape -->
+    <path
+        android:pathData="M70,10 L120,38 L120,100 L70,128 L20,100 L20,38 Z"
+        android:fillColor="#0A1828"
+        android:strokeColor="#1A3A60"
+        android:strokeWidth="1.5"/>
+
+    <!-- Inner hex ring -->
+    <path
+        android:pathData="M70,15 L115,42 L115,98 L70,125 L25,98 L25,42 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#260099CC"
+        android:strokeWidth="1"/>
+
+    <!-- Crosshair dashed ring -->
+    <path
+        android:pathData="M70,34 A36,36 0 1,1 69.9,34 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#3300E5FF"
+        android:strokeWidth="1"
+        android:strokeLineCap="square"/>
+
+    <!-- Crosshair tick marks -->
+    <path android:pathData="M70,34 L70,44" android:strokeColor="#8000E5FF" android:strokeWidth="2" android:strokeLineCap="round"/>
+    <path android:pathData="M70,96 L70,106" android:strokeColor="#8000E5FF" android:strokeWidth="2" android:strokeLineCap="round"/>
+    <path android:pathData="M34,70 L44,70" android:strokeColor="#8000E5FF" android:strokeWidth="2" android:strokeLineCap="round"/>
+    <path android:pathData="M96,70 L106,70" android:strokeColor="#8000E5FF" android:strokeWidth="2" android:strokeLineCap="round"/>
+
+    <!-- Corner bracket marks -->
+    <path android:pathData="M26,48 L26,40 L34,40" android:fillColor="#00000000" android:strokeColor="#4D00E5FF" android:strokeWidth="2" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M114,48 L114,40 L106,40" android:fillColor="#00000000" android:strokeColor="#4D00E5FF" android:strokeWidth="2" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M26,92 L26,100 L34,100" android:fillColor="#00000000" android:strokeColor="#4D00E5FF" android:strokeWidth="2" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:pathData="M114,92 L114,100 L106,100" android:fillColor="#00000000" android:strokeColor="#4D00E5FF" android:strokeWidth="2" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+
+    <!-- Trap jaw — left arm -->
+    <path
+        android:pathData="M70,82 L46,62 L46,54 L52,54 L52,58 L70,75"
+        android:fillColor="#00000000"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+
+    <!-- Trap jaw — right arm -->
+    <path
+        android:pathData="M70,82 L94,62 L94,54 L88,54 L88,58 L70,75"
+        android:fillColor="#00000000"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+
+    <!-- Trap base plate -->
+    <path
+        android:pathData="M54,82 L86,82 Q88.5,82 88.5,84.5 Q88.5,87 86,87 L54,87 Q51.5,87 51.5,84.5 Q51.5,82 54,82 Z"
+        android:fillColor="#00E5FF"/>
+
+    <!-- Spring coils -->
+    <path android:pathData="M62,87 L62,93" android:strokeColor="#6600E5FF" android:strokeWidth="1.5" android:strokeLineCap="round"/>
+    <path android:pathData="M66,87 L66,95" android:strokeColor="#6600E5FF" android:strokeWidth="1.5" android:strokeLineCap="round"/>
+    <path android:pathData="M70,87 L70,93" android:strokeColor="#6600E5FF" android:strokeWidth="1.5" android:strokeLineCap="round"/>
+    <path android:pathData="M74,87 L74,95" android:strokeColor="#6600E5FF" android:strokeWidth="1.5" android:strokeLineCap="round"/>
+    <path android:pathData="M78,87 L78,93" android:strokeColor="#6600E5FF" android:strokeWidth="1.5" android:strokeLineCap="round"/>
+
+    <!-- Centre trigger dot (glow) -->
+    <path
+        android:pathData="M70,70 A6,6 0 1,1 69.9,70 Z"
+        android:fillColor="#4D00E5FF"/>
+    <path
+        android:pathData="M70,70 A4,4 0 1,1 69.9,70 Z"
+        android:fillColor="#00E5FF"/>
+    <path
+        android:pathData="M70,70 A2,2 0 1,1 69.9,70 Z"
+        android:fillColor="#FFFFFF"/>
+</vector>

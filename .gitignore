@@ -1,0 +1,48 @@
+# ── Secrets — NEVER commit ────────────────────────────────
+*.jks
+*.keystore
+*.p12
+*.p8
+*.mobileprovision
+local.properties
+google-services.json
+GoogleService-Info.plist
+serviceAccountKey.json
+*-firebase-adminsdk-*.json
+.env
+.env.*
+!.env.example
+
+# ── Android ───────────────────────────────────────────────
+.gradle/
+.kotlin/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.iml
+*.apk
+*.aab
+android/.idea/
+android/app/release/
+
+# ── iOS / Xcode ───────────────────────────────────────────
+ios/**/xcuserdata/
+ios/**/DerivedData/
+ios/Pods/
+*.xcworkspace/xcuserdata/
+
+# ── Firebase / Node ───────────────────────────────────────
+node_modules/
+.firebase/
+firebase-debug*.log
+firestore-debug.log
+ui-debug.log
+backend/functions/lib/
+backend/admin-web/dist/
+
+# ── OS / editors ──────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.claude/

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Language names in Hebrew -->
+    <string name="lang_en">אנגלית (English)</string>
+    <string name="lang_hu">הונגרית (Hungarian)</string>
+    <string name="lang_sk">סלובקית (Slovak)</string>
+    <string name="lang_ro">רומנית (Romanian)</string>
+    <string name="lang_de">גרמנית (German)</string>
+    <string name="lang_hr">קרואטית (Croatian)</string>
+    <string name="lang_he">עברית (Hebrew)</string>
+
+    <!-- Common actions -->
+    <string name="action_login">כניסה</string>
+    <string name="action_register">הרשמה</string>
+    <string name="action_cancel">ביטול</string>
+    <string name="action_save">שמור</string>
+    <string name="action_send">שלח</string>
+    <string name="action_back">חזרה</string>
+    <string name="action_close">סגור</string>
+    <string name="action_logout">יציאה</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="action_reload">טעינה מחדש</string>
+    <string name="action_search">חיפוש</string>
+    <string name="action_accept">אישור</string>
+    <string name="action_decline">דחייה</string>
+    <string name="action_yes">כן</string>
+    <string name="action_no">לא</string>
+    <string name="action_add">הוסף</string>
+    <string name="action_remove">הסר</string>
+    <string name="action_discard">בטל שינויים</string>
+    <string name="action_submit">שלח</string>
+    <string name="action_later">אחר כך</string>
+    <string name="action_update_now">עדכן עכשיו</string>
+    <string name="action_allow">אפשר</string>
+    <string name="action_not_now">לא עכשיו</string>
+
+    <!-- Labels -->
+    <string name="label_email">דוא״ל</string>
+    <string name="label_password">סיסמה</string>
+    <string name="label_confirm_password">אימות סיסמה</string>
+    <string name="label_language">שפה</string>
+    <string name="label_select_language">בחר/י שפה:</string>
+    <string name="label_first_name">שם פרטי</string>
+    <string name="label_last_name">שם משפחה</string>
+    <string name="label_nickname">כינוי (ייחודי)</string>
+    <string name="label_username">שם משתמש (ידית ייחודית)</string>
+    <string name="label_birthdate">תאריך לידה (YYYY-MM-DD)</string>
+    <string name="label_optional_gender">מגדר (אופציונלי)</string>
+    <string name="label_accept_terms">אני מקבל/ת את </string>
+    <string name="label_terms_and_conditions">תנאי השימוש</string>
+    <string name="label_accept_terms_full">אני מקבל/ת את תנאי השימוש</string>
+    <string name="label_mandatory_fields_info">שדות המסומנים ב-* הם חובה</string>
+    <string name="label_view_terms">צפה בתנאי השימוש</string>
+    <string name="label_gender">מגדר:</string>
+    <string name="label_new_email">כתובת דוא״ל חדשה</string>
+    <string name="label_loading">טוען…</string>
+    <string name="label_membership">חברות</string>
+    <string name="label_email_address">כתובת דוא״ל</string>
+    <string name="label_age">גיל</string>
+    <string name="label_date_of_birth">תאריך לידה</string>
+
+    <!-- Hints -->
+    <string name="hint_first_name">שם פרטי</string>
+    <string name="hint_last_name">שם משפחה</string>
+    <string name="hint_nickname">כינוי / שם משתמש</string>
+    <string name="hint_username">שם משתמש (ללא רווחים)</string>
+    <string name="hint_subject">נושא</string>
+    <string name="hint_message">הודעה</string>
+    <string name="hint_suggest_first_name">הכנס/י שם פרטי</string>
+    <string name="hint_suggest_last_name">הכנס/י שם משפחה</string>
+    <string name="hint_suggest_nickname">בחר/י שם משתמש ייחודי</string>
+    <string name="hint_new_email">הכנס/י כתובת הדוא״ל הרצויה</string>
+    <string name="hint_search_name">חיפוש לפי שם או שם משתמש</string>
+    <string name="hint_type_message">הקלד/י הודעה...</string>
+    <string name="hint_search_messages">חיפוש הודעות...</string>
+    <string name="hint_search_friends">חיפוש חברים...</string>
+    <string name="hint_search_user">חיפוש משתמש…</string>
+    <string name="hint_type_reply">הקלד/י תשובה...</string>
+
+    <!-- Titles -->
+    <string name="title_settings">הגדרות</string>
+    <string name="title_edit_profile">עריכת פרופיל</string>
+    <string name="title_set_username">הגדרת שם משתמש</string>
+    <string name="title_friends">חברים</string>
+    <string name="title_conversations">הודעות</string>
+    <string name="title_support_tickets">כרטיסי תמיכה</string>
+    <string name="title_terms_conditions">תנאי השימוש</string>
+    <string name="title_create_ticket">פתיחת כרטיס תמיכה</string>
+    <string name="title_add_friend">הוסף חבר</string>
+    <string name="title_new_message">הודעה חדשה</string>
+    <string name="title_ticket_thread">שרשור כרטיס</string>
+    <string name="title_request_email_change">בקשת שינוי דוא״ל</string>
+    <string name="title_ranking">דירוג</string>
+    <string name="title_capture_history">לכידות</string>
+    <string name="title_update_required">עדכון נדרש</string>
+    <string name="title_update_available">עדכון זמין</string>
+    <string name="title_tnc_updated">תנאי השימוש עודכנו</string>
+    <string name="title_start_conversation">התחל שיחה</string>
+
+    <!-- Status -->
+    <string name="status_logging_in">בודק פרטי חשבון, נכנס…</string>
+    <string name="status_registering">נרשם…</string>
+    <string name="status_checking_username">בודק זמינות שם משתמש…</string>
+    <string name="status_checking_availability">בודק זמינות…</string>
+    <string name="status_loading">טוען נתוני משחק…</string>
+    <string name="status_initializing">מאתחל…</string>
+    <string name="status_ready">מוכן</string>
+    <string name="status_placing">מניח מלכודת…</string>
+    <string name="status_preparing">מכין…</string>
+
+    <!-- Login screen -->
+    <string name="msg_login_explanation">ברוך שובך! היכנס/י כדי להמשיך לצוד ולבדוק את המלכודות שלך.</string>
+    <string name="msg_landing_welcome">היכנס/י כדי להמשיך או הירשם/י לחשבון חדש.</string>
+    <string name="error_email_not_verified">אנא אמת/י את כתובת הדוא״ל שלך לפני הכניסה. בדוק/י את תיבת הדואר.</string>
+    <string name="action_resend_verification">שלח שוב אימות דוא״ל</string>
+    <string name="action_forgot_password">שכחת סיסמה?</string>
+    <string name="msg_reset_password_sent">אימייל לאיפוס סיסמה נשלח. בדוק/י את תיבת הדואר.</string>
+    <string name="error_enter_email">אנא הכנס/י את כתובת הדוא״ל שלך לאיפוס הסיסמה.</string>
+    <string name="error_login_fields_empty">אנא הכנס/י דוא״ל וסיסמה.</string>
+    <string name="msg_login_success">הכניסה הצליחה</string>
+    <string name="error_login_failed">הכניסה נכשלה.</string>
+
+    <!-- Register screen -->
+    <string name="msg_register_explanation">הצטרף/י לציד! צור/י חשבון כדי להתחיל להניח מלכודות ולתפוס שחקנים סביבך.</string>
+    <string name="error_register_fields_empty">אנא מלא/י את כל השדות החובה (שם, כינוי, תאריך לידה, דוא״ל, סיסמה).</string>
+    <string name="error_terms_not_accepted">עליך לקבל את תנאי השימוש.</string>
+    <string name="error_password_too_short">הסיסמה חייבת להכיל לפחות 8 תווים.</string>
+    <string name="error_passwords_dont_match">הסיסמאות אינן תואמות.</string>
+    <string name="error_birthdate_mandatory">תאריך לידה הוא שדה חובה.</string>
+    <string name="error_invalid_birthdate">תאריך לידה לא תקין.</string>
+    <string name="error_too_young">עליך להיות בן/בת לפחות %1$d שנים להרשמה.</string>
+    <string name="msg_verification_email_sent">אימייל אימות נשלח. אנא אמת/י את כתובת הדוא״ל לפני הכניסה.</string>
+    <string name="error_username_taken">שם משתמש זה תפוס. אנא בחר/י שם אחר.</string>
+    <string name="error_username_verify_failed">לא ניתן לאמת שם משתמש: %1$s</string>
+    <string name="error_registration_failed_plain">ההרשמה נכשלה.</string>
+    <string name="msg_registration_success">ההרשמה הצליחה</string>
+    <string name="msg_no_terms_available">אין תנאי שימוש זמינים.</string>
+    <string name="error_load_terms_failed">לא ניתן לטעון את תנאי השימוש.</string>
+
+    <!-- Gender -->
+    <string name="gender_not_specified">לא צוין (אופציונלי)</string>
+    <string name="gender_male">זכר</string>
+    <string name="gender_female">נקבה</string>
+    <string name="gender_other">אחר</string>
+    <string name="gender_prefer_not_to_say">מעדיפ/ה לא לציין</string>
+
+    <!-- Profile screen -->
+    <string name="action_save_changes">שמור שינויים</string>
+    <string name="msg_profile_updated">הפרופיל עודכן</string>
+    <string name="msg_settings_saved">ההגדרות נשמרו</string>
+    <string name="section_identity">זהות</string>
+    <string name="section_personal_details">פרטים אישיים</string>
+    <string name="section_account">חשבון</string>
+    <string name="section_game_stats">סטטיסטיקות משחק</string>
+    <string name="label_display_name">שם תצוגה *</string>
+    <string name="label_username_field">שם משתמש *</string>
+    <string name="msg_username_available">שם משתמש זמין!</string>
+    <string name="msg_username_taken">שם משתמש זה תפוס</string>
+    <string name="msg_checking_availability">בודק זמינות…</string>
+    <string name="msg_email_change_support">שינוי דוא״ל מטופל דרך התמיכה. כרטיס תמיכה ייפתח בשמך.</string>
+    <string name="action_request_change">בקש שינוי</string>
+    <string name="action_request_email_change">בקש שינוי כתובת דוא״ל</string>
+    <string name="msg_email_change_request_sent">הבקשה הוגשה. הצוות שלנו יצור איתך קשר.</string>
+    <string name="error_invalid_email">אנא הכנס/י כתובת דוא״ל תקינה</string>
+    <string name="label_change_photo">שנה תמונה</string>
+    <string name="label_uploading">מעלה…</string>
+    <string name="action_change_password">שינוי סיסמה</string>
+    <string name="label_current_password">סיסמה נוכחית</string>
+    <string name="label_new_password">סיסמה חדשה</string>
+    <string name="msg_password_changed">הסיסמה עודכנה בהצלחה.</string>
+    <string name="error_password_mismatch">הסיסמאות אינן תואמות.</string>
+    <string name="error_auth_failed">האימות נכשל.</string>
+    <string name="label_not_specified">לא צוין</string>
+    <string name="label_none">ללא</string>
+    <string name="label_days">ימים</string>
+    <string name="label_member_since">חבר מאז</string>
+
+    <!-- Friends & Social -->
+    <string name="tab_friends">חברים</string>
+    <string name="tab_nearby_friends">חברים קרובים</string>
+    <string name="tab_nearby_players">שחקנים קרובים</string>
+    <string name="msg_no_friends_found">אין חברים עדיין</string>
+    <string name="msg_no_nearby_found">לא נמצאו חברים או שחקנים קרובים.</string>
+    <string name="msg_no_users_found">לא נמצאו משתמשים.</string>
+    <string name="action_add_friend">הוסף חבר</string>
+    <string name="msg_send_friend_request">שלח בקשת חברות ל-%1$s?</string>
+    <string name="msg_friend_request_sent">בקשת חברות נשלחה!</string>
+    <string name="msg_friend_request_sent_to">בקשת חברות נשלחה ל-@%1$s</string>
+    <string name="error_friend_request_failed">שליחת הבקשה נכשלה: %1$s</string>
+    <string name="msg_already_friends">אתם כבר חברים!</string>
+    <string name="title_remove_friend">הסר חבר</string>
+    <string name="msg_confirm_remove_friend">האם להסיר את %1$s מרשימת החברים שלך?</string>
+    <string name="label_friends_confirmed">חברים ✓</string>
+    <string name="label_accept_request">קבל בקשה</string>
+    <string name="label_request_sent">בקשה נשלחה</string>
+    <string name="msg_no_pending_requests">אין בקשות ממתינות.</string>
+    <string name="label_incoming">נכנסות</string>
+    <string name="label_outgoing">יוצאות</string>
+    <string name="msg_no_friends_to_message">אין חברים לשלוח הודעה.</string>
+    <string name="msg_no_conversations">אין הודעות עדיין. התחל/י שיחה!</string>
+    <string name="msg_no_tickets">לא נמצאו כרטיסי תמיכה.</string>
+    <string name="label_new_ticket">+ כרטיס חדש</string>
+    <string name="msg_ticket_created">הכרטיס נוצר בהצלחה</string>
+    <string name="error_ticket_failed">יצירת כרטיס נכשלה: %1$s</string>
+    <string name="msg_own_account">זה החשבון שלך.</string>
+
+    <!-- Game UI -->
+    <string name="title_radar">סביבה</string>
+    <string name="title_alerts">התראות</string>
+    <string name="action_toggle_tracking">הפעל/כבה מעקב</string>
+    <string name="action_zoom_in">הגדל</string>
+    <string name="action_zoom_out">הקטן</string>
+    <string name="action_my_location">המיקום שלי</string>
+    <string name="msg_select_trap_first">בחר/י מלכודת מהתיק תחילה!</string>
+    <string name="label_traps">מלכודות</string>
+    <string name="label_hold_to_place">לחץ/י לחיצה ארוכה להנחה!</string>
+    <string name="action_place_trap">הנח</string>
+    <string name="action_cancel_placement">ביטול</string>
+    <string name="label_your_trap">המלכודת שלך</string>
+    <string name="label_active_trap">מלכודת פעילה</string>
+    <string name="capture_headline_caught">נלכדת!</string>
+    <string name="capture_headline_scored">תפסת!</string>
+    <string name="capture_dismiss">לחץ/י להמשך</string>
+    <string name="msg_trap_placed">מלכודת הונחה!</string>
+    <string name="success_trap_placed">המלכודת הונחה בהצלחה!</string>
+    <string name="error_no_traps">אין מלכודות בתיק</string>
+    <string name="title_select_trap">בחר מלכודת</string>
+    <string name="error_too_far_to_place">התקרב/י כדי להניח את המלכודת</string>
+    <string name="error_location_denied">הרשאת מיקום נדחתה</string>
+    <string name="error_game_inactive">המשחק אינו פעיל כרגע</string>
+    <string name="hint_tap_map_to_place">הקש/י על המפה לבחירת מיקום הנחה</string>
+    <string name="label_trap_bag_title">🎒 תיק מלכודות</string>
+    <string name="msg_bag_empty_refill">התיק ריק — מלכודות מתמלאות אוטומטית</string>
+    <string name="label_trapped_title">נלכדת!</string>
+    <string name="label_trapped_effect_fun">מלכודת כיף תפסה אותך!</string>
+    <string name="label_trapped_effect_timeout">אתה/את קפוא/ה למשך %1$d שניות!</string>
+
+    <!-- Ranking & Leaderboard -->
+    <string name="action_ranking">דירוג</string>
+    <string name="tab_global">גלובלי</string>
+    <string name="tab_friends_rank">חברים</string>
+    <string name="tab_alliance">ברית</string>
+    <string name="label_not_a_member">לא חבר</string>
+    <string name="msg_no_friends_yet">אין חברים עדיין</string>
+    <string name="label_rank_summary">הדירוגים שלי</string>
+
+    <!-- Capture History -->
+    <string name="action_capture_history">היסטוריית לכידות</string>
+    <string name="tab_my_captures">לכידות שלי</string>
+    <string name="tab_caught_me">תפסו אותי</string>
+    <string name="msg_no_captures_yet">אין לכידות עדיין</string>
+    <string name="msg_no_caught_yet">עדיין אף אחד לא תפס אותך</string>
+
+    <!-- Settings dialog -->
+    <string name="label_appearance">מראה</string>
+    <string name="label_theme">ערכת נושא</string>
+    <string name="label_preferences">העדפות</string>
+    <string name="label_enable_sound">הפעל צלילים</string>
+    <string name="label_enable_notifications">הפעל התראות</string>
+    <string name="label_theme_auto">🌤  אוטומטי\nמגיב לשעה ולאור הסביבה</string>
+    <string name="label_theme_light">☀️  תמיד בהיר</string>
+    <string name="label_theme_dark">🌙  תמיד כהה</string>
+
+    <!-- App intro slides -->
+    <string name="intro_btn_next">הבא ←</string>
+    <string name="intro_btn_start">בואו נתחיל! 🎮</string>
+    <string name="intro_skip">דלג על המבוא</string>
+    <string name="intro_dont_show">אל תציג שוב</string>
+    <string name="intro_s1_title">ברוך הבא ל-Trapp!</string>
+    <string name="intro_s1_desc">משחק המלכודות בעולם האמיתי — הנח מלכודות סמויות על מפה חיה ותפוס שחקנים אחרים, ממש בשכונה שלך.</string>
+    <string name="intro_s2_title">תיק המלכודות שלך</string>
+    <string name="intro_s3_title">הנח מלכודת</string>
+    <string name="intro_s4_title">תפוס שחקנים</string>
+    <string name="intro_s5_title">הימנע ופרק</string>
+    <string name="intro_s6_title">חברים וברית</string>
+
+    <!-- Terms re-acceptance -->
+    <string name="msg_tnc_updated">תנאי השימוש שלנו עודכנו. אנא קרא/י ואשר/י את התנאים החדשים כדי להמשיך לשחק.</string>
+    <string name="action_accept_continue">קבל והמשך</string>
+    <string name="action_decline_logout">דחה וצא</string>
+
+    <!-- Update dialogs -->
+    <string name="msg_update_required">נדרשת גרסה חדשה של Trap כדי להמשיך לשחק. עדכן/י את האפליקציה מ-Play Store.</string>
+    <string name="msg_update_available">גרסה חדשה יותר של Trap זמינה. עדכן/י עכשיו לקבלת הפיצ\'רים והשיפורים האחרונים.</string>
+
+    <!-- Home Base dialog -->
+    <string name="dialog_home_base_title">🏠 בסיס בית</string>
+    <string name="action_home_base_set">הגדר</string>
+    <string name="action_upgrade_to_premium">⭐ שדרג ל-Premium</string>
+
+    <!-- Invite channels -->
+    <string name="invite_email_subject">הצטרף/י אליי ב-TRAPP!</string>
+    <string name="action_invite_via_email">הזמן/י דרך דוא״ל</string>
+    <string name="label_share_whatsapp">WhatsApp</string>
+    <string name="label_share_viber">Viber</string>
+    <string name="label_share_email">דוא״ל</string>
+    <string name="label_share_sms">SMS</string>
+    <string name="label_share_other">אחר</string>
+    <string name="msg_invite_friend_joined">החבר שהזמנת הצטרף!</string>
+    <string name="action_invite_via">הזמן דרך…</string>
+
+    <!-- Error messages -->
+    <string name="error_fill_all_fields">אנא מלא/י את כל השדות</string>
+    <string name="error_action_failed">נכשל: %1$s</string>
+    <string name="error_no_traps_daily_limit">אין יותר הנחות זמינות להיום</string>
+    <string name="error_user_not_found">משתמש לא נמצא</string>
+    <string name="error_search_failed">החיפוש נכשל</string>
+
+</resources>

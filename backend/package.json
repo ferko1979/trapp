@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "firebase-functions": "^4.9.0",
+    "nodemailer": "^8.0.5"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^8.0.0"
+  }
+}

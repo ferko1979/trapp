@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base theme — follows system day/night automatically -->
+    <style name="Theme.Trapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/bg_deep</item>
+        <item name="android:statusBarColor">@color/bg_deep</item>
+        <item name="android:navigationBarColor">@color/bg_deep</item>
+        <item name="android:windowLightStatusBar">@bool/is_day</item>
+        <item name="android:windowLightNavigationBar">@bool/is_day</item>
+        <item name="colorPrimary">@color/accent_cyan</item>
+        <item name="colorPrimaryDark">@color/bg_deep</item>
+        <item name="colorAccent">@color/accent_cyan</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:fontFamily">@font/exo2</item>
+    </style>
+
+    <!-- Fullscreen (Splash, Map) -->
+    <style name="Theme.Trapp.Fullscreen" parent="Theme.Trapp">
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowBackground">@color/bg_deep</item>
+    </style>
+
+    <!-- Slide-up activity transitions -->
+    <style name="Theme.Trapp.SlideUp" parent="Theme.Trapp">
+        <item name="android:windowAnimationStyle">@style/TrappSlideUpAnimation</item>
+    </style>
+
+    <!--
+        Animation set for slide-up transitions.
+        Named without dot-notation to avoid AAPT treating "Anim" as an implicit parent.
+    -->
+    <style name="TrappSlideUpAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_up_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_down_exit</item>
+    </style>
+
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Night-mode theme overrides.
+  Theme.Trapp is defined once in values/themes.xml.
+  The DayNight parent resolves colours from values-night/colors.xml automatically.
+  No additional style overrides needed here.
+-->
+<resources/>

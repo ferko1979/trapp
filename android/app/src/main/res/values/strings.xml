@@ -1,0 +1,620 @@
+<resources>
+    <!-- Shown when the user is younger than the minimum required age (%1$d = minimum age). -->
+    <!-- Foreground service notification text — intentionally generic, no coordinates. -->
+
+    <string-array name="gender_options">
+        <item>@string/gender_not_specified</item>
+        <item>@string/gender_male</item>
+        <item>@string/gender_female</item>
+        <item>@string/gender_other</item>
+        <item>@string/gender_prefer_not_to_say</item>
+    </string-array>
+
+    <!-- ── Trap placement ── -->
+
+    <!-- ── Capture screen ── -->
+
+    <!-- ── Radar ── -->
+
+    <!-- ── Leaderboard ── -->
+
+    <!-- ── Alerts / Notifications ── -->
+
+    <!-- ── Actions ── -->
+
+    <!-- ── Profile ── -->
+
+    <!-- ── Proximity ── -->
+
+    <!-- ── Friends ── -->
+
+
+    <string name="app_name">Trapp</string>
+    <string name="bag_stats_format">Bag: %1$d / %2$d units</string>
+    <string name="held_units_format">%1$s, Units: %2$d</string>
+    <string name="selected_trap_format">Selected Trap: %1$s</string>
+    <string name="trapped_count_format">Trapped: %1$d</string>
+    <string name="caught_count_format">Caught: %1$d</string>
+    <string name="trap_selection_title_format">%1$s x%2$d%3$s</string>
+    <string name="trap_selection_detail_format">Place: %1$ds | Damage: %2$d%3$s</string>
+    <string name="trap_refill_countdown_format"> | Next: %1$s</string>
+    <string name="age_info_format">Age: %1$d (Birthdate: %2$s)</string>
+    <string name="email_change_subject">Email address change request initiated</string>
+    <string name="email_change_message_format">My current email is %1$s. Please change it to the new one: \n\n</string>
+    <string name="marker_captured_format">%1$s - Caught: @%2$s</string>
+    <string name="marker_title_format">%1$s (%2$s)</string>
+    <string name="marker_title_trap_format">Trap (%1$s)</string>
+    <string name="status_ready">Ready</string>
+    <string name="status_refreshing_map">Refreshing map…</string>
+    <string name="status_placing">Placing trap...</string>
+    <string name="status_placing_progress">Placing trap... (%1$ds)</string>
+    <string name="status_loading">Loading game data...</string>
+    <string name="status_initializing">Initializing...</string>
+    <string name="error_setup_failed">Profile setup failed: %1$s</string>
+    <string name="error_registration_failed">Registration failed: %1$s</string>
+    <string name="msg_registration_success">Registration successful</string>
+    <string name="bag_full"> (Bag full)</string>
+    <string name="weight_limit_reached"> (Weight limit reached)</string>
+    <string name="title_settings">Settings</string>
+    <string name="action_close">Close</string>
+    <string name="msg_settings_saved">Settings saved</string>
+    <string name="action_save_changes">Save Changes</string>
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
+    <string name="hint_nickname">Nickname / Username</string>
+    <string name="action_request_email_change">Request email address change</string>
+    <string name="label_gender">Gender:</string>
+    <string name="title_edit_profile">Edit Profile</string>
+    <string name="action_save">Save</string>
+    <string name="msg_profile_updated">Profile updated</string>
+    <string name="error_action_failed">Failed: %1$s</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="error_no_traps">No traps in bag</string>
+    <string name="title_select_trap">Select Trap</string>
+    <string name="error_placement_interrupted">Interrupted assembly, please restart the process</string>
+    <string name="msg_trap_placed">Trap placed!</string>
+    <string name="error_placement_not_completed">Placement not completed</string>
+    <string name="error_placement_failed">Placement failed: %1$s</string>
+    <string name="error_no_traps_daily_limit">No more placements available today</string>
+    <string name="error_too_far_to_place">Move closer to place the trap</string>
+    <string name="error_too_many_traps_nearby">You already have traps too close together here. Space them out more!</string>
+    <string name="error_too_far_to_disassemble_detail">Move %1$dm closer to disassemble.</string>
+    <string name="error_missing_session">Placement failed: missing sessionId</string>
+    <string name="error_load_inventory">Failed to load inventory</string>
+    <string name="hint_username">username (no spaces)</string>
+    <string name="title_set_username">Set Username</string>
+    <string name="msg_choose_handle">Choose your unique handle</string>
+    <string name="action_set">Set</string>
+    <string name="msg_username_set">Username set to @%1$s</string>
+    <string name="handle_format">\@%1$s</string>
+    <string name="set_username">Set username</string>
+    <string name="error_location_denied">Location permission denied</string>
+    <string name="error_game_inactive">Game is not currently playable</string>
+    <string name="error_radar_off">Please start the radar first!</string>
+    <string name="msg_opening_friends">Opening Friends list...</string>
+    <string name="msg_friend_request_sent_to">Friend request sent to @%1$s</string>
+    <string name="error_friend_request_failed">Failed to send request: %1$s</string>
+    <string name="msg_opening_chat">Opening chat with @%1$s</string>
+    <string name="error_waiting_gps">Waiting for GPS signal...</string>
+    <string name="error_choose_location">Long-press the map to choose a trap location first</string>
+    <string name="error_target_far">Target is too far (%1$dm). Please move closer.</string>
+    <string name="error_select_trap">Please select a trap first</string>
+    <string name="msg_choose_gender">Select Gender</string>
+    <string name="action_add">Add</string>
+    <string name="error_invalid_username">Please enter a valid username</string>
+    <string name="msg_traps_explanation">Select a trap to see its details and place it on the map.</string>
+    <string name="msg_edit_profile_explanation">Update your personal information below. Some changes may take a moment to reflect.</string>
+    <string name="hint_suggest_first_name">Enter your first name</string>
+    <string name="hint_suggest_last_name">Enter your last name</string>
+    <string name="hint_suggest_nickname">Choose a unique username</string>
+    <string name="hint_suggest_gender">Select your gender</string>
+    <string name="action_close_traps">Close</string>
+    <string name="tab_friends">Friends</string>
+    <string name="tab_nearby_friends">Nearby Friends</string>
+    <string name="tab_nearby_players">Nearby Players</string>
+    <string name="error_location_unavailable">Location unavailable. Please ensure GPS is enabled.</string>
+    <string name="error_gms_unavailable">Google Play Services are not available on this device.</string>
+    <string name="msg_no_nearby_found">No nearby friends or players found or no nearby possibility found.</string>
+    <string name="msg_no_friends_found">No friends yet</string>
+    <string name="title_friends">Friends</string>
+    <string name="action_back">Back</string>
+    <string name="action_reload">Reload</string>
+    <string name="hint_search_name">Search by name or username</string>
+    <string name="msg_no_users_found">No users found.</string>
+    <string name="action_search">Search</string>
+    <string name="radius_500m">500 m</string>
+    <string name="radius_1500m">1.5 km</string>
+    <string name="radius_3km">3 km</string>
+    <string name="label_enable_sound">Enable Sound</string>
+    <string name="label_enable_notifications">Enable Notifications</string>
+    <string name="label_language">Language</string>
+    <string name="lang_en">English</string>
+    <string name="lang_hu">Magyar (Hungarian)</string>
+    <string name="lang_sk">Slovenčina (Slovakian)</string>
+    <string name="lang_ro">Română (Romanian)</string>
+    <string name="lang_de">Deutsch (German)</string>
+    <string name="error_email_not_verified">Please verify your email address before logging in. Check your inbox.</string>
+    <string name="action_resend_verification">Resend Verification Email</string>
+    <string name="action_forgot_password">Forgot Password?</string>
+    <string name="msg_reset_password_sent">Password reset email sent. Check your inbox.</string>
+    <string name="error_enter_email">Please enter your email address to reset password.</string>
+    <string name="lang_hr">Hrvatski (Croatian)</string>
+    <string name="lang_he">עברית (Hebrew)</string>
+    <string name="error_login_fields_empty">Please enter email and password.</string>
+    <string name="msg_login_success">Login successful</string>
+    <string name="error_login_failed">Login failed.</string>
+    <string name="gender_not_specified">Not specified (Optional)</string>
+    <string name="error_register_fields_empty">Please fill in all mandatory fields (Name, Nickname, Birthdate, Email, Password).</string>
+    <string name="error_terms_not_accepted">You must accept the Terms and Conditions.</string>
+    <string name="error_password_too_short">Password must be at least 8 characters.</string>
+    <string name="error_passwords_dont_match">Passwords do not match.</string>
+    <string name="error_birthdate_mandatory">Birthdate is mandatory.</string>
+    <string name="error_invalid_birthdate">Invalid birthdate.</string>
+    <string name="error_too_young">You must be at least %1$d years old to register.</string>
+    <string name="notif_tracking_active">Location tracking is active</string>
+    <string name="notif_tracking_starting">Starting location tracking…</string>
+    <string name="status_checking_availability">Checking availability...</string>
+    <string name="error_nickname_taken">This nickname is already taken. Please choose another one.</string>
+    <string name="status_registering">Registering...</string>
+    <string name="msg_verification_email_sent">Verification email sent. Please verify your email before logging in.</string>
+    <string name="error_nickname_verify_failed">Could not verify nickname: %1$s</string>
+    <string name="msg_no_terms_available">No terms available.</string>
+    <string name="title_terms_conditions">Terms &amp; Conditions</string>
+    <string name="error_load_terms_failed">Could not load terms.</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_other">Other</string>
+    <string name="gender_prefer_not_to_say">Prefer not to say</string>
+    <string name="error_registration_failed_plain">Registration failed.</string>
+    <string name="error_fill_all_fields">Please fill in all fields</string>
+    <string name="msg_ticket_created">Ticket created successfully</string>
+    <string name="error_ticket_failed">Failed to create ticket: %1$s</string>
+    <string name="msg_landing_welcome">Log in to continue or register a new account.</string>
+    <string name="action_login">Login</string>
+    <string name="action_register">Register</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="label_confirm_password">Confirm Password</string>
+    <string name="label_accept_terms">I accept the </string>
+    <string name="label_terms_and_conditions">Terms and Conditions</string>
+    <string name="label_accept_terms_full">I accept the Terms and Conditions</string>
+    <string name="label_birthdate">Birthdate (YYYY-MM-DD)</string>
+    <string name="label_optional_gender">Gender (Optional)</string>
+    <string name="label_mandatory_fields_info">Fields marked with * are mandatory</string>
+    <string name="hint_subject">Subject</string>
+    <string name="hint_message">Message</string>
+    <string name="action_send">Send</string>
+    <string name="title_create_ticket">Create Support Ticket</string>
+    <string name="action_change_password">Change Password</string>
+    <string name="label_current_password">Current Password</string>
+    <string name="label_new_password">New Password</string>
+    <string name="msg_password_changed">Password updated successfully.</string>
+    <string name="error_password_mismatch">Passwords do not match.</string>
+    <string name="error_auth_failed">Authentication failed.</string>
+    <string name="label_first_name">First Name</string>
+    <string name="label_last_name">Last Name</string>
+    <string name="label_nickname">Nickname (must be unique)</string>
+    <string name="msg_login_explanation">Welcome back! Sign in to continue your hunt and check your traps.</string>
+    <string name="label_username">Username (Unique handle)</string>
+    <string name="msg_register_explanation">Join the hunt! Create your account to start placing traps and catching players around you.</string>
+    <string name="error_username_taken">This username is already taken. Please choose another one.</string>
+    <string name="error_username_verify_failed">Could not verify username: %1$s</string>
+    <string name="status_checking_username">Checking username availability...</string>
+    <string name="status_logging_in">Checking account details, logging in…</string>
+    <string name="label_select_language">Select Language:</string>
+    <string name="label_view_terms">View Terms and Conditions</string>
+    <string name="action_logout">Logout</string>
+    <string name="label_bag_stats">Bag: %1$d / %2$d units</string>
+    <string name="label_units_held">Held: %1$d</string>
+    <string name="label_trapped_count">Trapped: %1$d</string>
+    <string name="label_caught_count">Caught: %1$d</string>
+    <string name="label_last_trapped">LAST TRAPPED</string>
+    <string name="action_add_friend">ADD FRIEND</string>
+    <string name="action_message">MESSAGE</string>
+    <string name="action_friends">FRIENDS</string>
+    <string name="action_edit_profile">EDIT PROFILE</string>
+    <string name="action_settings">SETTINGS</string>
+    <string name="action_awards_cards">AWARDS &amp; CARDS</string>
+    <string name="action_menu">Menu</string>
+    <string name="action_inbox">INBOX</string>
+    <string name="action_theme_light">SWITCH TO LIGHT</string>
+    <string name="action_theme_dark">SWITCH TO DARK</string>
+    <string name="hint_map_long_press">Long-press on the map to choose a trap location.</string>
+    <string name="label_traps">TRAPS</string>
+    <string name="label_hold_to_place">Hold to place!</string>
+    <string name="status_preparing">Preparing…</string>
+    <string name="role_free_user">Free User</string>
+    <string name="role_premium_user">Premium User</string>
+    <string name="role_admin">Admin</string>
+    <string name="error_trap_place_failed">Failed to place trap: %1$s</string>
+    <string name="success_trap_placed">Trap placed successfully!</string>
+    <string name="hint_search_user">Search for user…</string>
+    <string name="error_user_not_found">User not found</string>
+    <string name="title_add_friend">Add Friend</string>
+    <string name="msg_send_friend_request">Send friend request to %1$s?</string>
+    <string name="msg_friend_request_sent">Friend request sent!</string>
+    <string name="default_display_name">Player</string>
+    <string name="msg_request_sent">Friend request sent!</string>
+    <string name="error_request_failed">Failed to send request</string>
+    <string name="msg_already_friends">You are already friends!</string>
+    <string name="error_search_failed">Search failed</string>
+    <string name="admin_suffix"> Admin</string>
+    <string name="msg_not_found">not found.</string>
+    <string name="error_user_not_found_named">User @%1$s not found.</string>
+    <string name="distance_m_away">%1$d m away</string>
+    <string name="distance_km_away">%1$s km away</string>
+    <string name="label_friend_suffix">(Friend)</string>
+    <string name="action_yes">Yes</string>
+    <string name="action_no">No</string>
+    <string name="lvl_format">LVL %1$d</string>
+    <string name="bag_label_format">BAG %1$d/%2$d</string>
+    <string name="score_label">SCORE</string>
+    <string name="username_display_format">| %s</string>
+    <string name="prox_label">PROX</string>
+    <string name="action_toggle_tracking">Toggle Tracking</string>
+    <string name="action_zoom_in">Zoom In</string>
+    <string name="action_zoom_out">Zoom Out</string>
+    <string name="hud_score_label">SCORE</string>
+    <string name="hud_placing_label">PLACING</string>
+    <string name="hud_bag_label">BAG</string>
+    <string name="hud_proximity_label">PROXIMITY</string>
+    <string name="label_hold_to_assemble">HOLD</string>
+    <string name="msg_trap_assembled">PLACED!</string>
+    <string name="label_traps_left">%1$d LEFT</string>
+    <string name="action_cancel_placement">CANCEL</string>
+    <string name="action_place_trap">PLACE</string>
+    <string name="action_my_location">My Location</string>
+    <string name="capture_headline_caught">TRAPPED!</string>
+    <string name="capture_headline_scored">GOT ONE!</string>
+    <string name="capture_subtitle_caught">YOU WALKED INTO A %1$s</string>
+    <string name="capture_subtitle_scored">%1$s WALKED INTO YOUR TRAP</string>
+    <string name="capture_label_damage">DAMAGE</string>
+    <string name="capture_label_to_owner">TO OWNER</string>
+    <string name="capture_placed_by">PLACED BY • %1$s</string>
+    <string name="capture_dismiss">TAP TO CONTINUE</string>
+    <string name="title_radar">NEARBY</string>
+    <string name="radar_legend_ally">Ally</string>
+    <string name="radar_legend_enemy">Enemy</string>
+    <string name="radar_legend_unknown">Unknown</string>
+    <string name="label_distance_meters">%1$d m</string>
+    <string name="tab_score">SCORE</string>
+    <string name="tab_captures">CAPTURES</string>
+    <string name="tab_traps">TRAPS</string>
+    <string name="tab_combined">COMBINED</string>
+    <string name="leaderboard_you_label">YOU</string>
+    <string name="title_alerts">ALERTS</string>
+    <string name="notif_status_meta">Score %1$s · Nearest trap %2$d m</string>
+    <string name="notif_title_captured">You were captured!</string>
+    <string name="notif_title_trap_triggered">Trap triggered!</string>
+    <string name="notif_score_chip">+%1$d pts</string>
+    <string name="notif_title_ally_request">Ally request</string>
+    <string name="notif_desc_ally_request">%1$s wants to form an alliance with you.</string>
+    <string name="notif_title_refill">Trap refilled</string>
+    <string name="action_accept">Accept</string>
+    <string name="action_decline">Decline</string>
+    <string name="action_view_map">View Map</string>
+    <string name="action_dismiss">Dismiss</string>
+    <string name="title_profile">PROFILE</string>
+    <string name="profile_level_prefix">LEVEL</string>
+    <string name="profile_xp_format">XP %1$s</string>
+    <string name="profile_xp_next_format">Next: %1$s</string>
+    <string name="stat_label_score">TOTAL SCORE</string>
+    <string name="stat_label_captures">CAPTURES</string>
+    <string name="stat_label_traps_placed">TRAPS PLACED</string>
+    <string name="stat_label_city_rank">CITY RANK</string>
+    <string name="stat_rank_format">#%1$d</string>
+    <string name="section_stats">STATS</string>
+    <string name="section_badges">BADGES</string>
+    <string name="proximity_banner_warn">⚠  TRAP NEARBY</string>
+    <string name="proximity_banner_critical">⚠  TRAP VERY CLOSE</string>
+    <string name="label_add_friend_hint">Search username…</string>
+    <string name="splash_version_format">Version %1$s</string>
+
+    <string name="title_conversations">Messages</string>
+    <string name="msg_no_conversations">No messages yet. Start a conversation!</string>
+    <string name="hint_type_message">Type a message...</string>
+    <string name="title_new_message">New Message</string>
+    <string name="msg_no_friends_to_message">No friends to message.</string>
+    <string name="title_support_tickets">Support Tickets</string>
+    <string name="msg_no_tickets">No support tickets found.</string>
+    <string name="hint_type_reply">Type a reply...</string>
+    <string name="title_ticket_thread">Ticket Thread</string>
+    <string name="label_new_ticket">+ New Ticket</string>
+    <string name="hint_search_messages">Search messages...</string>
+    <string name="title_start_conversation">Start a Conversation</string>
+    <string name="hint_search_friends">Search friends...</string>
+
+    <!-- ── Trap Bag ── -->
+    <string name="label_trap_bag_title">🎒 TRAP BAG</string>
+    <string name="msg_bag_empty_refill">Bag empty — traps refill automatically</string>
+
+    <!-- ── Profile screen ── -->
+    <string name="label_change_photo">Change Photo</string>
+    <string name="label_uploading">Uploading…</string>
+    <string name="section_identity">Identity</string>
+    <string name="section_personal_details">Personal Details</string>
+    <string name="section_account">Account</string>
+    <string name="section_game_stats">Game Stats</string>
+    <string name="label_age">Age</string>
+    <string name="label_date_of_birth">Date of Birth</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_time_zone">Time Zone</string>
+    <string name="label_age_group">Age Group</string>
+    <string name="label_member_since">Member Since</string>
+    <string name="label_email_address">Email address</string>
+    <string name="label_user_id">User ID</string>
+    <string name="label_membership">Membership</string>
+    <string name="label_player_level">Player Level</string>
+    <string name="label_traps_placed">Traps Placed</string>
+    <string name="label_players_caught">Players Caught</string>
+    <string name="label_times_caught">Times Caught</string>
+    <string name="label_total_score">Total Score</string>
+    <string name="label_xp">XP</string>
+    <string name="label_current_streak">Current Streak</string>
+    <string name="label_longest_streak">Longest Streak</string>
+    <string name="label_days_played">Days Played</string>
+    <string name="label_last_caught">Last Caught</string>
+    <string name="label_last_caught_by">Last Caught By</string>
+    <string name="label_age_adult">Adult (18+)</string>
+    <string name="label_age_minor">Minor (under 18)</string>
+    <string name="label_not_specified">Not specified</string>
+    <string name="label_none">None</string>
+    <string name="label_days">days</string>
+    <string name="msg_email_change_support">Email changes are handled via support. A ticket will be created on your behalf.</string>
+    <string name="action_discard">Discard</string>
+    <string name="action_request_change">Request Change</string>
+    <string name="label_display_name">Display Name *</string>
+    <string name="label_username_field">Username *</string>
+    <string name="msg_checking_availability">Checking availability...</string>
+    <string name="msg_username_available">Username is available!</string>
+    <string name="msg_username_taken">This username is already taken</string>
+
+    <!-- ── Placement flow (new) ── -->
+    <string name="hint_tap_map_to_place">Tap the map to choose a placement location</string>
+    <string name="hint_select_trap_to_place">Now select a trap from the bag below</string>
+    <string name="label_select_trap_to_place">Select a trap to place</string>
+    <string name="action_push">PUSH</string>
+    <string name="label_hold_for_2s">Hold 2 seconds to place</string>
+    <string name="msg_placing_background">Placing trap in background…</string>
+    <string name="label_loading">Loading…</string>
+    <string name="label_my_disassembled_trap">Your removed trap</string>
+
+    <!-- ── Disassemble flow ── -->
+    <string name="action_disassemble">DISASSEMBLE</string>
+    <string name="label_hold_to_disassemble">Hold 2 seconds to disassemble</string>
+    <string name="label_disassembling">Disassembling…</string>
+    <string name="label_disassemble_countdown">%1$ds remaining</string>
+    <string name="msg_disassemble_success">Trap disassembled!</string>
+    <string name="msg_disassemble_failed">Disassemble failed</string>
+    <string name="error_too_far_to_disassemble">Move closer to disassemble</string>
+    <string name="label_reveal_first">Reveal this trap first to disassemble</string>
+    <string name="label_trap_owner">Owner: %1$s</string>
+    <string name="label_your_trap_info">Your trap</string>
+    <string name="label_others_trap_info">Someone\'s trap</string>
+
+    <!-- ── Placement/disassembly progress overlays ── -->
+    <string name="label_placing_trap">Placing trap… stay in position</string>
+    <string name="warning_return_to_radius">Return within %1$d seconds!</string>
+    <string name="warning_return_to_placement">Move %1$dm closer! %2$ds left</string>
+    <string name="warning_return_to_zone">Return to disassembly zone within %1$d seconds!</string>
+    <string name="error_inside_trap_zone">You are inside the trap zone. Back away to disassemble.</string>
+
+    <!-- ── GameActivity ── -->
+    <string name="msg_select_trap_first">Select a trap from your bag first!</string>
+    <string name="msg_drag_marker">Drag the marker to target location (max 50m)</string>
+    <string name="msg_too_far">Too far! Move the marker closer to you (max 50m).</string>
+    <string name="label_placement_target">Placement Target</string>
+    <string name="label_your_trap">Your Trap</string>
+    <string name="label_active_trap">Active Trap</string>
+    <string name="msg_last_caught_format">Last Caught: %1$s</string>
+    <string name="msg_password_reset_sent">Password reset email sent to %1$s</string>
+
+    <!-- ── FriendsActivity ── -->
+    <string name="msg_no_pending_requests">No pending requests.</string>
+    <string name="label_incoming">INCOMING</string>
+    <string name="label_outgoing">OUTGOING</string>
+    <string name="action_accept_request">Accept</string>
+    <string name="action_pending">Pending</string>
+    <string name="action_add_friend_short">Add Friend</string>
+    <string name="title_remove_friend">Remove Friend</string>
+    <string name="msg_confirm_remove_friend">Are you sure you want to remove %1$s from your friends?</string>
+    <string name="action_remove">Remove</string>
+    <string name="label_request_sent">Request Sent</string>
+    <string name="label_accept_request">Accept Request</string>
+    <string name="label_friends_confirmed">Friends ✓</string>
+    <string name="msg_own_account">That\'s your own account.</string>
+    <string name="msg_user_not_found_id">No user found with that ID or email.</string>
+    <string name="msg_request_id_not_found">Request ID not found</string>
+
+    <!-- ── InviteFriendsActivity ── -->
+    <string name="msg_tap_contacts_to_select">Tap contacts to select</string>
+    <string name="msg_contacts_selected">%1$d contact selected</string>
+    <string name="msg_contacts_selected_plural">%1$d contacts selected</string>
+    <string name="msg_loading_invite">Loading invite message…</string>
+    <string name="title_contacts_disclosure">📋 Before we access your contacts</string>
+    <string name="msg_contacts_disclosure">TRAPP will read your device contacts so you can pick who to invite.\n\n✅ Contacts are only used here, on your device.\n✅ No contact data is sent to TRAPP servers.\n✅ Only names and phone numbers are read.</string>
+    <string name="action_got_it_continue">Got it, continue</string>
+    <string name="title_contacts_permission">Contacts Permission</string>
+    <string name="msg_contacts_permission_rationale">TRAPP needs access to your contacts to let you invite friends.\n\nYour contacts are only used to display names and send invites — they are never uploaded to our servers.</string>
+    <string name="action_allow">Allow</string>
+    <string name="action_not_now">Not Now</string>
+    <string name="msg_send_to_contacts_title">Send to %1$d contacts?</string>
+    <string name="msg_send_to_contacts_body">This will open your SMS app for each contact.\n\nMessage:\n\"%1$s\"</string>
+    <string name="action_send_sms">Send</string>
+    <string name="msg_sent_to_next_contact">Sent to %1$s. Tap \'Send\' again for the next contact.</string>
+    <string name="action_invite_via">Invite via…</string>
+
+    <!-- ── Email Change Dialog ── -->
+    <string name="title_request_email_change">Request Email Change</string>
+    <string name="label_new_email">New email address</string>
+    <string name="hint_new_email">Enter your desired new email</string>
+    <string name="action_submit">Submit</string>
+    <string name="msg_email_change_request_sent">Request submitted. Our team will contact you.</string>
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="msg_email_change_already_pending">A change request is already pending. Please wait for it to be resolved.</string>
+
+    <!-- ── Ranking & Leaderboard ── -->
+    <string name="action_ranking">Ranking</string>
+    <string name="title_ranking">RANKING</string>
+    <string name="tab_global">Global</string>
+    <string name="tab_friends_rank">Friends</string>
+    <string name="tab_alliance">Alliance</string>
+    <string name="label_not_a_member">Not a member</string>
+    <string name="msg_no_friends_yet">No friends yet</string>
+    <string name="label_friends_rank_locked">Add friends to see this ranking</string>
+    <string name="label_alliance_name">Alliance: %1$s</string>
+    <string name="label_score_pts">%1$d pts</string>
+    <string name="label_captures_count">%1$d captures</string>
+    <string name="label_rank_you">(You)</string>
+    <string name="label_global_rank">Global: #%1$d of %2$d</string>
+    <string name="label_friends_rank_you">Friends: #%1$d of %2$d</string>
+    <string name="label_ally_rank_you">Alliance: #%1$d of %2$d</string>
+    <string name="label_rank_summary">My Ranks</string>
+
+    <!-- ── Capture History ── -->
+    <string name="action_capture_history">Capture History</string>
+    <string name="title_capture_history">CAPTURES</string>
+    <string name="tab_my_captures">My Captures</string>
+    <string name="tab_caught_me">Caught Me</string>
+    <string name="msg_no_captures_yet">No captures yet</string>
+    <string name="msg_no_caught_yet">Nobody has caught you yet</string>
+    <string name="label_captured_player">Caught: @%1$s</string>
+    <string name="label_caught_by">Caught by: @%1$s</string>
+    <string name="label_trap_used">Trap: %1$s</string>
+    <string name="label_points_earned">+%1$d pts</string>
+    <string name="label_effect_value">Effect: %1$s</string>
+    <string name="label_distance_m">%1$dm away</string>
+
+    <!-- ── Bag display fixes ── -->
+    <string name="label_blocked_weight">⚖ Full</string>
+    <string name="label_blocked_slots">🔒 Max</string>
+    <string name="label_daily_traps_remaining">%1$d / %2$d daily traps</string>
+
+    <!-- ── Trap info & descriptions ── -->
+    <string name="label_bag_weight_info_title">Bag Weight System</string>
+    <string name="msg_bag_weight_info">Each trap has a weight in kg. Your bag has a maximum weight limit that increases as you level up.\n\n• Light traps can be carried in large numbers.\n• Heavy traps are fewer but more powerful.\n• When the bag is full by weight, you must wait for traps to be used before carrying more.\n\nYour current weight limit is shown in the bar at the top of the bag.</string>
+    <string name="label_trap_info_effect">Effect Type</string>
+    <string name="label_trap_info_weight">Weight</string>
+    <string name="label_trap_info_capacity">Capacity</string>
+
+    <!-- ── Trap names (localized via backend — these are fallback defaults) ── -->
+    <string name="trap_name_fun_laughter">Fun Trap</string>
+    <string name="trap_name_timeout_small">Timeout Trap</string>
+    <string name="trap_name_timeout_major">Major Timeout Trap</string>
+
+    <!-- ── Trap descriptions (localized via backend — these are fallback defaults) ── -->
+    <string name="trap_desc_fun_laughter">A harmless prank that makes the captor laugh out loud for a moment. Lightweight and easy to carry!</string>
+    <string name="trap_desc_timeout_small">Freezes the captured player for 60 seconds. Plan your routes carefully around active traps!</string>
+    <string name="trap_desc_timeout_major">A powerful trap that freezes the captured player for 5 full minutes! Hard to place but devastating when triggered.</string>
+
+    <!-- ── Map zoom explanation ── -->
+    <string name="msg_zoom_level_info">Map zoom is limited to level %1$d based on your membership plan. Upgrade for a wider map view.</string>
+    <string name="msg_zoom_locked_next_level">Reach Level %1$d to unlock a wider map view!</string>
+
+    <!-- ── Membership status ── -->
+    <string name="label_member">member</string>
+    <string name="label_processing">Processing…</string>
+    <string name="label_confirming_placement">Confirming placement…</string>
+    <string name="label_confirming_disassembly">Confirming disassembly…</string>
+    <string name="msg_membership_expired">Your membership has expired. Some features may be restricted until renewal.</string>
+    <string name="msg_membership_revoked">Your membership has lapsed. Map view and trap allowances have been adjusted.</string>
+
+    <!-- ── Invite channels ── -->
+    <string name="invite_email_subject">Join me on TRAPP!</string>
+    <string name="action_invite_via_email">Invite via Email</string>
+    <string name="msg_whatsapp_not_installed">WhatsApp is not installed</string>
+    <string name="msg_viber_not_installed">Viber is not installed</string>
+    <string name="label_share_whatsapp">WhatsApp</string>
+    <string name="label_share_viber">Viber</string>
+    <string name="label_share_email">Email</string>
+    <string name="label_share_sms">SMS</string>
+    <string name="label_share_other">Other</string>
+    <string name="msg_invite_friend_joined">Your invited friend has joined!</string>
+
+    <!-- ── TRAPPED full-screen overlay ── -->
+    <string name="label_trapped_title">YOU\'RE TRAPPED!</string>
+    <string name="label_trapped_by">Trapped by %1$s\'s</string>
+    <string name="label_trapped_effect_timeout">You are frozen for %1$d seconds!</string>
+    <string name="label_trapped_effect_fun">A fun trap got you!</string>
+
+    <!-- ── Home Base dialog ── -->
+    <string name="dialog_home_base_title">🏠 Home Base</string>
+    <string name="dialog_home_base_move">Move your home base here?\n(current safe zone will be replaced)</string>
+    <string name="dialog_home_base_set_new">Set this as your home base?\nYou\'ll be immune to traps within 100m of this spot.</string>
+    <string name="action_home_base_set">Set</string>
+    <string name="action_upgrade_to_premium">⭐ Upgrade to Premium</string>
+
+    <!-- ── Settings dialog (dialog_settings.xml) ── -->
+    <string name="label_appearance">APPEARANCE</string>
+    <string name="label_theme">Theme</string>
+    <string name="label_theme_auto">🌤  Automatic\nFollows time and ambient light</string>
+    <string name="label_theme_light">☀️  Always Light</string>
+    <string name="label_theme_dark">🌙  Always Dark</string>
+    <string name="label_preferences">PREFERENCES</string>
+
+    <!-- ══════════════════════════════════════════════════════════
+         App Introduction Slides
+         ══════════════════════════════════════════════════════════ -->
+
+    <!-- Navigation buttons -->
+    <string name="intro_btn_next">Next →</string>
+    <string name="intro_btn_start">Let\'s Go! 🎮</string>
+    <string name="intro_skip">Skip intro</string>
+    <string name="intro_dont_show">Don\'t show again</string>
+
+    <!-- Slide 1 — Welcome -->
+    <string name="intro_s1_icon">🪤</string>
+    <string name="intro_s1_title">Welcome to Trapp!</string>
+    <string name="intro_s1_desc">The real-world trap game where you place hidden traps on a live map and catch other players — right in your neighbourhood.</string>
+    <string name="intro_s1_tip_icon">📍</string>
+    <string name="intro_s1_tip">Trapp uses your real GPS location — go outside for the full experience!</string>
+
+    <!-- Slide 2 — Trap Bag -->
+    <string name="intro_s2_icon">🎒</string>
+    <string name="intro_s2_title">Your Trap Bag</string>
+    <string name="intro_s2_desc">You start with a set of traps in your bag. Each trap type has different effects, placement times, and recharge cycles.\n\nOpen the Trap Bag at the bottom of the map to see what you\'re carrying.</string>
+    <string name="intro_s2_tip_icon">⏱</string>
+    <string name="intro_s2_tip">Traps recharge automatically over time — check back if your bag is low.</string>
+
+    <!-- Slide 3 — Place a Trap -->
+    <string name="intro_s3_icon">📍</string>
+    <string name="intro_s3_title">Place a Trap</string>
+    <string name="intro_s3_desc">1. Tap a spot on the map near you.\n2. Pick a trap from your bag.\n3. Walk to the chosen location.\n4. Hold the PUSH button until placement completes.\n\nYour trap is now live and invisible to others!</string>
+    <string name="intro_s3_tip_icon">📏</string>
+    <string name="intro_s3_tip">You must be within 20 m of the placement point. Pick a clever hiding spot!</string>
+
+    <!-- Slide 4 — Catch Players -->
+    <string name="intro_s4_icon">💥</string>
+    <string name="intro_s4_title">Catch Players</string>
+    <string name="intro_s4_desc">When another player walks into the radius of your active trap, they get caught automatically.\n\nYou earn XP, their daily trap quota is reduced, and you climb the leaderboard.</string>
+    <string name="intro_s4_tip_icon">👀</string>
+    <string name="intro_s4_tip">You can see your own active traps on the map — others can\'t!</string>
+
+    <!-- Slide 5 — Avoid & Disarm -->
+    <string name="intro_s5_icon">🛡️</string>
+    <string name="intro_s5_title">Avoid &amp; Disarm</string>
+    <string name="intro_s5_desc">Other players are setting traps for you too!\n\nIf you spot a trap marker on the map, walk close and hold the DISARM button to neutralise it before it catches you.</string>
+    <string name="intro_s5_tip_icon">⚠️</string>
+    <string name="intro_s5_tip">Being caught reduces your daily traps available. Stay alert!</string>
+
+    <!-- Slide 6 — Friends & Allies -->
+    <string name="intro_s6_icon">🤝</string>
+    <string name="intro_s6_title">Friends &amp; Allies</string>
+    <string name="intro_s6_desc">Add friends, form Ally Groups, and coordinate your trapping strategy.\n\nCheck the leaderboard to see who\'s on top — then go out and beat them.</string>
+    <string name="intro_s6_tip_icon">🏆</string>
+    <string name="intro_s6_tip">Each day is a fresh start. Traps reset, scores accumulate. Good luck!</string>
+
+    <!-- ── Terms & Conditions re-acceptance ── -->
+    <string name="title_tnc_updated">Terms &amp; Conditions Updated</string>
+    <string name="msg_tnc_updated">Our Terms &amp; Conditions have been updated. Please review and accept the new terms to continue playing.</string>
+    <string name="action_accept_continue">Accept &amp; Continue</string>
+    <string name="action_decline_logout">Decline &amp; Logout</string>
+
+    <string name="title_update_required">Update Required</string>
+    <string name="msg_update_required">A new version of Trap is required to continue playing. Please update the app from the Play Store.</string>
+    <string name="title_update_available">Update Available</string>
+    <string name="msg_update_available">A newer version of Trap is available. Update now for the latest features and improvements.</string>
+    <string name="action_update_now">Update Now</string>
+    <string name="action_later">Later</string>
+
+</resources>

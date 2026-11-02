@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- TOP HUD -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/topHudCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/bg_surface">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/logoutButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_rounded_dark"
+                    android:src="@android:drawable/ic_lock_power_off"
+                    android:tint="@color/accent_red"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    android:contentDescription="@string/action_logout" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Score -->
+                    <TextView
+                        android:id="@+id/tvScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="#FCD34D"
+                        android:textSize="15sp"
+                        android:text="⚡ 0" />
+
+                    <!-- Separator -->
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="#1E2D45" />
+
+                    <!-- Identity -->
+                    <TextView
+                        android:id="@+id/tvIdentity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="160dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="#94A3B8"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Secondary action buttons hidden; accessible via btnHudMenu -->
+                <ImageButton
+                    android:id="@+id/friendsButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_rounded_dark"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    android:tint="@color/accent_cyan"
+                    android:padding="6dp"
+                    android:visibility="gone"
+                    android:contentDescription="@string/action_friends" />
+
+                <FrameLayout
+                    android:id="@+id/btnInbox"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_rounded_dark"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_inbox"
+                        android:tint="@color/accent_cyan" />
+
+                    <TextView
+                        android:id="@+id/inboxBadgeCount"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/badge_count_bg"
+                        android:gravity="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        tools:text="3" />
+                </FrameLayout>
+
+                <ImageButton
+                    android:id="@+id/messagesButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_rounded_dark"
+                    android:src="@android:drawable/ic_menu_send"
+                    android:tint="@color/accent_cyan"
+                    android:padding="6dp"
+                    android:visibility="gone"
+                    android:contentDescription="Messages" />
+
+                <ImageButton
+                    android:id="@+id/btnToggleTheme"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_rounded_dark"
+                    android:src="@android:drawable/ic_menu_day"
+                    android:tint="@color/accent_cyan"
+                    android:padding="6dp"
+                    android:visibility="gone"
+                    android:contentDescription="Toggle theme" />
+
+                <ImageButton
+                    android:id="@+id/settingsButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_rounded_dark"
+                    android:src="@android:drawable/ic_menu_preferences"
+                    android:tint="@color/accent_cyan"
+                    android:padding="6dp"
+                    android:visibility="gone"
+                    android:contentDescription="@string/action_settings" />
+
+                <ImageButton
+                    android:id="@+id/profileEditButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/bg_rounded_dark"
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:tint="@color/accent_cyan"
+                    android:padding="6dp"
+                    android:visibility="gone"
+                    android:contentDescription="@string/action_edit_profile" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="end"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:id="@+id/tvLevelLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="---"
+                        android:background="@drawable/bg_rounded_dark"
+                        android:backgroundTint="#FFECC8"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="1dp"
+                        android:textColor="@color/accent_gold"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <ProgressBar
+                        android:id="@+id/pbLevelProgress"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="4dp"
+                        android:progress="65"
+                        android:progressDrawable="@drawable/progress_bar_horizontal_trapp" />
+
+                    <!-- Membership tier chip (e.g. "Free", "Monthly Plan", "Annual Plan") -->
+                    <TextView
+                        android:id="@+id/tvMembershipBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_gravity="end"
+                        android:text="Free"
+                        android:background="@drawable/bg_rounded_dark"
+                        android:backgroundTint="#1A3A5C"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="1dp"
+                        android:textColor="#7DD3FC"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Single menu button replacing all secondary action buttons -->
+                <ImageButton
+                    android:id="@+id/btnHudMenu"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_rounded_dark"
+                    android:src="@android:drawable/ic_menu_more"
+                    android:tint="@color/accent_cyan"
+                    android:padding="8dp"
+                    android:contentDescription="@string/action_menu" />
+            </LinearLayout>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- PLACEMENT HINT — shown while user is choosing a location or trap -->
+    <TextView
+        android:id="@+id/tvPlacementHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="86dp"
+        android:background="@drawable/bg_rounded_dark"
+        android:backgroundTint="#CC1E3A5F"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:text="@string/hint_tap_map_to_place"
+        android:textColor="#94A3B8"
+        android:textSize="12sp"
+        android:elevation="12dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/bg_rounded_dark"
+        android:backgroundTint="#B3000000"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="4dp"
+        android:text="@string/status_ready"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:elevation="10dp" />
+
+    <!-- NEARBY PROXIMITY RADAR OVERLAY -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/radarCard"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="105dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="#CCFFFFFF"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="15dp"
+        app:strokeColor="@color/border_default"
+        app:strokeWidth="1dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.fairco.trap.views.RadarView
+                android:id="@+id/proximitySensorRadar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="4dp" />
+
+            <ImageButton
+                android:id="@+id/btnToggleRadar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_rounded_dark"
+                android:backgroundTint="#80FFFFFF"
+                android:src="@android:drawable/ic_media_play"
+                android:tint="@color/accent_red"
+                android:padding="4dp"
+                android:contentDescription="@string/action_toggle_tracking" />
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- RELOAD MAP BUTTON — sits just below the radar circle -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/reloadMapCard"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="213dp"
+        android:layout_marginEnd="42dp"
+        app:cardBackgroundColor="#CC000D1A"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="8dp"
+        app:strokeColor="@color/border_default"
+        app:strokeWidth="1dp">
+
+        <ImageButton
+            android:id="@+id/btnReloadMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_rotate"
+            android:tint="#FF60A5FA"
+            android:padding="10dp"
+            android:contentDescription="Reload map" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- BANNER AD — sits just above the bag card; bottomMargin updated dynamically in GameActivity -->
+    <FrameLayout
+        android:id="@+id/bannerAdContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="130dp"
+        android:elevation="2dp"
+        android:background="#0D1626"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/bannerAdTopBorder"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="top"
+            android:background="#1E3A5F" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/bannerAdView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+
+    </FrameLayout>
+
+    <!-- BAG CARD — always visible at bottom -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bagCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/bg_surface">
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/composeBagView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- HIDDEN LEGACY COMPONENTS FOR COMPAT -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/llMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+             <TextView android:id="@+id/userNameTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+             <TextView android:id="@+id/userHandleTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+             <TextView android:id="@+id/userLevelTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+             <Button android:id="@+id/logoutButton_legacy" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" />
+             <TextView android:id="@+id/bagStatsTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+             <TextView android:id="@+id/unitsTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+             <TextView android:id="@+id/captureCountTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+             <TextView android:id="@+id/timesCaughtTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+             <LinearLayout android:id="@+id/lastCapturedContainer" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                 <TextView android:id="@+id/lastCapturedNameTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                 <Button android:id="@+id/btnLastCapturedFriend" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                 <Button android:id="@+id/btnLastCapturedMessage" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+             </LinearLayout>
+             <Button android:id="@+id/friendsButton_legacy" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" />
+             <Button android:id="@+id/profileEditButton_legacy" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" />
+             <Button android:id="@+id/settingsButton_legacy" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView android:id="@+id/selectedTrapNameTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/selectTrapFab" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" />
+    <TextView android:id="@+id/tvHoldHint" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" />
+
+    <!-- RIGHT-SIDE CONTROLS — zoom, location, disarm; repositioned above banner ad dynamically -->
+    <LinearLayout
+        android:id="@+id/rightSideControls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="168dp"
+        android:gravity="center_horizontal">
+
+        <!-- Disarm nearby (shown only when a nearby trap is detected) -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnDisarmNearby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_disassemble"
+            app:fabSize="normal"
+            app:backgroundTint="#BFF59E0B"
+            app:tint="@color/white"
+            android:contentDescription="Disassemble Nearby Trap"
+            app:borderWidth="0dp"
+            app:elevation="8dp" />
+
+        <!-- Center-on-me -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/myLocationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:srcCompat="@android:drawable/ic_menu_mylocation"
+            app:fabSize="normal"
+            app:backgroundTint="#BF0066CC"
+            app:tint="@color/white"
+            android:contentDescription="@string/action_my_location"
+            app:borderWidth="0dp"
+            app:elevation="4dp" />
+
+        <!-- Zoom in -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnZoomIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:srcCompat="@drawable/ic_plus"
+            app:fabSize="mini"
+            app:backgroundTint="#BF0066CC"
+            app:tint="@color/white"
+            android:contentDescription="@string/action_zoom_in"
+            app:borderWidth="0dp"
+            app:elevation="4dp" />
+
+        <!-- Zoom out -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnZoomOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_minus"
+            app:fabSize="mini"
+            app:backgroundTint="#BF0066CC"
+            app:tint="@color/white"
+            android:contentDescription="@string/action_zoom_out"
+            app:borderWidth="0dp"
+            app:elevation="4dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/placeTrapContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/btnCancelPlacementX"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="32dp"
+            android:background="@drawable/bg_rounded_dark"
+            android:backgroundTint="#B3000000"
+            android:elevation="20dp"
+            android:padding="16dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:tint="@color/white"
+            android:contentDescription="@string/action_cancel_placement" />
+
+        <com.fairco.trap.views.AssembleButtonView
+            android:id="@+id/placeTrapAssembleView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/tvPlacementStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/placeTrapAssembleView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_rounded_dark"
+            android:backgroundTint="#B3000000"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:text="@string/label_hold_to_place"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/placeTrapFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@android:drawable/ic_menu_compass"
+            app:fabSize="normal"
+            app:backgroundTint="@color/accent_cyan"
+            app:tint="@color/white"
+            android:contentDescription="@string/action_place_trap" />
+
+        <Button
+            android:id="@+id/btnCancelPlacement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/placeTrapAssembleView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:text="@string/action_cancel_placement"
+            android:textColor="@color/accent_cyan"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+    </RelativeLayout>
+    <!-- TRAP COMPASS — corner widget pointing toward the nearest detected trap -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeTrapCompass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="120dp"
+        android:elevation="190dp"
+        android:visibility="gone" />
+
+    <!-- TRAP INFO / DISASSEMBLE OVERLAY — Compose full-screen (shown when tapping a trap marker) -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeTrapInfoOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="200dp"
+        android:visibility="gone" />
+
+    <!-- PLACEMENT HOLD OVERLAY — Compose full-screen (shown when trap is selected for placement) -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composePlacementOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="250dp"
+        android:visibility="gone" />
+
+    <!-- TRAPPED OVERLAY — full-screen, shown when the player walks into an enemy trap -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeTrappedOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="350dp"
+        android:visibility="gone" />
+
+    <!-- REWARD POPUP OVERLAY — shown after login reward or hourly Day-1 bonus -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeRewardOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="400dp"
+        android:visibility="gone" />
+
+    <!-- CAPTURE VICTORY OVERLAY — shown to the trap owner when their trap fires -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeCaptureVictoryOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="450dp"
+        android:visibility="gone" />
+
+    <!-- LOADING OVERLAY — covers map while data loads on first boot -->
+    <FrameLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EE000D1A"
+        android:elevation="300dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp">
+
+            <ProgressBar
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:indeterminateTint="#3B82F6" />
+
+            <TextView
+                android:id="@+id/tvLoadingStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_loading"
+                android:textColor="#64748B"
+                android:textSize="13sp"
+                android:letterSpacing="0.05" />
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,571 @@
+<resources>
+
+    <string-array name="gender_options">
+        <item>@string/gender_not_specified</item>
+        <item>@string/gender_male</item>
+        <item>@string/gender_female</item>
+        <item>@string/gender_other</item>
+        <item>@string/gender_prefer_not_to_say</item>
+    </string-array>
+
+    <!-- ── New UI strings ── -->
+
+    <string name="app_name">Trapp</string>
+    <string name="bag_stats_format">Táska: %1$d / %2$d egység</string>
+    <string name="held_units_format">%1$s, Egységek: %2$d</string>
+    <string name="selected_trap_format">Kiválasztott csapda: %1$s</string>
+    <string name="trapped_count_format">Csapdába ejtve: %1$d</string>
+    <string name="caught_count_format">Elkapva: %1$d</string>
+    <string name="trap_selection_title_format">%1$s x%2$d%3$s</string>
+    <string name="trap_selection_detail_format">Kihelyezés: %1$ds | Sebzés: %2$d%3$s</string>
+    <string name="trap_refill_countdown_format"> | Következő: %1$s</string>
+    <string name="age_info_format">Kor: %1$d (Születésnap: %2$s)</string>
+    <string name="email_change_subject">E-mail cím módosítási kérelem elindítva</string>
+    <string name="email_change_message_format">A jelenlegi e-mail címem %1$s. Kérem módosítsák az újra: \n\n</string>
+    <string name="marker_captured_format">%1$s - Elkapta: @%2$s</string>
+    <string name="marker_title_format">%1$s (%2$s)</string>
+    <string name="marker_title_trap_format">Csapda (%1$s)</string>
+    <string name="status_ready">Kész</string>
+    <string name="status_placing">Csapda kihelyezése…</string>
+    <string name="status_placing_progress">Csapda kihelyezése… (%1$ds)</string>
+    <string name="status_loading">Játékadatok betöltése…</string>
+    <string name="status_initializing">Inicializálás…</string>
+    <string name="error_setup_failed">Profil beállítása sikertelen: %1$s</string>
+    <string name="error_registration_failed">Regisztráció sikertelen: %1$s</string>
+    <string name="msg_registration_success">Sikeres regisztráció</string>
+    <string name="bag_full"> (Táska tele)</string>
+    <string name="weight_limit_reached"> (Súlykorlát elérve)</string>
+    <string name="title_settings">Beállítások</string>
+    <string name="action_close">Bezárás</string>
+    <string name="msg_settings_saved">Beállítások mentve</string>
+    <string name="action_save_changes">Változtatások mentése</string>
+    <string name="hint_first_name">Keresztnév</string>
+    <string name="hint_last_name">Vezetéknév</string>
+    <string name="hint_nickname">Becenév / Felhasználónév</string>
+    <string name="action_request_email_change">E-mail cím módosításának kérése</string>
+    <string name="label_gender">Nem:</string>
+    <string name="title_edit_profile">Profil szerkesztése</string>
+    <string name="action_save">Mentés</string>
+    <string name="msg_profile_updated">Profil frissítve</string>
+    <string name="error_action_failed">Hiba: %1$s</string>
+    <string name="action_cancel">Mégse</string>
+    <string name="error_no_traps">Nincs csapda a táskában</string>
+    <string name="title_select_trap">Csapda kiválasztása</string>
+    <string name="error_placement_interrupted">Összeszerelés megszakadt, kérjük kezdje újra a folyamatot</string>
+    <string name="msg_trap_placed">Csapda kihelyezve!</string>
+    <string name="error_placement_not_completed">Kihelyezés nem fejeződött be</string>
+    <string name="error_placement_failed">Kihelyezés sikertelen: %1$s</string>
+    <string name="error_no_traps_daily_limit">Ma már nincs kihelyezési lehetőség</string>
+    <string name="error_too_far_to_place">Menj közelebb a csapda elhelyezéséhez</string>
+    <string name="error_missing_session">Kihelyezés sikertelen: hiányzó sessionId</string>
+    <string name="error_load_inventory">Inventory betöltése sikertelen</string>
+    <string name="hint_username">felhasználónév (szóköz nélkül)</string>
+    <string name="title_set_username">Felhasználónév beállítása</string>
+    <string name="msg_choose_handle">Válassz egy egyedi azonosítót</string>
+    <string name="action_set">Beállítás</string>
+    <string name="msg_username_set">Felhasználónév beállítva: @%1$s</string>
+    <string name="handle_format">@%1$s</string>
+    <string name="set_username">Felhasználónév megadása</string>
+    <string name="error_location_denied">Helymeghatározás megtagadva</string>
+    <string name="error_game_inactive">A játék jelenleg nem aktív</string>
+    <string name="error_radar_off">Kérjük, először indítsa el a radart!</string>
+    <string name="msg_opening_friends">Barátok lista megnyitása…</string>
+    <string name="error_friend_request_failed">Sikertelen kérés: %1$s</string>
+    <string name="msg_opening_chat">Chat megnyitása: @%1$s</string>
+    <string name="error_waiting_gps">Várakozás GPS jelre…</string>
+    <string name="error_choose_location">Hosszan nyomj a térképre a csapda helyének kiválasztásához</string>
+    <string name="error_target_far">A cél túl messze van (%1$dm). Kérjük, menjen közelebb.</string>
+    <string name="error_select_trap">Kérlek először válassz egy csapdát</string>
+    <string name="msg_choose_gender">Válassz nemet</string>
+    <string name="action_add">Hozzáadás</string>
+    <string name="error_invalid_username">Kérjük, adjon meg egy érvényes felhasználónevet</string>
+    <string name="msg_traps_explanation">Válassz egy csapdát a részletek megtekintéséhez és a térképre helyezéséhez.</string>
+    <string name="msg_edit_profile_explanation">Frissítse személyes adatait alább. Néhány módosítás megjelenítése eltarthat egy ideig.</string>
+    <string name="hint_suggest_first_name">Adja meg keresztnevét</string>
+    <string name="hint_suggest_last_name">Adja meg vezetéknevét</string>
+    <string name="hint_suggest_nickname">Válasszon egy egyedi felhasználónevet</string>
+    <string name="hint_suggest_gender">Válassza ki a nemét</string>
+    <string name="action_close_traps">Bezárás</string>
+    <string name="tab_friends">Barátok</string>
+    <string name="tab_nearby_friends">Közeli barátok</string>
+    <string name="tab_nearby_players">Közeli játékosok</string>
+    <string name="error_location_unavailable">Helymeghatározás nem elérhető. Ellenőrizze a GPS-t.</string>
+    <string name="error_gms_unavailable">Google Play Szolgáltatások nem érhetők el ezen az eszközön.</string>
+    <string name="msg_no_nearby_found">Nem találhatók közeli barátok vagy játékosok.</string>
+    <string name="msg_no_friends_found">Nincsenek barátok.</string>
+    <string name="title_friends">Barátok</string>
+    <string name="action_back">Vissza</string>
+    <string name="action_reload">Frissítés</string>
+    <string name="hint_search_name">Keresés név vagy felhasználónév alapján</string>
+    <string name="msg_no_users_found">Nem találhatók felhasználók.</string>
+    <string name="action_search">Keresés</string>
+    <string name="radius_500m">500 m</string>
+    <string name="radius_1500m">1.5 km</string>
+    <string name="radius_3km">3 km</string>
+    <string name="label_enable_sound">Hang engedélyezése</string>
+    <string name="label_enable_notifications">Értesítések engedélyezése</string>
+    <string name="label_language">Nyelv</string>
+    <string name="lang_en">English (Angol)</string>
+    <string name="lang_hu">Magyar</string>
+    <string name="lang_sk">Slovenčina (Szlovák)</string>
+    <string name="lang_ro">Română (Román)</string>
+    <string name="lang_de">Deutsch (Német)</string>
+    <string name="lang_hr">Hrvatski (Horvát)</string>
+    <string name="error_email_not_verified">Kérjük, igazolja vissza e-mail címét a bejelentkezés előtt. Ellenőrizze a beérkező leveleit.</string>
+    <string name="action_resend_verification">Ellenőrző e-mail újraküldése</string>
+    <string name="error_login_fields_empty">Kérjük, adja meg az e-mail címet és a jelszót.</string>
+    <string name="msg_login_success">Sikeres bejelentkezés</string>
+    <string name="error_login_failed">Bejelentkezés sikertelen.</string>
+    <string name="gender_not_specified">Nincs megadva (Opcionális)</string>
+    <string name="error_register_fields_empty">Kérjük, töltsön ki minden kötelező mezőt (Név, Becenév, Születési idő, E-mail, Jelszó).</string>
+    <string name="error_terms_not_accepted">El kell fogadnia a Felhasználási feltételeket.</string>
+    <string name="error_password_too_short">A jelszónak legalább 8 karakter hosszúnak kell lennie.</string>
+    <string name="error_passwords_dont_match">A jelszavak nem egyeznek.</string>
+    <string name="error_birthdate_mandatory">A születési idő megadása kötelező.</string>
+    <string name="error_invalid_birthdate">Érvénytelen születési dátum.</string>
+    <string name="status_checking_availability">Elérhetőség ellenőrzése…</string>
+    <string name="error_nickname_taken">Ez a becenév már foglalt. Kérjük, válasszon másikat.</string>
+    <string name="status_registering">Regisztráció…</string>
+    <string name="status_logging_in">Fiókadatok ellenőrzése, bejelentkezés…</string>
+    <string name="label_select_language">Nyelv kiválasztása:</string>
+    <string name="msg_verification_email_sent">Ellenőrző e-mail elküldve. Kérjük, jelentkezés előtt igazolja vissza e-mail címét.</string>
+    <string name="error_nickname_verify_failed">Becenév ellenőrzése sikertelen: %1$s</string>
+    <string name="msg_no_terms_available">Nincsenek elérhető feltételek.</string>
+    <string name="title_terms_conditions">Felhasználási feltételek</string>
+    <string name="error_load_terms_failed">Nem sikerült betölteni a feltételeket.</string>
+    <string name="gender_male">Férfi</string>
+    <string name="gender_female">Nő</string>
+    <string name="gender_other">Egyéb</string>
+    <string name="gender_prefer_not_to_say">Inkább nem mondom meg</string>
+    <string name="error_registration_failed_plain">Regisztráció sikertelen.</string>
+    <string name="error_fill_all_fields">Kérjük, töltsön ki minden mezőt</string>
+    <string name="msg_ticket_created">A jegy sikeresen létrejött</string>
+    <string name="error_ticket_failed">Nem sikerült létrehozni a jegyet: %1$s</string>
+    <string name="msg_landing_welcome">Jelentkezz be a folytatáshoz, vagy regisztrálj új fiókot.</string>
+    <string name="action_login">Bejelentkezés</string>
+    <string name="action_register">Regisztráció</string>
+    <string name="label_email">E-mail</string>
+    <string name="label_password">Jelszó</string>
+    <string name="label_confirm_password">Jelszó megerősítése</string>
+    <string name="label_accept_terms">Elfogadom a </string>
+    <string name="label_terms_and_conditions">Felhasználási feltételeket</string>
+    <string name="label_accept_terms_full">Elfogadom a Felhasználási feltételeket</string>
+    <string name="label_first_name">Keresztnév</string>
+    <string name="label_last_name">Vezetéknév</string>
+    <string name="label_nickname">Becenév (egyedinek kell lennie)</string>
+    <string name="label_view_terms">Felhasználási feltételek megtekintése</string>
+    <string name="label_birthdate">Születési idő (ÉÉÉÉ-HH-NN)</string>
+    <string name="label_optional_gender">Nem (opcionális)</string>
+    <string name="label_mandatory_fields_info">A *-gal jelölt mezők kitöltése kötelező</string>
+    <string name="hint_subject">Tárgy</string>
+    <string name="hint_message">Üzenet</string>
+    <string name="action_send">Küldés</string>
+    <string name="title_create_ticket">Támogatási jegy létrehozása</string>
+    <string name="action_change_password">Jelszó megváltoztatása</string>
+    <string name="label_current_password">Jelenlegi jelszó</string>
+    <string name="label_new_password">Új jelszó</string>
+    <string name="msg_password_changed">Jelszó sikeresen frissítve.</string>
+    <string name="error_password_mismatch">A jelszavak nem egyeznek.</string>
+    <string name="error_auth_failed">Hitelesítés sikertelen.</string>
+    <string name="action_forgot_password">Elfelejtett jelszó?</string>
+    <string name="msg_reset_password_sent">Jelszó-visszaállító e-mail elküldve. Ellenőrizze a beérkező leveleit.</string>
+    <string name="error_enter_email">Kérjük, adja meg e-mail címét a jelszó visszaállításához.</string>
+    <string name="action_logout">Kijelentkezés</string>
+    <string name="msg_login_explanation">Üdvözöljük újra! Jelentkezzen be a vadászat folytatásához és a csapdák ellenőrzéséhez.</string>
+    <string name="msg_register_explanation">Csatlakozz a vadászathoz! Hozd létre fiókodat, hogy elkezdhesd a csapdák kihelyezését és elkaphasd a körülötted lévő játékosokat.</string>
+    <string name="label_bag_stats">Táska: %1$d / %2$d egység</string>
+    <string name="error_trap_place_failed">Nem sikerült elhelyezni a csapdát: %1$s</string>
+    <string name="hint_search_user">Felhasználó keresése...</string>
+    <string name="error_user_not_found">Felhasználó nem található</string>
+    <string name="title_add_friend">Barát felvétele</string>
+    <string name="msg_send_friend_request">Küldjünk barátfelkérést neki: %1$s?</string>
+    <string name="msg_friend_request_sent">Barátfelkérés elküldve!</string>
+    <string name="default_display_name">Játékos</string>
+    <string name="admin_suffix"> Admin</string>
+    <string name="msg_not_found">nem található.</string>
+    <string name="error_user_not_found_named">@%1$s felhasználó nem található.</string>
+    <string name="msg_friend_request_sent_to">Barátfelkérés elküldve neki: @%1$s</string>
+    <string name="distance_m_away">%1$d m távolságra</string>
+    <string name="distance_km_away">%1$s km távolságra</string>
+    <string name="label_friend_suffix">(Barát)</string>
+    <string name="action_yes">Igen</string>
+    <string name="action_no">Nem</string>
+    <string name="lvl_format">SZINT %1$d</string>
+    <string name="bag_label_format">TÁSKA %1$d/%2$d</string>
+    <string name="score_label">PONTOK</string>
+    <string name="username_display_format">| %s</string>
+    <string name="prox_label">KÖZEL</string>
+    <string name="action_zoom_in">Nagyítás</string>
+    <string name="action_zoom_out">Kicsinyítés</string>
+    <string name="action_my_location">Saját helyzet</string>
+    <string name="capture_headline_caught">CSAPDÁBA ESTÉL!</string>
+    <string name="capture_headline_scored">MEGFOGVA!</string>
+    <string name="capture_subtitle_caught">BELÉPTÉL EGY %1$s CSAPDÁBA</string>
+    <string name="capture_subtitle_scored">%1$s BELEMENT A CSAPDÁDBA</string>
+    <string name="capture_label_damage">SEBZÉS</string>
+    <string name="capture_label_to_owner">TULAJDONOSNAK</string>
+    <string name="capture_placed_by">ELHELYEZTE • %1$s</string>
+    <string name="capture_dismiss">ÉRINTSD A FOLYTATÁSHOZ</string>
+    <string name="hud_score_label">PONTOK</string>
+    <string name="hud_placing_label">ELHELYEZÉS</string>
+    <string name="hud_bag_label">TÁSKA</string>
+    <string name="hud_proximity_label">KÖZELSÉG</string>
+    <string name="label_hold_to_assemble">TARTSD</string>
+    <string name="msg_trap_assembled">ELHELYEZVE!</string>
+    <string name="label_traps_left">%1$d MARADT</string>
+    <string name="action_cancel_placement">MÉGSE</string>
+    <string name="action_place_trap">ELHELYEZÉS</string>
+    <string name="title_radar">A KÖZELBEN</string>
+    <string name="radar_legend_ally">Szövetséges</string>
+    <string name="radar_legend_enemy">Ellenség</string>
+    <string name="radar_legend_unknown">Ismeretlen</string>
+    <string name="label_distance_meters">%1$d m</string>
+    <string name="tab_score">PONTOK</string>
+    <string name="tab_captures">FOGÁSOK</string>
+    <string name="tab_traps">CSAPDÁK</string>
+    <string name="tab_combined">ÖSSZESÍTETT</string>
+    <string name="leaderboard_you_label">TE</string>
+    <string name="title_alerts">ÉRTESÍTÉSEK</string>
+    <string name="notif_status_meta">Pontok: %1$s · Legközelebbi csapda: %2$d m</string>
+    <string name="notif_title_captured">Csapdába estél!</string>
+    <string name="notif_title_trap_triggered">Csapda aktiválódott!</string>
+    <string name="notif_score_chip">+%1$d pont</string>
+    <string name="notif_title_ally_request">Szövetségi kérelem</string>
+    <string name="notif_desc_ally_request">%1$s szövetséget szeretne kötni veled.</string>
+    <string name="notif_title_refill">Csapda feltöltve</string>
+    <string name="action_accept">Elfogadás</string>
+    <string name="action_decline">Elutasítás</string>
+    <string name="action_view_map">Térkép megnyitása</string>
+    <string name="action_dismiss">Bezárás</string>
+    <string name="title_profile">PROFIL</string>
+    <string name="profile_level_prefix">SZINT</string>
+    <string name="profile_xp_format">XP %1$s</string>
+    <string name="profile_xp_next_format">Következő: %1$s</string>
+    <string name="stat_label_score">ÖSSZES PONT</string>
+    <string name="stat_label_captures">FOGÁSOK</string>
+    <string name="stat_label_traps_placed">LERAKOTT CSAPDÁK</string>
+    <string name="stat_label_city_rank">VÁROSI RANG</string>
+    <string name="stat_rank_format">#%1$d</string>
+    <string name="section_stats">STATISZTIKÁK</string>
+    <string name="section_badges">KITŰZŐK</string>
+    <string name="proximity_banner_warn">⚠  CSAPDA A KÖZELBEN</string>
+    <string name="proximity_banner_critical">⚠  CSAPDA NAGYON KÖZEL</string>
+    <string name="label_add_friend_hint">Felhasználónév keresése…</string>
+    <string name="splash_version_format">Verzió %1$s</string>
+
+    <!-- ── Missing strings added ── -->
+    <string name="error_too_young">A regisztrációhoz legalább %1$d évesnek kell lenned.</string>
+    <string name="notif_tracking_active">Helymeghatározás aktív</string>
+    <string name="notif_tracking_starting">Helymeghatározás indítása…</string>
+    <string name="label_username">Felhasználónév (egyedi azonosító)</string>
+    <string name="error_username_taken">Ez a felhasználónév már foglalt. Kérjük, válasszon másikat.</string>
+    <string name="error_username_verify_failed">Felhasználónév ellenőrzése sikertelen: %1$s</string>
+    <string name="status_checking_username">Felhasználónév elérhetőségének ellenőrzése…</string>
+    <string name="label_units_held">Tartva: %1$d</string>
+    <string name="label_trapped_count">Csapdába ejtve: %1$d</string>
+    <string name="label_caught_count">Elkapva: %1$d</string>
+    <string name="label_last_trapped">UTOLJÁRA CSAPDÁBAN</string>
+    <string name="action_add_friend">BARÁT HOZZÁADÁSA</string>
+    <string name="action_message">ÜZENET</string>
+    <string name="action_friends">BARÁTOK</string>
+    <string name="action_edit_profile">PROFIL SZERKESZTÉSE</string>
+    <string name="action_settings">BEÁLLÍTÁSOK</string>
+    <string name="action_menu">Menü</string>
+    <string name="action_inbox">ÜZENETEK</string>
+    <string name="action_theme_light">VÁLTÁS VILÁGOSRA</string>
+    <string name="action_theme_dark">VÁLTÁS SÖTÉTRE</string>
+    <string name="hint_map_long_press">Hosszan nyomj a térképre a csapda helyének kiválasztásához.</string>
+    <string name="label_traps">CSAPDÁK</string>
+    <string name="label_hold_to_place">Tartsd és helyezd el!</string>
+    <string name="status_preparing">Előkészítés…</string>
+    <string name="role_free_user">Ingyenes felhasználó</string>
+    <string name="role_premium_user">Prémium felhasználó</string>
+    <string name="role_admin">Admin</string>
+    <string name="success_trap_placed">Csapda sikeresen kihelyezve!</string>
+    <string name="msg_request_sent">Barátfelkérés elküldve!</string>
+    <string name="error_request_failed">Kérés küldése sikertelen</string>
+    <string name="msg_already_friends">Már barátok vagytok!</string>
+    <string name="error_search_failed">Keresés sikertelen</string>
+    <string name="action_toggle_tracking">Követés be/ki</string>
+    <string name="title_conversations">Üzenetek</string>
+    <string name="msg_no_conversations">Még nincsenek üzenetek. Kezdj el egy beszélgetést!</string>
+    <string name="hint_type_message">Írj üzenetet...</string>
+    <string name="title_new_message">Új üzenet</string>
+    <string name="msg_no_friends_to_message">Nincs barát, akinek üzenhetsz.</string>
+    <string name="title_support_tickets">Támogatási jegyek</string>
+    <string name="msg_no_tickets">Nincsenek támogatási jegyek.</string>
+    <string name="hint_type_reply">Írj választ...</string>
+    <string name="title_ticket_thread">Jegy szál</string>
+    <string name="label_new_ticket">+ Új jegy</string>
+    <string name="hint_search_messages">Üzenetek keresése...</string>
+    <string name="title_start_conversation">Beszélgetés indítása</string>
+    <string name="hint_search_friends">Barátok keresése...</string>
+
+    <!-- ── Trap Bag ── -->
+    <string name="label_trap_bag_title">🎒 CSAPDA TÁSKA</string>
+    <string name="msg_bag_empty_refill">Táska üres — a csapdák automatikusan feltöltődnek</string>
+
+    <!-- ── Profile screen ── -->
+    <string name="label_change_photo">Fotó módosítása</string>
+    <string name="label_uploading">Feltöltés…</string>
+    <string name="section_identity">Azonosság</string>
+    <string name="section_personal_details">Személyes adatok</string>
+    <string name="section_account">Fiók</string>
+    <string name="section_game_stats">Játékstatisztikák</string>
+    <string name="label_age">Kor</string>
+    <string name="label_date_of_birth">Születési dátum</string>
+    <string name="label_phone">Telefon</string>
+    <string name="label_time_zone">Időzóna</string>
+    <string name="label_age_group">Korcsoport</string>
+    <string name="label_member_since">Tag azóta</string>
+    <string name="label_email_address">E-mail cím</string>
+    <string name="label_user_id">Felhasználói azonosító</string>
+    <string name="label_membership">Tagság</string>
+    <string name="label_player_level">Játékos szint</string>
+    <string name="label_traps_placed">Kihelyezett csapdák</string>
+    <string name="label_players_caught">Elkapott játékosok</string>
+    <string name="label_times_caught">Elkapások száma</string>
+    <string name="label_total_score">Összpontszám</string>
+    <string name="label_xp">XP</string>
+    <string name="label_current_streak">Jelenlegi sorozat</string>
+    <string name="label_longest_streak">Leghosszabb sorozat</string>
+    <string name="label_days_played">Játszott napok</string>
+    <string name="label_last_caught">Utoljára elkapott</string>
+    <string name="label_last_caught_by">Utoljára elkapta</string>
+    <string name="label_age_adult">Felnőtt (18+)</string>
+    <string name="label_age_minor">Kiskorú (18 év alatt)</string>
+    <string name="label_not_specified">Nincs megadva</string>
+    <string name="label_none">Nincs</string>
+    <string name="label_days">nap</string>
+    <string name="msg_email_change_support">Az e-mail módosítást a támogatáson keresztül kezeljük. Egy jegyet hozunk létre az Ön nevében.</string>
+    <string name="action_discard">Elvetés</string>
+    <string name="action_request_change">Módosítás kérése</string>
+    <string name="label_display_name">Megjelenítési név *</string>
+    <string name="label_username_field">Felhasználónév *</string>
+    <string name="msg_checking_availability">Elérhetőség ellenőrzése...</string>
+    <string name="msg_username_available">A felhasználónév elérhető!</string>
+    <string name="msg_username_taken">Ez a felhasználónév már foglalt</string>
+
+    <!-- ── GameActivity ── -->
+    <string name="msg_select_trap_first">Először válassz csapdát a táskádból!</string>
+    <string name="msg_drag_marker">Húzd a jelölőt a célhelyre (max. 50 m)</string>
+    <string name="msg_too_far">Túl messze van! Mozgasd közelebb a jelölőt (max. 50 m).</string>
+    <string name="label_placement_target">Elhelyezési cél</string>
+    <string name="label_your_trap">A te csapdád</string>
+    <string name="label_active_trap">Aktív csapda</string>
+    <string name="msg_last_caught_format">Utoljára elkapott: %1$s</string>
+    <string name="msg_password_reset_sent">Jelszó-visszaállító e-mail elküldve: %1$s</string>
+
+    <!-- ── FriendsActivity ── -->
+    <string name="msg_no_pending_requests">Nincsenek függőben lévő kérések.</string>
+    <string name="label_incoming">BEÉRKEZŐ</string>
+    <string name="label_outgoing">KIMENŐ</string>
+    <string name="action_accept_request">Elfogad</string>
+    <string name="action_pending">Függőben</string>
+    <string name="action_add_friend_short">Barát hozzáadása</string>
+    <string name="title_remove_friend">Barát eltávolítása</string>
+    <string name="msg_confirm_remove_friend">Biztosan eltávolítod %1$s a barátaid közül?</string>
+    <string name="action_remove">Eltávolítás</string>
+    <string name="label_request_sent">Kérés elküldve</string>
+    <string name="label_accept_request">Kérés elfogadása</string>
+    <string name="label_friends_confirmed">Barátok ✓</string>
+    <string name="msg_own_account">Ez a saját fiókod.</string>
+    <string name="msg_user_not_found_id">Nem található felhasználó ezzel az azonosítóval vagy e-maillel.</string>
+    <string name="msg_request_id_not_found">Kérés azonosítója nem található</string>
+
+    <!-- ── InviteFriendsActivity ── -->
+    <string name="msg_tap_contacts_to_select">Érintsd meg a névjegyeket a kiválasztáshoz</string>
+    <string name="msg_contacts_selected">%1$d névjegy kiválasztva</string>
+    <string name="msg_contacts_selected_plural">%1$d névjegy kiválasztva</string>
+    <string name="msg_loading_invite">Meghívó üzenet betöltése…</string>
+    <string name="title_contacts_disclosure">📋 Mielőtt hozzáférünk a névjegyeidhez</string>
+    <string name="msg_contacts_disclosure">A TRAPP beolvassa az eszközön lévő névjegyeidet, hogy kiválaszthasd, kit szeretnél meghívni.\n\n✅ A névjegyek csak itt, az eszközödön kerülnek felhasználásra.\n✅ Névjegyadatok nem kerülnek a TRAPP szervereire.\n✅ Csak neveket és telefonszámokat olvas.</string>
+    <string name="action_got_it_continue">Értem, folytatás</string>
+    <string name="title_contacts_permission">Névjegy engedély</string>
+    <string name="msg_contacts_permission_rationale">A TRAPP-nak hozzáférésre van szüksége a névjegyeidhez, hogy meghívhasd a barátaidat.\n\nA névjegyeid csak nevek megjelenítésére és meghívók küldésére szolgálnak — soha nem kerülnek fel a szervereinkre.</string>
+    <string name="action_allow">Engedélyezés</string>
+    <string name="action_not_now">Most nem</string>
+    <string name="msg_send_to_contacts_title">Küldés %1$d névjegynek?</string>
+    <string name="msg_send_to_contacts_body">Ez minden névjegyhez megnyitja az SMS-alkalmazást.\n\nÜzenet:\n\"%1$s\"</string>
+    <string name="action_send_sms">Küldés</string>
+    <string name="msg_sent_to_next_contact">Elküldve: %1$s. Érintsd meg a „Küldés" gombot a következő névjegyhez.</string>
+    <string name="action_invite_via">Meghívás…</string>
+
+    <!-- ── Email Change Dialog ── -->
+    <string name="title_request_email_change">E-mail cím módosítás kérése</string>
+    <string name="label_new_email">Új e-mail cím</string>
+    <string name="hint_new_email">Add meg a kívánt új e-mail címet</string>
+    <string name="action_submit">Beküldés</string>
+    <string name="msg_email_change_request_sent">Kérelem elküldve. Csapatunk hamarosan kapcsolatba lép veled.</string>
+    <string name="error_invalid_email">Kérjük adj meg egy érvényes e-mail címet</string>
+    <string name="msg_email_change_already_pending">Már van egy függőben lévő módosítási kérelem. Kérjük, várj a megoldásig.</string>
+
+    <string name="hint_tap_map_to_place">Koppints a térképre az elhelyezési helyszín kiválasztásához</string>
+    <string name="label_select_trap_to_place">Válassz csapdát az elhelyezéshez</string>
+    <string name="action_push">NYOMJ</string>
+    <string name="label_hold_for_2s">Tartsd lenyomva 2 másodpercig</string>
+    <string name="msg_placing_background">Csapda elhelyezése folyamatban…</string>
+    <string name="label_loading">Betöltés…</string>
+    <string name="label_my_disassembled_trap">Eltávolított csapdád</string>
+    <string name="hint_select_trap_to_place">Válassz csapdát az alábbi táskából</string>
+    <string name="action_disassemble">LESZEDÉS</string>
+    <string name="label_hold_to_disassemble">Tartsd 2 másodpercig a leszedéshez</string>
+    <string name="label_disassembling">Leszedés folyamatban…</string>
+    <string name="label_disassemble_countdown">%1$ds hátra</string>
+    <string name="msg_disassemble_success">Csapda leszedve!</string>
+    <string name="msg_disassemble_failed">Leszedés sikertelen</string>
+    <string name="error_too_far_to_disassemble">Menj közelebb a leszedéshez</string>
+    <string name="label_reveal_first">Fedezd fel először a csapdát a leszedéshez</string>
+    <string name="label_trap_owner">Tulajdonos: %1$s</string>
+    <string name="label_your_trap_info">A te csapdád</string>
+    <string name="label_others_trap_info">Valaki más csapdája</string>
+    <string name="label_placing_trap">Csapda elhelyezése… maradj a helyeden</string>
+    <string name="warning_return_to_radius">Térj vissza %1$d másodpercen belül!</string>
+    <string name="warning_return_to_zone">Térj vissza a leszedési zónába %1$d másodpercen belül!</string>
+    <string name="error_inside_trap_zone">A csapda zónájában vagy. Hátrálj el a leszedéshez.</string>
+
+    <!-- ── Settings dialog ── -->
+    <string name="label_appearance">MEGJELENÉS</string>
+    <string name="label_theme">Téma</string>
+    <string name="label_theme_auto">🌤  Automatikus\nKöveti az időt és a környezeti fényt</string>
+    <string name="label_theme_light">☀️  Mindig világos</string>
+    <string name="label_theme_dark">🌙  Mindig sötét</string>
+    <string name="label_preferences">BEÁLLÍTÁSOK</string>
+
+    <!-- ── Ranking ── -->
+    <string name="action_ranking">RANGLISTA</string>
+    <string name="title_ranking">RANGLISTA</string>
+    <string name="tab_global">Globális</string>
+    <string name="tab_friends_rank">Barátok</string>
+    <string name="tab_alliance">Szövetség</string>
+    <string name="label_not_a_member">Nem tag</string>
+    <string name="msg_no_friends_yet">Még nincsenek barátok</string>
+    <string name="label_alliance_name">Szövetség: %1$s</string>
+    <string name="label_score_pts">%1$d pont</string>
+    <string name="label_captures_count">%1$d fogás</string>
+    <string name="label_rank_you">(Te)</string>
+    <string name="label_rank_summary">Rangjaim</string>
+
+    <!-- ── Capture History ── -->
+    <string name="action_capture_history">FOGÁSTÖRTÉNET</string>
+    <string name="title_capture_history">FOGÁSOK</string>
+    <string name="tab_my_captures">Saját fogások</string>
+    <string name="tab_caught_me">Engem elkaptak</string>
+    <string name="msg_no_captures_yet">Még nincs fogás</string>
+    <string name="msg_no_caught_yet">Még senki nem kapott el</string>
+    <string name="label_captured_player">Elkapott: @%1$s</string>
+    <string name="label_caught_by">Elkapta: @%1$s</string>
+    <string name="label_trap_used">Csapda: %1$s</string>
+    <string name="label_points_earned">+%1$d pont</string>
+    <string name="label_distance_m">%1$dm távolságra</string>
+    <string name="label_blocked_weight">⚖ Tele</string>
+    <string name="label_blocked_slots">🔒 Max</string>
+
+    <!-- ── Trap info & descriptions ── -->
+    <string name="label_bag_weight_info_title">Táska súlyrendszer</string>
+    <string name="msg_bag_weight_info">Minden csapdának van súlya kg-ban. A táskádnak maximális súlyhatára van, ami a szinted emelkedésével nő.\n\n• Könnyű csapdákból többet vihetsz.\n• A nehéz csapdák ritkábbak, de erősebbek.\n• Ha a táska tele van, várj, míg csapdák kiürülnek.\n\nA jelenlegi súlyhatárodat az felső sáv mutatja.</string>
+
+    <!-- ── Trap names ── -->
+    <string name="trap_name_fun_laughter">Vidám csapda</string>
+    <string name="trap_name_timeout_small">Időkizárás</string>
+    <string name="trap_name_timeout_major">Szuper Időkizárás</string>
+
+    <!-- ── Trap descriptions ── -->
+    <string name="trap_desc_fun_laughter">Ártatlan tréfa, ami megnevetteti a csapdára lépőt. Könnyű és könnyen hordható!</string>
+    <string name="trap_desc_timeout_small">60 másodpercre befagyasztja az elkapott játékost. Tervezz tudatosan!</string>
+    <string name="trap_desc_timeout_major">Erős csapda, ami 5 percre befagyasztja az elkapott játékost! Nehéz kihelyezni, de pusztító.</string>
+
+    <!-- ── Map zoom ── -->
+    <string name="msg_zoom_level_info">A térkép nagyítása %1$d szintre korlátozott a jelenlegi szinteden.</string>
+    <string name="msg_zoom_locked_next_level">Érj el %1$d. szintet a szélesebb térképnézet feloldásához!</string>
+
+    <!-- ── Invite channels ── -->
+    <string name="invite_email_subject">Csatlakozz a TRAPP-hoz!</string>
+    <string name="action_invite_via_email">Meghívás e-mailben</string>
+    <string name="msg_whatsapp_not_installed">A WhatsApp nincs telepítve</string>
+    <string name="msg_viber_not_installed">A Viber nincs telepítve</string>
+    <string name="label_share_whatsapp">WhatsApp</string>
+    <string name="label_share_viber">Viber</string>
+    <string name="label_share_email">E-mail</string>
+    <string name="label_share_sms">SMS</string>
+    <string name="label_share_other">Egyéb</string>
+    <string name="msg_invite_friend_joined">A meghívott barátod csatlakozott!</string>
+
+    <!-- ── TRAPPED overlay ── -->
+    <string name="label_trapped_title">CSAPDÁBA ESTÉL!</string>
+    <string name="label_trapped_by">%1$s csapdája</string>
+    <string name="label_trapped_effect_timeout">%1$d másodpercre be vagy fagyasztva!</string>
+    <string name="label_trapped_effect_fun">Egy vidám csapda fogott el!</string>
+
+    <!-- ══ Alkalmazás bemutatása ══ -->
+    <string name="intro_btn_next">Tovább →</string>
+    <string name="intro_btn_start">Gyerünk! 🎮</string>
+    <string name="intro_skip">Bemutató kihagyása</string>
+    <string name="intro_dont_show">Ne mutasd újra</string>
+
+    <string name="intro_s1_icon">🪤</string>
+    <string name="intro_s1_title">Üdvözöl a Trapp!</string>
+    <string name="intro_s1_desc">A valódi csapdajáték, ahol rejtett csapdákat helyezel el élő térképen, és elkapod a többi játékost – egyenesen a saját környékeden.</string>
+    <string name="intro_s1_tip_icon">📍</string>
+    <string name="intro_s1_tip">A Trapp a valódi GPS-helyzetedet használja – menj ki a szabadba a teljes élményért!</string>
+
+    <string name="intro_s2_icon">🎒</string>
+    <string name="intro_s2_title">A csapdatáskád</string>
+    <string name="intro_s2_desc">Csapdák készletével indulsz. Minden csapdatípusnak más hatása, elhelyezési ideje és töltési ciklusa van.\n\nNyisd meg a Csapdatáskát a térkép alján, hogy lásd, mit cipelsz.</string>
+    <string name="intro_s2_tip_icon">⏱</string>
+    <string name="intro_s2_tip">A csapdák automatikusan töltődnek fel – nézz vissza, ha a táska üres.</string>
+
+    <string name="intro_s3_icon">📍</string>
+    <string name="intro_s3_title">Csapda elhelyezése</string>
+    <string name="intro_s3_desc">1. Érintsd meg a térképen a közelédben lévő helyet.\n2. Válassz egy csapdát a táskából.\n3. Sétálj el a kiválasztott helyre.\n4. Tartsd lenyomva a NYOMJ gombot, amíg az elhelyezés befejeződik.\n\nA csapdád most élő és mások számára láthatatlan!</string>
+    <string name="intro_s3_tip_icon">📏</string>
+    <string name="intro_s3_tip">20 m-en belül kell lenned az elhelyezési ponttól. Válassz okos búvóhelyet!</string>
+
+    <string name="intro_s4_icon">💥</string>
+    <string name="intro_s4_title">Játékosok fogása</string>
+    <string name="intro_s4_desc">Ha egy másik játékos az aktív csapdád sugarán belülre lép, automatikusan elkapják.\n\nXP-t szerzel, a napi csapdakerete csökken, és feljebb kerülsz a ranglisten.</string>
+    <string name="intro_s4_tip_icon">👀</string>
+    <string name="intro_s4_tip">Látod a saját aktív csapdáidat a térképen – mások nem láthatják!</string>
+
+    <string name="intro_s5_icon">🛡️</string>
+    <string name="intro_s5_title">Kerüld el &amp; hatástalanítsd</string>
+    <string name="intro_s5_desc">Más játékosok is csapdákat állítanak neked!\n\nHa csapdajelzőt látsz a térképen, menj közel és tartsd lenyomva a HATÁSTALANÍTÁS gombot, mielőtt elfog.</string>
+    <string name="intro_s5_tip_icon">⚠️</string>
+    <string name="intro_s5_tip">Ha elkapnak, csökken a napi csapdakeretszámod. Légy éber!</string>
+
+    <string name="intro_s6_icon">🤝</string>
+    <string name="intro_s6_title">Barátok &amp; szövetségesek</string>
+    <string name="intro_s6_desc">Adj hozzá barátokat, alakíts szövetségi csoportokat, és koordináld a csapdázási stratégiádat.\n\nNézd meg a ranglisten, ki van az élen – majd menj ki, és verd le őket.</string>
+    <string name="intro_s6_tip_icon">🏆</string>
+    <string name="intro_s6_tip">Minden nap friss kezdet. A csapdák visszaállnak, a pontok felhalmozódnak. Sok sikert!</string>
+
+    <!-- ── Hiányzó fordítások ── -->
+    <string name="action_home_base_set">Beállítás</string>
+    <string name="action_upgrade_to_premium">⭐ Prémiumra frissítés</string>
+    <string name="dialog_home_base_title">🏠 Otthoni bázis</string>
+    <string name="dialog_home_base_move">Idehozod az otthoni bázisod?\n(a jelenlegi biztonságos zóna helyébe lép)</string>
+    <string name="dialog_home_base_set_new">Ezt állítod be otthoni bázisként?\nImmunis leszel a csapdákra 100 m-en belül.</string>
+    <string name="label_ally_rank_you">Szövetség: #%1$d / %2$d</string>
+    <string name="label_confirming_disassembly">Leszedés megerősítése…</string>
+    <string name="label_confirming_placement">Elhelyezés megerősítése…</string>
+    <string name="label_daily_traps_remaining">%1$d / %2$d napi csapda</string>
+    <string name="label_effect_value">Hatás: %1$s</string>
+    <string name="label_friends_rank_locked">Adjon hozzá barátokat a ranglista megtekintéséhez</string>
+    <string name="label_friends_rank_you">Barátok: #%1$d / %2$d</string>
+    <string name="label_global_rank">Globális: #%1$d / %2$d</string>
+    <string name="label_member">tag</string>
+    <string name="label_processing">Feldolgozás…</string>
+    <string name="label_trap_info_capacity">Kapacitás</string>
+    <string name="label_trap_info_effect">Hatástípus</string>
+    <string name="label_trap_info_weight">Súly</string>
+    <string name="msg_membership_expired">A tagságod lejárt. Egyes funkciók korlátozottak lehetnek a megújításig.</string>
+    <string name="msg_membership_revoked">A tagságod megszűnt. A térkép nézet és a csapda lehetőségek módosultak.</string>
+    <string name="status_refreshing_map">Térkép frissítése…</string>
+
+    <!-- ── Felhasználási feltételek frissítése ── -->
+    <string name="title_tnc_updated">Felhasználási feltételek frissítve</string>
+    <string name="msg_tnc_updated">A Felhasználási feltételeinket frissítettük. Kérjük, tekintse át és fogadja el az új feltételeket a játék folytatásához.</string>
+    <string name="action_accept_continue">Elfogadás &amp; Folytatás</string>
+    <string name="action_decline_logout">Elutasítás &amp; Kijelentkezés</string>
+
+</resources>
