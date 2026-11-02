@@ -32,8 +32,8 @@ android {
         applicationId = "com.fairco.trap"
         minSdk = 24
         targetSdk = 36
-        versionCode = 27
-        versionName = "0.3.12"
+        versionCode = 28
+        versionName = "0.3.13"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
