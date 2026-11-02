@@ -1,4 +1,4 @@
-import { createHmac } from "crypto";
+import { createHmac, timingSafeEqual } from "crypto";
 import { getDb } from "../shared/firebase";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -138,31 +138,36 @@ export function buildCheckoutUrl(settings: RevolutSettings, orderToken: string):
 // ─── Webhook signature verification ──────────────────────────────────────────
 
 /**
- * Revolut sends: Revolut-Signature: t=<timestamp>,v1=<hex_hmac>
- * Signed payload: "<timestamp>.<rawBody>"
- * HMAC algorithm: SHA-256 with webhook secret
+ * Revolut Merchant API webhook signature:
+ *   Revolut-Request-Timestamp: <unix ms>
+ *   Revolut-Signature: v1=<hex_hmac>[,v1=<hex_hmac>]   (several while a secret is rotated)
+ * Signed payload: "v1.<timestamp>.<rawBody>", HMAC-SHA256 with the webhook signing secret.
+ * Requests older than 5 minutes are rejected to block replays.
  */
+const WEBHOOK_TOLERANCE_MS = 5 * 60 * 1000;
+
 export function verifyRevolutWebhook(
   rawBody: string,
   signatureHeader: string,
+  timestampHeader: string,
   webhookSecret: string
 ): boolean {
   try {
-    const parts: Record<string, string> = {};
-    for (const part of signatureHeader.split(",")) {
-      const [k, v] = part.split("=");
-      if (k && v) parts[k.trim()] = v.trim();
+    const timestamp = Number(timestampHeader);
+    if (!Number.isFinite(timestamp) || Math.abs(Date.now() - timestamp) > WEBHOOK_TOLERANCE_MS) {
+      return false;
     }
-    const timestamp = parts["t"];
-    const receivedSig = parts["v1"];
-    if (!timestamp || !receivedSig) return false;
 
-    const signedPayload = `${timestamp}.${rawBody}`;
-    const expected = createHmac("sha256", webhookSecret)
-      .update(signedPayload)
-      .digest("hex");
+    const expected = Buffer.from(
+      "v1=" + createHmac("sha256", webhookSecret)
+        .update(`v1.${timestampHeader}.${rawBody}`)
+        .digest("hex")
+    );
 
-    return expected === receivedSig;
+    return signatureHeader.split(",").some((candidate) => {
+      const received = Buffer.from(candidate.trim());
+      return received.length === expected.length && timingSafeEqual(received, expected);
+    });
   } catch {
     return false;
   }

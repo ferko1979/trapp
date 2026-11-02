@@ -105,7 +105,6 @@ export const updateProfile = onCall(async (request) => {
         displayName,
         photoUrl,
         timeZone,
-        membership: "free",
         lastSeenAt: FieldValue.serverTimestamp(),
         updatedAt: FieldValue.serverTimestamp(),
         ...birthProfile,

@@ -2,7 +2,7 @@ import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { onRequest } from "firebase-functions/v2/https";
 import { logger } from "firebase-functions/v2";
 import { getDb } from "../shared/firebase";
-import { loadRevolutSettings, verifyRevolutWebhook } from "./api";
+import { getRevolutOrder, loadRevolutSettings, verifyRevolutWebhook } from "./api";
 import { sendPurchaseEmailInternal } from "../adminEmailAutomation";
 
 // ─── revolutWebhook ───────────────────────────────────────────────────────────
@@ -21,14 +21,19 @@ export const revolutWebhook = onRequest(async (req, res) => {
       : (req.rawBody as Buffer | undefined)?.toString("utf-8") ?? JSON.stringify(req.body);
 
   const signature = req.headers["revolut-signature"] as string | undefined;
+  const timestamp = req.headers["revolut-request-timestamp"] as string | undefined;
 
-  // Load settings to get webhook secret
+  // Unsigned events are never trusted: without a secret anyone could mark an order paid.
   const settings = await loadRevolutSettings();
   if (!settings?.webhookSecret) {
-    logger.warn("revolutWebhook: no webhook secret configured, skipping verification");
-  } else if (!signature || !verifyRevolutWebhook(rawBody, signature, settings.webhookSecret)) {
+    logger.error("revolutWebhook: no webhook secret configured — rejecting event");
+    res.status(503).send("Webhook not configured");
+    return;
+  }
+  if (!signature || !timestamp ||
+      !verifyRevolutWebhook(rawBody, signature, timestamp, settings.webhookSecret)) {
     logger.error("revolutWebhook: signature verification failed");
-    res.status(400).send("Invalid signature");
+    res.status(401).send("Invalid signature");
     return;
   }
 
@@ -42,7 +47,28 @@ export const revolutWebhook = onRequest(async (req, res) => {
 
   const eventType = event.event as string | undefined;
   const orderId = event.order_id as string | undefined;
-  const extRef = event.merchant_order_ext_ref as string | undefined;
+  let extRef = event.merchant_order_ext_ref as string | undefined;
+
+  // Defence in depth: confirm the order state with Revolut before granting anything.
+  if (eventType === "ORDER_COMPLETED") {
+    if (!orderId) {
+      res.status(400).send("Missing order_id");
+      return;
+    }
+    try {
+      const order = await getRevolutOrder(settings, orderId);
+      if (order.state !== "COMPLETED") {
+        logger.warn("revolutWebhook: order not completed at Revolut", { orderId, state: order.state });
+        res.status(200).send("ignored");
+        return;
+      }
+      extRef = order.merchant_order_ext_ref ?? extRef;
+    } catch (err) {
+      logger.error("revolutWebhook: could not confirm order with Revolut", err);
+      res.status(500).send("Order lookup failed");
+      return;
+    }
+  }
 
   logger.info("revolutWebhook event", { eventType, orderId, extRef });
 

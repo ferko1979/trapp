@@ -1,6 +1,6 @@
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { distanceBetween, geohashQueryBounds } from "geofire-common";
-import { QueryDocumentSnapshot } from "firebase-admin/firestore";
+import { QueryDocumentSnapshot, Timestamp } from "firebase-admin/firestore";
 import { getDb } from "./shared/firebase";
 import { requireUser as requireAuthUid } from "./shared/appCheck";
 
@@ -14,6 +14,18 @@ function asNumber(value: unknown, fallback = 0): number {
 
 function asBoolean(value: unknown, fallback = false): boolean {
   return typeof value === "boolean" ? value : fallback;
+}
+
+// Privacy: strangers only see a ~110 m grid cell and a distance rounded to 50 m,
+// players who haven't moved for 30 minutes drop off the list, and anyone can
+// hide from strangers with users/{uid}.hideFromNearby. Friends see exact data.
+const STALE_LOCATION_MS = 30 * 60 * 1000;
+const COARSE_DECIMALS = 3;
+const COARSE_DISTANCE_STEP = 50;
+
+function coarse(value: number): number {
+  const f = 10 ** COARSE_DECIMALS;
+  return Math.round(value * f) / f;
 }
 
 function metersBetween(
@@ -96,7 +108,8 @@ export const listNearbyUsers = onCall(async (request) => {
     const db = getDb();
     const myLoc = await getPlayerLocation(uid);
 
-    const friendIds = friendsOnly ? await getAcceptedFriendIds(uid) : null;
+    const friendIds = await getAcceptedFriendIds(uid);
+    const freshAfter = Date.now() - STALE_LOCATION_MS;
 
     const bounds = geohashQueryBounds([myLoc.lat, myLoc.lng], radiusMeters);
 
@@ -130,9 +143,12 @@ export const listNearbyUsers = onCall(async (request) => {
 
     for (const [otherUid, doc] of candidates) {
       if (otherUid === uid) continue;
-      if (friendsOnly && friendIds && !friendIds.has(otherUid)) continue;
+      if (friendsOnly && !friendIds.has(otherUid)) continue;
 
       const loc = doc.data() ?? {};
+      const updatedAt = loc.updatedAt instanceof Timestamp ? loc.updatedAt.toMillis() : 0;
+      if (updatedAt < freshAfter) continue;
+
       const lat = asNumber(loc.lat, NaN);
       const lng = asNumber(loc.lng, NaN);
       if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
@@ -150,7 +166,8 @@ export const listNearbyUsers = onCall(async (request) => {
 
     nearby.sort((a, b) => a.distanceMeters - b.distanceMeters);
 
-    const trimmed = nearby.slice(0, limit);
+    // Over-fetch a little: hidden/inactive users are filtered after the profile read.
+    const trimmed = nearby.slice(0, limit * 2);
     const userSnaps = await Promise.all(
       trimmed.map((item) => db.collection("users").doc(item.uid).get())
     );
@@ -158,20 +175,23 @@ export const listNearbyUsers = onCall(async (request) => {
     const items = trimmed
       .map((item, index) => {
         const userData = userSnaps[index].data() ?? {};
+        const isFriend = friendIds.has(item.uid);
         const username = asString(userData.username);
         const displayName = asString(userData.displayName, "Anonymous");
         const firstName = asString(userData.firstName);
         const lastName = asString(userData.lastName);
         const role = asString(userData.role, "user");
         const status = asString(userData.status, "active");
+        if (status !== "active") return null;
+        if (!isFriend && userData.hideFromNearby === true) return null;
         const photoUrl = asString(userData.photoUrl);
         const primaryAllyGroupId = asString(userData.primaryAllyGroupId);
 
         const haystack = [
           username,
           displayName,
-          firstName,
-          lastName,
+          isFriend ? firstName : "",
+          isFriend ? lastName : "",
         ]
           .join(" ")
           .toLowerCase();
@@ -184,19 +204,23 @@ export const listNearbyUsers = onCall(async (request) => {
           uid: item.uid,
           username: username || null,
           displayName: displayName || "Anonymous",
-          firstName: firstName || null,
-          lastName: lastName || null,
+          firstName: isFriend ? firstName || null : null,
+          lastName: isFriend ? lastName || null : null,
           role,
           status,
           photoUrl: photoUrl || null,
           primaryAllyGroupId: primaryAllyGroupId || null,
-          lat: item.lat,
-          lng: item.lng,
-          distanceMeters: item.distanceMeters,
-          isFriend: friendIds ? friendIds.has(item.uid) : false,
+          lat: isFriend ? item.lat : coarse(item.lat),
+          lng: isFriend ? item.lng : coarse(item.lng),
+          distanceMeters: isFriend
+            ? item.distanceMeters
+            : Math.max(COARSE_DISTANCE_STEP,
+                Math.round(item.distanceMeters / COARSE_DISTANCE_STEP) * COARSE_DISTANCE_STEP),
+          isFriend,
         };
       })
-      .filter(Boolean);
+      .filter(Boolean)
+      .slice(0, limit);
 
     return {
       ok: true,

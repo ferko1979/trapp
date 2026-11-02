@@ -6,6 +6,7 @@ import { getDb } from "./shared/firebase";
 import { refillUserInventoryToMaximum } from "./shared/inventory";
 import { ensureDailyState, ensureUserDoc } from "./shared/user";
 import { requireAppCheck } from "./shared/appCheck";
+import { requireAdmin } from "./shared/admin";
 import { writeAuditLog } from "./adminAuditLog";
 
 type AgeGroup = "minor" | "adult";
@@ -106,6 +107,7 @@ function getBirthProfile(input: { birthDate: unknown; gender: unknown }) {
 }
 
 export const debugAuth = onCall(async (request) => {
+  requireAdmin(request);
   return {
     ok: true,
     hasAuth: !!request.auth,

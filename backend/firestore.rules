@@ -14,23 +14,40 @@ service cloud.firestore {
       return signedIn() && request.auth.uid == uid;
     }
 
+    function optString(data, key, maxLen) {
+      return !(key in data) || data[key] == null
+        || (data[key] is string && data[key].size() <= maxLen);
+    }
+
+    // photoUrl must point at the user's own upload in Firebase Storage.
+    function validSelfFields(uid, data) {
+      return optString(data, 'fcmToken', 4096)
+        && optString(data, 'timeZone', 64)
+        && optString(data, 'locale', 16)
+        && optString(data, 'acceptedTermsVersion', 32)
+        && optString(data, 'photoUrl', 500)
+        && (!('photoUrl' in data) || data.photoUrl == null
+            || data.photoUrl.matches('https://firebasestorage[.]googleapis[.]com/.*/o/profile_images%2F' + uid + '%2F.*'));
+    }
+
     // -------------------------------------------------------------------------
     // User profiles
     // -------------------------------------------------------------------------
 
     match /users/{uid} {
-      allow create: if isSelf(uid)
-        && request.resource.data.keys().hasOnly(['displayName', 'email', 'captureCount', 'createdAt', 'lastSeenAt', 'platforms'])
-        && request.resource.data.captureCount == 0;
+      // Profiles are created by the bootstrapProfile Cloud Function only.
+      allow create: if false;
 
       // Users may only read their own profile document.
       allow read: if isSelf(uid);
 
-      // Users may update their own profile but cannot change captureCount or createdAt
-      // (those are controlled server-side via Cloud Functions).
+      // Users may only touch device/preference fields directly. Everything else
+      // (username, level, membership, role, XP, counters, verification) goes
+      // through Cloud Functions such as bootstrapProfile and updateProfile.
       allow update: if isSelf(uid)
-        && request.resource.data.captureCount == resource.data.captureCount
-        && request.resource.data.createdAt == resource.data.createdAt;
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(
+             ['fcmToken', 'timeZone', 'locale', 'acceptedTermsVersion', 'photoUrl'])
+        && validSelfFields(uid, request.resource.data);
 
       allow delete: if false;
     }

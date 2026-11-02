@@ -19,6 +19,7 @@ import { getTrapDefinition } from "../shared/trapTypes";
 import { ensureDailyState, getUserTimeZone } from "../shared/user";
 import { assertLatLng } from "../shared/validators";
 import { requireUser as requireAuthUid } from "../shared/appCheck";
+import { requireAdmin } from "../shared/admin";
 
 const PLACEMENT_MAX_DISTANCE_METERS = 100;
 const ACTIVE_TRAP_SEARCH_RADIUS_METERS = 250;
@@ -999,10 +1000,8 @@ export const dropTrapFromBag = onCall(async (request) => {
 });
 
 export const seedTrapDefinitions = onCall(async (request) => {
-  const uid = request.auth?.uid;
-  if (!uid) {
-    throw new HttpsError("unauthenticated", "Authentication required.");
-  }
+  // Overwrites the whole trap catalogue — admin panel only.
+  requireAdmin(request);
 
   const db = getDb();
   const defs = [

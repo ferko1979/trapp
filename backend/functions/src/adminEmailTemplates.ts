@@ -4,7 +4,7 @@ import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { getDb } from "./shared/firebase";
 import { requireAdmin } from "./shared/admin";
 import { requireAppCheck } from "./shared/appCheck";
-import { getMailer } from "./shared/email";
+import { escapeHtml, getMailer } from "./shared/email";
 
 export const COLL = "email_templates";
 const AI_KEYS_DOC = ["admin_config", "ai_keys"] as const;
@@ -416,7 +416,7 @@ export const sendPasswordResetCustom = onCall(async (request) => {
     const rawText = tmplData?.bodyText ?? DEFAULTS_EN.system_password_reset.bodyText;
 
     const html = rawHtml
-      .replace(/\{\{name\}\}/g, displayName)
+      .replace(/\{\{name\}\}/g, escapeHtml(displayName))
       .replace(/\{\{resetLink\}\}/g, link);
     const text = rawText
       .replace(/\{\{name\}\}/g, displayName)
@@ -481,7 +481,7 @@ export const sendEmailVerificationCustom = onCall(async (request) => {
     const rawText = tmplData?.bodyText ?? DEFAULTS_EN.system_email_verification.bodyText;
 
     const html = rawHtml
-      .replace(/\{\{name\}\}/g, displayName)
+      .replace(/\{\{name\}\}/g, escapeHtml(displayName))
       .replace(/\{\{verificationLink\}\}/g, link);
     const text = rawText
       .replace(/\{\{name\}\}/g, displayName)
@@ -822,8 +822,8 @@ export const adminSendNewsletter = onCall(
       if (!email) continue;
 
       const html = tmpl.bodyHtml
-        .replace(/\{\{name\}\}/g, u.displayName ?? u.username ?? "Player")
-        .replace(/\{\{username\}\}/g, u.username ?? "");
+        .replace(/\{\{name\}\}/g, escapeHtml(String(u.displayName ?? u.username ?? "Player")))
+        .replace(/\{\{username\}\}/g, escapeHtml(String(u.username ?? "")));
 
       try {
         await transporter.sendMail({

@@ -1,15 +1,18 @@
 import { CallableRequest, HttpsError } from "firebase-functions/v2/https";
 
 /**
- * Enforces Firebase App Check on the request.
- * Throws if no valid App Check token is present.
+ * Enforces Firebase App Check on the request when APP_CHECK_ENFORCE=true.
+ *
+ * Turn it on only after the Play App Signing SHA-256 (not the upload key) is
+ * registered for Play Integrity, and App Attest for iOS — otherwise every
+ * store-installed app is rejected. Until then missing tokens are only logged.
  */
 export function requireAppCheck(request: CallableRequest<unknown>): void {
-  if (request.app == undefined) {
-    // TODO: Re-enable once correct Play Integrity SHA-256 (Google's signing key) is registered in Firebase App Check.
-    // The upload-key SHA differs from Google Play's re-signing key.
-    console.warn("[AppCheck] Request missing valid App Check token — enforcement temporarily suspended.");
+  if (request.app != undefined) return;
+  if (process.env.APP_CHECK_ENFORCE === "true") {
+    throw new HttpsError("failed-precondition", "App Check verification failed.");
   }
+  console.warn("[AppCheck] Request missing valid App Check token — enforcement off (APP_CHECK_ENFORCE).");
 }
 
 /**

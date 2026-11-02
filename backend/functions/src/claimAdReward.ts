@@ -16,13 +16,15 @@
  * If the user closes the ad early, the app must NOT call claimAdReward.
  *
  * Security note:
- *   This endpoint trusts the client that the ad was watched. For stronger
- *   protection enable AdMob Server-Side Verification (SSV) in the AdMob
- *   console and point the SSV callback URL to `adMobSsvWebhook` below.
- *   With SSV active, set requireSsv: true in game_settings/global so this
- *   endpoint rejects direct calls and only SSV grants the reward.
+ *   By default (game_settings/global.requireSsv unset or true) only the
+ *   signature-checked AdMob Server-Side Verification callback (`adMobSsvWebhook`)
+ *   grants the reward; claimAdReward then just returns the session's current
+ *   timer so the app can refresh after the ad closes. The app must pass
+ *   ServerSideVerificationOptions customData = "<sessionId>:<uid>".
+ *   Setting requireSsv: false re-enables the old client-trust grant (testing only).
  */
 
+import { verify } from "crypto";
 import { FieldValue } from "firebase-admin/firestore";
 import { HttpsError, onCall, onRequest } from "firebase-functions/v2/https";
 import { logger } from "firebase-functions";
@@ -36,6 +38,7 @@ interface AdRewardSettings {
   rewardedAdReductionType: string;   // "seconds" | "minutes" | "hours" | "percent"
   rewardedAdReductionValue: number;
   rewardedAdMaxUsesPerSession: number;
+  requireSsv: boolean;
 }
 
 async function loadAdRewardSettings(): Promise<AdRewardSettings> {
@@ -46,6 +49,7 @@ async function loadAdRewardSettings(): Promise<AdRewardSettings> {
     rewardedAdReductionType:    String( d.rewardedAdReductionType    ?? "seconds"),
     rewardedAdReductionValue:   Number( d.rewardedAdReductionValue   ?? 30),
     rewardedAdMaxUsesPerSession:Number( d.rewardedAdMaxUsesPerSession ?? 1),
+    requireSsv:                 d.requireSsv !== false,
   };
 }
 
@@ -107,10 +111,24 @@ export const claimAdReward = onCall(async (request) => {
     throw new HttpsError("failed-precondition", "Placement already completed — reward not applicable.");
   }
 
-  // ── Enforce per-session use limit ─────────────────────────────────────────
-
   const currentUses = typeof session.adRewardUses === "number" ? session.adRewardUses : 0;
   const maxUses     = settings.rewardedAdMaxUsesPerSession;
+
+  // ── SSV mode: the reward is granted by adMobSsvWebhook, never by the client ──
+
+  if (settings.requireSsv) {
+    return {
+      ok:                     true,
+      verifiedBy:             "ssv",
+      discountSeconds:        0,
+      newRequiredHoldSeconds: Number(session.requiredHoldSeconds ?? 0),
+      usesRemaining:          maxUses > 0 ? Math.max(0, maxUses - currentUses) : -1,
+      reductionType:          settings.rewardedAdReductionType,
+      reductionValue:         settings.rewardedAdReductionValue,
+    };
+  }
+
+  // ── Enforce per-session use limit ─────────────────────────────────────────
 
   if (maxUses > 0 && currentUses >= maxUses) {
     throw new HttpsError(
@@ -162,7 +180,52 @@ export const claimAdReward = onCall(async (request) => {
   };
 });
 
-// ─── AdMob SSV webhook (optional — stronger verification) ────────────────────
+// ─── AdMob SSV signature ──────────────────────────────────────────────────────
+//
+// AdMob signs everything before "&signature=" with ECDSA/SHA-256; the public
+// keys are published at VERIFIER_KEYS_URL and rotate occasionally.
+
+const VERIFIER_KEYS_URL = "https://www.gstatic.com/admob/reward/verifier-keys.json";
+const KEY_CACHE_MS      = 12 * 60 * 60 * 1000;
+
+let cachedKeys: Map<string, string> | null = null;
+let cachedKeysAt = 0;
+
+async function loadVerifierKeys(forceRefresh: boolean): Promise<Map<string, string>> {
+  if (cachedKeys && !forceRefresh && Date.now() - cachedKeysAt < KEY_CACHE_MS) {
+    return cachedKeys;
+  }
+  const res = await fetch(VERIFIER_KEYS_URL);
+  if (!res.ok) throw new Error(`verifier keys HTTP ${res.status}`);
+  const body = (await res.json()) as { keys?: Array<{ keyId: number | string; pem: string }> };
+  cachedKeys = new Map((body.keys ?? []).map((k) => [String(k.keyId), k.pem]));
+  cachedKeysAt = Date.now();
+  return cachedKeys;
+}
+
+async function verifySsvSignature(rawQuery: string): Promise<boolean> {
+  const sigIndex = rawQuery.indexOf("&signature=");
+  if (sigIndex < 0) return false;
+
+  const message = rawQuery.substring(0, sigIndex);
+  const params  = new URLSearchParams(rawQuery.substring(sigIndex + 1));
+  const sig     = params.get("signature");
+  const keyId   = params.get("key_id");
+  if (!sig || !keyId) return false;
+
+  let pem = (await loadVerifierKeys(false)).get(keyId);
+  if (!pem) pem = (await loadVerifierKeys(true)).get(keyId);
+  if (!pem) return false;
+
+  return verify(
+    "sha256",
+    Buffer.from(message, "utf-8"),
+    { key: pem, dsaEncoding: "der" },
+    Buffer.from(sig, "base64url")
+  );
+}
+
+// ─── AdMob SSV webhook ───────────────────────────────────────────────────────
 //
 // Enable Server-Side Verification in AdMob console:
 //   AdMob → Ad units → Rewarded → SSV settings → Callback URL:
@@ -182,6 +245,21 @@ export const adMobSsvWebhook = onRequest({ cors: false }, async (req, res) => {
   // AdMob always uses GET for SSV callbacks
   if (req.method !== "GET") {
     res.status(405).send("Method Not Allowed");
+    return;
+  }
+
+  const rawQuery = req.originalUrl.split("?")[1] ?? "";
+  let signatureOk = false;
+  try {
+    signatureOk = await verifySsvSignature(rawQuery);
+  } catch (err) {
+    logger.error("adMobSsvWebhook: could not verify signature", err);
+    res.status(500).send("Verification unavailable"); // AdMob retries
+    return;
+  }
+  if (!signatureOk) {
+    logger.error("adMobSsvWebhook: invalid signature");
+    res.status(401).send("Invalid signature");
     return;
   }
 
@@ -248,8 +326,9 @@ export const adMobSsvWebhook = onRequest({ cors: false }, async (req, res) => {
 
   // ── Atomic write ──────────────────────────────────────────────────────────
 
+  // create() fails if a concurrent retry already recorded this transaction.
   const batch = db.batch();
-  batch.set(txRef, {
+  batch.create(txRef, {
     sessionId, uid, transactionId,
     discountSeconds,
     processedAt: FieldValue.serverTimestamp(),
@@ -259,7 +338,13 @@ export const adMobSsvWebhook = onRequest({ cors: false }, async (req, res) => {
     adRewardUses:        FieldValue.increment(1),
     lastAdRewardAt:      FieldValue.serverTimestamp(),
   });
-  await batch.commit();
+  try {
+    await batch.commit();
+  } catch (err) {
+    logger.warn("adMobSsvWebhook: transaction already recorded", { transactionId, err });
+    res.status(200).send("OK");
+    return;
+  }
 
   logger.info("adMobSsvWebhook: reward granted via SSV", {
     uid, sessionId, transactionId, discountSeconds,

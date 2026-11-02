@@ -91,3 +91,13 @@ export async function sendVerificationEmail(params: {
     text: `Verify your PlayTrap email address:\n\n${params.verificationLink}`,
   });
 }
+
+/** Escapes user-controlled values (names, usernames) before they go into email HTML. */
+export function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}

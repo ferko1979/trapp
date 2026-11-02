@@ -93,6 +93,19 @@ export const getPaymentConfig = onCall(async () => {
   };
 });
 
+// Only our own hosting origins (and the configured success page's origin) may be
+// used as the post-payment redirect, so the checkout can't bounce users to a phishing page.
+function safeReturnUrl(candidate: string, configuredSuccessUrl?: string): string {
+  if (!candidate) return "";
+  const allowed = new Set(["https://playtrapnow.web.app", "https://playtrapnow.firebaseapp.com"]);
+  try {
+    if (configuredSuccessUrl) allowed.add(new URL(configuredSuccessUrl).origin);
+    return allowed.has(new URL(candidate).origin) ? candidate : "";
+  } catch {
+    return "";
+  }
+}
+
 // ─── createCheckoutSession ────────────────────────────────────────────────────
 
 export const createCheckoutSession = onCall(async (request) => {
@@ -183,7 +196,7 @@ export const createCheckoutSession = onCall(async (request) => {
   });
 
   const successUrl =
-    returnUrl ||
+    safeReturnUrl(returnUrl, settings.successUrl) ||
     settings.successUrl ||
     "https://playtrapnow.web.app/payment/success";
   const cancelUrl =

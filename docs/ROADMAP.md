@@ -35,13 +35,21 @@ and `functions/.env.example` contained the real SMTP password. **This repo was s
 
 ## 2. Backend security (🔴/🟠)
 
-1. 🔴 **Players can edit their own user doc almost freely** (`firestore.rules:31-33`): `levelId`, `membership`, `xp`, `emailVerified`, `username`, `role`… → allowlist with `request.resource.data.diff(resource.data).affectedKeys().hasOnly([...])`.
-2. 🔴 **App Check not enforced** (`shared/appCheck.ts` only logs) → enforce on all callables after iOS App Attest is registered.
-3. 🔴 **Any signed-in user can reset the trap catalogue** (`seedTrapDefinitions`, `traps/gameplay.ts:1001`) → admin-only or delete.
-4. 🔴 **Revolut webhook** skips verification when no secret, and parses a Stripe-style header (`revolut/webhook.ts:26`, `revolut/api.ts:151`) → verify `Revolut-Signature` over `v1.{timestamp}.{body}`, reject when unset, re-fetch the order.
-5. 🔴 **Rewarded ads can be faked** (`claimAdReward.ts`) → verify AdMob SSV ECDSA signature; grant only from SSV.
-6. 🟠 **Exact location of every player within 10 km** returned by `listNearbyUsers`; caller's location is client-supplied → coarse/jittered positions, opt-in visibility, use server-stored last position.
-7. 🟢 Stripe `returnUrl` open redirect; public `debugAuth` callable; unescaped `displayName` in email HTML.
+Code fixed on 2026-11-02 — **takes effect only after `firebase deploy --only functions,firestore:rules`**.
+
+- [x] 🔴 **User doc editable by the player** → rules: client may only change `fcmToken`, `timeZone`, `locale`, `acceptedTermsVersion`, `photoUrl` (own Storage path); create/delete only via functions. Also fixed `updateProfile` resetting paid members to `membership: "free"`.
+- [x] 🔴 **`seedTrapDefinitions`** → admin only. `debugAuth` → admin only.
+- [x] 🔴 **Revolut webhook** → `Revolut-Signature` over `v1.{timestamp}.{body}` (timing-safe, 5 min window, rotation-aware), rejected when no secret is configured, order state re-fetched from Revolut before granting.
+- [x] 🔴 **Rewarded ads** → `adMobSsvWebhook` verifies Google's ECDSA signature; `claimAdReward` no longer grants anything unless `game_settings/global.requireSsv` is explicitly `false`.
+- [x] 🟠 **`listNearbyUsers`** → strangers get ~110 m grid position, distance rounded to 50 m, no first/last name; stale (>30 min), inactive and `hideFromNearby` users skipped. Centre already comes from the server-stored location.
+- [x] 🟢 Stripe `returnUrl` limited to own hosting origins; user names HTML-escaped in all emails.
+- [x] 🔴 **App Check** → enforced when `APP_CHECK_ENFORCE=true` in `functions/.env` (default off).
+
+Still to do by hand:
+- [ ] Set the Revolut webhook signing secret in admin → Payments → Revolut (until then Revolut events get 503).
+- [ ] AdMob: enable SSV on the rewarded unit with the `adMobSsvWebhook` URL; Android: `ServerSideVerificationOptions.Builder().setCustomData("$sessionId:$uid")`, then call `claimAdReward` after the ad closes to refresh the timer.
+- [ ] Register the **Play App Signing** SHA-256 for Play Integrity (and App Attest for iOS), watch the App Check metrics, then set `APP_CHECK_ENFORCE=true`.
+- [ ] `hideFromNearby` toggle in the app settings (backend already honours it).
 
 ## 3. Email & deliverability — Resend
 

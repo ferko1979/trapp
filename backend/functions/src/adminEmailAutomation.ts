@@ -4,7 +4,7 @@ import { onCall } from "firebase-functions/v2/https";
 import { onSchedule } from "firebase-functions/v2/scheduler";
 import { getDb } from "./shared/firebase";
 import { requireAdmin } from "./shared/admin";
-import { createTransporter, getSmtpConfigFromEnv, EmailProviderConfig } from "./shared/email";
+import { createTransporter, escapeHtml, getSmtpConfigFromEnv, EmailProviderConfig } from "./shared/email";
 import { lookupTemplate, autoSeedIfMissing, DEFAULTS_EN } from "./adminEmailTemplates";
 
 const SETTINGS_COLL = "email_automation_settings";
@@ -264,14 +264,14 @@ export async function sendPurchaseEmailInternal(params: {
     ? params.membershipExpiresAt.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })
     : "—";
 
-  const substitute = (tpl: string) =>
+  const substitute = (tpl: string, esc: (v: string) => string = (v) => v) =>
     tpl
-      .replace(/\{\{name\}\}/g, displayName)
-      .replace(/\{\{packageName\}\}/g, params.packageName ?? "—")
-      .replace(/\{\{amount\}\}/g, params.amount != null ? String((params.amount / 100).toFixed(2)) : "—")
-      .replace(/\{\{currency\}\}/g, params.currency ?? "EUR")
-      .replace(/\{\{transactionId\}\}/g, params.transactionId ?? "—")
-      .replace(/\{\{expiresAt\}\}/g, expiresStr);
+      .replace(/\{\{name\}\}/g, esc(displayName))
+      .replace(/\{\{packageName\}\}/g, esc(params.packageName ?? "—"))
+      .replace(/\{\{amount\}\}/g, esc(params.amount != null ? String((params.amount / 100).toFixed(2)) : "—"))
+      .replace(/\{\{currency\}\}/g, esc(params.currency ?? "EUR"))
+      .replace(/\{\{transactionId\}\}/g, esc(params.transactionId ?? "—"))
+      .replace(/\{\{expiresAt\}\}/g, esc(expiresStr));
 
   const config = await loadProviderConfig();
   const transporter = createTransporter(config);
@@ -281,7 +281,7 @@ export async function sendPurchaseEmailInternal(params: {
     from: `"${fromName}" <${fromEmail}>`,
     to: email,
     subject: substitute(subject),
-    html: substitute(rawHtml),
+    html: substitute(rawHtml, escapeHtml),
     text: substitute(rawText),
   });
 }
@@ -368,16 +368,16 @@ async function runRegistrationReminders(
       const rawHtml = tmplData?.bodyHtml ?? DEFAULTS_EN[templateType].bodyHtml;
       const rawText = tmplData?.bodyText ?? DEFAULTS_EN[templateType].bodyText;
 
-      const substitute = (tpl: string) =>
+      const substitute = (tpl: string, esc: (v: string) => string = (v) => v) =>
         tpl
-          .replace(/\{\{name\}\}/g, displayName)
-          .replace(/\{\{verificationLink\}\}/g, verificationLink);
+          .replace(/\{\{name\}\}/g, esc(displayName))
+          .replace(/\{\{verificationLink\}\}/g, esc(verificationLink));
 
       await transporter!.sendMail({
         from: `"${fromName}" <${fromEmail}>`,
         to: email,
         subject: substitute(subject),
-        html: substitute(rawHtml),
+        html: substitute(rawHtml, escapeHtml),
         text: substitute(rawText),
       });
 
@@ -476,16 +476,16 @@ async function runInactivityEmailsMultiStage(
       const rawHtml = tmplData?.bodyHtml ?? DEFAULTS_EN[templateType].bodyHtml;
       const rawText = tmplData?.bodyText ?? DEFAULTS_EN[templateType].bodyText;
 
-      const substitute = (tpl: string) =>
+      const substitute = (tpl: string, esc: (v: string) => string = (v) => v) =>
         tpl
-          .replace(/\{\{name\}\}/g, displayName)
-          .replace(/\{\{username\}\}/g, username);
+          .replace(/\{\{name\}\}/g, esc(displayName))
+          .replace(/\{\{username\}\}/g, esc(username));
 
       await transporter!.sendMail({
         from: `"${fromName}" <${fromEmail}>`,
         to: email,
         subject: substitute(subject),
-        html: substitute(rawHtml),
+        html: substitute(rawHtml, escapeHtml),
         text: substitute(rawText),
       });
 
