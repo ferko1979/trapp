@@ -755,9 +755,9 @@ function TrapDefinitionsTab() {
   const [disarmRadiusMeters, setDisarmRadiusMeters] = useState(26);
   const [disarmLeaveSeconds, setDisarmLeaveSeconds]           = useState(15);
   const [placementLeaveSeconds, setPlacementLeaveSeconds]     = useState(15);
-  const [placementHoldSeconds, setPlacementHoldSeconds] = useState(300);
+  const [placementHoldSeconds, setPlacementHoldSeconds] = useState(3);
   const [revealHoldSeconds, setRevealHoldSeconds]       = useState(2);
-  const [disarmHoldSeconds, setDisarmHoldSeconds]       = useState(240);
+  const [disarmHoldSeconds, setDisarmHoldSeconds]       = useState(4);
   const [effectKind, setEffectKind]               = useState("warning");
   const [effectValue, setEffectValue]             = useState(1);
   const [ownerCanTrigger, setOwnerCanTrigger]     = useState(true);
@@ -806,8 +806,8 @@ function TrapDefinitionsTab() {
     setDisarmRadiusMeters(item.disarmRadiusMeters ?? (item.radiusMeters ?? 25) + 1);
     setDisarmLeaveSeconds(item.disarmLeaveSeconds ?? 15);
     setPlacementLeaveSeconds(item.placementLeaveSeconds ?? 15);
-    setPlacementHoldSeconds(item.placementHoldSeconds ?? 300);
-    setRevealHoldSeconds(item.revealHoldSeconds ?? 2); setDisarmHoldSeconds(item.disarmHoldSeconds ?? 240);
+    setPlacementHoldSeconds(item.placementHoldSeconds ?? 3);
+    setRevealHoldSeconds(item.revealHoldSeconds ?? 2); setDisarmHoldSeconds(item.disarmHoldSeconds ?? 4);
     setEffectKind(item.effectKind ?? "warning"); setEffectValue(item.effectValue ?? 1);
     setOwnerCanTrigger(item.ownerCanTrigger !== false);
     setVisibility(item.visibility === "public-after-reveal" ? "public-after-reveal" : "owner-only");
