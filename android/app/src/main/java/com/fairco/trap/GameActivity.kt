@@ -102,6 +102,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityGameBinding
     private val badgeVm: InboxBadgeViewModel by viewModels()
     private val gameVm: GameViewModel by viewModels()
+    private val hud = MapHudState()
     private lateinit var auth: FirebaseAuth
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -119,6 +120,8 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     private var currentLocation: Location? = null
 
     private var isGpsRunning = false
+    // True once the camera has been moved onto a real position of the player.
+    private var cameraCentered = false
     private var consecutiveFailures = 0
     private var isSoundEnabled = true
     private var lastSonarPingMs = 0L
@@ -265,15 +268,13 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                     androidx.core.view.WindowInsetsCompat.Type.displayCutout()
             ).top
             applyTopInset(topInset)
-            val dp8 = (8 * resources.displayMetrics.density).toInt()
-            binding.bagCard.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
-                bottomMargin = navBarBottomInset + dp8
-            }
+            // The bottom dock pads its tab bar above the nav bar itself.
+            hud.navInsetPx = navBarBottomInset
             updateBannerAdPosition()
             windowInsets
         }
-        // Reposition ad + right-side controls whenever the bag or ad container resizes
-        binding.bagCard.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+        // Reposition ad + right-side controls whenever the dock or ad container resizes
+        binding.composeBottomDock.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
             updateBannerAdPosition()
         }
         binding.bannerAdContainer.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
@@ -312,21 +313,69 @@ observeTheme()
     }
 
     private fun setupBagBottomSheet() {
-        binding.composeBagView.setContent { TrappTheme {
-            val phase by gameVm.placementPhase.collectAsState()
-            TrapBagCard(
-                viewModel = gameVm,
-                peekMode = phase == PlacementPhase.IDLE,
-                onPlaceTrap = { item -> gameVm.onTrapChosenForPlacement(item) },
-                onWatchRefillAd = { trapTypeId ->
-                    showRefillRewardedAd(trapTypeId) {
-                        val lang = getSharedPreferences("Settings", MODE_PRIVATE)
-                            .getString("App_Lang", "en") ?: "en"
-                        gameVm.loadBag(lang = lang)
+        binding.composeTopHud.setContent { TrappTheme {
+            val unread by badgeVm.unreadCount.collectAsState()
+            MapTopHud(
+                hud = hud,
+                unreadCount = unread,
+                onLevelClick = { showProfileEditDialog() },
+                onLevelLongClick = {
+                    toast(getString(R.string.msg_zoom_level_info, gameVm.bagState.value.mapMinZoom.toInt()))
+                },
+                onNearbyClick = {
+                    when {
+                        disarmVm.disarmState.value !is DisarmState.Idle ->
+                            TrapAlertBottomSheet.show(supportFragmentManager)
+                        hud.nearbyCount > 0 ->
+                            toast(getString(R.string.mh_near_toast, hud.nearbyCount))
+                        else -> toast(getString(R.string.mh_near_none_toast))
                     }
                 },
-                onOpenAwards = { startActivity(Intent(this@GameActivity, AwardsActivity::class.java)) }
+                onBellClick = { startActivity(Intent(this@GameActivity, InboxActivity::class.java)) },
             )
+        } }
+
+        binding.composeBottomDock.setContent { TrappTheme {
+            val bag by gameVm.bagState.collectAsState()
+            val phase by gameVm.placementPhase.collectAsState()
+            val density = androidx.compose.ui.platform.LocalDensity.current
+            MapBottomDock(
+                hud = hud,
+                items = bag.items,
+                loading = bag.loading,
+                targetSet = phase == PlacementPhase.AWAITING_TRAP,
+                navInset = with(density) { hud.navInsetPx.toDp() },
+                onOpenPicker = { hud.pickerOpen = true },
+                onPlace = { item -> startPlacementFromDock(item) },
+                onCancelTarget = { gameVm.cancelPlacement() },
+                onTab = { tab ->
+                    when (tab) {
+                        MapTab.MAP -> centerOnMyLocation()
+                        MapTab.BAG -> hud.pickerOpen = true
+                        MapTab.RANK -> startActivity(Intent(this@GameActivity, RankingActivity::class.java))
+                        MapTab.SOCIAL -> startActivity(Intent(this@GameActivity, FriendsActivity::class.java))
+                        MapTab.ME -> showHudMenu(binding.composeBottomDock)
+                    }
+                },
+            )
+            if (hud.pickerOpen) {
+                TrapPickerSheet(
+                    viewModel = gameVm,
+                    onDismiss = { hud.pickerOpen = false },
+                    onPlaceTrap = { item ->
+                        hud.pickerOpen = false
+                        startPlacementFromDock(item)
+                    },
+                    onWatchRefillAd = { trapTypeId ->
+                        showRefillRewardedAd(trapTypeId) {
+                            val lang = getSharedPreferences("Settings", MODE_PRIVATE)
+                                .getString("App_Lang", "en") ?: "en"
+                            gameVm.loadBag(lang = lang)
+                        }
+                    },
+                    onOpenAwards = { startActivity(Intent(this@GameActivity, AwardsActivity::class.java)) },
+                )
+            }
         } }
 
         lifecycleScope.launch {
@@ -339,6 +388,43 @@ observeTheme()
                 }
             }
         }
+    }
+
+    /** PLACE: arms at the tapped map target, or where the player stands. */
+    private fun startPlacementFromDock(item: TrapInventoryItem) {
+        if (gameVm.placementPhase.value == PlacementPhase.PLACING) return
+        if (item.bagCount <= 0) {
+            hud.pickerOpen = true
+            return
+        }
+        val target = selectedTrapLatLng
+            ?: currentLocation?.let { LatLng(it.latitude, it.longitude) }
+        if (target == null) {
+            toast(getString(R.string.mh_gps_wait_toast))
+            return
+        }
+        hud.selectedTrapTypeId = item.trapTypeId
+        hud.placementInfo = placementTargetInfo(target)
+        selectedTrapLatLng = target
+        gameVm.onTrapChosenForPlacement(item)
+    }
+
+    /** Neutral context for the hold sheet; the server decides whether the spot is allowed. */
+    private fun placementTargetInfo(target: LatLng): String? {
+        fun distTo(doc: DocumentSnapshot): Float? {
+            if (doc.getString("status") != "active") return null
+            val lat = doc.getDouble("lat") ?: return null
+            val lng = doc.getDouble("lng") ?: return null
+            val d = FloatArray(1)
+            Location.distanceBetween(target.latitude, target.longitude, lat, lng, d)
+            return d[0]
+        }
+        val nearest = (lastTrapsSnapshot.orEmpty() + myTrapsSnapshot).mapNotNull { distTo(it) }.minOrNull()
+        val mineNear = myTrapsSnapshot.count { (distTo(it) ?: Float.MAX_VALUE) <= 200f }
+        val parts = mutableListOf<String>()
+        if (nearest != null) parts += getString(R.string.mh_nearest, nearest.toInt())
+        if (mineNear > 0) parts += getString(R.string.mh_yours_near, mineNear)
+        return parts.joinToString("  ·  ").ifBlank { null }
     }
 
     private fun setupPlacementOverlay() {
@@ -371,9 +457,12 @@ observeTheme()
                     )
                 }
                 phase == PlacementPhase.CONFIRMING && trap != null -> {
+                    val density = androidx.compose.ui.platform.LocalDensity.current
                     PlacementHoldOverlay(
                         trap = trap!!,
                         startError = startError,
+                        targetInfo = hud.placementInfo,
+                        navInset = with(density) { hud.navInsetPx.toDp() },
                         onConfirm = {
                             val latLng = selectedTrapLatLng ?: run {
                                 gameVm.cancelPlacement()
@@ -414,13 +503,13 @@ observeTheme()
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 var previousPhase: PlacementPhase? = null
                 gameVm.placementPhase.collect { phase ->
-                    binding.composePlacementOverlay.isVisible =
-                        (phase == PlacementPhase.CONFIRMING || phase == PlacementPhase.PLACING)
-                    binding.tvPlacementHint.isVisible = (phase != PlacementPhase.IDLE && phase != PlacementPhase.PLACING)
-                    binding.tvPlacementHint.text = when (phase) {
-                        PlacementPhase.AWAITING_TRAP -> getString(R.string.hint_select_trap_to_place)
-                        else -> getString(R.string.hint_tap_map_to_place)
-                    }
+                    val overlayUp = phase == PlacementPhase.CONFIRMING || phase == PlacementPhase.PLACING
+                    binding.composePlacementOverlay.isVisible = overlayUp
+                    // The hold sheet owns the screen — hide the map chrome behind it.
+                    binding.composeTopHud.isVisible = !overlayUp
+                    binding.radarCard.isVisible = !overlayUp
+                    binding.rightSideControls.isVisible = !overlayUp
+                    binding.tvPlacementHint.isVisible = false
                     if (phase == PlacementPhase.IDLE) {
                         selectedTrapMarker?.remove()
                         selectedTrapMarker = null
@@ -640,7 +729,7 @@ if (isTrackingServiceRunning()) {
             binding.btnToggleRadar.setImageResource(android.R.drawable.ic_media_pause)
         }
         consecutiveFailures = 0
-        if (hasLocationPermission() && isGpsRunning) {
+        if (hasLocationPermission()) {
             startGpsUpdates()
         }
         startCompassSensor()
@@ -702,6 +791,7 @@ if (isTrackingServiceRunning()) {
         super.onPause()
         isInForeground = false
 stopHeartbeat()
+        currentLocation?.let { saveLastLocation(it) }
         stopGpsUpdates()
         stopCompassSensor()
     }
@@ -737,27 +827,45 @@ stopHeartbeat()
         binding.btnDisarmNearby.setOnClickListener {
             TrapAlertBottomSheet.show(supportFragmentManager)
         }
-        binding.btnHudMenu.setOnClickListener { anchor ->
-            val popup = android.widget.PopupMenu(this, anchor)
-            val themeLabel = if (ThemeManager.isDarkMode.value) getString(R.string.action_theme_light) else getString(R.string.action_theme_dark)
+        binding.btnHudMenu.setOnClickListener { anchor -> showHudMenu(anchor) }
+        binding.btnLayers.setOnClickListener { anchor -> showLayersMenu(anchor) }
+        // Keep legacy button listeners for any external callers (views are gone)
+        binding.logoutButton.setOnClickListener {
+            auth.signOut()
+            startActivity(Intent(this, LandingActivity::class.java))
+            finish()
+        }
+        binding.friendsButton.setOnClickListener { startActivity(Intent(this, FriendsActivity::class.java)) }
+        binding.btnInbox.setOnClickListener { startActivity(Intent(this, InboxActivity::class.java)) }
+        binding.messagesButton.setOnClickListener { startActivity(Intent(this, ConversationsActivity::class.java)) }
+        binding.settingsButton.setOnClickListener { showSettingsDialog() }
+        binding.profileEditButton.setOnClickListener { showProfileEditDialog() }
+        binding.btnToggleRadar.setOnClickListener { toggleTrackingService() }
+        binding.btnReloadMap.setOnClickListener { reloadMapTraps(showFeedback = true) }
+        binding.btnZoomIn.setOnClickListener { map.animateCamera(CameraUpdateFactory.zoomIn()) }
+        binding.btnZoomOut.setOnClickListener { map.animateCamera(CameraUpdateFactory.zoomOut()) }
+        binding.myLocationButton.setOnClickListener { centerOnMyLocation() }
+        binding.btnToggleTheme.setOnClickListener { ThemeManager.toggleManualOverride() }
+
+        binding.btnCancelPlacement.setOnClickListener { gameVm.cancelPlacement() }
+        binding.btnCancelPlacementX.setOnClickListener { gameVm.cancelPlacement() }
+    }
+
+    /** "Me" tab menu — everything account-related that has no tab of its own. */
+    private fun showHudMenu(anchor: android.view.View) {
+            val popup = android.widget.PopupMenu(this, anchor, android.view.Gravity.END)
             popup.menu.apply {
-                add(0, 1, 0, getString(R.string.action_friends))
-                    .setIcon(R.drawable.ic_friends)
-                add(0, 2, 1, getString(R.string.action_inbox))
-                    .setIcon(R.drawable.ic_inbox)
-                add(0, 3, 2, themeLabel)
-                    .setIcon(R.drawable.ic_theme)
-                add(0, 4, 3, getString(R.string.action_settings))
-                    .setIcon(R.drawable.ic_settings_menu)
-                add(0, 5, 4, getString(R.string.action_edit_profile))
+                add(0, 5, 0, getString(R.string.action_edit_profile))
                     .setIcon(R.drawable.ic_person)
-                add(0, 7, 5, getString(R.string.action_ranking))
+                add(0, 9, 1, getString(R.string.action_awards_cards))
                     .setIcon(R.drawable.ic_settings_menu)
-                add(0, 8, 6, getString(R.string.action_capture_history))
+                add(0, 8, 2, getString(R.string.action_capture_history))
                     .setIcon(R.drawable.ic_settings_menu)
-                add(0, 9, 7, getString(R.string.action_awards_cards))
+                add(0, 2, 3, getString(R.string.action_inbox))
+                    .setIcon(R.drawable.ic_inbox)
+                add(0, 4, 4, getString(R.string.action_settings))
                     .setIcon(R.drawable.ic_settings_menu)
-                add(0, 6, 8, getString(R.string.action_logout))
+                add(0, 6, 5, getString(R.string.action_logout))
                     .setIcon(R.drawable.ic_logout)
             }
             // Force icons visible on all API levels
@@ -782,12 +890,9 @@ stopHeartbeat()
             }
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
-                    1 -> { startActivity(Intent(this, FriendsActivity::class.java)); true }
                     2 -> { startActivity(Intent(this, InboxActivity::class.java)); true }
-                    3 -> { ThemeManager.toggleManualOverride(); true }
                     4 -> { showSettingsDialog(); true }
                     5 -> { showProfileEditDialog(); true }
-                    7 -> { startActivity(Intent(this, RankingActivity::class.java)); true }
                     8 -> { startActivity(Intent(this, CaptureHistoryActivity::class.java)); true }
                     9 -> { startActivity(Intent(this, AwardsActivity::class.java)); true }
                     6 -> {
@@ -800,27 +905,26 @@ stopHeartbeat()
                 }
             }
             popup.show()
-        }
-        // Keep legacy button listeners for any external callers (views are gone)
-        binding.logoutButton.setOnClickListener {
-            auth.signOut()
-            startActivity(Intent(this, LandingActivity::class.java))
-            finish()
-        }
-        binding.friendsButton.setOnClickListener { startActivity(Intent(this, FriendsActivity::class.java)) }
-        binding.btnInbox.setOnClickListener { startActivity(Intent(this, InboxActivity::class.java)) }
-        binding.messagesButton.setOnClickListener { startActivity(Intent(this, ConversationsActivity::class.java)) }
-        binding.settingsButton.setOnClickListener { showSettingsDialog() }
-        binding.profileEditButton.setOnClickListener { showProfileEditDialog() }
-        binding.btnToggleRadar.setOnClickListener { toggleTrackingService() }
-        binding.btnReloadMap.setOnClickListener { reloadMapTraps(showFeedback = true) }
-        binding.btnZoomIn.setOnClickListener { map.animateCamera(CameraUpdateFactory.zoomIn()) }
-        binding.btnZoomOut.setOnClickListener { map.animateCamera(CameraUpdateFactory.zoomOut()) }
-        binding.myLocationButton.setOnClickListener { centerOnMyLocation() }
-        binding.btnToggleTheme.setOnClickListener { ThemeManager.toggleManualOverride() }
+    }
 
-        binding.btnCancelPlacement.setOnClickListener { gameVm.cancelPlacement() }
-        binding.btnCancelPlacementX.setOnClickListener { gameVm.cancelPlacement() }
+    /** Map layers button: heatmap, reload, light/dark map. */
+    private fun showLayersMenu(anchor: android.view.View) {
+        val popup = android.widget.PopupMenu(this, anchor, android.view.Gravity.END)
+        val themeLabel = if (ThemeManager.isDarkMode.value) getString(R.string.action_theme_light) else getString(R.string.action_theme_dark)
+        popup.menu.apply {
+            add(0, 1, 0, if (heatmapVisible) "Hide heatmap" else "Show heatmap")
+            add(0, 2, 1, "Reload traps")
+            add(0, 3, 2, themeLabel)
+        }
+        popup.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                1 -> { toggleHeatmap(); true }
+                2 -> { reloadMapTraps(showFeedback = true); true }
+                3 -> { ThemeManager.toggleManualOverride(); true }
+                else -> false
+            }
+        }
+        popup.show()
     }
 
     private fun sendFriendRequest(userId: String) {
@@ -1091,6 +1195,8 @@ stopHeartbeat()
     private fun checkNearbyTraps(loc: Location) {
         val snapshot = lastTrapsSnapshot ?: return
         var minDistance = Float.MAX_VALUE
+        var enemyNear = 0
+        val myUid = auth.currentUser?.uid
 
         snapshot.forEach { doc ->
             if (doc.getString("status") != "active") return@forEach
@@ -1099,9 +1205,11 @@ stopHeartbeat()
             val dist = FloatArray(1)
             Location.distanceBetween(loc.latitude, loc.longitude, tLat, tLng, dist)
             if (dist[0] < minDistance) minDistance = dist[0]
+            if (dist[0] <= 100f && doc.getString("ownerUid") != myUid) enemyNear++
         }
 
         runOnUiThread {
+            hud.nearbyCount = enemyNear
             val distInt = if (minDistance == Float.MAX_VALUE) -1 else minDistance.toInt()
             binding.proximitySensorRadar.setNearestTrapDistance(distInt)
             when {
@@ -1143,6 +1251,9 @@ stopHeartbeat()
         
         val levelProgress = calculateLevelProgress(currentUserXP, currentUserLevelNumber, progressionLevels)
         binding.pbLevelProgress.progress = (levelProgress * 100).toInt()
+        hud.points = currentUserScore
+        hud.level = currentUserLevelNumber
+        hud.levelProgress = levelProgress
 
         // Resolve the XP progression level name:
         //  1. Look up by level number in the player_progression_levels list (loaded from Firestore)
@@ -1445,11 +1556,11 @@ stopHeartbeat()
     }
 
     private fun updateBannerAdPosition() {
-        val bagHeight = binding.bagCard.height.takeIf { it > 0 } ?: return
+        val dockHeight = binding.composeBottomDock.height.takeIf { it > 0 } ?: return
         val dp8 = (8 * resources.displayMetrics.density).toInt()
 
-        // Ad sits directly above the bag
-        val adBottomMargin = navBarBottomInset + dp8 + bagHeight
+        // Ad sits directly above the dock (the dock already includes the nav-bar inset)
+        val adBottomMargin = dockHeight
         binding.bannerAdContainer.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
             bottomMargin = adBottomMargin
         }
@@ -1458,6 +1569,9 @@ stopHeartbeat()
         val adHeight = if (binding.bannerAdContainer.visibility == android.view.View.VISIBLE)
             binding.bannerAdContainer.height else 0
         binding.rightSideControls.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
+            bottomMargin = adBottomMargin + adHeight + dp8
+        }
+        binding.composeTrapCompass.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
             bottomMargin = adBottomMargin + adHeight + dp8
         }
     }
@@ -1712,6 +1826,18 @@ stopHeartbeat()
         map.uiSettings.isMyLocationButtonEnabled = false
 
         enableMyLocationOnMap()
+        val known = currentLocation
+        if (known != null) {
+            centerCameraOnFirstFix(known)
+        } else {
+            // Until the first fix arrives, open where the player was last seen.
+            val prefs = getSharedPreferences("Settings", MODE_PRIVATE)
+            val lat = prefs.getFloat("last_lat", Float.NaN)
+            val lng = prefs.getFloat("last_lng", Float.NaN)
+            if (!lat.isNaN() && !lng.isNaN()) {
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat.toDouble(), lng.toDouble()), 17.5f))
+            }
+        }
         fetchLastKnownLocation()
 
         // Apply stored zoom if we already have bag data; otherwise use a permissive
@@ -1781,13 +1907,8 @@ stopHeartbeat()
             fusedLocationClient.lastLocation.addOnSuccessListener { loc ->
                 if (loc != null) {
                     currentLocation = loc
-                    if (::map.isInitialized) {
-                        // Always open at ~200 m radius (zoom 17.5).
-                        // Min zoom-out is enforced separately via setMinZoomPreference.
-                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                            LatLng(loc.latitude, loc.longitude), 17.5f
-                        ))
-                    }
+                    hud.gpsAccuracyM = if (loc.hasAccuracy()) kotlin.math.round(loc.accuracy).toInt() else null
+                    centerCameraOnFirstFix(loc)
                 }
             }
         }
@@ -1831,6 +1952,8 @@ stopHeartbeat()
             override fun onLocationResult(res: LocationResult) {
                 currentLocation = res.lastLocation
                 currentLocation?.let { loc ->
+                    hud.gpsAccuracyM = if (loc.hasAccuracy()) kotlin.math.round(loc.accuracy).toInt() else null
+                    centerCameraOnFirstFix(loc)
                     checkNearbyTraps(loc)
                     onLocationChanged(loc.latitude, loc.longitude)
                     // On the very first GPS fix of this session, attempt first-login trap gen
@@ -1846,6 +1969,21 @@ stopHeartbeat()
             .build()
         fusedLocationClient.requestLocationUpdates(req, locationCallback!!, Looper.getMainLooper())
         isGpsRunning = true
+    }
+
+    /** Opens the map at ~200 m radius (zoom 17.5) on the player, once per activity. */
+    private fun centerCameraOnFirstFix(loc: Location) {
+        if (cameraCentered || !::map.isInitialized) return
+        cameraCentered = true
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(loc.latitude, loc.longitude), 17.5f))
+        saveLastLocation(loc)
+    }
+
+    private fun saveLastLocation(loc: Location) {
+        getSharedPreferences("Settings", MODE_PRIVATE).edit()
+            .putFloat("last_lat", loc.latitude.toFloat())
+            .putFloat("last_lng", loc.longitude.toFloat())
+            .apply()
     }
 
     private fun stopGpsUpdates() {
@@ -2198,21 +2336,13 @@ stopHeartbeat()
         }
     }
 
-    /** Briefly animates the XP counter to highlight the gain. */
+    /** Briefly shows the XP gain in the level pill. */
     private fun flashXpGain(xp: Int) {
-        val tv = binding.tvScore
-        val originalText = tv.text
-        val gained = "⚡ +$xp XP!"
-        tv.text = gained
-        tv.setTextColor(0xFF3EE08F.toInt())
-        tv.animate().scaleX(1.3f).scaleY(1.3f).setDuration(200).withEndAction {
-            tv.animate().scaleX(1f).scaleY(1f).setDuration(300).withEndAction {
-                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-                    tv.text = originalText
-                    tv.setTextColor(0xFFFFB648.toInt())
-                }, 1500)
-            }.start()
-        }.start()
+        hud.xpFlash = xp
+        lifecycleScope.launch {
+            kotlinx.coroutines.delay(2000)
+            if (hud.xpFlash == xp) hud.xpFlash = null
+        }
     }
 
     /**

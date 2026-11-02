@@ -627,4 +627,36 @@
     <string name="delete_account_done">Your account has been deleted.</string>
     <string name="delete_account_failed">Account deletion failed. Please try again or contact support.</string>
     <string name="error_generic_retry">Something went wrong. Please try again.</string>
+    <!-- Map HUD / dock / hold-to-arm (redesign) -->
+    <string name="mh_pts">PTS</string>
+    <string name="mh_inbox">Inbox</string>
+    <string name="mh_near_count">▲ %1$d near</string>
+    <string name="mh_near_none">▲ none near</string>
+    <string name="mh_gps_wait">● GPS …</string>
+    <string name="mh_gps_acc">● GPS ±%1$d m</string>
+    <string name="mh_near_toast">%1$d enemy trap(s) within 100 m — get closer to disarm</string>
+    <string name="mh_near_none_toast">No enemy traps within 100 m</string>
+    <string name="mh_target_set">Target set — press PLACE to arm it there</string>
+    <string name="mh_clear_target">Clear target</string>
+    <string name="mh_loading_bag">Loading bag…</string>
+    <string name="mh_bag_empty">Bag is empty</string>
+    <string name="mh_left_switch">%1$d left · tap to switch</string>
+    <string name="mh_open_bag">Tap to open your bag</string>
+    <string name="mh_place">PLACE</string>
+    <string name="mh_tab_map">Map</string>
+    <string name="mh_tab_bag">Bag</string>
+    <string name="mh_tab_rank">Rank</string>
+    <string name="mh_tab_social">Social</string>
+    <string name="mh_tab_me">Me</string>
+    <string name="mh_your_bag">YOUR BAG</string>
+    <string name="mh_gps_wait_toast">Waiting for GPS — or tap the map to pick a spot</string>
+    <string name="mh_nearest">Nearest trap · %1$d m</string>
+    <string name="mh_yours_near">Yours within 200 m · %1$d</string>
+    <string name="mh_hold_placing">PLACING · %1$s</string>
+    <string name="mh_hold_title">Hold to arm the trap</string>
+    <string name="mh_hold_left">%1$d left in bag</string>
+    <string name="mh_hold_close">✕  Close</string>
+    <string name="mh_hold_arming">ARMING</string>
+    <string name="mh_hold_hold">HOLD</string>
+    <string name="mh_hold_footer">Release to cancel · phone vibrates when armed</string>
 </resources>

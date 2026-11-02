@@ -578,4 +578,36 @@
     <string name="delete_account_done">A fiókod törölve.</string>
     <string name="delete_account_failed">A fiók törlése nem sikerült. Próbáld újra, vagy írj a támogatásnak.</string>
     <string name="error_generic_retry">Hiba történt. Próbáld újra.</string>
+    <!-- Map HUD / dock / hold-to-arm (redesign) -->
+    <string name="mh_pts">PONT</string>
+    <string name="mh_inbox">Bejövő</string>
+    <string name="mh_near_count">▲ %1$d a közelben</string>
+    <string name="mh_near_none">▲ nincs a közelben</string>
+    <string name="mh_gps_wait">● GPS …</string>
+    <string name="mh_gps_acc">● GPS ±%1$d m</string>
+    <string name="mh_near_toast">%1$d ellenséges csapda 100 m-en belül — menj közelebb a hatástalanításhoz</string>
+    <string name="mh_near_none_toast">Nincs ellenséges csapda 100 m-en belül</string>
+    <string name="mh_target_set">Célpont kijelölve — nyomd meg: ELHELYEZ</string>
+    <string name="mh_clear_target">Célpont törlése</string>
+    <string name="mh_loading_bag">Táska betöltése…</string>
+    <string name="mh_bag_empty">Üres a táska</string>
+    <string name="mh_left_switch">%1$d db maradt · váltás</string>
+    <string name="mh_open_bag">Koppints a táska megnyitásához</string>
+    <string name="mh_place">ELHELYEZ</string>
+    <string name="mh_tab_map">Térkép</string>
+    <string name="mh_tab_bag">Táska</string>
+    <string name="mh_tab_rank">Rangsor</string>
+    <string name="mh_tab_social">Barátok</string>
+    <string name="mh_tab_me">Én</string>
+    <string name="mh_your_bag">TÁSKÁD</string>
+    <string name="mh_gps_wait_toast">GPS-re várunk — vagy koppints a térképre egy helyért</string>
+    <string name="mh_nearest">Legközelebbi csapda · %1$d m</string>
+    <string name="mh_yours_near">Saját 200 m-en belül · %1$d</string>
+    <string name="mh_hold_placing">ELHELYEZÉS · %1$s</string>
+    <string name="mh_hold_title">Tartsd nyomva az élesítéshez</string>
+    <string name="mh_hold_left">%1$d db a táskában</string>
+    <string name="mh_hold_close">✕  Bezárás</string>
+    <string name="mh_hold_arming">ÉLESÍTÉS</string>
+    <string name="mh_hold_hold">TARTSD</string>
+    <string name="mh_hold_footer">Elengedve megszakad · élesítéskor rezeg a telefon</string>
 </resources>

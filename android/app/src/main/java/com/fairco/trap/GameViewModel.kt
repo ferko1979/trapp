@@ -191,6 +191,8 @@ class GameViewModel : ViewModel() {
     private var disassemblyJob: Job? = null
     private var membershipCheckJob: Job? = null
     private var loadBagJob: Job? = null
+    @Volatile private var bagReloadPending = false
+    private var bagReloadLang: String? = null
 
     /**
      * Reads the user's membership fields directly from Firestore and updates
@@ -800,7 +802,14 @@ class GameViewModel : ViewModel() {
      * re-fetch even if we recently loaded.
      */
     fun loadBag(lang: String? = null) {
-        loadBagJob?.cancel()
+        // Startup fires several reloads at once; cancelling the in-flight call each
+        // time kept the bag on "loading" through a cold start. Coalesce instead:
+        // let the running call finish, then reload once more.
+        if (loadBagJob?.isActive == true) {
+            bagReloadPending = true
+            bagReloadLang = lang ?: bagReloadLang
+            return
+        }
         loadBagJob = viewModelScope.launch {
             _bagState.update { it.copy(loading = true, error = null) }
             try {
@@ -830,6 +839,12 @@ class GameViewModel : ViewModel() {
                 )
             } catch (e: Exception) {
                 _bagState.update { it.copy(loading = false, error = e.message) }
+            }
+        }
+        loadBagJob?.invokeOnCompletion {
+            if (bagReloadPending) {
+                bagReloadPending = false
+                viewModelScope.launch { loadBag(bagReloadLang) }
             }
         }
     }

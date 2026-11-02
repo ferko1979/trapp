@@ -317,4 +317,36 @@
     <string name="delete_account_done">החשבון שלך נמחק.</string>
     <string name="delete_account_failed">המחיקה נכשלה. נסה שוב או פנה לתמיכה.</string>
     <string name="error_generic_retry">משהו השתבש. נסה שוב.</string>
+    <!-- Map HUD / dock / hold-to-arm (redesign) -->
+    <string name="mh_pts">נק׳</string>
+    <string name="mh_inbox">דואר נכנס</string>
+    <string name="mh_near_count">▲ %1$d בקרבת מקום</string>
+    <string name="mh_near_none">▲ אין בקרבת מקום</string>
+    <string name="mh_gps_wait">● GPS …</string>
+    <string name="mh_gps_acc">● GPS ±%1$d m</string>
+    <string name="mh_near_toast">%1$d מלכודות אויב בטווח 100 מ׳ — התקרב כדי לנטרל</string>
+    <string name="mh_near_none_toast">אין מלכודות אויב בטווח 100 מ׳</string>
+    <string name="mh_target_set">היעד נקבע — לחץ על הצב</string>
+    <string name="mh_clear_target">נקה יעד</string>
+    <string name="mh_loading_bag">טוען תיק…</string>
+    <string name="mh_bag_empty">התיק ריק</string>
+    <string name="mh_left_switch">נותרו %1$d · הקש להחלפה</string>
+    <string name="mh_open_bag">הקש לפתיחת התיק</string>
+    <string name="mh_place">הצב</string>
+    <string name="mh_tab_map">מפה</string>
+    <string name="mh_tab_bag">תיק</string>
+    <string name="mh_tab_rank">דירוג</string>
+    <string name="mh_tab_social">חברים</string>
+    <string name="mh_tab_me">אני</string>
+    <string name="mh_your_bag">התיק שלך</string>
+    <string name="mh_gps_wait_toast">ממתין ל-GPS — או הקש על המפה לבחירת מקום</string>
+    <string name="mh_nearest">המלכודת הקרובה · %1$d מ׳</string>
+    <string name="mh_yours_near">שלך בטווח 200 מ׳ · %1$d</string>
+    <string name="mh_hold_placing">מציב · %1$s</string>
+    <string name="mh_hold_title">החזק כדי לדרוך את המלכודת</string>
+    <string name="mh_hold_left">%1$d בתיק</string>
+    <string name="mh_hold_close">✕  סגור</string>
+    <string name="mh_hold_arming">דורך</string>
+    <string name="mh_hold_hold">החזק</string>
+    <string name="mh_hold_footer">שחרר לביטול · הטלפון ירטוט כשהמלכודת דרוכה</string>
 </resources>

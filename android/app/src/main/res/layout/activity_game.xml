@@ -16,6 +16,7 @@
         android:id="@+id/topHudCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_margin="12dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
@@ -241,7 +242,15 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- PLACEMENT HINT — shown while user is choosing a location or trap -->
+    <!-- TOP HUD — level/points pill, inbox bell, nearby + GPS chips (Compose) -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeTopHud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:elevation="20dp" />
+
+    <!-- PLACEMENT HINT — legacy; the target hint now lives in the bottom dock -->
     <TextView
         android:id="@+id/tvPlacementHint"
         android:layout_width="wrap_content"
@@ -272,18 +281,19 @@
         android:textColor="@color/white"
         android:textSize="11sp"
         android:textStyle="bold"
-        android:elevation="10dp" />
+        android:elevation="10dp"
+        android:visibility="gone" />
 
     <!-- NEARBY PROXIMITY RADAR OVERLAY -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/radarCard"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
         android:layout_gravity="top|end"
-        android:layout_marginTop="105dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="12dp"
         app:cardBackgroundColor="@color/scrim_dark"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="38dp"
         app:cardElevation="15dp"
         app:strokeColor="@color/border_default"
         app:strokeWidth="1dp">
@@ -300,8 +310,8 @@
 
             <ImageButton
                 android:id="@+id/btnToggleRadar"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_rounded_dark"
                 android:backgroundTint="#80FFFFFF"
@@ -318,6 +328,7 @@
         android:id="@+id/reloadMapCard"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:visibility="gone"
         android:layout_gravity="top|end"
         android:layout_marginTop="213dp"
         android:layout_marginEnd="42dp"
@@ -368,26 +379,13 @@
 
     </FrameLayout>
 
-    <!-- BAG CARD — always visible at bottom -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/bagCard"
+    <!-- BOTTOM DOCK — trap selector + PLACE + tab bar (Compose); pads itself above the nav bar -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/composeBottomDock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:cardBackgroundColor="@color/bg_surface">
-
-        <androidx.compose.ui.platform.ComposeView
-            android:id="@+id/composeBagView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.card.MaterialCardView>
+        android:elevation="16dp" />
 
     <!-- HIDDEN LEGACY COMPONENTS FOR COMPAT -->
     <androidx.core.widget.NestedScrollView
@@ -458,18 +456,33 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:srcCompat="@android:drawable/ic_menu_mylocation"
-            app:fabSize="normal"
-            app:backgroundTint="@color/accent_deep"
-            app:tint="@color/white"
+            app:fabSize="mini"
+            app:backgroundTint="#E6070E1A"
+            app:tint="#FF38D3F2"
             android:contentDescription="@string/action_my_location"
             app:borderWidth="0dp"
             app:elevation="4dp" />
 
-        <!-- Zoom in -->
+        <!-- Layers: heatmap, reload, theme -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnLayers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:srcCompat="@drawable/ic_layers"
+            app:fabSize="mini"
+            app:backgroundTint="#E6070E1A"
+            app:tint="#FF38D3F2"
+            android:contentDescription="Map layers"
+            app:borderWidth="0dp"
+            app:elevation="4dp" />
+
+        <!-- Zoom in (pinch replaces it; kept for binding) -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnZoomIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginBottom="8dp"
             app:srcCompat="@drawable/ic_plus"
             app:fabSize="mini"
@@ -484,6 +497,7 @@
             android:id="@+id/btnZoomOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:srcCompat="@drawable/ic_minus"
             app:fabSize="mini"
             app:backgroundTint="@color/accent_deep"

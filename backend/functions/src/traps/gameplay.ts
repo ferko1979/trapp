@@ -1613,6 +1613,9 @@ export const updatePlayerLocation = onCall(async (request) => {
 
       if (distanceMeters > trapRadius) {
         // Player is within the search zone but outside the capture radius → nearby warning.
+        // The search zone can reach 5 km for high levels (and geohash cells overshoot it),
+        // but a danger alert only makes sense within the base 250 m.
+        if (distanceMeters > ACTIVE_TRAP_SEARCH_RADIUS_METERS) continue;
         const disarmRad = typeof trap.disarmRadiusMeters === "number" && trap.disarmRadiusMeters > trapRadius
           ? trap.disarmRadiusMeters
           : trapRadius + 1;

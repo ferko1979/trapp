@@ -566,4 +566,36 @@
     <string name="delete_account_done">Tvoj račun je izbrisan.</string>
     <string name="delete_account_failed">Brisanje nije uspjelo. Pokušaj ponovno ili kontaktiraj podršku.</string>
     <string name="error_generic_retry">Nešto je pošlo po zlu. Pokušaj ponovno.</string>
+    <!-- Map HUD / dock / hold-to-arm (redesign) -->
+    <string name="mh_pts">BOD</string>
+    <string name="mh_inbox">Pristigla pošta</string>
+    <string name="mh_near_count">▲ %1$d u blizini</string>
+    <string name="mh_near_none">▲ nijedna u blizini</string>
+    <string name="mh_gps_wait">● GPS …</string>
+    <string name="mh_gps_acc">● GPS ±%1$d m</string>
+    <string name="mh_near_toast">%1$d neprijateljskih zamki unutar 100 m — priđi bliže da ih razoružaš</string>
+    <string name="mh_near_none_toast">Nema neprijateljskih zamki unutar 100 m</string>
+    <string name="mh_target_set">Cilj postavljen — pritisni POSTAVI</string>
+    <string name="mh_clear_target">Ukloni cilj</string>
+    <string name="mh_loading_bag">Učitavanje torbe…</string>
+    <string name="mh_bag_empty">Torba je prazna</string>
+    <string name="mh_left_switch">Preostalo %1$d · dodirni za promjenu</string>
+    <string name="mh_open_bag">Dodirni za otvaranje torbe</string>
+    <string name="mh_place">POSTAVI</string>
+    <string name="mh_tab_map">Karta</string>
+    <string name="mh_tab_bag">Torba</string>
+    <string name="mh_tab_rank">Rang</string>
+    <string name="mh_tab_social">Društvo</string>
+    <string name="mh_tab_me">Ja</string>
+    <string name="mh_your_bag">TVOJA TORBA</string>
+    <string name="mh_gps_wait_toast">Čekam GPS — ili dodirni kartu za odabir mjesta</string>
+    <string name="mh_nearest">Najbliža zamka · %1$d m</string>
+    <string name="mh_yours_near">Tvoje unutar 200 m · %1$d</string>
+    <string name="mh_hold_placing">POSTAVLJANJE · %1$s</string>
+    <string name="mh_hold_title">Drži za aktiviranje zamke</string>
+    <string name="mh_hold_left">%1$d u torbi</string>
+    <string name="mh_hold_close">✕  Zatvori</string>
+    <string name="mh_hold_arming">AKTIVIRANJE</string>
+    <string name="mh_hold_hold">DRŽI</string>
+    <string name="mh_hold_footer">Otpusti za odustajanje · mobitel vibrira kad je aktivno</string>
 </resources>

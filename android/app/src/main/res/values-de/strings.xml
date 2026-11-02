@@ -566,4 +566,36 @@
     <string name="delete_account_done">Dein Konto wurde gelöscht.</string>
     <string name="delete_account_failed">Löschen fehlgeschlagen. Bitte erneut versuchen oder den Support kontaktieren.</string>
     <string name="error_generic_retry">Etwas ist schiefgelaufen. Bitte erneut versuchen.</string>
+    <!-- Map HUD / dock / hold-to-arm (redesign) -->
+    <string name="mh_pts">PKT</string>
+    <string name="mh_inbox">Posteingang</string>
+    <string name="mh_near_count">▲ %1$d in der Nähe</string>
+    <string name="mh_near_none">▲ keine in der Nähe</string>
+    <string name="mh_gps_wait">● GPS …</string>
+    <string name="mh_gps_acc">● GPS ±%1$d m</string>
+    <string name="mh_near_toast">%1$d feindliche Falle(n) im Umkreis von 100 m — geh näher ran, um sie zu entschärfen</string>
+    <string name="mh_near_none_toast">Keine feindlichen Fallen im Umkreis von 100 m</string>
+    <string name="mh_target_set">Ziel gesetzt — tippe auf SETZEN</string>
+    <string name="mh_clear_target">Ziel entfernen</string>
+    <string name="mh_loading_bag">Tasche wird geladen…</string>
+    <string name="mh_bag_empty">Tasche ist leer</string>
+    <string name="mh_left_switch">Noch %1$d · zum Wechseln tippen</string>
+    <string name="mh_open_bag">Tippen, um die Tasche zu öffnen</string>
+    <string name="mh_place">SETZEN</string>
+    <string name="mh_tab_map">Karte</string>
+    <string name="mh_tab_bag">Tasche</string>
+    <string name="mh_tab_rank">Rang</string>
+    <string name="mh_tab_social">Sozial</string>
+    <string name="mh_tab_me">Ich</string>
+    <string name="mh_your_bag">DEINE TASCHE</string>
+    <string name="mh_gps_wait_toast">Warte auf GPS — oder tippe auf die Karte, um einen Ort zu wählen</string>
+    <string name="mh_nearest">Nächste Falle · %1$d m</string>
+    <string name="mh_yours_near">Eigene im Umkreis von 200 m · %1$d</string>
+    <string name="mh_hold_placing">PLATZIEREN · %1$s</string>
+    <string name="mh_hold_title">Gedrückt halten zum Scharfmachen</string>
+    <string name="mh_hold_left">Noch %1$d in der Tasche</string>
+    <string name="mh_hold_close">✕  Schließen</string>
+    <string name="mh_hold_arming">SCHÄRFEN</string>
+    <string name="mh_hold_hold">HALTEN</string>
+    <string name="mh_hold_footer">Loslassen bricht ab · das Handy vibriert, wenn scharf</string>
 </resources>

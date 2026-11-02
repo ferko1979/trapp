@@ -566,4 +566,36 @@
     <string name="delete_account_done">Contul tău a fost șters.</string>
     <string name="delete_account_failed">Ștergerea a eșuat. Încearcă din nou sau contactează asistența.</string>
     <string name="error_generic_retry">Ceva n-a mers. Încearcă din nou.</string>
+    <!-- Map HUD / dock / hold-to-arm (redesign) -->
+    <string name="mh_pts">PCT</string>
+    <string name="mh_inbox">Mesaje</string>
+    <string name="mh_near_count">▲ %1$d în apropiere</string>
+    <string name="mh_near_none">▲ niciuna în apropiere</string>
+    <string name="mh_gps_wait">● GPS …</string>
+    <string name="mh_gps_acc">● GPS ±%1$d m</string>
+    <string name="mh_near_toast">%1$d capcane inamice pe o rază de 100 m — apropie-te ca să le dezarmezi</string>
+    <string name="mh_near_none_toast">Nicio capcană inamică pe o rază de 100 m</string>
+    <string name="mh_target_set">Țintă setată — apasă PLASEAZĂ</string>
+    <string name="mh_clear_target">Șterge ținta</string>
+    <string name="mh_loading_bag">Se încarcă geanta…</string>
+    <string name="mh_bag_empty">Geanta e goală</string>
+    <string name="mh_left_switch">Mai sunt %1$d · atinge pentru schimbare</string>
+    <string name="mh_open_bag">Atinge pentru a deschide geanta</string>
+    <string name="mh_place">PLASEAZĂ</string>
+    <string name="mh_tab_map">Hartă</string>
+    <string name="mh_tab_bag">Geantă</string>
+    <string name="mh_tab_rank">Top</string>
+    <string name="mh_tab_social">Social</string>
+    <string name="mh_tab_me">Eu</string>
+    <string name="mh_your_bag">GEANTA TA</string>
+    <string name="mh_gps_wait_toast">Se așteaptă GPS — sau atinge harta pentru a alege un loc</string>
+    <string name="mh_nearest">Cea mai apropiată capcană · %1$d m</string>
+    <string name="mh_yours_near">Ale tale pe 200 m · %1$d</string>
+    <string name="mh_hold_placing">PLASARE · %1$s</string>
+    <string name="mh_hold_title">Ține apăsat pentru a arma capcana</string>
+    <string name="mh_hold_left">%1$d în geantă</string>
+    <string name="mh_hold_close">✕  Închide</string>
+    <string name="mh_hold_arming">ARMARE</string>
+    <string name="mh_hold_hold">ȚINE</string>
+    <string name="mh_hold_footer">Eliberează pentru a anula · telefonul vibrează la armare</string>
 </resources>

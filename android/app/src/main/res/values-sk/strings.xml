@@ -566,4 +566,36 @@
     <string name="delete_account_done">Tvoj účet bol odstránený.</string>
     <string name="delete_account_failed">Odstránenie zlyhalo. Skús to znova alebo kontaktuj podporu.</string>
     <string name="error_generic_retry">Niečo sa pokazilo. Skús to znova.</string>
+    <!-- Map HUD / dock / hold-to-arm (redesign) -->
+    <string name="mh_pts">BODY</string>
+    <string name="mh_inbox">Doručené</string>
+    <string name="mh_near_count">▲ %1$d v blízkosti</string>
+    <string name="mh_near_none">▲ žiadna v blízkosti</string>
+    <string name="mh_gps_wait">● GPS …</string>
+    <string name="mh_gps_acc">● GPS ±%1$d m</string>
+    <string name="mh_near_toast">%1$d nepriateľských pascí do 100 m — priblíž sa, aby si ich zneškodnil</string>
+    <string name="mh_near_none_toast">Žiadne nepriateľské pasce do 100 m</string>
+    <string name="mh_target_set">Cieľ nastavený — stlač POLOŽ</string>
+    <string name="mh_clear_target">Zrušiť cieľ</string>
+    <string name="mh_loading_bag">Načítava sa taška…</string>
+    <string name="mh_bag_empty">Taška je prázdna</string>
+    <string name="mh_left_switch">Zostáva %1$d · ťukni pre zmenu</string>
+    <string name="mh_open_bag">Ťukni pre otvorenie tašky</string>
+    <string name="mh_place">POLOŽ</string>
+    <string name="mh_tab_map">Mapa</string>
+    <string name="mh_tab_bag">Taška</string>
+    <string name="mh_tab_rank">Poradie</string>
+    <string name="mh_tab_social">Priatelia</string>
+    <string name="mh_tab_me">Ja</string>
+    <string name="mh_your_bag">TVOJA TAŠKA</string>
+    <string name="mh_gps_wait_toast">Čaká sa na GPS — alebo ťukni na mapu a vyber miesto</string>
+    <string name="mh_nearest">Najbližšia pasca · %1$d m</string>
+    <string name="mh_yours_near">Tvoje do 200 m · %1$d</string>
+    <string name="mh_hold_placing">UMIESTŇOVANIE · %1$s</string>
+    <string name="mh_hold_title">Podrž na aktiváciu pasce</string>
+    <string name="mh_hold_left">%1$d v taške</string>
+    <string name="mh_hold_close">✕  Zavrieť</string>
+    <string name="mh_hold_arming">AKTIVÁCIA</string>
+    <string name="mh_hold_hold">DRŽ</string>
+    <string name="mh_hold_footer">Pusti na zrušenie · telefón zavibruje po aktivácii</string>
 </resources>

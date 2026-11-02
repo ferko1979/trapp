@@ -2,6 +2,11 @@ package com.fairco.trap
 
 import androidx.compose.foundation.background
 import com.fairco.trap.ui.theme.Radar
+import com.fairco.trap.ui.theme.RadarFonts
+import androidx.compose.foundation.border
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.unit.Dp
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.gestures.awaitFirstDown
@@ -189,15 +194,18 @@ fun PlacementHoldOverlay(
     startError: String? = null,
     onConfirm: () -> Unit,
     onCancel: () -> Unit,
-    onClose: () -> Unit = {}
+    onClose: () -> Unit = {},
+    targetInfo: String? = null,
+    navInset: Dp = 0.dp,
 ) {
     var isHeld by remember { mutableStateOf(false) }
     var progress by remember { mutableFloatStateOf(0f) }
-    // Once confirmed, the button is replaced by a "Processing…" indicator
+    // Once confirmed, the ring is replaced by a "Processing…" state
     // to prevent the user from pressing again while the network call is in flight.
     var confirmed by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     var holdJob by remember { mutableStateOf<Job?>(null) }
+    val haptic = LocalHapticFeedback.current
 
     LaunchedEffect(isHeld) {
         if (isHeld && !confirmed) {
@@ -210,7 +218,8 @@ fun PlacementHoldOverlay(
                     delay(16)
                 }
                 if (isActive && progress >= 1f) {
-                    confirmed = true   // lock UI immediately — no more button presses
+                    confirmed = true   // lock UI immediately — no more presses
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     onConfirm()
                 }
             }
@@ -232,152 +241,142 @@ fun PlacementHoldOverlay(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Radar.Bg.copy(alpha = 0.93f)),
-        contentAlignment = Alignment.Center
+            .background(Radar.Bg.copy(alpha = 0.72f))
     ) {
+        // ── Top: what is happening + neutral context about the target ──
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.padding(horizontal = 32.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .fillMaxWidth()
+                .statusBarsPadding()
+                .padding(horizontal = 24.dp, vertical = 24.dp)
         ) {
-            Spacer(Modifier.height(16.dp))
-
-            // Trap image (Coil) or emoji fallback
-            TrapImage(item = trap, size = 72.dp)
-
-            Spacer(Modifier.height(4.dp))
-
-            // Trap name
             Text(
-                text = trap.name,
-                color = Radar.Text,
-                fontSize = 22.sp,
+                text = stringResource(R.string.mh_hold_placing, trap.name.uppercase()),
+                color = Radar.Accent,
+                fontFamily = RadarFonts.Label,
                 fontWeight = FontWeight.Bold,
+                fontSize = 13.sp,
+                letterSpacing = 2.sp,
                 textAlign = TextAlign.Center
             )
+            Text(
+                text = stringResource(R.string.mh_hold_title),
+                color = Radar.Text,
+                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp,
+                textAlign = TextAlign.Center
+            )
+            if (!targetInfo.isNullOrBlank()) {
+                Text(
+                    text = targetInfo,
+                    color = Radar.TextSec,
+                    fontFamily = RadarFonts.Body,
+                    fontSize = 13.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .background(Radar.Surface2, RoundedCornerShape(14.dp))
+                        .border(1.dp, Radar.Line, RoundedCornerShape(14.dp))
+                        .padding(horizontal = 12.dp, vertical = 6.dp)
+                )
+            }
+        }
+
+        // ── Bottom sheet: trap, hold ring, cancel ──
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .background(Radar.Surface, RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp))
+                .border(1.dp, Radar.Line, RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp))
+                .padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 16.dp + navInset)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .size(44.dp)
+                        .background(Radar.Trap.copy(alpha = 0.18f), RoundedCornerShape(12.dp))
+                ) {
+                    TrapImage(item = trap, size = 34.dp)
+                }
+                Spacer(Modifier.width(12.dp))
+                Column(Modifier.weight(1f)) {
+                    Text(
+                        text = trap.name,
+                        color = Radar.Text,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp
+                    )
+                    Text(
+                        text = stringResource(R.string.mh_hold_left, trap.bagCount),
+                        color = Radar.TextMuted,
+                        fontSize = 12.sp
+                    )
+                }
+            }
 
             if (confirmed && startError != null) {
                 // ── Error state — placement call failed, show message + close button ──
-                Spacer(Modifier.height(16.dp))
-                Box(
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(Radar.Trap.copy(alpha = 0.20f), shape = RoundedCornerShape(12.dp))
-                        .padding(16.dp),
-                    contentAlignment = Alignment.Center
+                        .padding(16.dp)
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Text(
-                            text = "⚠",
-                            color = Radar.TrapSoft,
-                            fontSize = 28.sp
-                        )
-                        Text(
-                            text = startError,
-                            color = Radar.TrapSoft,
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            textAlign = TextAlign.Center
-                        )
-                    }
+                    Text(text = "⚠", color = Radar.TrapSoft, fontSize = 28.sp)
+                    Text(
+                        text = startError,
+                        color = Radar.TrapSoft,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        textAlign = TextAlign.Center
+                    )
                 }
-                Spacer(Modifier.height(20.dp))
                 TextButton(
                     onClick = onClose,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0xFF7F1D1D), shape = RoundedCornerShape(10.dp))
+                        .background(Color(0xFF7F1D1D), shape = RoundedCornerShape(12.dp))
                         .padding(vertical = 4.dp)
                 ) {
                     Text(
-                        text = "✕  Close",
+                        text = stringResource(R.string.mh_hold_close),
                         color = Radar.TrapSoft,
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
-                Spacer(Modifier.height(8.dp))
-            } else if (confirmed) {
-                // ── Processing state — button replaced, no interaction possible ──
-                Spacer(Modifier.height(20.dp))
-                Text(
-                    text = stringResource(R.string.label_confirming_placement),
-                    color = Radar.TextSec,
-                    fontSize = 15.sp,
-                    textAlign = TextAlign.Center
-                )
-                Spacer(Modifier.height(16.dp))
-                // Filled arc to show completion
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .size(148.dp)
-                        .drawBehind {
-                            val strokePx = 10.dp.toPx()
-                            val inset = strokePx / 2 + 4.dp.toPx()
-                            val arcTopLeft = Offset(inset, inset)
-                            val arcSize = Size(size.width - inset * 2, size.height - inset * 2)
-                            drawArc(
-                                color = Radar.Line,
-                                startAngle = 0f,
-                                sweepAngle = 360f,
-                                useCenter = false,
-                                topLeft = arcTopLeft,
-                                size = arcSize,
-                                style = Stroke(width = strokePx)
-                            )
-                            drawArc(
-                                color = Radar.Accent,
-                                startAngle = -90f,
-                                sweepAngle = 360f,
-                                useCenter = false,
-                                topLeft = arcTopLeft,
-                                size = arcSize,
-                                style = Stroke(width = strokePx, cap = StrokeCap.Round)
-                            )
-                            val innerRadius = size.minDimension / 2 - strokePx - 6.dp.toPx()
-                            drawCircle(color = Radar.AccentDeep, radius = innerRadius)
-                        }
-                ) {
-                    Text(
-                        text = "✓",
-                        color = Color.White,
-                        fontSize = 36.sp,
-                        fontWeight = FontWeight.ExtraBold
-                    )
-                }
-                Spacer(Modifier.height(20.dp))
             } else {
-                // ── Normal hold-button state ──
-                Text(
-                    text = stringResource(R.string.label_hold_for_2s),
-                    color = Radar.TextMuted,
-                    fontSize = 13.sp,
-                    textAlign = TextAlign.Center
-                )
-
-                Spacer(Modifier.height(20.dp))
-
-                // PUSH hold button with circular progress arc
+                // ── Hold ring (or the armed state while the server confirms) ──
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .size(148.dp)
-                        .pointerInput(Unit) {
-                            awaitEachGesture {
-                                awaitFirstDown(requireUnconsumed = false)
-                                isHeld = true
-                                waitForUpOrCancellation()
-                                isHeld = false
+                        .then(
+                            if (confirmed) Modifier else Modifier.pointerInput(Unit) {
+                                awaitEachGesture {
+                                    awaitFirstDown(requireUnconsumed = false)
+                                    isHeld = true
+                                    waitForUpOrCancellation()
+                                    isHeld = false
+                                }
                             }
-                        }
+                        )
                         .drawBehind {
                             val strokePx = 10.dp.toPx()
                             val inset = strokePx / 2 + 4.dp.toPx()
                             val arcTopLeft = Offset(inset, inset)
                             val arcSize = Size(size.width - inset * 2, size.height - inset * 2)
-
-                            // Track ring
                             drawArc(
                                 color = Radar.Line,
                                 startAngle = 0f,
@@ -387,43 +386,76 @@ fun PlacementHoldOverlay(
                                 size = arcSize,
                                 style = Stroke(width = strokePx)
                             )
-                            // Progress arc
-                            if (progress > 0f) {
+                            val sweep = if (confirmed) 1f else progress
+                            if (sweep > 0f) {
                                 drawArc(
-                                    color = Radar.Accent,
+                                    color = if (confirmed) Radar.Safe else Radar.Trap,
                                     startAngle = -90f,
-                                    sweepAngle = 360f * progress,
+                                    sweepAngle = 360f * sweep,
                                     useCenter = false,
                                     topLeft = arcTopLeft,
                                     size = arcSize,
                                     style = Stroke(width = strokePx, cap = StrokeCap.Round)
                                 )
                             }
-                            // Inner button circle
                             val innerRadius = size.minDimension / 2 - strokePx - 6.dp.toPx()
                             drawCircle(
-                                color = Radar.AccentDeep,
+                                color = if (isHeld || confirmed) Radar.Trap else Radar.Trap.copy(alpha = 0.85f),
                                 radius = innerRadius
                             )
                         }
                 ) {
-                    Text(
-                        text = stringResource(R.string.action_push),
-                        color = Color.White,
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        letterSpacing = 2.sp
-                    )
+                    when {
+                        confirmed -> Text(
+                            text = "✓",
+                            color = Color.White,
+                            fontSize = 36.sp,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                        progress > 0f -> Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = stringResource(R.string.mh_hold_arming),
+                                color = Color.White,
+                                fontFamily = RadarFonts.Label,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 12.sp,
+                                letterSpacing = 2.sp
+                            )
+                            Text(
+                                text = String.format(java.util.Locale.US, "%.1f s", 2f * (1f - progress)),
+                                color = Color.White,
+                                fontFamily = RadarFonts.Mono,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 22.sp
+                            )
+                        }
+                        else -> Text(
+                            text = stringResource(R.string.mh_hold_hold),
+                            color = Color.White,
+                            fontFamily = RadarFonts.Label,
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = 22.sp,
+                            letterSpacing = 2.sp
+                        )
+                    }
                 }
 
-                Spacer(Modifier.height(20.dp))
+                Text(
+                    text = if (confirmed) stringResource(R.string.label_confirming_placement)
+                           else stringResource(R.string.mh_hold_footer),
+                    color = Radar.TextMuted,
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
 
-                TextButton(onClick = onCancel) {
-                    Text(
-                        text = stringResource(R.string.action_cancel_placement),
-                        color = Radar.TextMuted,
-                        fontSize = 14.sp
-                    )
+                if (!confirmed) {
+                    TextButton(onClick = onCancel) {
+                        Text(
+                            text = stringResource(R.string.action_cancel_placement),
+                            color = Radar.TextSec,
+                            fontSize = 14.sp
+                        )
+                    }
                 }
             }
         }
