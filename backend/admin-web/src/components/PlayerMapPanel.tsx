@@ -66,8 +66,8 @@ function isActive(p: PlayerLoc): boolean {
 
 function markerColor(p: PlayerLoc): string {
   const active = isActive(p);
-  if (p.ageGroup === "minor") return active ? "#22c55e" : "#f59e0b";
-  return active ? "#3b82f6" : "#7c3aed";
+  if (p.ageGroup === "minor") return active ? "#178A55" : "#8A5A0B";
+  return active ? "#0B6C86" : "#6D3FC9";
 }
 
 function fmtLastSeen(ms: number | null): string {
@@ -88,11 +88,11 @@ function fmtLastSeen(ms: number | null): string {
 }
 
 function trapColor(t: TrapDoc): string {
-  if (t.status === "captured") return "#ef4444";   // red
-  if (t.status === "disarmed") return "#6b7280";   // grey
+  if (t.status === "captured") return "#C8283B";   // red
+  if (t.status === "disarmed") return "#5F7491";   // grey
   // active
-  if (t.generatedBy === "admin") return "#f59e0b"; // amber = admin-placed
-  return "#3b82f6";                                 // blue = user-placed
+  if (t.generatedBy === "admin") return "#8A5A0B"; // amber = admin-placed
+  return "#0B6C86";                                 // blue = user-placed
 }
 
 // ---------------------------------------------------------------------------
@@ -292,8 +292,8 @@ export default function PlayerMapPanel() {
 
       const lastSeenStr = fmtLastSeen(p.updatedAtMs);
       const onlineBadge = lastSeenStr === "Online"
-        ? `<span style="background:#16a34a;color:#fff;padding:1px 7px;border-radius:10px;font-size:11px;font-weight:700;">● Online</span>`
-        : `<span style="color:#94a3b8;font-size:12px;">${lastSeenStr}</span>`;
+        ? `<span style="background:#178A55;color:#fff;padding:1px 7px;border-radius:10px;font-size:11px;font-weight:700;">● Online</span>`
+        : `<span style="color:#3C516C;font-size:12px;">${lastSeenStr}</span>`;
 
       m.bindPopup(
         `<b>${p.username}</b><br>` +
@@ -343,15 +343,15 @@ export default function PlayerMapPanel() {
         ? new Date(t.expiresAt.seconds * 1000).toLocaleDateString()
         : "—";
       const source = isAdminPlaced
-        ? `<span style="color:#f59e0b">Admin</span>${t.generatorLocation ? ` (${t.generatorLocation})` : ""}`
-        : `<span style="color:#3b82f6">Player</span>`;
+        ? `<span style="color:#8A5A0B">Admin</span>${t.generatorLocation ? ` (${t.generatorLocation})` : ""}`
+        : `<span style="color:#0B6C86">Player</span>`;
 
       m.bindPopup(
         `<b>${t.trapTypeId || "trap"}</b> — ${t.status}<br>` +
         `Source: ${source}<br>` +
         `Radius: ${t.radiusMeters}m<br>` +
         `Expires: ${expiry}<br>` +
-        `<span style="font-size:11px;color:#6b7280">${t.lat.toFixed(5)}, ${t.lng.toFixed(5)}</span>`
+        `<span style="font-size:11px;color:#5F7491">${t.lat.toFixed(5)}, ${t.lng.toFixed(5)}</span>`
       );
     }
 
@@ -408,31 +408,31 @@ export default function PlayerMapPanel() {
     },
     refreshBtn: {
       padding: "6px 14px", borderRadius: 8,
-      background: loading ? "#134e4a" : "#0f766e",
+      background: loading ? "#E6F6FB" : "#0B6C86",
       border: "none", color: "#fff",
       cursor: loading ? "not-allowed" : "pointer",
       fontWeight: 600, fontSize: 13,
     },
     table: { width: "100%", borderCollapse: "collapse" as const, fontSize: 13 },
-    th: { textAlign: "left" as const, padding: "6px 10px", color: "#64748b", borderBottom: "1px solid #1e3a5f", fontWeight: 600 },
-    td: { padding: "7px 10px", borderBottom: "1px solid #0d1f38", color: "#cbd5e1" },
+    th: { textAlign: "left" as const, padding: "6px 10px", color: "#5F7491", borderBottom: "1px solid #DCE4EE", fontWeight: 600 },
+    td: { padding: "7px 10px", borderBottom: "1px solid #F4F7FB", color: "#26394F" },
     tabBtn: (active: boolean): React.CSSProperties => ({
       padding: "8px 20px", borderRadius: 8, border: "none",
       cursor: "pointer", fontWeight: 700, fontSize: 14,
-      background: active ? "#1d4ed8" : "#1e293b",
-      color: active ? "#fff" : "#64748b",
+      background: active ? "#0B6C86" : "#EEF2F7",
+      color: active ? "#fff" : "#5F7491",
       transition: "background 0.15s",
     }),
     filterChip: (active: boolean): React.CSSProperties => ({
       padding: "4px 11px", borderRadius: 6, border: "1px solid",
       cursor: "pointer", fontWeight: 600, fontSize: 12,
-      borderColor: active ? "#3b82f6" : "#334155",
-      background: active ? "#1e3a8a" : "transparent",
-      color: active ? "#93c5fd" : "#64748b",
+      borderColor: active ? "#0B6C86" : "#DCE4EE",
+      background: active ? "#0B6C86" : "transparent",
+      color: active ? "#0B6C86" : "#5F7491",
     }),
     toggle: {
       display: "inline-flex", alignItems: "center", gap: 6,
-      cursor: "pointer", fontSize: 13, color: "#94a3b8", userSelect: "none" as const,
+      cursor: "pointer", fontSize: 13, color: "#3C516C", userSelect: "none" as const,
     },
   };
 
@@ -457,7 +457,7 @@ export default function PlayerMapPanel() {
       {/* ── Controls row ── */}
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14, flexWrap: "wrap" }}>
         <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-          <span style={{ fontSize: 12, color: "#64748b", marginRight: 4, fontWeight: 600 }}>REFRESH</span>
+          <span style={{ fontSize: 12, color: "#5F7491", marginRight: 4, fontWeight: 600 }}>REFRESH</span>
           {INTERVALS.map(({ label, secs }) => {
             const active = intervalSecs === secs;
             return (
@@ -468,9 +468,9 @@ export default function PlayerMapPanel() {
                 void refresh();
               }} style={{
                 ...s.chip,
-                borderColor: active ? "#3b82f6" : "#334155",
-                background:  active ? "#1d4ed8" : "transparent",
-                color:       active ? "#fff"    : "#94a3b8",
+                borderColor: active ? "#0B6C86" : "#DCE4EE",
+                background:  active ? "#0B6C86" : "transparent",
+                color:       active ? "#fff"    : "#3C516C",
               }}>
                 {label}
               </button>
@@ -482,13 +482,13 @@ export default function PlayerMapPanel() {
           {loading ? "Loading…" : "↻  Refresh now"}
         </button>
 
-        <div style={{ fontSize: 13, color: "#64748b" }}>
+        <div style={{ fontSize: 13, color: "#5F7491" }}>
           {lastRefresh && (
             <span style={{ marginRight: 10 }}>
-              Last: <b style={{ color: "#94a3b8" }}>{lastRefresh.toLocaleTimeString()}</b>
+              Last: <b style={{ color: "#3C516C" }}>{lastRefresh.toLocaleTimeString()}</b>
             </span>
           )}
-          Next in <span style={{ color: "#f59e0b", fontWeight: 700 }}>{countdown}s</span>
+          Next in <span style={{ color: "#8A5A0B", fontWeight: 700 }}>{countdown}s</span>
         </div>
 
         {/* ── Tab-specific controls ── */}
@@ -499,16 +499,16 @@ export default function PlayerMapPanel() {
                 type="checkbox"
                 checked={showRadii}
                 onChange={(e) => setShowRadii(e.target.checked)}
-                style={{ accentColor: "#3b82f6" }}
+                style={{ accentColor: "#0B6C86" }}
               />
               Show detection radii ({DETECTION_RADIUS_M}m)
             </label>
             <div style={{ display: "flex", gap: 14, fontSize: 13, marginLeft: "auto", flexWrap: "wrap" }}>
-              <span><span style={{ color: "#22c55e", fontSize: 15 }}>●</span> Online kid</span>
-              <span><span style={{ color: "#f59e0b", fontSize: 15 }}>●</span> Offline kid</span>
-              <span><span style={{ color: "#3b82f6", fontSize: 15 }}>●</span> Online adult</span>
-              <span><span style={{ color: "#7c3aed", fontSize: 15 }}>●</span> Offline adult</span>
-              <b style={{ color: "#e2e8f0" }}>{players.length} total</b>
+              <span><span style={{ color: "#178A55", fontSize: 15 }}>●</span> Online kid</span>
+              <span><span style={{ color: "#8A5A0B", fontSize: 15 }}>●</span> Offline kid</span>
+              <span><span style={{ color: "#0B6C86", fontSize: 15 }}>●</span> Online adult</span>
+              <span><span style={{ color: "#6D3FC9", fontSize: 15 }}>●</span> Offline adult</span>
+              <b style={{ color: "#0D1F33" }}>{players.length} total</b>
             </div>
           </>
         )}
@@ -523,7 +523,7 @@ export default function PlayerMapPanel() {
                 </button>
               ))}
             </div>
-            <span style={{ color: "#334155", fontSize: 16 }}>|</span>
+            <span style={{ color: "#DCE4EE", fontSize: 16 }}>|</span>
             {/* Source filter */}
             <div style={{ display: "flex", gap: 4 }}>
               {([["all", "All sources"], ["user", "User placed"], ["admin", "Admin placed"]] as [TrapFilter, string][]).map(([f, label]) => (
@@ -533,34 +533,34 @@ export default function PlayerMapPanel() {
               ))}
             </div>
             <div style={{ display: "flex", gap: 12, fontSize: 13, marginLeft: 8 }}>
-              <span><span style={{ color: "#3b82f6", fontSize: 15 }}>●</span> User</span>
-              <span><span style={{ color: "#f59e0b", fontSize: 15 }}>●</span> Admin</span>
-              <span><span style={{ color: "#ef4444", fontSize: 15 }}>●</span> Captured</span>
-              <span><span style={{ color: "#6b7280", fontSize: 15 }}>●</span> Disarmed</span>
-              <b style={{ color: "#e2e8f0" }}>{filteredTraps.length} shown</b>
+              <span><span style={{ color: "#0B6C86", fontSize: 15 }}>●</span> User</span>
+              <span><span style={{ color: "#8A5A0B", fontSize: 15 }}>●</span> Admin</span>
+              <span><span style={{ color: "#C8283B", fontSize: 15 }}>●</span> Captured</span>
+              <span><span style={{ color: "#5F7491", fontSize: 15 }}>●</span> Disarmed</span>
+              <b style={{ color: "#0D1F33" }}>{filteredTraps.length} shown</b>
             </div>
           </div>
         )}
       </div>
 
       {error && (
-        <div style={{ background: "#7f1d1d", color: "#fca5a5", padding: "10px 16px", borderRadius: 8, marginBottom: 12, fontSize: 13 }}>
+        <div style={{ background: "#F5C2C9", color: "#C8283B", padding: "10px 16px", borderRadius: 8, marginBottom: 12, fontSize: 13 }}>
           {error}
         </div>
       )}
 
       {/* ── Map ── */}
-      <div style={{ border: "1px solid #1e3a5f", borderRadius: 12, overflow: "hidden", marginBottom: 20 }}>
-        <div ref={mapDivRef} style={{ height: 540, width: "100%", background: "#0b1120" }} />
+      <div style={{ border: "1px solid #DCE4EE", borderRadius: 12, overflow: "hidden", marginBottom: 20 }}>
+        <div ref={mapDivRef} style={{ height: 540, width: "100%", background: "#F4F7FB" }} />
       </div>
 
       {/* ── Players table ── */}
       {tab === "players" && (
-        <div style={{ background: "#111827", border: "1px solid #1e3a5f", borderRadius: 12, padding: "16px 20px" }}>
-          <h3 style={{ margin: "0 0 12px", fontSize: 15, color: "#e2e8f0" }}>
+        <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 12, padding: "16px 20px" }}>
+          <h3 style={{ margin: "0 0 12px", fontSize: 15, color: "#0D1F33" }}>
             Active Players
-            <span style={{ marginLeft: 10, color: "#3b82f6", fontWeight: 700 }}>{players.length} total</span>
-            <span style={{ marginLeft: 10, color: "#22c55e", fontWeight: 700, fontSize: 13 }}>
+            <span style={{ marginLeft: 10, color: "#0B6C86", fontWeight: 700 }}>{players.length} total</span>
+            <span style={{ marginLeft: 10, color: "#178A55", fontWeight: 700, fontSize: 13 }}>
               ● {activePlayers} online
             </span>
           </h3>
@@ -594,15 +594,15 @@ export default function PlayerMapPanel() {
                         <td style={{ ...s.td, fontFamily: "monospace" }}>{p.lng.toFixed(5)}</td>
                         <td style={s.td}>
                           {lastSeen === "Online"
-                            ? <span style={{ background: "#16a34a", color: "#fff", padding: "2px 10px", borderRadius: 10, fontSize: 12, fontWeight: 700 }}>● Online</span>
-                            : <span style={{ color: "#64748b" }}>{lastSeen}</span>}
+                            ? <span style={{ background: "#178A55", color: "#fff", padding: "2px 10px", borderRadius: 10, fontSize: 12, fontWeight: 700 }}>● Online</span>
+                            : <span style={{ color: "#5F7491" }}>{lastSeen}</span>}
                         </td>
                       </tr>
                     );
                   })}
                 {players.length === 0 && !loading && (
                   <tr>
-                    <td colSpan={5} style={{ ...s.td, textAlign: "center", color: "#4b5563", padding: 24 }}>
+                    <td colSpan={5} style={{ ...s.td, textAlign: "center", color: "#5F7491", padding: 24 }}>
                       No player locations recorded yet.
                     </td>
                   </tr>
@@ -615,14 +615,14 @@ export default function PlayerMapPanel() {
 
       {/* ── Traps table ── */}
       {tab === "traps" && (
-        <div style={{ background: "#111827", border: "1px solid #1e3a5f", borderRadius: 12, padding: "16px 20px" }}>
-          <h3 style={{ margin: "0 0 12px", fontSize: 15, color: "#e2e8f0" }}>
+        <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 12, padding: "16px 20px" }}>
+          <h3 style={{ margin: "0 0 12px", fontSize: 15, color: "#0D1F33" }}>
             {trapStatus.charAt(0).toUpperCase() + trapStatus.slice(1)} Traps
-            <span style={{ marginLeft: 10, color: "#3b82f6", fontWeight: 700 }}>{filteredTraps.length} shown</span>
+            <span style={{ marginLeft: 10, color: "#0B6C86", fontWeight: 700 }}>{filteredTraps.length} shown</span>
             {trapFilter === "all" && (
               <>
-                <span style={{ marginLeft: 12, color: "#f59e0b", fontSize: 13 }}>● {adminTraps} admin</span>
-                <span style={{ marginLeft: 10, color: "#3b82f6", fontSize: 13 }}>● {userTraps} user</span>
+                <span style={{ marginLeft: 12, color: "#8A5A0B", fontSize: 13 }}>● {adminTraps} admin</span>
+                <span style={{ marginLeft: 10, color: "#0B6C86", fontSize: 13 }}>● {userTraps} user</span>
               </>
             )}
           </h3>
@@ -656,14 +656,14 @@ export default function PlayerMapPanel() {
                       </td>
                       <td style={{ ...s.td, fontFamily: "monospace" }}>{t.lat.toFixed(5)}</td>
                       <td style={{ ...s.td, fontFamily: "monospace" }}>{t.lng.toFixed(5)}</td>
-                      <td style={{ ...s.td, color: "#94a3b8" }}>{t.radiusMeters}m</td>
-                      <td style={{ ...s.td, color: "#64748b" }}>{expiry}</td>
+                      <td style={{ ...s.td, color: "#3C516C" }}>{t.radiusMeters}m</td>
+                      <td style={{ ...s.td, color: "#5F7491" }}>{expiry}</td>
                     </tr>
                   );
                 })}
                 {filteredTraps.length === 0 && !loading && (
                   <tr>
-                    <td colSpan={6} style={{ ...s.td, textAlign: "center", color: "#4b5563", padding: 24 }}>
+                    <td colSpan={6} style={{ ...s.td, textAlign: "center", color: "#5F7491", padding: 24 }}>
                       No {trapStatus} traps found{trapFilter !== "all" ? ` (${trapFilter} filter)` : ""}.
                     </td>
                   </tr>

@@ -60,8 +60,8 @@ const REWARD_LABELS: Record<RewardItem["type"], string> = {
 // ── Styles ────────────────────────────────────────────────────────────────────
 
 const card: React.CSSProperties = {
-  background: "#0a1628",
-  border: "1px solid #1e3a5f",
+  background: "#F4F7FB",
+  border: "1px solid #DCE4EE",
   borderRadius: 12,
   overflow: "hidden",
 };
@@ -69,17 +69,17 @@ const card: React.CSSProperties = {
 const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "9px 12px",
-  background: "#060e1a",
-  border: "1px solid #1e3a5f",
+  background: "#F4F7FB",
+  border: "1px solid #DCE4EE",
   borderRadius: 7,
-  color: "#e2e8f0",
+  color: "#0D1F33",
   fontSize: "0.875rem",
   boxSizing: "border-box",
 };
 
 const labelStyle: React.CSSProperties = {
   display: "block",
-  color: "#94a3b8",
+  color: "#3C516C",
   fontSize: "0.75rem",
   fontWeight: 600,
   textTransform: "uppercase",
@@ -89,10 +89,10 @@ const labelStyle: React.CSSProperties = {
 
 const btn = (primary = false, danger = false): React.CSSProperties => ({
   padding: "8px 16px",
-  background: danger ? "#7f1d1d" : primary ? "#1d4ed8" : "transparent",
-  border: `1px solid ${danger ? "#dc2626" : primary ? "#3b82f6" : "#1e3a5f"}`,
+  background: danger ? "#F5C2C9" : primary ? "#0B6C86" : "transparent",
+  border: `1px solid ${danger ? "#C8283B" : primary ? "#0B6C86" : "#DCE4EE"}`,
   borderRadius: 7,
-  color: danger ? "#fca5a5" : primary ? "#fff" : "#94a3b8",
+  color: danger ? "#C8283B" : primary ? "#fff" : "#3C516C",
   fontWeight: 600,
   fontSize: "0.8rem",
   cursor: "pointer",
@@ -117,9 +117,9 @@ function rewardSummary(rewards: RewardItem[]): string {
 }
 
 function triggerBadgeColor(t: AwardDefinition["trigger"]): string {
-  if (t === "day1_login")   return "#f59e0b";
-  if (t === "day1_hourly")  return "#06b6d4";
-  return "#8b5cf6";
+  if (t === "day1_login")   return "#8A5A0B";
+  if (t === "day1_hourly")  return "#0B6C86";
+  return "#6D3FC9";
 }
 
 // ── Empty form ────────────────────────────────────────────────────────────────
@@ -237,8 +237,8 @@ export default function AwardsPanel() {
               padding: "10px 20px",
               borderRadius: 8,
               fontSize: "0.875rem",
-              background: tab === t ? "#1d4ed8" : "transparent",
-              color: tab === t ? "#fff" : "#64748b",
+              background: tab === t ? "#0B6C86" : "transparent",
+              color: tab === t ? "#fff" : "#5F7491",
             }}
           >
             {label}
@@ -255,18 +255,18 @@ export default function AwardsPanel() {
       </div>
 
       {msg && (
-        <div style={{ padding: "10px 14px", borderRadius: 8, fontSize: "0.875rem", background: "#0d2e16", border: "1px solid #14532d", color: "#86efac" }}>
+        <div style={{ padding: "10px 14px", borderRadius: 8, fontSize: "0.875rem", background: "#E3F7EC", border: "1px solid #BFE8D2", color: "#178A55" }}>
           {msg}
         </div>
       )}
 
       {tab === "definitions" ? (
         loading ? (
-          <div style={{ color: "#64748b", padding: 20 }}>Loading…</div>
+          <div style={{ color: "#5F7491", padding: 20 }}>Loading…</div>
         ) : awards.length === 0 ? (
-          <div style={{ ...card, padding: 32, textAlign: "center", color: "#64748b" }}>
+          <div style={{ ...card, padding: 32, textAlign: "center", color: "#5F7491" }}>
             <div style={{ fontSize: "2rem", marginBottom: 10 }}>🏅</div>
-            <div style={{ fontWeight: 700, color: "#e2e8f0", marginBottom: 8 }}>No award definitions yet</div>
+            <div style={{ fontWeight: 700, color: "#0D1F33", marginBottom: 8 }}>No award definitions yet</div>
             <div style={{ fontSize: "0.875rem", marginBottom: 16 }}>Click "Seed Defaults" to populate the built-in award schedule.</div>
             <button onClick={() => void seedDefaults()} disabled={seeding} style={btn(true)}>
               {seeding ? "Seeding…" : "🌱 Seed Default Awards"}
@@ -281,10 +281,10 @@ export default function AwardsPanel() {
                   <div style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em", color: triggerBadgeColor(t), marginBottom: 4 }}>
                     {TRIGGER_LABELS[t]}
                   </div>
-                  <div style={{ fontSize: "1.6rem", fontWeight: 800, color: "#e2e8f0" }}>
+                  <div style={{ fontSize: "1.6rem", fontWeight: 800, color: "#0D1F33" }}>
                     {(grouped[t] ?? []).length}
                   </div>
-                  <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
+                  <div style={{ fontSize: "0.75rem", color: "#5F7491" }}>
                     {(grouped[t] ?? []).filter((a) => a.active).length} active
                   </div>
                 </div>
@@ -297,14 +297,14 @@ export default function AwardsPanel() {
               if (!defs.length) return null;
               return (
                 <div key={trigger} style={card}>
-                  <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", display: "flex", alignItems: "center", gap: 10 }}>
+                  <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", display: "flex", alignItems: "center", gap: 10 }}>
                     <span style={badge(triggerBadgeColor(trigger))}>{TRIGGER_LABELS[trigger]}</span>
-                    <span style={{ color: "#64748b", fontSize: "0.8rem" }}>{defs.length} awards</span>
+                    <span style={{ color: "#5F7491", fontSize: "0.8rem" }}>{defs.length} awards</span>
                   </div>
                   <div style={{ overflowX: "auto" }}>
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem" }}>
                       <thead>
-                        <tr style={{ background: "#060e1a", color: "#64748b", fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                        <tr style={{ background: "#F4F7FB", color: "#5F7491", fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.06em" }}>
                           <th style={{ padding: "10px 16px", textAlign: "left", fontWeight: 600 }}>Award</th>
                           {trigger === "day1_hourly" && <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 600 }}>Hour</th>}
                           {trigger === "daily_streak" && <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 600 }}>Day</th>}
@@ -317,26 +317,26 @@ export default function AwardsPanel() {
                         {defs.map((def, i) => (
                           <tr
                             key={def.id}
-                            style={{ borderTop: i > 0 ? "1px solid #1e3a5f" : "none", opacity: def.active ? 1 : 0.5 }}
+                            style={{ borderTop: i > 0 ? "1px solid #DCE4EE" : "none", opacity: def.active ? 1 : 0.5 }}
                           >
                             <td style={{ padding: "12px 16px" }}>
                               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                                 <span style={{ fontSize: "1.4rem" }}>{def.iconEmoji}</span>
                                 <div>
-                                  <div style={{ fontWeight: 700, color: "#e2e8f0" }}>{def.name}</div>
-                                  <div style={{ color: "#64748b", fontSize: "0.78rem", marginTop: 1 }}>{def.description}</div>
+                                  <div style={{ fontWeight: 700, color: "#0D1F33" }}>{def.name}</div>
+                                  <div style={{ color: "#5F7491", fontSize: "0.78rem", marginTop: 1 }}>{def.description}</div>
                                 </div>
                               </div>
                             </td>
                             {(trigger === "day1_hourly" || trigger === "daily_streak") && (
-                              <td style={{ padding: "12px", color: "#e2e8f0", fontWeight: 700, fontSize: "1rem" }}>
+                              <td style={{ padding: "12px", color: "#0D1F33", fontWeight: 700, fontSize: "1rem" }}>
                                 {trigger === "day1_hourly" ? `H${def.triggerValue}` : `D${def.triggerValue}`}
                               </td>
                             )}
-                            <td style={{ padding: "12px", color: "#94a3b8", fontSize: "0.8rem" }}>
+                            <td style={{ padding: "12px", color: "#3C516C", fontSize: "0.8rem" }}>
                               <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
                                 {def.rewards.map((r, ri) => (
-                                  <span key={ri} style={{ ...badge("#3b82f6"), display: "inline-flex" }}>
+                                  <span key={ri} style={{ ...badge("#0B6C86"), display: "inline-flex" }}>
                                     {r.quantity}× {REWARD_LABELS[r.type] ?? r.type}
                                   </span>
                                 ))}
@@ -345,7 +345,7 @@ export default function AwardsPanel() {
                             <td style={{ padding: "12px", textAlign: "center" }}>
                               <button
                                 onClick={() => void toggleActive(def)}
-                                style={{ ...badge(def.active ? "#4ade80" : "#64748b"), cursor: "pointer", border: `1px solid ${def.active ? "#4ade8044" : "#64748b44"}` }}
+                                style={{ ...badge(def.active ? "#178A55" : "#5F7491"), cursor: "pointer", border: `1px solid ${def.active ? "#178A5544" : "#5F749144"}` }}
                               >
                                 {def.active ? "Active" : "Off"}
                               </button>
@@ -367,11 +367,11 @@ export default function AwardsPanel() {
 
             {/* Reward legend */}
             <div style={{ ...card, padding: "14px 20px" }}>
-              <div style={{ fontWeight: 700, color: "#e2e8f0", marginBottom: 10, fontSize: "0.875rem" }}>📘 Reward Types</div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8, fontSize: "0.85rem", color: "#94a3b8" }}>
-                <div><strong style={{ color: "#e2e8f0" }}>⏱️ Time Card (card_time_deduction):</strong> User can spend 1 card to subtract 5 minutes from a trap deployment or disassembly waiting timer. One-time use per card.</div>
-                <div><strong style={{ color: "#e2e8f0" }}>⭐ XP Bonus (xp_bonus):</strong> Adds XP directly to the user's score. Applied automatically when the award is claimed.</div>
-                <div><strong style={{ color: "#e2e8f0" }}>🎒 Bag Refill (bag_refill):</strong> Refills the user's trap bag by N extra traps on top of the normal daily limit.</div>
+              <div style={{ fontWeight: 700, color: "#0D1F33", marginBottom: 10, fontSize: "0.875rem" }}>📘 Reward Types</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, fontSize: "0.85rem", color: "#3C516C" }}>
+                <div><strong style={{ color: "#0D1F33" }}>⏱️ Time Card (card_time_deduction):</strong> User can spend 1 card to subtract 5 minutes from a trap deployment or disassembly waiting timer. One-time use per card.</div>
+                <div><strong style={{ color: "#0D1F33" }}>⭐ XP Bonus (xp_bonus):</strong> Adds XP directly to the user's score. Applied automatically when the award is claimed.</div>
+                <div><strong style={{ color: "#0D1F33" }}>🎒 Bag Refill (bag_refill):</strong> Refills the user's trap bag by N extra traps on top of the normal daily limit.</div>
               </div>
             </div>
           </>
@@ -432,7 +432,7 @@ function UserInventoryLookup() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 720 }}>
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
           🔍 Look Up User Inventory
         </div>
         <div style={{ padding: "16px 20px", display: "flex", gap: 10 }}>
@@ -450,7 +450,7 @@ function UserInventoryLookup() {
       </div>
 
       {msg && (
-        <div style={{ padding: "10px 14px", borderRadius: 8, fontSize: "0.875rem", background: "#0d2e16", border: "1px solid #14532d", color: "#86efac" }}>
+        <div style={{ padding: "10px 14px", borderRadius: 8, fontSize: "0.875rem", background: "#E3F7EC", border: "1px solid #BFE8D2", color: "#178A55" }}>
           {msg}
         </div>
       )}
@@ -460,48 +460,48 @@ function UserInventoryLookup() {
           {/* Stats */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10 }}>
             {[
-              { label: "Unused Cards", value: inv.unusedCards.length, color: "#4ade80" },
-              { label: "Cards Used", value: inv.usedCards.length, color: "#94a3b8" },
-              { label: "Day Streak", value: inv.loginStreak, color: "#f59e0b" },
-              { label: "Days Played", value: inv.totalDaysPlayed, color: "#60a5fa" },
+              { label: "Unused Cards", value: inv.unusedCards.length, color: "#178A55" },
+              { label: "Cards Used", value: inv.usedCards.length, color: "#3C516C" },
+              { label: "Day Streak", value: inv.loginStreak, color: "#8A5A0B" },
+              { label: "Days Played", value: inv.totalDaysPlayed, color: "#0B6C86" },
             ].map((s) => (
               <div key={s.label} style={{ ...card, padding: "14px 16px" }}>
-                <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 4 }}>{s.label}</div>
+                <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "#5F7491", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 4 }}>{s.label}</div>
                 <div style={{ fontSize: "1.8rem", fontWeight: 800, color: s.color }}>{s.value}</div>
               </div>
             ))}
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, fontSize: "0.85rem", color: "#94a3b8" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, fontSize: "0.85rem", color: "#3C516C" }}>
             <div style={card}>
-              <div style={{ padding: "12px 16px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.85rem" }}>
+              <div style={{ padding: "12px 16px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.85rem" }}>
                 ⏱️ Available Cards ({inv.unusedCards.length})
               </div>
               <div style={{ padding: "12px 16px", maxHeight: 220, overflowY: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
                 {inv.unusedCards.length === 0 ? (
-                  <span style={{ color: "#475569" }}>No unused cards</span>
+                  <span style={{ color: "#5F7491" }}>No unused cards</span>
                 ) : (
                   inv.unusedCards.map((c) => (
-                    <div key={c.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 10px", background: "#060e1a", borderRadius: 6, border: "1px solid #1e3a5f" }}>
-                      <span style={{ color: "#4ade80", fontWeight: 700, fontSize: "0.8rem" }}>⏱️ −5 min</span>
-                      <span style={{ color: "#64748b", fontSize: "0.72rem" }}>{c.earnedFrom}</span>
+                    <div key={c.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 10px", background: "#F4F7FB", borderRadius: 6, border: "1px solid #DCE4EE" }}>
+                      <span style={{ color: "#178A55", fontWeight: 700, fontSize: "0.8rem" }}>⏱️ −5 min</span>
+                      <span style={{ color: "#5F7491", fontSize: "0.72rem" }}>{c.earnedFrom}</span>
                     </div>
                   ))
                 )}
               </div>
             </div>
             <div style={card}>
-              <div style={{ padding: "12px 16px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.85rem" }}>
+              <div style={{ padding: "12px 16px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.85rem" }}>
                 ✅ Used Cards ({inv.usedCards.length})
               </div>
               <div style={{ padding: "12px 16px", maxHeight: 220, overflowY: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
                 {inv.usedCards.length === 0 ? (
-                  <span style={{ color: "#475569" }}>No used cards yet</span>
+                  <span style={{ color: "#5F7491" }}>No used cards yet</span>
                 ) : (
                   inv.usedCards.slice(0, 50).map((c) => (
-                    <div key={c.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 10px", background: "#060e1a", borderRadius: 6, border: "1px solid #1e3a5f", opacity: 0.6 }}>
-                      <span style={{ color: "#64748b", fontSize: "0.8rem" }}>⏱️ used</span>
-                      <span style={{ color: "#64748b", fontSize: "0.72rem" }}>{c.earnedFrom}</span>
+                    <div key={c.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 10px", background: "#F4F7FB", borderRadius: 6, border: "1px solid #DCE4EE", opacity: 0.6 }}>
+                      <span style={{ color: "#5F7491", fontSize: "0.8rem" }}>⏱️ used</span>
+                      <span style={{ color: "#5F7491", fontSize: "0.72rem" }}>{c.earnedFrom}</span>
                     </div>
                   ))
                 )}
@@ -511,7 +511,7 @@ function UserInventoryLookup() {
 
           {/* Grant cards */}
           <div style={card}>
-            <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+            <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
               🎁 Grant Cards to User
             </div>
             <div style={{ padding: "16px 20px", display: "grid", gridTemplateColumns: "80px 1fr auto", gap: 10, alignItems: "end" }}>
@@ -621,7 +621,7 @@ function AwardEditor({
     <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 680 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <button onClick={onCancel} style={btn()}>← Back</button>
-        <h2 style={{ margin: 0, fontSize: "1.2rem", color: "#e2e8f0" }}>
+        <h2 style={{ margin: 0, fontSize: "1.2rem", color: "#0D1F33" }}>
           {isNew ? "New Award Definition" : `Edit: ${initial!.name}`}
         </h2>
       </div>
@@ -669,7 +669,7 @@ function AwardEditor({
             </div>
           </div>
 
-          <div style={{ background: "#060e1a", border: "1px solid #1e3a5f", borderRadius: 8, padding: "10px 14px", fontSize: "0.8rem", color: "#64748b" }}>
+          <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 8, padding: "10px 14px", fontSize: "0.8rem", color: "#5F7491" }}>
             {triggerDescription[form.trigger]}
           </div>
 
@@ -700,8 +700,8 @@ function AwardEditor({
           </div>
 
           <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
-            <input type="checkbox" checked={form.active} onChange={(e) => set("active", e.target.checked)} style={{ accentColor: "#3b82f6" }} />
-            <span style={{ color: "#e2e8f0", fontWeight: 600 }}>Active (award fires when triggered)</span>
+            <input type="checkbox" checked={form.active} onChange={(e) => set("active", e.target.checked)} style={{ accentColor: "#0B6C86" }} />
+            <span style={{ color: "#0D1F33", fontWeight: 600 }}>Active (award fires when triggered)</span>
           </label>
         </div>
       </div>

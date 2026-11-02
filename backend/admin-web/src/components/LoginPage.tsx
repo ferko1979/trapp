@@ -18,50 +18,79 @@ export default function LoginPage() {
   return (
     <div
       style={{
-        maxWidth: 420,
-        margin: "80px auto",
-        padding: 24,
-        background: "#1e293b",
-        borderRadius: 12,
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 16,
+        background: "#0B1626",
       }}
     >
-      <h1>Trap Admin</h1>
-      <p>Sign in with your admin email and password.</p>
-
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        style={{ width: "100%", padding: 12, marginBottom: 12, borderRadius: 8 }}
-      />
-
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        style={{ width: "100%", padding: 12, marginBottom: 12, borderRadius: 8 }}
-      />
-
-      <button
-        onClick={() => void handleLogin()}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          void handleLogin();
+        }}
         style={{
           width: "100%",
-          padding: 12,
-          borderRadius: 8,
-          border: "none",
-          background: "#22c55e",
-          color: "#052e16",
-          fontWeight: 700,
+          maxWidth: 400,
+          padding: "28px 26px",
+          background: "#FFFFFF",
+          border: "1px solid #DCE4EE",
+          borderRadius: 16,
+          boxShadow: "0 18px 48px rgba(0,0,0,0.35)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 12,
         }}
       >
-        Log in
-      </button>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3l10 17H2z" fill="#38D3F2" />
+          </svg>
+          <span style={{ fontWeight: 800, fontSize: 22, letterSpacing: "0.04em" }}>TRAPP</span>
+          <span className="lbl" style={{ marginLeft: "auto", color: "#0B6C86" }}>
+            Admin Console
+          </span>
+        </div>
+        <p style={{ margin: "2px 0 6px" }}>Sign in with your admin email and password.</p>
 
-      {error ? (
-        <div style={{ marginTop: 12, color: "#fca5a5" }}>{error}</div>
-      ) : null}
+        <input
+          type="email"
+          placeholder="Email"
+          autoComplete="username"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ height: 42 }}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          autoComplete="current-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ height: 42 }}
+        />
+
+        <button type="submit" className="btn-primary" style={{ width: "100%", height: 42 }}>
+          Log in
+        </button>
+
+        {error ? (
+          <div
+            style={{
+              padding: "10px 12px",
+              borderRadius: 10,
+              background: "#FDE7EA",
+              color: "#C8283B",
+              fontSize: 13,
+            }}
+          >
+            {error}
+          </div>
+        ) : null}
+      </form>
     </div>
   );
 }

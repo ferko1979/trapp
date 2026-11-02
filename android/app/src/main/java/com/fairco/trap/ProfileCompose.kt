@@ -1,6 +1,8 @@
 package com.fairco.trap
 
 import androidx.compose.foundation.BorderStroke
+import com.fairco.trap.ui.theme.Radar
+import com.fairco.trap.ui.theme.RadarFonts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -59,11 +61,11 @@ fun ProfileScreenContent(
             title = { Text(stringResource(R.string.title_request_email_change)) },
             text = {
                 Column {
-                    Text(stringResource(R.string.label_user_id), fontSize = 11.sp, color = Color(0xFF64748B))
-                    Text(userUid, fontSize = 12.sp, color = Color(0xFF475569), fontFamily = FontFamily.Monospace)
+                    Text(stringResource(R.string.label_user_id), fontSize = 11.sp, color = Radar.TextMuted)
+                    Text(userUid, fontSize = 12.sp, color = Radar.TextMuted, fontFamily = RadarFonts.Mono)
                     Spacer(Modifier.height(8.dp))
-                    Text(stringResource(R.string.label_email_address), fontSize = 11.sp, color = Color(0xFF64748B))
-                    Text(userEmail, fontSize = 14.sp, color = Color(0xFF1E293B))
+                    Text(stringResource(R.string.label_email_address), fontSize = 11.sp, color = Radar.TextMuted)
+                    Text(userEmail, fontSize = 14.sp, color = Radar.Surface)
                     Spacer(Modifier.height(12.dp))
                     OutlinedTextField(
                         value = newEmailInput,
@@ -77,7 +79,7 @@ fun ProfileScreenContent(
                         shape = RoundedCornerShape(8.dp)
                     )
                     if (emailInputError) {
-                        Text(stringResource(R.string.error_invalid_email), color = Color(0xFFEF4444), fontSize = 11.sp)
+                        Text(stringResource(R.string.error_invalid_email), color = Radar.Trap, fontSize = 11.sp)
                     }
                 }
             },
@@ -135,14 +137,14 @@ fun ProfileScreenContent(
                     Box(
                         modifier = Modifier
                             .size(88.dp)
-                            .background(Color(0xFFF1F5F9), CircleShape),
+                            .background(Radar.Text, CircleShape),
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
                             initials.ifEmpty { "?" },
                             fontSize = 30.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF64748B)
+                            color = Radar.TextMuted
                         )
                     }
                 }
@@ -167,7 +169,7 @@ fun ProfileScreenContent(
             ) {
                 Text(
                     if (uploadingPhoto) stringResource(R.string.label_uploading) else stringResource(R.string.label_change_photo),
-                    color = Color(0xFF3B82F6),
+                    color = Radar.Accent,
                     fontSize = 14.sp
                 )
             }
@@ -195,14 +197,14 @@ fun ProfileScreenContent(
             supportingText = {
                 when (usernameCheckState) {
                     UsernameCheckState.Checking -> Text(stringResource(R.string.msg_checking_availability))
-                    UsernameCheckState.Available -> Text(stringResource(R.string.msg_username_available), color = Color(0xFF22C55E))
-                    UsernameCheckState.Taken -> Text(stringResource(R.string.msg_username_taken), color = Color(0xFFEF4444))
+                    UsernameCheckState.Available -> Text(stringResource(R.string.msg_username_available), color = Radar.Safe)
+                    UsernameCheckState.Taken -> Text(stringResource(R.string.msg_username_taken), color = Radar.Trap)
                     else -> {}
                 }
             }
         )
 
-        HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp), color = Color(0xFFF1F5F9))
+        HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp), color = Radar.Text)
 
         // PERSONAL DETAILS
         val adultLabel = stringResource(R.string.label_age_adult)
@@ -227,13 +229,13 @@ fun ProfileScreenContent(
             )
             ProfileReadRow("📆", stringResource(R.string.label_member_since), formatEpoch(data.createdAtEpochMs))
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp), color = Color(0xFFF1F5F9))
+            HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp), color = Radar.Text)
         }
 
         // ACCOUNT
         ProfileSectionHeader(stringResource(R.string.section_account))
         Column(modifier = Modifier.fillMaxWidth()) {
-            Text(stringResource(R.string.label_email_address), color = Color(0xFF64748B), fontSize = 12.sp,
+            Text(stringResource(R.string.label_email_address), color = Radar.TextMuted, fontSize = 12.sp,
                 modifier = Modifier.padding(bottom = 2.dp))
 
             Row(
@@ -242,7 +244,7 @@ fun ProfileScreenContent(
             ) {
                 Text(
                     userEmail,
-                    color = Color(0xFF1E293B),
+                    color = Radar.Surface,
                     fontSize = 15.sp,
                     modifier = Modifier.weight(1f)
                 )
@@ -251,19 +253,19 @@ fun ProfileScreenContent(
                     enabled = !emailChangeLoading
                 ) {
                     if (emailChangeLoading) {
-                        CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp, color = Color(0xFF3B82F6))
+                        CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp, color = Radar.Accent)
                     } else {
                         Icon(Icons.Rounded.Email, contentDescription = null,
-                            modifier = Modifier.size(16.dp), tint = Color(0xFF3B82F6))
+                            modifier = Modifier.size(16.dp), tint = Radar.Accent)
                     }
                     Spacer(Modifier.width(4.dp))
-                    Text(stringResource(R.string.action_request_change), color = if (emailChangeLoading) Color(0xFF94A3B8) else Color(0xFF3B82F6), fontSize = 13.sp)
+                    Text(stringResource(R.string.action_request_change), color = if (emailChangeLoading) Radar.TextSec else Radar.Accent, fontSize = 13.sp)
                 }
             }
 
             Text(
                 stringResource(R.string.msg_email_change_support),
-                color = Color(0xFF94A3B8),
+                color = Radar.TextSec,
                 fontSize = 11.sp,
                 lineHeight = 15.sp
             )
@@ -286,7 +288,7 @@ fun ProfileScreenContent(
             ProfileReadRow("⭐", stringResource(R.string.label_player_level), xpLevelLabel)
         }
 
-        HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp), color = Color(0xFFF1F5F9))
+        HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp), color = Radar.Text)
 
         // GAME STATS
         val daysLabel = stringResource(R.string.label_days)
@@ -302,7 +304,7 @@ fun ProfileScreenContent(
             ProfileStatRow("🏆", stringResource(R.string.label_longest_streak), data.longestStreak  ?: 0, suffix = daysLabel)
             ProfileStatRow("📅", stringResource(R.string.label_days_played),    data.totalDaysPlayed ?: 0)
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp), color = Color(0xFFE2E8F0))
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp), color = Radar.Text)
 
             ProfileTextRow("👤", stringResource(R.string.label_last_caught),    data.lastCapturedUsername?.let { "@$it" } ?: noneLabel)
             ProfileTextRow("🚨", stringResource(R.string.label_last_caught_by), data.lastTrappedByUsername?.let { "@$it" } ?: noneLabel)
@@ -320,10 +322,10 @@ fun ProfileScreenContent(
             OutlinedButton(
                 onClick = onFinish,
                 modifier = Modifier.weight(1f).height(52.dp),
-                border = BorderStroke(1.dp, Color(0xFFCBD5E1)),
+                border = BorderStroke(1.dp, Radar.TextSec),
                 shape = RoundedCornerShape(12.dp),
             ) {
-                Text(stringResource(R.string.action_discard), color = Color(0xFF64748B), fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.action_discard), color = Radar.TextMuted, fontWeight = FontWeight.SemiBold)
             }
 
             Button(
@@ -333,7 +335,7 @@ fun ProfileScreenContent(
                         && usernameCheckState !is UsernameCheckState.Taken
                         && usernameCheckState !is UsernameCheckState.Checking,
                 shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2563EB))
+                colors = ButtonDefaults.buttonColors(containerColor = Radar.AccentDeep)
             ) {
                 if (saveState is SaveState.Saving) {
                     CircularProgressIndicator(color = Color.White, modifier = Modifier.size(18.dp))
@@ -351,7 +353,7 @@ fun ProfileScreenContent(
 fun ProfileSectionHeader(title: String) {
     Text(
         title.uppercase(),
-        color = Color(0xFF64748B),
+        color = Radar.TextMuted,
         fontSize = 11.sp,
         fontWeight = FontWeight.Bold,
         letterSpacing = 0.08.em,
@@ -364,8 +366,8 @@ fun ProfileReadRow(icon: String, label: String, value: String) {
     Row(modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically) {
         Text(icon, fontSize = 16.sp, modifier = Modifier.width(28.dp))
-        Text(label, color = Color(0xFF64748B), fontSize = 14.sp, modifier = Modifier.weight(1f))
-        Text(value, color = Color(0xFF1E293B), fontSize = 14.sp, fontWeight = FontWeight.Medium)
+        Text(label, color = Radar.TextMuted, fontSize = 14.sp, modifier = Modifier.weight(1f))
+        Text(value, color = Radar.Surface, fontSize = 14.sp, fontWeight = FontWeight.Medium)
     }
 }
 
@@ -374,10 +376,10 @@ fun ProfileStatRow(icon: String, label: String, value: Int, suffix: String = "")
     Row(modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically) {
         Text(icon, fontSize = 16.sp, modifier = Modifier.width(28.dp))
-        Text(label, color = Color(0xFF374151), fontSize = 14.sp, modifier = Modifier.weight(1f))
+        Text(label, color = Radar.Line, fontSize = 14.sp, modifier = Modifier.weight(1f))
         Text(
             if (suffix.isEmpty()) "$value" else "$value $suffix",
-            color = Color(0xFF111827),
+            color = Radar.Bg,
             fontSize = 15.sp,
             fontWeight = FontWeight.Bold
         )
@@ -389,8 +391,8 @@ fun ProfileTextRow(icon: String, label: String, value: String) {
     Row(modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically) {
         Text(icon, fontSize = 16.sp, modifier = Modifier.width(28.dp))
-        Text(label, color = Color(0xFF64748B), fontSize = 14.sp, modifier = Modifier.weight(1f))
-        Text(value, color = Color(0xFF1E293B), fontSize = 14.sp, fontWeight = FontWeight.Medium)
+        Text(label, color = Radar.TextMuted, fontSize = 14.sp, modifier = Modifier.weight(1f))
+        Text(value, color = Radar.Surface, fontSize = 14.sp, fontWeight = FontWeight.Medium)
     }
 }
 
@@ -401,15 +403,15 @@ fun ProfileCopyRow(icon: String, label: String, value: String) {
         verticalAlignment = Alignment.CenterVertically) {
         Text(icon, fontSize = 16.sp, modifier = Modifier.width(28.dp))
         Column(modifier = Modifier.weight(1f)) {
-            Text(label, color = Color(0xFF64748B), fontSize = 12.sp)
-            Text(value, color = Color(0xFF475569), fontSize = 12.sp,
-                fontFamily = FontFamily.Monospace)
+            Text(label, color = Radar.TextMuted, fontSize = 12.sp)
+            Text(value, color = Radar.TextMuted, fontSize = 12.sp,
+                fontFamily = RadarFonts.Mono)
         }
         IconButton(onClick = {
             clipboard.setText(AnnotatedString(value))
         }) {
             Icon(Icons.Rounded.ContentCopy, contentDescription = "Copy",
-                tint = Color(0xFF3B82F6), modifier = Modifier.size(18.dp))
+                tint = Radar.Accent, modifier = Modifier.size(18.dp))
         }
     }
 }

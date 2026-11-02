@@ -1,6 +1,8 @@
 ﻿package com.fairco.trap
 
 import android.os.Bundle
+import com.fairco.trap.ui.theme.TrappTheme
+import com.fairco.trap.ui.theme.Radar
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.fairco.trap.BaseActivity
@@ -50,9 +52,9 @@ data class CaptureRecord(
 class CaptureHistoryActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
+        setContent { TrappTheme {
             CaptureHistoryScreen()
-        }
+        } }
     }
 }
 
@@ -103,7 +105,7 @@ private fun CaptureHistoryScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF000D1A))
+            .background(Radar.Bg)
     ) {
         val activity = LocalContext.current as? android.app.Activity
         Row(
@@ -122,18 +124,18 @@ private fun CaptureHistoryScreen() {
                 modifier = Modifier.weight(1f)
             )
             IconButton(onClick = { activity?.finish() }) {
-                Text("✕", color = Color(0xFF94A3B8), fontSize = 18.sp)
+                Text("✕", color = Radar.TextSec, fontSize = 18.sp)
             }
         }
 
         TabRow(
             selectedTabIndex = selectedTab,
-            containerColor = Color(0xFF0D1626),
-            contentColor = Color(0xFF3B82F6),
+            containerColor = Radar.Surface,
+            contentColor = Radar.Accent,
             indicator = { tabPositions ->
                 TabRowDefaults.SecondaryIndicator(
                     Modifier.tabIndicatorOffset(tabPositions[selectedTab]),
-                    color = Color(0xFF3B82F6)
+                    color = Radar.Accent
                 )
             }
         ) {
@@ -147,7 +149,7 @@ private fun CaptureHistoryScreen() {
                     text = {
                         Text(
                             title,
-                            color = if (selectedTab == index) Color(0xFF3B82F6) else Color(0xFF64748B),
+                            color = if (selectedTab == index) Radar.Accent else Radar.TextMuted,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold
                         )
@@ -185,18 +187,18 @@ private fun CaptureList(
 ) {
     when {
         loading -> Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator(color = Color(0xFF3B82F6))
+            CircularProgressIndicator(color = Radar.Accent)
         }
         error != null -> Box(modifier = Modifier.fillMaxSize().padding(32.dp), contentAlignment = Alignment.Center) {
-            Text(error, color = Color(0xFFEF4444), fontSize = 14.sp, textAlign = TextAlign.Center)
+            Text(error, color = Radar.Trap, fontSize = 14.sp, textAlign = TextAlign.Center)
         }
         records.isEmpty() -> Box(modifier = Modifier.fillMaxSize().padding(32.dp), contentAlignment = Alignment.Center) {
-            Text(emptyMsg, color = Color(0xFF64748B), fontSize = 15.sp, textAlign = TextAlign.Center)
+            Text(emptyMsg, color = Radar.TextMuted, fontSize = 15.sp, textAlign = TextAlign.Center)
         }
         else -> LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(records) { record ->
                 CaptureRow(record = record, isMyCapture = isMyCaptures)
-                HorizontalDivider(color = Color(0xFF1E2D45), thickness = 0.5.dp)
+                HorizontalDivider(color = Radar.Surface2, thickness = 0.5.dp)
             }
         }
     }
@@ -224,7 +226,7 @@ private fun CaptureRow(record: CaptureRecord, isMyCapture: Boolean) {
         Box(
             modifier = Modifier
                 .size(44.dp)
-                .background(Color(0xFF0A1628), RoundedCornerShape(12.dp)),
+                .background(Radar.Bg, RoundedCornerShape(12.dp)),
             contentAlignment = Alignment.Center
         ) {
             Text(trapIcon(record.iconKey, record.emoji), fontSize = 22.sp)
@@ -239,7 +241,7 @@ private fun CaptureRow(record: CaptureRecord, isMyCapture: Boolean) {
                 else
                     "⚔️ caught by @$enemyUsername"
                 val chipColor = if (isMyCapture) Color(0xFF14532D) else Color(0xFF450A0A)
-                val textColor = if (isMyCapture) Color(0xFF4ADE80) else Color(0xFFFCA5A5)
+                val textColor = if (isMyCapture) Radar.Safe else Radar.TrapSoft
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(12.dp))
@@ -253,20 +255,20 @@ private fun CaptureRow(record: CaptureRecord, isMyCapture: Boolean) {
             }
             Text(
                 stringResource(R.string.label_trap_used, record.trapName),
-                color = Color(0xFF94A3B8),
+                color = Radar.TextSec,
                 fontSize = 11.sp
             )
             if (record.captureDistanceMeters != null) {
                 Text(
                     stringResource(R.string.label_distance_m, record.captureDistanceMeters),
-                    color = Color(0xFF64748B),
+                    color = Radar.TextMuted,
                     fontSize = 10.sp
                 )
             }
             record.capturedAtEpochMs?.let {
                 Text(
                     formatCaptureDate(it),
-                    color = Color(0xFF475569),
+                    color = Radar.TextMuted,
                     fontSize = 10.sp
                 )
             }
@@ -284,7 +286,7 @@ private fun CaptureRow(record: CaptureRecord, isMyCapture: Boolean) {
             ) {
                 Text(
                     stringResource(R.string.label_points_earned, record.effectValue),
-                    color = if (isMyCapture) Color(0xFF4ADE80) else Color(0xFFFCA5A5),
+                    color = if (isMyCapture) Radar.Safe else Radar.TrapSoft,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold
                 )

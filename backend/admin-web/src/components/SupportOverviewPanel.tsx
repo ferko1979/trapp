@@ -35,10 +35,10 @@ export default function SupportOverviewPanel() {
   return (
     <section
       style={{
-        background: "#1e293b",
+        background: "#EEF2F7",
         padding: 20,
         borderRadius: 12,
-        border: "1px solid #334155",
+        border: "1px solid #DCE4EE",
       }}
     >
       <div
@@ -63,7 +63,7 @@ export default function SupportOverviewPanel() {
             textAlign: "center",
             padding: "10px 16px",
             borderRadius: 10,
-            background: awaitingAdminCount > 0 ? "#7f1d1d" : "#14532d",
+            background: awaitingAdminCount > 0 ? "#F5C2C9" : "#BFE8D2",
             fontWeight: 700,
             fontSize: 24,
           }}
@@ -79,7 +79,7 @@ export default function SupportOverviewPanel() {
       ) : null}
 
       {error ? (
-        <div style={{ marginTop: 10, color: "#fca5a5" }}>{error}</div>
+        <div style={{ marginTop: 10, color: "#C8283B" }}>{error}</div>
       ) : null}
     </section>
   );

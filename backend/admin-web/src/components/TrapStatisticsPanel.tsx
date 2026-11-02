@@ -112,10 +112,10 @@ type UserStatsResponse = {
 
 function sectionCardStyle(): CSSProperties {
   return {
-    background: "#1e293b",
+    background: "#EEF2F7",
     padding: 20,
     borderRadius: 12,
-    border: "1px solid #334155",
+    border: "1px solid #DCE4EE",
   };
 }
 
@@ -124,9 +124,9 @@ function inputStyle(): CSSProperties {
     width: "100%",
     padding: "10px 12px",
     borderRadius: 8,
-    border: "1px solid #475569",
-    background: "#0f172a",
-    color: "white",
+    border: "1px solid #5F7491",
+    background: "#F4F7FB",
+    color: "#0D1F33",
     boxSizing: "border-box",
   };
 }
@@ -142,8 +142,8 @@ function fieldLabelStyle(): CSSProperties {
 
 function statCardStyle(): CSSProperties {
   return {
-    background: "#0f172a",
-    border: "1px solid #334155",
+    background: "#F4F7FB",
+    border: "1px solid #DCE4EE",
     borderRadius: 10,
     padding: 14,
   };
@@ -183,7 +183,7 @@ function StatCard({
 
 function MiniStat({ label, value, color }: { label: string; value: number; color: string }) {
   return (
-    <div style={{ background: "#07111e", borderRadius: 8, padding: "8px 10px", border: "1px solid #1e293b" }}>
+    <div style={{ background: "#F4F7FB", borderRadius: 8, padding: "8px 10px", border: "1px solid #EEF2F7" }}>
       <div style={{ fontSize: 10, opacity: 0.6, marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}>{label}</div>
       <div style={{ fontSize: 18, fontWeight: 700, color }}>{value}</div>
     </div>
@@ -195,10 +195,10 @@ function SourceBar({ active, captured, disarmed, total }: { active: number; capt
   const pctC = total > 0 ? (captured / total) * 100 : 0;
   const pctD = total > 0 ? (disarmed / total) * 100 : 0;
   return (
-    <div style={{ height: 8, background: "#1e293b", borderRadius: 4, overflow: "hidden", display: "flex" }}>
-      <div style={{ width: `${pctA}%`, background: "#22c55e" }} title={`Active ${active}`} />
-      <div style={{ width: `${pctC}%`, background: "#f59e0b" }} title={`Captured ${captured}`} />
-      <div style={{ width: `${pctD}%`, background: "#64748b" }} title={`Disarmed ${disarmed}`} />
+    <div style={{ height: 8, background: "#EEF2F7", borderRadius: 4, overflow: "hidden", display: "flex" }}>
+      <div style={{ width: `${pctA}%`, background: "#178A55" }} title={`Active ${active}`} />
+      <div style={{ width: `${pctC}%`, background: "#8A5A0B" }} title={`Captured ${captured}`} />
+      <div style={{ width: `${pctD}%`, background: "#5F7491" }} title={`Disarmed ${disarmed}`} />
     </div>
   );
 }
@@ -371,8 +371,8 @@ export default function TrapStatisticsPanel() {
                 {/* System-generated */}
                 <div
                   style={{
-                    background: "#0f172a",
-                    border: "2px solid #1d4ed8",
+                    background: "#F4F7FB",
+                    border: "2px solid #0B6C86",
                     borderRadius: 12,
                     padding: 16,
                   }}
@@ -386,13 +386,13 @@ export default function TrapStatisticsPanel() {
                     }}
                   >
                     <span style={{ fontSize: 20 }}>🤖</span>
-                    <span style={{ fontWeight: 700, fontSize: "1rem", color: "#93c5fd" }}>
+                    <span style={{ fontWeight: 700, fontSize: "1rem", color: "#0B6C86" }}>
                       System-Generated
                     </span>
                     <span
                       style={{
                         marginLeft: "auto",
-                        background: "#1d4ed8",
+                        background: "#0B6C86",
                         color: "#fff",
                         borderRadius: 999,
                         padding: "2px 10px",
@@ -411,9 +411,9 @@ export default function TrapStatisticsPanel() {
                       marginBottom: 12,
                     }}
                   >
-                    <MiniStat label="Active"    value={sourceSummary.system.active}   color="#22c55e" />
-                    <MiniStat label="Captured"  value={sourceSummary.system.captured} color="#f59e0b" />
-                    <MiniStat label="Disarmed"  value={sourceSummary.system.disarmed} color="#94a3b8" />
+                    <MiniStat label="Active"    value={sourceSummary.system.active}   color="#178A55" />
+                    <MiniStat label="Captured"  value={sourceSummary.system.captured} color="#8A5A0B" />
+                    <MiniStat label="Disarmed"  value={sourceSummary.system.disarmed} color="#3C516C" />
                   </div>
                   {sourceSummary.system.total > 0 && (
                     <SourceBar
@@ -437,8 +437,8 @@ export default function TrapStatisticsPanel() {
                               <span
                                 key={loc}
                                 style={{
-                                  background: "#1e3a5f",
-                                  color: "#93c5fd",
+                                  background: "#DCE4EE",
+                                  color: "#0B6C86",
                                   borderRadius: 6,
                                   padding: "2px 8px",
                                   fontSize: "0.75rem",
@@ -456,8 +456,8 @@ export default function TrapStatisticsPanel() {
                 {/* User-placed */}
                 <div
                   style={{
-                    background: "#0f172a",
-                    border: "2px solid #059669",
+                    background: "#F4F7FB",
+                    border: "2px solid #178A55",
                     borderRadius: 12,
                     padding: 16,
                   }}
@@ -471,13 +471,13 @@ export default function TrapStatisticsPanel() {
                     }}
                   >
                     <span style={{ fontSize: 20 }}>👤</span>
-                    <span style={{ fontWeight: 700, fontSize: "1rem", color: "#6ee7b7" }}>
+                    <span style={{ fontWeight: 700, fontSize: "1rem", color: "#178A55" }}>
                       User-Placed
                     </span>
                     <span
                       style={{
                         marginLeft: "auto",
-                        background: "#059669",
+                        background: "#178A55",
                         color: "#fff",
                         borderRadius: 999,
                         padding: "2px 10px",
@@ -496,9 +496,9 @@ export default function TrapStatisticsPanel() {
                       marginBottom: 12,
                     }}
                   >
-                    <MiniStat label="Active"    value={sourceSummary.user.active}   color="#22c55e" />
-                    <MiniStat label="Captured"  value={sourceSummary.user.captured} color="#f59e0b" />
-                    <MiniStat label="Disarmed"  value={sourceSummary.user.disarmed} color="#94a3b8" />
+                    <MiniStat label="Active"    value={sourceSummary.user.active}   color="#178A55" />
+                    <MiniStat label="Captured"  value={sourceSummary.user.captured} color="#8A5A0B" />
+                    <MiniStat label="Disarmed"  value={sourceSummary.user.disarmed} color="#3C516C" />
                   </div>
                   {sourceSummary.user.total > 0 && (
                     <SourceBar
@@ -522,8 +522,8 @@ export default function TrapStatisticsPanel() {
                               <span
                                 key={type}
                                 style={{
-                                  background: "#064e3b",
-                                  color: "#6ee7b7",
+                                  background: "#E3F7EC",
+                                  color: "#178A55",
                                   borderRadius: 6,
                                   padding: "2px 8px",
                                   fontSize: "0.75rem",
@@ -545,14 +545,14 @@ export default function TrapStatisticsPanel() {
                   <div style={{ fontSize: 11, opacity: 0.6, marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>
                     System vs User ratio
                   </div>
-                  <div style={{ height: 12, background: "#1e293b", borderRadius: 6, overflow: "hidden", display: "flex" }}>
+                  <div style={{ height: 12, background: "#EEF2F7", borderRadius: 6, overflow: "hidden", display: "flex" }}>
                     {(() => {
                       const total = sourceSummary.system.total + sourceSummary.user.total;
                       const sysPct = total > 0 ? (sourceSummary.system.total / total) * 100 : 0;
                       return (
                         <>
-                          <div style={{ width: `${sysPct}%`, background: "#1d4ed8", transition: "width 0.4s" }} />
-                          <div style={{ flex: 1, background: "#059669" }} />
+                          <div style={{ width: `${sysPct}%`, background: "#0B6C86", transition: "width 0.4s" }} />
+                          <div style={{ flex: 1, background: "#178A55" }} />
                         </>
                       );
                     })()}
@@ -730,8 +730,8 @@ export default function TrapStatisticsPanel() {
                   <div
                     key={trap.id}
                     style={{
-                      background: "#0f172a",
-                      border: "1px solid #334155",
+                      background: "#F4F7FB",
+                      border: "1px solid #DCE4EE",
                       borderRadius: 10,
                       padding: 12,
                     }}
@@ -764,8 +764,8 @@ export default function TrapStatisticsPanel() {
                   <div
                     key={capture.id}
                     style={{
-                      background: "#0f172a",
-                      border: "1px solid #334155",
+                      background: "#F4F7FB",
+                      border: "1px solid #DCE4EE",
                       borderRadius: 10,
                       padding: 12,
                     }}

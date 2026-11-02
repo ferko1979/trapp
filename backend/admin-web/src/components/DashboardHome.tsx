@@ -51,8 +51,8 @@ function KpiCard({
   return (
     <div
       style={{
-        background: "#0f172a",
-        border: `1px solid ${alert ? "rgba(239,68,68,0.4)" : "#1e3a5f"}`,
+        background: "#F4F7FB",
+        border: `1px solid ${alert ? "rgba(239,68,68,0.4)" : "#DCE4EE"}`,
         borderRadius: 14,
         padding: "18px 20px",
         display: "flex",
@@ -64,21 +64,21 @@ function KpiCard({
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <span style={{ fontSize: "1.2rem" }}>{icon}</span>
         {sub && (
-          <span style={{ fontSize: "0.72rem", color: "#4b5563", fontWeight: 500 }}>{sub}</span>
+          <span style={{ fontSize: "0.72rem", color: "#5F7491", fontWeight: 500 }}>{sub}</span>
         )}
       </div>
       <div
         style={{
           fontSize: "1.9rem",
           fontWeight: 900,
-          color: alert ? "#f87171" : (accent ?? "#f8fafc"),
+          color: alert ? "#C8283B" : (accent ?? "#0D1F33"),
           lineHeight: 1,
           letterSpacing: "-0.5px",
         }}
       >
         {value}
       </div>
-      <div style={{ fontSize: "0.78rem", color: "#64748b", fontWeight: 500 }}>
+      <div style={{ fontSize: "0.78rem", color: "#5F7491", fontWeight: 500 }}>
         {label}
       </div>
     </div>
@@ -88,11 +88,11 @@ function KpiCard({
 // ─── Support status row ────────────────────────────────────────────────────────
 
 const SUPPORT_ROWS = [
-  { key: "open" as const,        label: "Open",             icon: "🆕", color: "#fbbf24", bg: "rgba(251,191,36,0.10)",  urgent: true  },
-  { key: "waitingAdmin" as const, label: "Awaiting Reply",  icon: "⏳", color: "#f97316", bg: "rgba(249,115,22,0.10)",  urgent: true  },
-  { key: "waitingUser" as const,  label: "Waiting on User", icon: "💬", color: "#60a5fa", bg: "rgba(96,165,250,0.08)",  urgent: false },
-  { key: "answered" as const,     label: "Answered",        icon: "✅", color: "#34d399", bg: "rgba(52,211,153,0.08)",  urgent: false },
-  { key: "closed" as const,       label: "Closed",          icon: "🔒", color: "#475569", bg: "rgba(71,85,105,0.12)",   urgent: false },
+  { key: "open" as const,        label: "Open",             icon: "🆕", color: "#8A5A0B", bg: "rgba(251,191,36,0.10)",  urgent: true  },
+  { key: "waitingAdmin" as const, label: "Awaiting Reply",  icon: "⏳", color: "#C2410C", bg: "rgba(249,115,22,0.10)",  urgent: true  },
+  { key: "waitingUser" as const,  label: "Waiting on User", icon: "💬", color: "#0B6C86", bg: "rgba(96,165,250,0.08)",  urgent: false },
+  { key: "answered" as const,     label: "Answered",        icon: "✅", color: "#178A55", bg: "rgba(52,211,153,0.08)",  urgent: false },
+  { key: "closed" as const,       label: "Closed",          icon: "🔒", color: "#5F7491", bg: "rgba(71,85,105,0.12)",   urgent: false },
 ];
 
 export default function DashboardHome({ user }: { user: User }) {
@@ -144,8 +144,8 @@ export default function DashboardHome({ user }: { user: User }) {
       {/* Welcome bar */}
       <div
         style={{
-          background: "linear-gradient(135deg, #0f2746 0%, #0a1628 100%)",
-          border: "1px solid #1e3a5f",
+          background: "linear-gradient(135deg, #F4F7FB 0%, #F4F7FB 100%)",
+          border: "1px solid #DCE4EE",
           borderRadius: 14,
           padding: "20px 24px",
           display: "flex",
@@ -156,10 +156,10 @@ export default function DashboardHome({ user }: { user: User }) {
         }}
       >
         <div>
-          <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#f8fafc" }}>
+          <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#0D1F33" }}>
             {greeting} 👋
           </div>
-          <div style={{ fontSize: "0.85rem", color: "#64748b", marginTop: 3 }}>
+          <div style={{ fontSize: "0.85rem", color: "#5F7491", marginTop: 3 }}>
             {user.email ?? user.uid} · {new Date().toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
           </div>
         </div>
@@ -174,7 +174,7 @@ export default function DashboardHome({ user }: { user: User }) {
 
       {/* KPI grid */}
       {totalsErr ? (
-        <div style={{ color: "#f87171", fontSize: "0.875rem" }}>⚠ {totalsErr}</div>
+        <div style={{ color: "#C8283B", fontSize: "0.875rem" }}>⚠ {totalsErr}</div>
       ) : (
         <div
           style={{
@@ -188,39 +188,39 @@ export default function DashboardHome({ user }: { user: User }) {
             label="Total Users"
             value={totals?.totalUsers ?? (totalsLoading ? "…" : "—")}
             sub={totals ? `+${totals.newUsers7d ?? 0} this week` : undefined}
-            accent="#93c5fd"
+            accent="#0B6C86"
           />
           <KpiCard
             icon="📈"
             label="New Users (30d)"
             value={totals?.newUsers30d ?? (totalsLoading ? "…" : "—")}
-            accent="#6ee7b7"
+            accent="#178A55"
           />
           <KpiCard
             icon="🪤"
             label="Active Traps"
             value={totals?.activeTraps ?? (totalsLoading ? "…" : "—")}
             sub={totals ? `${totals.totalTraps ?? 0} total placed` : undefined}
-            accent="#fde68a"
+            accent="#8A5A0B"
           />
           <KpiCard
             icon="🎯"
             label="Total Captures"
             value={totals?.totalCaptures ?? (totalsLoading ? "…" : "—")}
-            accent="#c4b5fd"
+            accent="#6D3FC9"
           />
           <KpiCard
             icon="🔒"
             label="Disarmed Traps"
             value={totals?.disarmedTraps ?? (totalsLoading ? "…" : "—")}
-            accent="#94a3b8"
+            accent="#3C516C"
           />
           <KpiCard
             icon="💰"
             label="Revenue (30d)"
             value={totals ? `€${totals.revenue30d ?? 0}` : (totalsLoading ? "…" : "—")}
             sub={totals ? `€${totals.totalRevenue ?? 0} total` : undefined}
-            accent="#4ade80"
+            accent="#178A55"
           />
         </div>
       )}
@@ -228,8 +228,8 @@ export default function DashboardHome({ user }: { user: User }) {
       {/* Support tickets breakdown */}
       <div
         style={{
-          background: "#0f172a",
-          border: "1px solid #1e3a5f",
+          background: "#F4F7FB",
+          border: "1px solid #DCE4EE",
           borderRadius: 14,
           padding: "20px 22px",
         }}
@@ -245,10 +245,10 @@ export default function DashboardHome({ user }: { user: User }) {
           }}
         >
           <div>
-            <div style={{ fontWeight: 700, fontSize: "1rem", color: "#f1f5f9" }}>
+            <div style={{ fontWeight: 700, fontSize: "1rem", color: "#0D1F33" }}>
               🎫 Support Tickets
             </div>
-            <div style={{ fontSize: "0.78rem", color: "#4b5563", marginTop: 2 }}>
+            <div style={{ fontSize: "0.78rem", color: "#5F7491", marginTop: 2 }}>
               {support
                 ? `${support.total ?? 0} total · ${support.needsAttention ?? 0} need attention · ${support.unreadByAdmin ?? 0} unread`
                 : supportLoading ? "Loading…" : supportErr}
@@ -261,7 +261,7 @@ export default function DashboardHome({ user }: { user: User }) {
                 border: "1px solid rgba(239,68,68,0.35)",
                 borderRadius: 8,
                 padding: "6px 14px",
-                color: "#f87171",
+                color: "#C8283B",
                 fontWeight: 700,
                 fontSize: "0.875rem",
               }}
@@ -272,15 +272,15 @@ export default function DashboardHome({ user }: { user: User }) {
         </div>
 
         {supportErr ? (
-          <div style={{ color: "#f87171", fontSize: "0.875rem" }}>⚠ {supportErr}</div>
+          <div style={{ color: "#C8283B", fontSize: "0.875rem" }}>⚠ {supportErr}</div>
         ) : supportLoading ? (
-          <div style={{ color: "#64748b", fontSize: "0.875rem" }}>Loading…</div>
+          <div style={{ color: "#5F7491", fontSize: "0.875rem" }}>Loading…</div>
         ) : support && (support.total ?? 0) === 0 ? (
           <div
             style={{
               textAlign: "center",
               padding: "28px 0",
-              color: "#475569",
+              color: "#5F7491",
               fontSize: "0.9rem",
             }}
           >
@@ -301,10 +301,10 @@ export default function DashboardHome({ user }: { user: User }) {
                 <div
                   key={key}
                   style={{
-                    background: count > 0 ? bg : "#080f1c",
+                    background: count > 0 ? bg : "#F4F7FB",
                     border: count > 0 && urgent
                       ? `1px solid ${color}55`
-                      : "1px solid #1a2e45",
+                      : "1px solid #DCE4EE",
                     borderRadius: 10,
                     padding: "12px 14px",
                     display: "flex",
@@ -318,13 +318,13 @@ export default function DashboardHome({ user }: { user: User }) {
                       style={{
                         fontSize: "1.4rem",
                         fontWeight: 900,
-                        color: count > 0 ? color : "#334155",
+                        color: count > 0 ? color : "#DCE4EE",
                         lineHeight: 1,
                       }}
                     >
                       {count}
                     </div>
-                    <div style={{ fontSize: "0.72rem", color: "#64748b", marginTop: 2 }}>
+                    <div style={{ fontSize: "0.72rem", color: "#5F7491", marginTop: 2 }}>
                       {label}
                     </div>
                   </div>
@@ -339,13 +339,13 @@ export default function DashboardHome({ user }: { user: User }) {
       {totals && (
         <div
           style={{
-            background: "#0f172a",
-            border: "1px solid #1e3a5f",
+            background: "#F4F7FB",
+            border: "1px solid #DCE4EE",
             borderRadius: 14,
             padding: "20px 22px",
           }}
         >
-          <div style={{ fontWeight: 700, fontSize: "1rem", color: "#f1f5f9", marginBottom: 14 }}>
+          <div style={{ fontWeight: 700, fontSize: "1rem", color: "#0D1F33", marginBottom: 14 }}>
             🪤 Trap Activity Overview
           </div>
           <div
@@ -356,18 +356,18 @@ export default function DashboardHome({ user }: { user: User }) {
             }}
           >
             {[
-              { label: "Total Placed",       value: totals.totalTraps ?? 0,     color: "#93c5fd" },
-              { label: "Placed (30d)",        value: totals.trapsPlaced30d ?? 0, color: "#6ee7b7" },
-              { label: "Active Now",          value: totals.activeTraps ?? 0,    color: "#fde68a" },
-              { label: "Captured",            value: totals.capturedTraps ?? 0,  color: "#f97316" },
-              { label: "Disarmed",            value: totals.disarmedTraps ?? 0,  color: "#94a3b8" },
-              { label: "Total Captures",      value: totals.totalCaptures ?? 0,  color: "#c4b5fd" },
+              { label: "Total Placed",       value: totals.totalTraps ?? 0,     color: "#0B6C86" },
+              { label: "Placed (30d)",        value: totals.trapsPlaced30d ?? 0, color: "#178A55" },
+              { label: "Active Now",          value: totals.activeTraps ?? 0,    color: "#8A5A0B" },
+              { label: "Captured",            value: totals.capturedTraps ?? 0,  color: "#C2410C" },
+              { label: "Disarmed",            value: totals.disarmedTraps ?? 0,  color: "#3C516C" },
+              { label: "Total Captures",      value: totals.totalCaptures ?? 0,  color: "#6D3FC9" },
             ].map(({ label, value, color }) => (
               <div
                 key={label}
                 style={{
-                  background: "#080f1c",
-                  border: "1px solid #1a2e45",
+                  background: "#F4F7FB",
+                  border: "1px solid #DCE4EE",
                   borderRadius: 10,
                   padding: "12px 14px",
                 }}
@@ -375,7 +375,7 @@ export default function DashboardHome({ user }: { user: User }) {
                 <div style={{ fontSize: "1.5rem", fontWeight: 800, color, lineHeight: 1 }}>
                   {value}
                 </div>
-                <div style={{ fontSize: "0.75rem", color: "#4b5563", marginTop: 4 }}>
+                <div style={{ fontSize: "0.75rem", color: "#5F7491", marginTop: 4 }}>
                   {label}
                 </div>
               </div>

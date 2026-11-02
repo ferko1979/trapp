@@ -108,10 +108,10 @@ export default function CreateSupportTicketForm() {
       style={{
         display: "grid",
         gap: 14,
-        background: "#1e293b",
+        background: "#EEF2F7",
         padding: 20,
         borderRadius: 12,
-        border: "1px solid #334155",
+        border: "1px solid #DCE4EE",
       }}
     >
       <div>
@@ -130,9 +130,9 @@ export default function CreateSupportTicketForm() {
             style={{
               padding: 12,
               borderRadius: 10,
-              border: "1px solid #475569",
-              background: "#0f172a",
-              color: "#fff",
+              border: "1px solid #5F7491",
+              background: "#F4F7FB",
+              color: "#0D1F33",
             }}
           >
             <option value="email_change">Change email</option>
@@ -151,9 +151,9 @@ export default function CreateSupportTicketForm() {
             style={{
               padding: 12,
               borderRadius: 10,
-              border: "1px solid #475569",
-              background: "#0f172a",
-              color: "#fff",
+              border: "1px solid #5F7491",
+              background: "#F4F7FB",
+              color: "#0D1F33",
             }}
           >
             <option value="low">Low</option>
@@ -174,9 +174,9 @@ export default function CreateSupportTicketForm() {
           style={{
             padding: 12,
             borderRadius: 10,
-            border: "1px solid #475569",
-            background: "#0f172a",
-            color: "#fff",
+            border: "1px solid #5F7491",
+            background: "#F4F7FB",
+            color: "#0D1F33",
           }}
         />
       </label>
@@ -191,9 +191,9 @@ export default function CreateSupportTicketForm() {
           style={{
             padding: 12,
             borderRadius: 10,
-            border: "1px solid #475569",
-            background: "#0f172a",
-            color: "#fff",
+            border: "1px solid #5F7491",
+            background: "#F4F7FB",
+            color: "#0D1F33",
             resize: "vertical",
           }}
         />
@@ -210,9 +210,9 @@ export default function CreateSupportTicketForm() {
           style={{
             padding: 12,
             borderRadius: 10,
-            border: "1px solid #475569",
-            background: "#0f172a",
-            color: "#fff",
+            border: "1px solid #5F7491",
+            background: "#F4F7FB",
+            color: "#0D1F33",
           }}
         />
       </label>
@@ -240,8 +240,8 @@ export default function CreateSupportTicketForm() {
         style={{
           padding: "12px 16px",
           borderRadius: 10,
-          border: "1px solid #1d4ed8",
-          background: "#2563eb",
+          border: "1px solid #0B6C86",
+          background: "#0B6C86",
           color: "#fff",
           cursor: "pointer",
         }}
@@ -249,8 +249,8 @@ export default function CreateSupportTicketForm() {
         {loading ? "Sending…" : "Send support ticket"}
       </button>
 
-      {success ? <div style={{ color: "#86efac" }}>{success}</div> : null}
-      {error ? <div style={{ color: "#fca5a5" }}>{error}</div> : null}
+      {success ? <div style={{ color: "#178A55" }}>{success}</div> : null}
+      {error ? <div style={{ color: "#C8283B" }}>{error}</div> : null}
     </form>
   );
 }

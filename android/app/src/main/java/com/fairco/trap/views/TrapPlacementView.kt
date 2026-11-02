@@ -29,7 +29,7 @@ class TrapPlacementView @JvmOverloads constructor(
     private var scanLineAlpha  = 0f
 
     // Hardcoded night-mode cyan — no R.color dependency
-    private val CYAN = Color.parseColor("#00E5FF")
+    private val CYAN = Color.parseColor("#38D3F2")
 
     private val gridPaint  = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE; strokeWidth = 1f

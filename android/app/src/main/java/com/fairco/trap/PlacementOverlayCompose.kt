@@ -1,6 +1,7 @@
 package com.fairco.trap
 
 import androidx.compose.foundation.background
+import com.fairco.trap.ui.theme.Radar
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.gestures.awaitFirstDown
@@ -53,7 +54,7 @@ fun PlacementProgressOverlay(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xEE000D1A)),
+            .background(Radar.Bg.copy(alpha = 0.93f)),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -68,7 +69,7 @@ fun PlacementProgressOverlay(
                 Spacer(Modifier.height(4.dp))
                 Text(
                     text = it.name,
-                    color = Color(0xFFE2E8F0),
+                    color = Radar.Text,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
@@ -80,14 +81,14 @@ fun PlacementProgressOverlay(
             if (state.isWaitingForServer) {
                 Spacer(Modifier.height(16.dp))
                 CircularProgressIndicator(
-                    color = Color(0xFF3B82F6),
-                    trackColor = Color(0xFF1E3A5F),
+                    color = Radar.Accent,
+                    trackColor = Radar.Line,
                     modifier = Modifier.size(56.dp)
                 )
                 Spacer(Modifier.height(16.dp))
                 Text(
                     text = "Communicating with server…",
-                    color = Color(0xFF94A3B8),
+                    color = Radar.TextSec,
                     fontSize = 15.sp,
                     textAlign = TextAlign.Center
                 )
@@ -95,14 +96,14 @@ fun PlacementProgressOverlay(
             } else {
                 Text(
                     text = stringResource(R.string.label_placing_trap),
-                    color = Color(0xFF94A3B8),
+                    color = Radar.TextSec,
                     fontSize = 13.sp,
                     textAlign = TextAlign.Center
                 )
 
                 Text(
                     text = remainingSecs.toString(),
-                    color = Color(0xFF3B82F6),
+                    color = Radar.Accent,
                     fontSize = 56.sp,
                     fontWeight = FontWeight.ExtraBold
                 )
@@ -112,8 +113,8 @@ fun PlacementProgressOverlay(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(8.dp),
-                    color = Color(0xFF3B82F6),
-                    trackColor = Color(0xFF1E3A5F)
+                    color = Radar.Accent,
+                    trackColor = Radar.Line
                 )
 
                 if (state.outOfRadiusCountdown >= 0) {
@@ -125,7 +126,7 @@ fun PlacementProgressOverlay(
                     }
                     Text(
                         text = warningText,
-                        color = Color(0xFFF59E0B),
+                        color = Radar.Gold,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Center
@@ -144,7 +145,7 @@ fun PlacementProgressOverlay(
                     ) {
                         Text(
                             text = "⏱️  Use Card — Skip 5 min${if (cardCount > 1) "  ($cardCount left)" else ""}",
-                            color = Color(0xFF4ADE80),
+                            color = Radar.Safe,
                             fontSize = 14.sp,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
                         )
@@ -157,12 +158,12 @@ fun PlacementProgressOverlay(
                         onClick = onWatchAd,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(Color(0xFF1E3A5F), shape = androidx.compose.foundation.shape.RoundedCornerShape(10.dp))
+                            .background(Radar.Line, shape = androidx.compose.foundation.shape.RoundedCornerShape(10.dp))
                             .padding(vertical = 2.dp)
                     ) {
                         Text(
                             text = "📺  Watch Ad — Skip $rewardedLabel${if (adUsesRemaining > 1) "  ($adUsesRemaining left)" else ""}",
-                            color = Color(0xFF60A5FA),
+                            color = Radar.Accent,
                             fontSize = 14.sp,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
                         )
@@ -173,7 +174,7 @@ fun PlacementProgressOverlay(
                 TextButton(onClick = onCancel) {
                     Text(
                         text = stringResource(R.string.action_cancel_placement),
-                        color = Color(0xFF64748B),
+                        color = Radar.TextMuted,
                         fontSize = 14.sp
                     )
                 }
@@ -231,7 +232,7 @@ fun PlacementHoldOverlay(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xEE000D1A)),
+            .background(Radar.Bg.copy(alpha = 0.93f)),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -249,7 +250,7 @@ fun PlacementHoldOverlay(
             // Trap name
             Text(
                 text = trap.name,
-                color = Color(0xFFE2E8F0),
+                color = Radar.Text,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
@@ -261,19 +262,19 @@ fun PlacementHoldOverlay(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0x33EF4444), shape = RoundedCornerShape(12.dp))
+                        .background(Radar.Trap.copy(alpha = 0.20f), shape = RoundedCornerShape(12.dp))
                         .padding(16.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Text(
                             text = "⚠",
-                            color = Color(0xFFFCA5A5),
+                            color = Radar.TrapSoft,
                             fontSize = 28.sp
                         )
                         Text(
                             text = startError,
-                            color = Color(0xFFFCA5A5),
+                            color = Radar.TrapSoft,
                             fontSize = 14.sp,
                             fontWeight = FontWeight.SemiBold,
                             textAlign = TextAlign.Center
@@ -290,7 +291,7 @@ fun PlacementHoldOverlay(
                 ) {
                     Text(
                         text = "✕  Close",
-                        color = Color(0xFFFECACA),
+                        color = Radar.TrapSoft,
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -301,7 +302,7 @@ fun PlacementHoldOverlay(
                 Spacer(Modifier.height(20.dp))
                 Text(
                     text = stringResource(R.string.label_confirming_placement),
-                    color = Color(0xFF94A3B8),
+                    color = Radar.TextSec,
                     fontSize = 15.sp,
                     textAlign = TextAlign.Center
                 )
@@ -317,7 +318,7 @@ fun PlacementHoldOverlay(
                             val arcTopLeft = Offset(inset, inset)
                             val arcSize = Size(size.width - inset * 2, size.height - inset * 2)
                             drawArc(
-                                color = Color(0xFF1E3A5F),
+                                color = Radar.Line,
                                 startAngle = 0f,
                                 sweepAngle = 360f,
                                 useCenter = false,
@@ -326,7 +327,7 @@ fun PlacementHoldOverlay(
                                 style = Stroke(width = strokePx)
                             )
                             drawArc(
-                                color = Color(0xFF3B82F6),
+                                color = Radar.Accent,
                                 startAngle = -90f,
                                 sweepAngle = 360f,
                                 useCenter = false,
@@ -335,7 +336,7 @@ fun PlacementHoldOverlay(
                                 style = Stroke(width = strokePx, cap = StrokeCap.Round)
                             )
                             val innerRadius = size.minDimension / 2 - strokePx - 6.dp.toPx()
-                            drawCircle(color = Color(0xFF1D4ED8), radius = innerRadius)
+                            drawCircle(color = Radar.AccentDeep, radius = innerRadius)
                         }
                 ) {
                     Text(
@@ -350,7 +351,7 @@ fun PlacementHoldOverlay(
                 // ── Normal hold-button state ──
                 Text(
                     text = stringResource(R.string.label_hold_for_2s),
-                    color = Color(0xFF64748B),
+                    color = Radar.TextMuted,
                     fontSize = 13.sp,
                     textAlign = TextAlign.Center
                 )
@@ -378,7 +379,7 @@ fun PlacementHoldOverlay(
 
                             // Track ring
                             drawArc(
-                                color = Color(0xFF1E3A5F),
+                                color = Radar.Line,
                                 startAngle = 0f,
                                 sweepAngle = 360f,
                                 useCenter = false,
@@ -389,7 +390,7 @@ fun PlacementHoldOverlay(
                             // Progress arc
                             if (progress > 0f) {
                                 drawArc(
-                                    color = Color(0xFF3B82F6),
+                                    color = Radar.Accent,
                                     startAngle = -90f,
                                     sweepAngle = 360f * progress,
                                     useCenter = false,
@@ -401,7 +402,7 @@ fun PlacementHoldOverlay(
                             // Inner button circle
                             val innerRadius = size.minDimension / 2 - strokePx - 6.dp.toPx()
                             drawCircle(
-                                color = if (isHeld) Color(0xFF1D4ED8) else Color(0xFF2563EB),
+                                color = Radar.AccentDeep,
                                 radius = innerRadius
                             )
                         }
@@ -420,7 +421,7 @@ fun PlacementHoldOverlay(
                 TextButton(onClick = onCancel) {
                     Text(
                         text = stringResource(R.string.action_cancel_placement),
-                        color = Color(0xFF64748B),
+                        color = Radar.TextMuted,
                         fontSize = 14.sp
                     )
                 }

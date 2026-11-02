@@ -240,9 +240,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
-                    app:cardBackgroundColor="#0F172A"
+                    app:cardBackgroundColor="@color/bg_deep"
                     app:cardCornerRadius="12dp"
-                    app:strokeColor="#1E3A8A"
+                    app:strokeColor="@color/accent_deep"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -268,14 +268,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Invite your contacts"
-                                android:textColor="#F1F5F9"
+                                android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="More friends = more traps to set!"
-                                android:textColor="#64748B"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp" />
                         </LinearLayout>
 
@@ -283,7 +283,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_chevron_right"
-                            app:tint="#64748B" />
+                            app:tint="@color/text_muted" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 

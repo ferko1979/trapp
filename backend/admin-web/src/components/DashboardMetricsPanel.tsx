@@ -57,10 +57,10 @@ function GraphCard({
   return (
     <div
       style={{
-        background: "#1e293b",
+        background: "#EEF2F7",
         padding: 20,
         borderRadius: 12,
-        border: "1px solid #334155",
+        border: "1px solid #DCE4EE",
       }}
     >
       <div
@@ -87,7 +87,7 @@ function GraphCard({
         style={{
           width: "100%",
           overflowX: "auto",
-          background: "#0f172a",
+          background: "#F4F7FB",
           borderRadius: 10,
           padding: 10,
         }}
@@ -110,7 +110,7 @@ function GraphCard({
                   y1={y}
                   x2={width - paddingRight}
                   y2={y}
-                  stroke="#334155"
+                  stroke="#DCE4EE"
                   strokeWidth="1"
                 />
                 <text
@@ -118,7 +118,7 @@ function GraphCard({
                   y={y + 4}
                   textAnchor="end"
                   fontSize="10"
-                  fill="#94a3b8"
+                  fill="#3C516C"
                 >
                   {label}
                 </text>
@@ -148,7 +148,7 @@ function GraphCard({
                   height={barHeight}
                   rx={4}
                   ry={4}
-                  fill="#22c55e"
+                  fill="#178A55"
                 />
 
                 {showDateLabel ? (
@@ -157,7 +157,7 @@ function GraphCard({
                     y={labelY}
                     textAnchor="end"
                     fontSize="10"
-                    fill="#cbd5e1"
+                    fill="#26394F"
                     transform={`rotate(-35 ${labelX} ${labelY})`}
                   >
                     {shortDate}
@@ -172,7 +172,7 @@ function GraphCard({
             y1={paddingTop + chartHeight}
             x2={width - paddingRight}
             y2={paddingTop + chartHeight}
-            stroke="#64748b"
+            stroke="#5F7491"
             strokeWidth="1.5"
           />
         </svg>
@@ -233,14 +233,14 @@ export default function DashboardMetricsPanel() {
     return (
       <div
         style={{
-          background: "#1e293b",
+          background: "#EEF2F7",
           padding: 20,
           borderRadius: 12,
-          border: "1px solid #334155",
+          border: "1px solid #DCE4EE",
         }}
       >
         <h3 style={{ marginTop: 0 }}>Dashboard Metrics</h3>
-        <div style={{ color: "#fca5a5" }}>{error}</div>
+        <div style={{ color: "#C8283B" }}>{error}</div>
       </div>
     );
   }

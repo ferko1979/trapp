@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/action_send"
-        android:backgroundTint="#6200EE"
+        android:backgroundTint="@color/accent_deep"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -67,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/action_cancel"
-        android:textColor="#6200EE"
+        android:textColor="@color/accent_deep"
         android:layout_marginTop="8dp" />
 
 </LinearLayout>

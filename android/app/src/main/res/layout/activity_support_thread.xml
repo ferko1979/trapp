@@ -51,7 +51,7 @@
             android:id="@+id/tvClosedBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#1E293B"
+            android:background="@color/bg_surface"
             android:padding="16dp"
             android:text="This ticket is closed. Open a new ticket if you need further help."
             android:textColor="@color/text_muted"

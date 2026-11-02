@@ -152,7 +152,7 @@ export default function AllyGroupRolesPanel({ groupId }: { groupId: string }) {
     <section style={{ display: "grid", gap: 16 }}>
       <h3 style={{ margin: 0 }}>Roles</h3>
 
-      <div style={{ border: "1px solid #334155", borderRadius: 10, padding: 12 }}>
+      <div style={{ border: "1px solid #DCE4EE", borderRadius: 10, padding: 12 }}>
         <h4 style={{ marginTop: 0 }}>Create custom role</h4>
         <div style={{ display: "grid", gap: 8 }}>
           <input
@@ -196,7 +196,7 @@ export default function AllyGroupRolesPanel({ groupId }: { groupId: string }) {
             <div
               key={role.id}
               style={{
-                border: "1px solid #334155",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: 12,
                 display: "grid",

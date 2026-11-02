@@ -25,7 +25,7 @@
             android:text="@string/msg_register_explanation"
             android:textAlignment="center"
             android:textSize="14sp"
-            android:textColor="#666666" />
+            android:textColor="@color/text_muted" />
 
         <EditText
             android:id="@+id/etFirstName"
@@ -135,6 +135,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textColor="#C62828" />
+            android:textColor="@color/accent_red" />
     </LinearLayout>
 </ScrollView>

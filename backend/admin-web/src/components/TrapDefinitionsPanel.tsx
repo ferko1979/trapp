@@ -66,7 +66,7 @@ export default function TrapDefinitionsPanel() {
   }, []);
 
   return (
-    <section style={{ background: "#1e293b", padding: 20, borderRadius: 12 }}>
+    <section style={{ background: "#EEF2F7", padding: 20, borderRadius: 12 }}>
       <div
         style={{
           display: "flex",
@@ -82,20 +82,20 @@ export default function TrapDefinitionsPanel() {
           <button
             onClick={() => void updateTimers(false)}
             disabled={timerWorking}
-            style={{ background: "#1a3a5f", color: "#7dd3fc", border: "1px solid #3b82f6", borderRadius: 6, padding: "6px 12px", cursor: "pointer" }}
+            style={{ background: "#DCE4EE", color: "#0B6C86", border: "1px solid #0B6C86", borderRadius: 6, padding: "6px 12px", cursor: "pointer" }}
           >
             ⏱ Fix Short Timers
           </button>
           <button
             onClick={() => void updateTimers(true)}
             disabled={timerWorking}
-            style={{ background: "#3a1a1a", color: "#fca5a5", border: "1px solid #ef4444", borderRadius: 6, padding: "6px 12px", cursor: "pointer" }}
+            style={{ background: "#FDE7EA", color: "#C8283B", border: "1px solid #C8283B", borderRadius: 6, padding: "6px 12px", cursor: "pointer" }}
           >
             ⏱ Force Update All Timers
           </button>
         </div>
       </div>
-      {timerMsg && <p style={{ color: timerMsg.startsWith("✅") ? "#22c55e" : "#ef4444", margin: "8px 0 0" }}>{timerMsg}</p>}
+      {timerMsg && <p style={{ color: timerMsg.startsWith("✅") ? "#178A55" : "#C8283B", margin: "8px 0 0" }}>{timerMsg}</p>}
 
       {loading ? (
         <div>Loading...</div>
@@ -104,7 +104,7 @@ export default function TrapDefinitionsPanel() {
           {items.map((item) => (
             <div
               key={item.id}
-              style={{ padding: 12, border: "1px solid #334155", borderRadius: 8 }}
+              style={{ padding: 12, border: "1px solid #DCE4EE", borderRadius: 8 }}
             >
               <strong>{item.name}</strong> ({item.id})
               <br />

@@ -86,10 +86,10 @@ export default function ProfilePanel() {
   return (
     <section
       style={{
-        background: "#1e293b",
+        background: "#EEF2F7",
         padding: 20,
         borderRadius: 12,
-        border: "1px solid #334155",
+        border: "1px solid #DCE4EE",
         display: "grid",
         gap: 16,
       }}
@@ -102,7 +102,7 @@ export default function ProfilePanel() {
       </div>
 
       {loading ? <div>Loading...</div> : null}
-      {error ? <div style={{ color: "#fca5a5" }}>{error}</div> : null}
+      {error ? <div style={{ color: "#C8283B" }}>{error}</div> : null}
 
       {!loading && !error && profile ? (
         <>
@@ -110,8 +110,8 @@ export default function ProfilePanel() {
             style={{
               display: "grid",
               gap: 8,
-              background: "#0f172a",
-              border: "1px solid #334155",
+              background: "#F4F7FB",
+              border: "1px solid #DCE4EE",
               borderRadius: 10,
               padding: 16,
             }}
@@ -139,8 +139,8 @@ export default function ProfilePanel() {
 
           <div
             style={{
-              background: "#0f172a",
-              border: "1px solid #334155",
+              background: "#F4F7FB",
+              border: "1px solid #DCE4EE",
               borderRadius: 10,
               padding: 16,
             }}

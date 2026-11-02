@@ -52,20 +52,20 @@ function DiffRow({
         gap: 8,
         padding: "8px 12px",
         background: highlight
-          ? "rgba(59,130,246,0.07)"
+          ? "rgba(11,108,134,0.07)"
           : changed
           ? "rgba(52,211,153,0.06)"
           : "transparent",
         borderRadius: 7,
-        borderLeft: changed ? "2px solid #34d399" : "2px solid transparent",
+        borderLeft: changed ? "2px solid #178A55" : "2px solid transparent",
         fontSize: "0.85rem",
       }}
     >
-      <span style={{ color: "#94a3b8" }}>{label}</span>
-      <span style={{ color: changed ? "#f87171" : "#475569", textDecoration: changed ? "line-through" : "none" }}>
+      <span style={{ color: "#3C516C" }}>{label}</span>
+      <span style={{ color: changed ? "#C8283B" : "#5F7491", textDecoration: changed ? "line-through" : "none" }}>
         {before ?? "—"}
       </span>
-      <span style={{ color: changed ? "#34d399" : "#475569", fontWeight: changed ? 700 : 400 }}>
+      <span style={{ color: changed ? "#178A55" : "#5F7491", fontWeight: changed ? 700 : 400 }}>
         {after ?? "—"}
       </span>
     </div>
@@ -76,18 +76,18 @@ function StatCard({ label, value, color, sub }: { label: string; value: string |
   return (
     <div
       style={{
-        background: "#080f1c",
-        border: "1px solid #1a2840",
+        background: "#F4F7FB",
+        border: "1px solid #DCE4EE",
         borderRadius: 10,
         padding: "12px 16px",
         minWidth: 100,
       }}
     >
-      <div style={{ fontSize: "1.55rem", fontWeight: 900, color: color ?? "#f8fafc", lineHeight: 1 }}>
+      <div style={{ fontSize: "1.55rem", fontWeight: 900, color: color ?? "#0D1F33", lineHeight: 1 }}>
         {value}
       </div>
-      <div style={{ fontSize: "0.73rem", color: "#4b5563", marginTop: 4 }}>{label}</div>
-      {sub && <div style={{ fontSize: "0.68rem", color: "#334155", marginTop: 2 }}>{sub}</div>}
+      <div style={{ fontSize: "0.73rem", color: "#5F7491", marginTop: 4 }}>{label}</div>
+      {sub && <div style={{ fontSize: "0.68rem", color: "#DCE4EE", marginTop: 2 }}>{sub}</div>}
     </div>
   );
 }
@@ -160,8 +160,8 @@ export default function RecalculatePointsPanel() {
     cursor: "pointer",
     fontWeight: 600,
     fontSize: "0.875rem",
-    background: active ? "#1d4ed8" : "transparent",
-    color: active ? "#fff" : "#64748b",
+    background: active ? "#0B6C86" : "transparent",
+    color: active ? "#fff" : "#5F7491",
     transition: "background 0.15s, color 0.15s",
   });
 
@@ -171,20 +171,20 @@ export default function RecalculatePointsPanel() {
       {/* Header */}
       <div
         style={{
-          background: "#0f172a",
-          border: "1px solid #1e3a5f",
+          background: "#F4F7FB",
+          border: "1px solid #DCE4EE",
           borderRadius: 14,
           padding: "20px 24px",
         }}
       >
-        <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "#f1f5f9", marginBottom: 6 }}>
+        <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "#0D1F33", marginBottom: 6 }}>
           🔄 Recalculate User Points
         </div>
-        <div style={{ fontSize: "0.83rem", color: "#64748b", lineHeight: 1.6 }}>
-          Rebuilds each user's <strong style={{ color: "#94a3b8" }}>XP</strong>,{" "}
-          <strong style={{ color: "#94a3b8" }}>captureCount</strong>,{" "}
-          <strong style={{ color: "#94a3b8" }}>timesCaught</strong> and{" "}
-          <strong style={{ color: "#94a3b8" }}>level</strong> from raw capture and trap history.
+        <div style={{ fontSize: "0.83rem", color: "#5F7491", lineHeight: 1.6 }}>
+          Rebuilds each user's <strong style={{ color: "#3C516C" }}>XP</strong>,{" "}
+          <strong style={{ color: "#3C516C" }}>captureCount</strong>,{" "}
+          <strong style={{ color: "#3C516C" }}>timesCaught</strong> and{" "}
+          <strong style={{ color: "#3C516C" }}>level</strong> from raw capture and trap history.
           Use this to fix scores after data corrections or rule changes.
         </div>
 
@@ -194,8 +194,8 @@ export default function RecalculatePointsPanel() {
             display: "flex",
             gap: 4,
             marginTop: 16,
-            background: "#080f1c",
-            border: "1px solid #1a2840",
+            background: "#F4F7FB",
+            border: "1px solid #DCE4EE",
             borderRadius: 10,
             padding: 4,
             width: "fit-content",
@@ -214,15 +214,15 @@ export default function RecalculatePointsPanel() {
       {mode === "single" && (
         <div
           style={{
-            background: "#0f172a",
-            border: "1px solid #1e3a5f",
+            background: "#F4F7FB",
+            border: "1px solid #DCE4EE",
             borderRadius: 14,
             padding: "20px 24px",
             display: "grid",
             gap: 18,
           }}
         >
-          <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "#f1f5f9" }}>
+          <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "#0D1F33" }}>
             Recalculate for a Specific User
           </div>
 
@@ -236,11 +236,11 @@ export default function RecalculatePointsPanel() {
               placeholder="UID, @username, or email"
               style={{
                 flex: 1,
-                background: "#080f1c",
-                border: "1px solid #1e3a5f",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 8,
                 padding: "10px 14px",
-                color: "#f1f5f9",
+                color: "#0D1F33",
                 fontSize: "0.9rem",
                 outline: "none",
               }}
@@ -250,7 +250,7 @@ export default function RecalculatePointsPanel() {
               disabled={loading || !query.trim()}
               style={{
                 padding: "10px 22px",
-                background: loading || !query.trim() ? "#1e3a5f" : "#1d4ed8",
+                background: loading || !query.trim() ? "#DCE4EE" : "#0B6C86",
                 border: "none",
                 borderRadius: 8,
                 color: "#fff",
@@ -272,7 +272,7 @@ export default function RecalculatePointsPanel() {
                 border: "1px solid rgba(239,68,68,0.3)",
                 borderRadius: 8,
                 padding: "10px 14px",
-                color: "#f87171",
+                color: "#C8283B",
                 fontSize: "0.875rem",
               }}
             >
@@ -292,10 +292,10 @@ export default function RecalculatePointsPanel() {
                   padding: "12px 16px",
                 }}
               >
-                <div style={{ fontWeight: 700, color: "#34d399", fontSize: "0.9rem" }}>
+                <div style={{ fontWeight: 700, color: "#178A55", fontSize: "0.9rem" }}>
                   ✅ Recalculation complete
                 </div>
-                <div style={{ color: "#64748b", fontSize: "0.8rem", marginTop: 3 }}>
+                <div style={{ color: "#5F7491", fontSize: "0.8rem", marginTop: 3 }}>
                   {result.displayName} · {result.uid}
                 </div>
               </div>
@@ -308,19 +308,19 @@ export default function RecalculatePointsPanel() {
                   gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))",
                 }}
               >
-                <StatCard label="XP"             value={result.after.xp}           color="#c4b5fd" />
-                <StatCard label="Level"          value={`${result.after.level} — ${result.after.levelName}`} color="#fbbf24" />
-                <StatCard label="Captures Made"  value={result.after.captureCount}  color="#34d399" />
-                <StatCard label="Times Caught"   value={result.after.timesCaught}   color="#f87171" />
-                <StatCard label="Traps Placed"   value={result.after.trapsPlaced}   color="#93c5fd" />
-                <StatCard label="Traps Disarmed" value={result.after.disarmedTraps} color="#94a3b8" />
+                <StatCard label="XP"             value={result.after.xp}           color="#6D3FC9" />
+                <StatCard label="Level"          value={`${result.after.level} — ${result.after.levelName}`} color="#8A5A0B" />
+                <StatCard label="Captures Made"  value={result.after.captureCount}  color="#178A55" />
+                <StatCard label="Times Caught"   value={result.after.timesCaught}   color="#C8283B" />
+                <StatCard label="Traps Placed"   value={result.after.trapsPlaced}   color="#0B6C86" />
+                <StatCard label="Traps Disarmed" value={result.after.disarmedTraps} color="#3C516C" />
               </div>
 
               {/* Before / After diff */}
               <div
                 style={{
-                  background: "#080f1c",
-                  border: "1px solid #1a2840",
+                  background: "#F4F7FB",
+                  border: "1px solid #DCE4EE",
                   borderRadius: 10,
                   overflow: "hidden",
                 }}
@@ -331,11 +331,11 @@ export default function RecalculatePointsPanel() {
                     gridTemplateColumns: "1fr 1fr 1fr",
                     gap: 8,
                     padding: "8px 12px",
-                    background: "#0f172a",
-                    borderBottom: "1px solid #1a2840",
+                    background: "#F4F7FB",
+                    borderBottom: "1px solid #DCE4EE",
                     fontSize: "0.72rem",
                     fontWeight: 700,
-                    color: "#475569",
+                    color: "#5F7491",
                     textTransform: "uppercase",
                     letterSpacing: "0.07em",
                   }}
@@ -361,15 +361,15 @@ export default function RecalculatePointsPanel() {
       {mode === "bulk" && (
         <div
           style={{
-            background: "#0f172a",
-            border: "1px solid #1e3a5f",
+            background: "#F4F7FB",
+            border: "1px solid #DCE4EE",
             borderRadius: 14,
             padding: "20px 24px",
             display: "grid",
             gap: 18,
           }}
         >
-          <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "#f1f5f9" }}>
+          <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "#0D1F33" }}>
             Recalculate for All Users
           </div>
 
@@ -384,15 +384,15 @@ export default function RecalculatePointsPanel() {
               gap: 6,
             }}
           >
-            <div style={{ fontWeight: 700, color: "#fbbf24", fontSize: "0.875rem" }}>
+            <div style={{ fontWeight: 700, color: "#8A5A0B", fontSize: "0.875rem" }}>
               ⚠ This operation affects every user
             </div>
-            <div style={{ color: "#92400e", fontSize: "0.83rem", lineHeight: 1.6 }}>
+            <div style={{ color: "#F3D9A8", fontSize: "0.83rem", lineHeight: 1.6 }}>
               XP, captureCount, timesCaught and level will be <strong>overwritten</strong> for
               all users by scanning the entire capture and trap history.
               The operation may take up to a minute for large datasets.
             </div>
-            <ul style={{ color: "#78350f", fontSize: "0.8rem", margin: "4px 0 0 16px", lineHeight: 1.7 }}>
+            <ul style={{ color: "#F3D9A8", fontSize: "0.8rem", margin: "4px 0 0 16px", lineHeight: 1.7 }}>
               <li>Each scoring capture contributes its <code>scoreValue</code> to XP</li>
               <li>Self-captures and ally captures are excluded from scoring</li>
               <li>Level is resolved from the active progression level thresholds</li>
@@ -410,14 +410,14 @@ export default function RecalculatePointsPanel() {
                   gap: 10,
                   cursor: "pointer",
                   fontSize: "0.875rem",
-                  color: "#94a3b8",
+                  color: "#3C516C",
                 }}
               >
                 <input
                   type="checkbox"
                   checked={bulkConfirm}
                   onChange={(e) => setBulkConfirm(e.target.checked)}
-                  style={{ width: 16, height: 16, accentColor: "#ef4444", cursor: "pointer" }}
+                  style={{ width: 16, height: 16, accentColor: "#C8283B", cursor: "pointer" }}
                 />
                 I understand this will overwrite scores for all users
               </label>
@@ -430,9 +430,9 @@ export default function RecalculatePointsPanel() {
                   width: "fit-content",
                   background:
                     !bulkConfirm || bulkLoading
-                      ? "#1e3a5f"
-                      : "rgba(220,38,38,0.85)",
-                  border: "1px solid rgba(239,68,68,0.4)",
+                      ? "#DCE4EE"
+                      : "#C8283B",
+                  border: "1px solid #C8283B",
                   borderRadius: 9,
                   color: "#fff",
                   fontWeight: 700,
@@ -444,7 +444,7 @@ export default function RecalculatePointsPanel() {
               </button>
 
               {bulkLoading && (
-                <div style={{ fontSize: "0.8rem", color: "#64748b" }}>
+                <div style={{ fontSize: "0.8rem", color: "#5F7491" }}>
                   Scanning capture and trap history for all users. This may take 30–60 seconds…
                 </div>
               )}
@@ -459,7 +459,7 @@ export default function RecalculatePointsPanel() {
                 border: "1px solid rgba(239,68,68,0.3)",
                 borderRadius: 8,
                 padding: "10px 14px",
-                color: "#f87171",
+                color: "#C8283B",
                 fontSize: "0.875rem",
               }}
             >
@@ -483,11 +483,11 @@ export default function RecalculatePointsPanel() {
               >
                 <div style={{ fontSize: "2rem" }}>✅</div>
                 <div>
-                  <div style={{ fontWeight: 700, color: "#34d399", fontSize: "1rem" }}>
+                  <div style={{ fontWeight: 700, color: "#178A55", fontSize: "1rem" }}>
                     Recalculation complete
                   </div>
-                  <div style={{ color: "#64748b", fontSize: "0.85rem", marginTop: 3 }}>
-                    <strong style={{ color: "#f1f5f9" }}>{bulkResult.recalculated}</strong> users
+                  <div style={{ color: "#5F7491", fontSize: "0.85rem", marginTop: 3 }}>
+                    <strong style={{ color: "#0D1F33" }}>{bulkResult.recalculated}</strong> users
                     updated from capture + trap history
                   </div>
                 </div>
@@ -497,10 +497,10 @@ export default function RecalculatePointsPanel() {
                 style={{
                   padding: "9px 20px",
                   width: "fit-content",
-                  background: "#1e3a5f",
-                  border: "1px solid #2d5080",
+                  background: "#DCE4EE",
+                  border: "1px solid #DCE4EE",
                   borderRadius: 8,
-                  color: "#93c5fd",
+                  color: "#0B6C86",
                   fontWeight: 600,
                   fontSize: "0.875rem",
                   cursor: "pointer",
@@ -516,16 +516,16 @@ export default function RecalculatePointsPanel() {
       {/* Info box */}
       <div
         style={{
-          background: "#080f1c",
-          border: "1px solid #1a2840",
+          background: "#F4F7FB",
+          border: "1px solid #DCE4EE",
           borderRadius: 12,
           padding: "14px 18px",
           fontSize: "0.8rem",
-          color: "#475569",
+          color: "#5F7491",
           lineHeight: 1.7,
         }}
       >
-        <strong style={{ color: "#64748b" }}>Scoring formula:</strong>{" "}
+        <strong style={{ color: "#5F7491" }}>Scoring formula:</strong>{" "}
         XP = Σ <code>scoreValue</code> of all enemy captures (scoring captures).
         Self-captures and ally captures are excluded.
         Old captures without an explicit capture type count as scoring by default.

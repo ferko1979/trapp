@@ -50,8 +50,8 @@ export default function GeneralSettingsPanel() {
 
   function sectionStyle(): React.CSSProperties {
     return {
-      background: "#0f172a",
-      border: "1px solid #334155",
+      background: "#F4F7FB",
+      border: "1px solid #DCE4EE",
       borderRadius: 12,
       padding: 16,
       display: "grid",
@@ -70,14 +70,14 @@ export default function GeneralSettingsPanel() {
     return {
       padding: 10,
       borderRadius: 8,
-      border: "1px solid #475569",
-      background: "#111827",
-      color: "#e5e7eb",
+      border: "1px solid #5F7491",
+      background: "#F4F7FB",
+      color: "#0D1F33",
     };
   }
 
   return (
-    <section style={{ background: "#1e293b", padding: 20, borderRadius: 12 }}>
+    <section style={{ background: "#EEF2F7", padding: 20, borderRadius: 12 }}>
       <h2 style={{ marginTop: 0 }}>General Settings</h2>
 
       <div style={{ display: "grid", gap: 18, maxWidth: 820 }}>
@@ -134,8 +134,8 @@ export default function GeneralSettingsPanel() {
               padding: "10px 16px",
               borderRadius: 8,
               border: "none",
-              background: "#22c55e",
-              color: "#052e16",
+              background: "#178A55",
+              color: "#E3F7EC",
               fontWeight: 700,
             }}
           >

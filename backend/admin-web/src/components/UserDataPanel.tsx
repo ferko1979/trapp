@@ -36,8 +36,8 @@ function StatBox({
   return (
     <div
       style={{
-        background: "#080f1c",
-        border: "1px solid #1a2840",
+        background: "#F4F7FB",
+        border: "1px solid #DCE4EE",
         borderRadius: 10,
         padding: "14px 16px",
         minWidth: 110,
@@ -47,24 +47,24 @@ function StatBox({
         style={{
           fontSize: "1.6rem",
           fontWeight: 900,
-          color: color ?? "#f8fafc",
+          color: color ?? "#0D1F33",
           lineHeight: 1,
           letterSpacing: "-0.5px",
         }}
       >
         {value}
       </div>
-      <div style={{ fontSize: "0.75rem", color: "#4b5563", marginTop: 5 }}>{label}</div>
-      {sub && <div style={{ fontSize: "0.7rem", color: "#334155", marginTop: 2 }}>{sub}</div>}
+      <div style={{ fontSize: "0.75rem", color: "#5F7491", marginTop: 5 }}>{label}</div>
+      {sub && <div style={{ fontSize: "0.7rem", color: "#DCE4EE", marginTop: 2 }}>{sub}</div>}
     </div>
   );
 }
 
 const TRAP_STATUS_COLOR: Record<string, string> = {
-  active:   "#4ade80",
-  captured: "#f97316",
-  disarmed: "#94a3b8",
-  expired:  "#475569",
+  active:   "#178A55",
+  captured: "#C2410C",
+  disarmed: "#3C516C",
+  expired:  "#5F7491",
 };
 
 // ─── Main component ───────────────────────────────────────────────────────────
@@ -200,8 +200,8 @@ export default function UserDataPanel() {
   }
 
   const card: React.CSSProperties = {
-    background: "#0f1f35",
-    border: "1px solid #1e3a5f",
+    background: "#F4F7FB",
+    border: "1px solid #DCE4EE",
     borderRadius: 12,
     padding: "20px 24px",
     marginBottom: 20,
@@ -223,15 +223,15 @@ export default function UserDataPanel() {
 
       {/* Header */}
       <div style={{ marginBottom: 24 }}>
-        <h2 style={{ margin: 0, color: "#f1f5f9", fontSize: 22 }}>🗑️ User Data Management</h2>
-        <p style={{ margin: "4px 0 0", color: "#94a3b8", fontSize: 14 }}>
+        <h2 style={{ margin: 0, color: "#0D1F33", fontSize: 22 }}>🗑️ User Data Management</h2>
+        <p style={{ margin: "4px 0 0", color: "#3C516C", fontSize: 14 }}>
           Look up a user by their UID to view and delete their placed traps or reset their scores.
         </p>
       </div>
 
       {/* Lookup form */}
       <div style={card}>
-        <div style={{ fontWeight: 700, color: "#f1f5f9", marginBottom: 12 }}>
+        <div style={{ fontWeight: 700, color: "#0D1F33", marginBottom: 12 }}>
           🔍 Find User
         </div>
 
@@ -245,20 +245,20 @@ export default function UserDataPanel() {
             <div
               key={label}
               style={{
-                background: "#080f1c",
-                border: "1px solid #1a2840",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 7,
                 padding: "5px 10px",
                 fontSize: 12,
-                color: "#64748b",
+                color: "#5F7491",
                 display: "flex",
                 alignItems: "center",
                 gap: 5,
               }}
             >
               <span>{icon}</span>
-              <strong style={{ color: "#94a3b8" }}>{label}</strong>
-              <span style={{ color: "#475569" }}>{example}</span>
+              <strong style={{ color: "#3C516C" }}>{label}</strong>
+              <span style={{ color: "#5F7491" }}>{example}</span>
             </div>
           ))}
         </div>
@@ -275,7 +275,7 @@ export default function UserDataPanel() {
             onClick={() => void handleLookup()}
             disabled={loading || !queryInput.trim()}
             style={{
-              background: "#1d4ed8",
+              background: "#0B6C86",
               color: "#fff",
               border: "none",
               borderRadius: 8,
@@ -290,7 +290,7 @@ export default function UserDataPanel() {
           </button>
         </div>
         {error && (
-          <div style={{ marginTop: 10, color: "#f87171", fontSize: 13 }}>⚠ {error}</div>
+          <div style={{ marginTop: 10, color: "#C8283B", fontSize: 13 }}>⚠ {error}</div>
         )}
       </div>
 
@@ -299,18 +299,18 @@ export default function UserDataPanel() {
         <>
           {/* Identity */}
           <div style={card}>
-            <div style={{ fontWeight: 700, color: "#7dd3fc", marginBottom: 4, fontSize: 13 }}>
+            <div style={{ fontWeight: 700, color: "#0B6C86", marginBottom: 4, fontSize: 13 }}>
               User
             </div>
-            <div style={{ color: "#f1f5f9", fontWeight: 700, fontSize: 18 }}>
+            <div style={{ color: "#0D1F33", fontWeight: 700, fontSize: 18 }}>
               {gameData.displayName ?? "—"}
               {gameData.username ? (
-                <span style={{ color: "#64748b", fontWeight: 400, fontSize: 13, marginLeft: 8 }}>
+                <span style={{ color: "#5F7491", fontWeight: 400, fontSize: 13, marginLeft: 8 }}>
                   @{gameData.username}
                 </span>
               ) : null}
             </div>
-            <div style={{ color: "#475569", fontSize: 12, marginTop: 3, fontFamily: "monospace" }}>
+            <div style={{ color: "#5F7491", fontSize: 12, marginTop: 3, fontFamily: "monospace" }}>
               {gameData.uid}
             </div>
           </div>
@@ -327,7 +327,7 @@ export default function UserDataPanel() {
                 gap: 10,
               }}
             >
-              <div style={{ fontWeight: 700, color: "#f1f5f9", fontSize: 15 }}>
+              <div style={{ fontWeight: 700, color: "#0D1F33", fontSize: 15 }}>
                 🏅 Scores & XP
               </div>
             </div>
@@ -336,31 +336,31 @@ export default function UserDataPanel() {
               <StatBox
                 label="XP"
                 value={gameData.xp.toLocaleString()}
-                color="#fcd34d"
+                color="#8A5A0B"
               />
               <StatBox
                 label="Level"
                 value={`Lv. ${gameData.level}`}
-                color="#93c5fd"
+                color="#0B6C86"
                 sub={gameData.levelName || undefined}
               />
               <StatBox
                 label="Captures"
                 value={gameData.captureCount}
-                color="#4ade80"
+                color="#178A55"
               />
               <StatBox
                 label="Times Caught"
                 value={gameData.timesCaught}
-                color="#f97316"
+                color="#C2410C"
               />
             </div>
 
             {/* Today's placement quota */}
             <div
               style={{
-                background: "#080f1c",
-                border: "1px solid #1a2840",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: "12px 16px",
                 marginBottom: 16,
@@ -372,7 +372,7 @@ export default function UserDataPanel() {
               }}
             >
               <div>
-                <div style={{ fontSize: 12, color: "#64748b", marginBottom: 4 }}>
+                <div style={{ fontSize: 12, color: "#5F7491", marginBottom: 4 }}>
                   📅 Today's Placement Quota ({gameData.dateKey})
                 </div>
                 <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
@@ -381,19 +381,19 @@ export default function UserDataPanel() {
                       style={{
                         fontSize: "1.4rem",
                         fontWeight: 800,
-                        color: gameData.trapsAvailable <= 0 ? "#f87171" : "#4ade80",
+                        color: gameData.trapsAvailable <= 0 ? "#C8283B" : "#178A55",
                       }}
                     >
                       {gameData.trapsAvailable}
                     </span>
-                    <span style={{ fontSize: 12, color: "#64748b", marginLeft: 4 }}>available</span>
+                    <span style={{ fontSize: 12, color: "#5F7491", marginLeft: 4 }}>available</span>
                   </span>
-                  <span style={{ color: "#334155" }}>·</span>
+                  <span style={{ color: "#DCE4EE" }}>·</span>
                   <span>
-                    <span style={{ fontSize: "1.1rem", fontWeight: 700, color: "#94a3b8" }}>
+                    <span style={{ fontSize: "1.1rem", fontWeight: 700, color: "#3C516C" }}>
                       {gameData.trapsUsed}
                     </span>
-                    <span style={{ fontSize: 12, color: "#64748b", marginLeft: 4 }}>used today</span>
+                    <span style={{ fontSize: 12, color: "#5F7491", marginLeft: 4 }}>used today</span>
                   </span>
                   {gameData.trapsAvailable <= 0 && gameData.trapsUsed === 0 && (
                     <span
@@ -403,7 +403,7 @@ export default function UserDataPanel() {
                         borderRadius: 6,
                         padding: "2px 8px",
                         fontSize: 11,
-                        color: "#f87171",
+                        color: "#C8283B",
                         fontWeight: 600,
                       }}
                     >
@@ -415,8 +415,8 @@ export default function UserDataPanel() {
               <button
                 style={{
                   ...dangerBtn(working || gameData.trapsAvailable >= 5),
-                  background: gameData.trapsAvailable >= 5 ? "#1e3a5f" : "#92400e",
-                  color: gameData.trapsAvailable >= 5 ? "#64748b" : "#fde68a",
+                  background: gameData.trapsAvailable >= 5 ? "#DCE4EE" : "#F3D9A8",
+                  color: gameData.trapsAvailable >= 5 ? "#5F7491" : "#8A5A0B",
                   fontSize: 12,
                   padding: "7px 14px",
                 }}
@@ -437,18 +437,18 @@ export default function UserDataPanel() {
                 padding: "14px 16px",
               }}
             >
-              <div style={{ color: "#fca5a5", fontWeight: 700, fontSize: 13, marginBottom: 6 }}>
+              <div style={{ color: "#C8283B", fontWeight: 700, fontSize: 13, marginBottom: 6 }}>
                 ⚠ Danger Zone — Reset Scores
               </div>
-              <p style={{ color: "#94a3b8", fontSize: 13, margin: "0 0 12px" }}>
+              <p style={{ color: "#3C516C", fontSize: 13, margin: "0 0 12px" }}>
                 Zeros out XP, capture count, times-caught, and resets progression level to Lv. 1.
                 Capture history records are kept.
               </p>
               <button
                 style={{
                   ...dangerBtn(working),
-                  background: "#7f1d1d",
-                  color: "#fecaca",
+                  background: "#F5C2C9",
+                  color: "#C8283B",
                 }}
                 disabled={working}
                 onClick={() => void handleResetScores()}
@@ -470,17 +470,17 @@ export default function UserDataPanel() {
                 gap: 10,
               }}
             >
-              <div style={{ fontWeight: 700, color: "#f1f5f9", fontSize: 15 }}>
+              <div style={{ fontWeight: 700, color: "#0D1F33", fontSize: 15 }}>
                 🪤 Placed Traps
               </div>
-              <div style={{ color: "#64748b", fontSize: 13 }}>
+              <div style={{ color: "#5F7491", fontSize: 13 }}>
                 {gameData.totalTraps} total
               </div>
             </div>
 
             {/* Status breakdown */}
             {gameData.totalTraps === 0 ? (
-              <p style={{ color: "#475569", fontSize: 13, margin: 0 }}>
+              <p style={{ color: "#5F7491", fontSize: 13, margin: 0 }}>
                 This user has no placed traps.
               </p>
             ) : (
@@ -489,8 +489,8 @@ export default function UserDataPanel() {
                   <div
                     key={status}
                     style={{
-                      background: "#080f1c",
-                      border: "1px solid #1a2840",
+                      background: "#F4F7FB",
+                      border: "1px solid #DCE4EE",
                       borderRadius: 8,
                       padding: "10px 14px",
                       minWidth: 90,
@@ -500,13 +500,13 @@ export default function UserDataPanel() {
                       style={{
                         fontSize: "1.4rem",
                         fontWeight: 800,
-                        color: TRAP_STATUS_COLOR[status] ?? "#94a3b8",
+                        color: TRAP_STATUS_COLOR[status] ?? "#3C516C",
                         lineHeight: 1,
                       }}
                     >
                       {count}
                     </div>
-                    <div style={{ fontSize: "0.72rem", color: "#4b5563", marginTop: 4, textTransform: "capitalize" }}>
+                    <div style={{ fontSize: "0.72rem", color: "#5F7491", marginTop: 4, textTransform: "capitalize" }}>
                       {status}
                     </div>
                   </div>
@@ -523,18 +523,18 @@ export default function UserDataPanel() {
                 padding: "14px 16px",
               }}
             >
-              <div style={{ color: "#fca5a5", fontWeight: 700, fontSize: 13, marginBottom: 6 }}>
+              <div style={{ color: "#C8283B", fontWeight: 700, fontSize: 13, marginBottom: 6 }}>
                 ⚠ Danger Zone — Delete Traps
               </div>
-              <p style={{ color: "#94a3b8", fontSize: 13, margin: "0 0 14px" }}>
+              <p style={{ color: "#3C516C", fontSize: 13, margin: "0 0 14px" }}>
                 Permanently removes trap documents. This cannot be undone.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <button
                   style={{
                     ...dangerBtn(working || (gameData.trapsByStatus["active"] ?? 0) === 0),
-                    background: "#92400e",
-                    color: "#fde68a",
+                    background: "#F3D9A8",
+                    color: "#8A5A0B",
                   }}
                   disabled={working || (gameData.trapsByStatus["active"] ?? 0) === 0}
                   onClick={() => void handleDeleteTraps(true)}
@@ -544,8 +544,8 @@ export default function UserDataPanel() {
                 <button
                   style={{
                     ...dangerBtn(working || gameData.totalTraps === 0),
-                    background: "#7f1d1d",
-                    color: "#fecaca",
+                    background: "#F5C2C9",
+                    color: "#C8283B",
                   }}
                   disabled={working || gameData.totalTraps === 0}
                   onClick={() => void handleDeleteTraps(false)}
@@ -561,9 +561,9 @@ export default function UserDataPanel() {
             <div
               style={{
                 ...card,
-                borderColor: actionMsg.startsWith("✅") ? "#16a34a" : actionMsg.startsWith("ℹ") ? "#1e3a5f" : "#7f1d1d",
-                background:  actionMsg.startsWith("✅") ? "#052e16" : actionMsg.startsWith("ℹ") ? "#0f1f35" : "#1c0a0a",
-                color: "#e2e8f0",
+                borderColor: actionMsg.startsWith("✅") ? "#178A55" : actionMsg.startsWith("ℹ") ? "#DCE4EE" : "#F5C2C9",
+                background:  actionMsg.startsWith("✅") ? "#E3F7EC" : actionMsg.startsWith("ℹ") ? "#F4F7FB" : "#FDE7EA",
+                color: "#0D1F33",
                 fontSize: 14,
                 fontWeight: 600,
               }}

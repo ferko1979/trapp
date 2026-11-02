@@ -1,6 +1,7 @@
 ﻿package com.fairco.trap
 
 import android.os.Bundle
+import com.fairco.trap.ui.theme.TrappTheme
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -31,13 +32,13 @@ class ProfileEditActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         val composeView = ComposeView(this).apply {
-            setContent {
+            setContent { TrappTheme {
                 ProfileScreenContent(
                     viewModel = viewModel,
                     onFinish = { finish() },
                     onChangePhoto = { pickImageLauncher.launch("image/*") }
                 )
-            }
+            } }
         }
         setContentView(composeView)
 

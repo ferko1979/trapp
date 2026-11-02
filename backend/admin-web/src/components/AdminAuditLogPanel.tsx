@@ -21,18 +21,18 @@ type AuditEntry = {
 // ─── Category meta ────────────────────────────────────────────────────────────
 
 const CATEGORIES: { value: string; label: string; icon: string; color: string }[] = [
-  { value: "",                label: "All categories",   icon: "📋", color: "#64748b" },
-  { value: "auth",            label: "Auth",             icon: "🔐", color: "#a78bfa" },
-  { value: "users",           label: "Users",            icon: "👤", color: "#60a5fa" },
-  { value: "game_settings",   label: "Game Settings",    icon: "🎮", color: "#fbbf24" },
-  { value: "general_settings",label: "General Settings", icon: "⚙️", color: "#94a3b8" },
-  { value: "levels",          label: "Levels",           icon: "🏅", color: "#34d399" },
-  { value: "trap_definitions",label: "Trap Definitions", icon: "🪤", color: "#f97316" },
-  { value: "traps",           label: "Traps",            icon: "🎯", color: "#fb923c" },
-  { value: "terms",           label: "Terms",            icon: "📜", color: "#e2e8f0" },
-  { value: "support",         label: "Support",          icon: "🎫", color: "#f87171" },
-  { value: "messaging",       label: "Messaging",        icon: "💬", color: "#93c5fd" },
-  { value: "other",           label: "Other",            icon: "🔹", color: "#475569" },
+  { value: "",                label: "All categories",   icon: "📋", color: "#5F7491" },
+  { value: "auth",            label: "Auth",             icon: "🔐", color: "#6D3FC9" },
+  { value: "users",           label: "Users",            icon: "👤", color: "#0B6C86" },
+  { value: "game_settings",   label: "Game Settings",    icon: "🎮", color: "#8A5A0B" },
+  { value: "general_settings",label: "General Settings", icon: "⚙️", color: "#3C516C" },
+  { value: "levels",          label: "Levels",           icon: "🏅", color: "#178A55" },
+  { value: "trap_definitions",label: "Trap Definitions", icon: "🪤", color: "#C2410C" },
+  { value: "traps",           label: "Traps",            icon: "🎯", color: "#C2410C" },
+  { value: "terms",           label: "Terms",            icon: "📜", color: "#0D1F33" },
+  { value: "support",         label: "Support",          icon: "🎫", color: "#C8283B" },
+  { value: "messaging",       label: "Messaging",        icon: "💬", color: "#0B6C86" },
+  { value: "other",           label: "Other",            icon: "🔹", color: "#5F7491" },
 ];
 
 const ACTION_VERB: Record<string, string> = {
@@ -63,7 +63,7 @@ const ACTION_VERB: Record<string, string> = {
 function catMeta(category: string) {
   return (
     CATEGORIES.find((c) => c.value === category) ??
-    { value: category, label: category, icon: "🔹", color: "#475569" }
+    { value: category, label: category, icon: "🔹", color: "#5F7491" }
   );
 }
 
@@ -92,7 +92,7 @@ function DetailsModal({
       style={{
         position: "fixed",
         inset: 0,
-        background: "rgba(0,0,0,0.65)",
+        background: "rgba(11,22,38,0.55)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -103,8 +103,8 @@ function DetailsModal({
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: "#0f172a",
-          border: "1px solid #1e3a5f",
+          background: "#F4F7FB",
+          border: "1px solid #DCE4EE",
           borderRadius: 14,
           padding: 24,
           maxWidth: 680,
@@ -116,7 +116,7 @@ function DetailsModal({
         }}
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ fontWeight: 700, fontSize: "1rem", color: "#f1f5f9" }}>
+          <div style={{ fontWeight: 700, fontSize: "1rem", color: "#0D1F33" }}>
             {cat.icon} {ACTION_VERB[entry.action] ?? entry.action}
           </div>
           <button onClick={onClose} style={{ padding: "4px 12px" }}>✕</button>
@@ -140,15 +140,15 @@ function DetailsModal({
                 display: "grid",
                 gridTemplateColumns: "140px 1fr",
                 gap: 12,
-                borderBottom: "1px solid #1e3a5f",
+                borderBottom: "1px solid #DCE4EE",
                 paddingBottom: 6,
                 alignItems: "start",
               }}
             >
-              <span style={{ color: "#64748b", fontSize: "0.8rem", fontWeight: 600 }}>
+              <span style={{ color: "#5F7491", fontSize: "0.8rem", fontWeight: 600 }}>
                 {label}
               </span>
-              <span style={{ color: "#e2e8f0", fontSize: "0.85rem", wordBreak: "break-all" }}>
+              <span style={{ color: "#0D1F33", fontSize: "0.85rem", wordBreak: "break-all" }}>
                 {value}
               </span>
             </div>
@@ -157,17 +157,17 @@ function DetailsModal({
 
         {Object.keys(entry.details).length > 0 && (
           <div>
-            <div style={{ fontWeight: 600, fontSize: "0.8rem", color: "#64748b", marginBottom: 8 }}>
+            <div style={{ fontWeight: 600, fontSize: "0.8rem", color: "#5F7491", marginBottom: 8 }}>
               Details
             </div>
             <pre
               style={{
-                background: "#080f1c",
-                border: "1px solid #1e3a5f",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 8,
                 padding: 14,
                 fontSize: "0.78rem",
-                color: "#94a3b8",
+                color: "#3C516C",
                 overflowX: "auto",
                 margin: 0,
               }}
@@ -227,8 +227,8 @@ export default function AdminAuditLogPanel() {
       {/* Filter bar */}
       <div
         style={{
-          background: "#0f172a",
-          border: "1px solid #1e3a5f",
+          background: "#F4F7FB",
+          border: "1px solid #DCE4EE",
           borderRadius: 14,
           padding: "16px 20px",
           display: "flex",
@@ -280,7 +280,7 @@ export default function AdminAuditLogPanel() {
             borderRadius: 8,
             background: "rgba(220,38,38,0.1)",
             border: "1px solid rgba(220,38,38,0.3)",
-            color: "#f87171",
+            color: "#C8283B",
             fontSize: "0.875rem",
           }}
         >
@@ -290,7 +290,7 @@ export default function AdminAuditLogPanel() {
 
       {/* Stats row */}
       {!loading && entries.length > 0 && (
-        <div style={{ fontSize: "0.8rem", color: "#4b5563" }}>
+        <div style={{ fontSize: "0.8rem", color: "#5F7491" }}>
           Showing {entries.length} most recent entries
           {categoryFilter ? ` in category "${categoryFilter}"` : ""}
           {adminFilter ? ` by admin "${adminFilter}"` : ""}
@@ -300,18 +300,18 @@ export default function AdminAuditLogPanel() {
       {/* Log table */}
       <div
         style={{
-          background: "#0f172a",
-          border: "1px solid #1e3a5f",
+          background: "#F4F7FB",
+          border: "1px solid #DCE4EE",
           borderRadius: 14,
           overflow: "hidden",
         }}
       >
         {loading ? (
-          <div style={{ padding: 40, textAlign: "center", color: "#64748b" }}>
+          <div style={{ padding: 40, textAlign: "center", color: "#5F7491" }}>
             ⏳ Loading audit log…
           </div>
         ) : entries.length === 0 ? (
-          <div style={{ padding: 40, textAlign: "center", color: "#475569" }}>
+          <div style={{ padding: 40, textAlign: "center", color: "#5F7491" }}>
             No log entries found{categoryFilter ? ` for "${categoryFilter}"` : ""}.
           </div>
         ) : (
@@ -332,18 +332,18 @@ export default function AdminAuditLogPanel() {
                 const cat = catMeta(entry.category);
                 return (
                   <tr key={entry.id}>
-                    <td style={{ whiteSpace: "nowrap", fontSize: "0.78rem", color: "#64748b" }}>
+                    <td style={{ whiteSpace: "nowrap", fontSize: "0.78rem", color: "#5F7491" }}>
                       {fmt(entry.timestampMs)}
                     </td>
                     <td style={{ fontSize: "0.78rem" }}>
-                      <div style={{ color: "#e2e8f0" }}>
+                      <div style={{ color: "#0D1F33" }}>
                         {entry.adminEmail ?? entry.adminName ?? "—"}
                       </div>
                       {entry.adminUid && (
                         <div
                           style={{
                             fontSize: "0.68rem",
-                            color: "#4b5563",
+                            color: "#5F7491",
                             fontFamily: "monospace",
                             maxWidth: 140,
                             overflow: "hidden",
@@ -373,13 +373,13 @@ export default function AdminAuditLogPanel() {
                         {cat.icon} {cat.label}
                       </span>
                     </td>
-                    <td style={{ fontSize: "0.78rem", color: "#94a3b8", fontFamily: "monospace" }}>
+                    <td style={{ fontSize: "0.78rem", color: "#3C516C", fontFamily: "monospace" }}>
                       {entry.action}
                     </td>
-                    <td style={{ fontSize: "0.8rem", color: "#cbd5e1", maxWidth: 300 }}>
+                    <td style={{ fontSize: "0.8rem", color: "#26394F", maxWidth: 300 }}>
                       {entry.summary}
                     </td>
-                    <td style={{ fontSize: "0.75rem", color: "#64748b", maxWidth: 120 }}>
+                    <td style={{ fontSize: "0.75rem", color: "#5F7491", maxWidth: 120 }}>
                       {entry.targetName ?? entry.targetId ?? "—"}
                     </td>
                     <td>

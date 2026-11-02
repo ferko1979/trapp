@@ -102,8 +102,8 @@ export default function Dashboard({ user }: { user: User }) {
       style={{
         display: "flex",
         minHeight: "100vh",
-        background: "#0b1120",
-        color: "#e2e8f0",
+        background: "#F4F7FB",
+        color: "#0D1F33",
       }}
     >
       <Sidebar
@@ -115,7 +115,7 @@ export default function Dashboard({ user }: { user: User }) {
       <main
         style={{
           flex: 1,
-          padding: "28px 32px",
+          padding: "26px 32px 40px",
           minWidth: 0,
           overflowY: "auto",
         }}
@@ -123,9 +123,9 @@ export default function Dashboard({ user }: { user: User }) {
         {/* Page header */}
         <div
           style={{
-            marginBottom: 28,
-            paddingBottom: 20,
-            borderBottom: "1px solid #1e3a5f",
+            marginBottom: 22,
+            paddingBottom: 18,
+            borderBottom: "1px solid #DCE4EE",
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "space-between",
@@ -136,24 +136,25 @@ export default function Dashboard({ user }: { user: User }) {
           <div>
             <div
               style={{
-                fontSize: "0.72rem",
-                fontWeight: 600,
+                fontFamily: "var(--font-label)",
+                fontSize: "0.8rem",
+                fontWeight: 700,
                 textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                color: "#3b82f6",
+                letterSpacing: "0.14em",
+                color: "#5F7491",
                 marginBottom: 4,
               }}
             >
               Trap Admin Console
             </div>
-            <h1 style={{ margin: 0, fontSize: "1.5rem" }}>
+            <h1 style={{ margin: 0, fontSize: 26, fontWeight: 800 }}>
               {SECTION_TITLES[section]}
             </h1>
           </div>
           <div
             style={{
               fontSize: "0.8125rem",
-              color: "#64748b",
+              color: "#5F7491",
               display: "flex",
               alignItems: "center",
               gap: 8,
@@ -164,7 +165,7 @@ export default function Dashboard({ user }: { user: User }) {
                 width: 30,
                 height: 30,
                 borderRadius: "50%",
-                background: "#1e3a5f",
+                background: "#E6F6FB",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

@@ -1,6 +1,8 @@
 ﻿package com.fairco.trap
 
 import android.os.Bundle
+import com.fairco.trap.ui.theme.TrappTheme
+import com.fairco.trap.ui.theme.Radar
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -31,9 +33,9 @@ class RankingActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         val myUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
-        setContent {
+        setContent { TrappTheme {
             RankingScreen(myUid = myUid)
-        }
+        } }
     }
 }
 
@@ -164,7 +166,7 @@ private fun RankingScreen(myUid: String) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF000D1A))
+            .background(Radar.Bg)
     ) {
         // Top bar
         val activity = LocalContext.current as? android.app.Activity
@@ -184,7 +186,7 @@ private fun RankingScreen(myUid: String) {
                 modifier = Modifier.weight(1f)
             )
             IconButton(onClick = { activity?.finish() }) {
-                Text("✕", color = Color(0xFF94A3B8), fontSize = 18.sp)
+                Text("✕", color = Radar.TextSec, fontSize = 18.sp)
             }
         }
 
@@ -196,12 +198,12 @@ private fun RankingScreen(myUid: String) {
         // Tabs
         TabRow(
             selectedTabIndex = selectedTab,
-            containerColor = Color(0xFF0D1626),
-            contentColor = Color(0xFF3B82F6),
+            containerColor = Radar.Surface,
+            contentColor = Radar.Accent,
             indicator = { tabPositions ->
                 TabRowDefaults.SecondaryIndicator(
                     Modifier.tabIndicatorOffset(tabPositions[selectedTab]),
-                    color = Color(0xFF3B82F6)
+                    color = Radar.Accent
                 )
             }
         ) {
@@ -212,7 +214,7 @@ private fun RankingScreen(myUid: String) {
                     text = {
                         Text(
                             title,
-                            color = if (selectedTab == index) Color(0xFF3B82F6) else Color(0xFF64748B),
+                            color = if (selectedTab == index) Radar.Accent else Radar.TextMuted,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold
                         )
@@ -222,7 +224,7 @@ private fun RankingScreen(myUid: String) {
         }
 
         // Tab content
-        Box(modifier = Modifier.fillMaxSize().background(Color(0xFF000D1A))) {
+        Box(modifier = Modifier.fillMaxSize().background(Radar.Bg)) {
             when (selectedTab) {
                 0 -> LeaderboardTab(state = globalState.value, myUid = myUid)
                 1 -> LeaderboardTab(state = friendsState.value, myUid = myUid)
@@ -237,14 +239,14 @@ private fun AllianceTab(state: LeaderboardState) {
     when (state) {
         is LeaderboardState.Loading -> {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = androidx.compose.ui.Alignment.Center) {
-                CircularProgressIndicator(color = Color(0xFF3B82F6))
+                CircularProgressIndicator(color = Radar.Accent)
             }
         }
         is LeaderboardState.Empty -> {
             Box(modifier = Modifier.fillMaxSize().padding(32.dp), contentAlignment = androidx.compose.ui.Alignment.Center) {
                 Text(
                     state.message,
-                    color = Color(0xFF64748B),
+                    color = Radar.TextMuted,
                     fontSize = 15.sp,
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center
                 )
@@ -252,7 +254,7 @@ private fun AllianceTab(state: LeaderboardState) {
         }
         is LeaderboardState.Error -> {
             Box(modifier = Modifier.fillMaxSize().padding(32.dp), contentAlignment = androidx.compose.ui.Alignment.Center) {
-                Text(state.message, color = Color(0xFFEF4444), fontSize = 14.sp)
+                Text(state.message, color = Radar.Trap, fontSize = 14.sp)
             }
         }
         is LeaderboardState.Loaded -> {
@@ -260,7 +262,7 @@ private fun AllianceTab(state: LeaderboardState) {
                 state.subtitle?.let {
                     Text(
                         it,
-                        color = Color(0xFFF59E0B),
+                        color = Radar.Gold,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center

@@ -49,10 +49,10 @@ type SortBy = "placed" | "captures" | "points" | "combined";
 
 function sectionCardStyle(): CSSProperties {
   return {
-    background: "#1e293b",
+    background: "#EEF2F7",
     padding: 20,
     borderRadius: 12,
-    border: "1px solid #334155",
+    border: "1px solid #DCE4EE",
   };
 }
 
@@ -61,9 +61,9 @@ function inputStyle(): CSSProperties {
     width: "100%",
     padding: "10px 12px",
     borderRadius: 8,
-    border: "1px solid #475569",
-    background: "#0f172a",
-    color: "white",
+    border: "1px solid #5F7491",
+    background: "#F4F7FB",
+    color: "#0D1F33",
     boxSizing: "border-box",
   };
 }
@@ -79,8 +79,8 @@ function fieldLabelStyle(): CSSProperties {
 
 function statCardStyle(): CSSProperties {
   return {
-    background: "#0f172a",
-    border: "1px solid #334155",
+    background: "#F4F7FB",
+    border: "1px solid #DCE4EE",
     borderRadius: 10,
     padding: 14,
   };
@@ -263,8 +263,8 @@ export default function TrapResultsPanel() {
                 display: "flex",
                 gap: 8,
                 alignItems: "center",
-                background: "#0f172a",
-                border: "1px solid #334155",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 8,
                 padding: "10px 12px",
                 width: "100%",
@@ -305,8 +305,8 @@ export default function TrapResultsPanel() {
             <div
               key={`placed-${row.uid}`}
               style={{
-                background: "#0f172a",
-                border: "1px solid #334155",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: 12,
               }}
@@ -332,8 +332,8 @@ export default function TrapResultsPanel() {
             <div
               key={`captures-${row.uid}`}
               style={{
-                background: "#0f172a",
-                border: "1px solid #334155",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: 12,
               }}
@@ -358,8 +358,8 @@ export default function TrapResultsPanel() {
             <div
               key={`points-${row.uid}`}
               style={{
-                background: "#0f172a",
-                border: "1px solid #334155",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: 12,
               }}
@@ -389,7 +389,7 @@ export default function TrapResultsPanel() {
             }}
           >
             <thead>
-              <tr style={{ textAlign: "left", borderBottom: "1px solid #334155" }}>
+              <tr style={{ textAlign: "left", borderBottom: "1px solid #DCE4EE" }}>
                 <th style={{ padding: "10px 8px" }}>User</th>
                 <th style={{ padding: "10px 8px" }}>Placed Rank</th>
                 <th style={{ padding: "10px 8px" }}>Placed</th>
@@ -410,7 +410,7 @@ export default function TrapResultsPanel() {
               {rows.map((row) => (
                 <tr
                   key={row.uid}
-                  style={{ borderBottom: "1px solid #233043" }}
+                  style={{ borderBottom: "1px solid #DCE4EE" }}
                 >
                   <td style={{ padding: "10px 8px" }}>
                     <div style={{ fontWeight: 700 }}>

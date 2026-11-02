@@ -149,8 +149,8 @@ export default function ProgressionLevelsPanel() {
 
   // ── Styles ────────────────────────────────────────────────────────────────
   const card: React.CSSProperties = {
-    background: "#0f1f35",
-    border: "1px solid #1e3a5f",
+    background: "#F4F7FB",
+    border: "1px solid #DCE4EE",
     borderRadius: 10,
     padding: "20px 24px",
     marginBottom: 20,
@@ -159,17 +159,17 @@ export default function ProgressionLevelsPanel() {
   const th: React.CSSProperties = {
     padding: "8px 12px",
     textAlign: "left",
-    color: "#94a3b8",
+    color: "#3C516C",
     fontWeight: 600,
     fontSize: 12,
     textTransform: "uppercase",
     letterSpacing: "0.06em",
-    borderBottom: "1px solid #1e3a5f",
+    borderBottom: "1px solid #DCE4EE",
   };
 
   const td: React.CSSProperties = {
     padding: "10px 12px",
-    borderBottom: "1px solid #111e2e",
+    borderBottom: "1px solid #F4F7FB",
     verticalAlign: "middle",
   };
 
@@ -181,14 +181,14 @@ export default function ProgressionLevelsPanel() {
     fontSize: 13,
     fontWeight: 600,
     background:
-      variant === "primary" ? "#1d4ed8"
-      : variant === "danger"  ? "#7f1d1d"
-      : variant === "seed"    ? "#065f46"
+      variant === "primary" ? "#0B6C86"
+      : variant === "danger"  ? "#F5C2C9"
+      : variant === "seed"    ? "#BFE8D2"
       : "transparent",
     color:
-      variant === "ghost" ? "#64748b" : "#e2e8f0",
-    borderColor: variant === "ghost" ? "#334155" : "transparent",
-    outline: variant === "ghost" ? "1px solid #334155" : "none",
+      variant === "ghost" ? "#5F7491" : "#0D1F33",
+    borderColor: variant === "ghost" ? "#DCE4EE" : "transparent",
+    outline: variant === "ghost" ? "1px solid #DCE4EE" : "none",
   });
 
   // ── Render ────────────────────────────────────────────────────────────────
@@ -198,8 +198,8 @@ export default function ProgressionLevelsPanel() {
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
         <div>
-          <h2 style={{ margin: 0, color: "#f1f5f9", fontSize: 22 }}>🪖 Player Levels</h2>
-          <p style={{ margin: "4px 0 0", color: "#94a3b8", fontSize: 14 }}>
+          <h2 style={{ margin: 0, color: "#0D1F33", fontSize: 22 }}>🪖 Player Levels</h2>
+          <p style={{ margin: "4px 0 0", color: "#3C516C", fontSize: 14 }}>
             XP-based progression ranks — separate from payment membership tiers.
           </p>
         </div>
@@ -221,45 +221,45 @@ export default function ProgressionLevelsPanel() {
       </div>
 
       {seedResult && (
-        <div style={{ ...card, background: "#052e16", borderColor: "#16a34a", marginBottom: 16, fontSize: 13 }}>
+        <div style={{ ...card, background: "#E3F7EC", borderColor: "#178A55", marginBottom: 16, fontSize: 13 }}>
           {seedResult}
         </div>
       )}
 
       {/* XP Earnings Reference */}
       <div style={card}>
-        <p style={{ margin: "0 0 12px", color: "#7dd3fc", fontWeight: 700, fontSize: 13 }}>
+        <p style={{ margin: "0 0 12px", color: "#0B6C86", fontWeight: 700, fontSize: 13 }}>
           💡 XP Earnings Reference
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 24px" }}>
           {XP_SOURCES.map((s) => (
             <div key={s.action} style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13 }}>
               <span style={{
-                background: "#1e3a5f",
-                color: "#7dd3fc",
+                background: "#DCE4EE",
+                color: "#0B6C86",
                 padding: "2px 8px",
                 borderRadius: 999,
                 fontWeight: 700,
                 fontSize: 12,
                 whiteSpace: "nowrap",
               }}>{s.xp}</span>
-              <span style={{ color: "#94a3b8" }}>{s.action}</span>
+              <span style={{ color: "#3C516C" }}>{s.action}</span>
             </div>
           ))}
         </div>
-        <p style={{ margin: "10px 0 0", color: "#64748b", fontSize: 12 }}>
+        <p style={{ margin: "10px 0 0", color: "#5F7491", fontSize: 12 }}>
           Active player ≈ 150–250 XP/day · Casual player ≈ 20–50 XP/day
         </p>
       </div>
 
       {/* Levels Table */}
       {loading ? (
-        <p style={{ color: "#94a3b8" }}>Loading…</p>
+        <p style={{ color: "#3C516C" }}>Loading…</p>
       ) : error ? (
-        <div style={{ ...card, borderColor: "#7f1d1d", color: "#fca5a5" }}>⚠ {error}</div>
+        <div style={{ ...card, borderColor: "#F5C2C9", color: "#C8283B" }}>⚠ {error}</div>
       ) : levels.length === 0 ? (
         <div style={card}>
-          <p style={{ color: "#94a3b8", margin: 0 }}>
+          <p style={{ color: "#3C516C", margin: 0 }}>
             No levels found. Click <strong>Seed Default Ranks</strong> to populate the 12 military-inspired ranks.
           </p>
         </div>
@@ -279,14 +279,14 @@ export default function ProgressionLevelsPanel() {
             </thead>
             <tbody>
               {levels.map((lvl) => (
-                <tr key={lvl.id} style={{ background: lvl.active ? "transparent" : "#0a0f1a" }}>
+                <tr key={lvl.id} style={{ background: lvl.active ? "transparent" : "#F4F7FB" }}>
                   <td style={{ ...td, width: 40 }}>
                     <span style={{
                       display: "inline-block",
                       width: 28, height: 28,
                       borderRadius: "50%",
-                      background: "#1e3a5f",
-                      color: "#7dd3fc",
+                      background: "#DCE4EE",
+                      color: "#0B6C86",
                       textAlign: "center",
                       lineHeight: "28px",
                       fontSize: 12,
@@ -297,19 +297,19 @@ export default function ProgressionLevelsPanel() {
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                       <span style={{ fontSize: 18 }}>{RANK_BADGE[lvl.levelNumber] ?? "⭐"}</span>
                       <div>
-                        <div style={{ color: "#f1f5f9", fontWeight: 600, fontSize: 14 }}>{lvl.name}</div>
-                        <div style={{ color: "#475569", fontSize: 11 }}>{lvl.badgeKey}</div>
+                        <div style={{ color: "#0D1F33", fontWeight: 600, fontSize: 14 }}>{lvl.name}</div>
+                        <div style={{ color: "#5F7491", fontSize: 11 }}>{lvl.badgeKey}</div>
                       </div>
                     </div>
                   </td>
-                  <td style={{ ...td, color: "#fcd34d", fontWeight: 700, fontSize: 13 }}>
+                  <td style={{ ...td, color: "#8A5A0B", fontWeight: 700, fontSize: 13 }}>
                     {xpLabel(lvl.minXP)}
                   </td>
-                  <td style={{ ...td, color: "#94a3b8", fontSize: 13 }}>
+                  <td style={{ ...td, color: "#3C516C", fontSize: 13 }}>
                     {daysEstimate(lvl.minXP)}
                   </td>
-                  <td style={{ ...td, color: "#94a3b8", fontSize: 13, maxWidth: 220 }}>
-                    {lvl.description || <span style={{ color: "#475569" }}>—</span>}
+                  <td style={{ ...td, color: "#3C516C", fontSize: 13, maxWidth: 220 }}>
+                    {lvl.description || <span style={{ color: "#5F7491" }}>—</span>}
                   </td>
                   <td style={td}>
                     <span style={{
@@ -317,8 +317,8 @@ export default function ProgressionLevelsPanel() {
                       borderRadius: 999,
                       fontSize: 11,
                       fontWeight: 700,
-                      background: lvl.active ? "#052e16" : "#1c1917",
-                      color:      lvl.active ? "#4ade80" : "#78716c",
+                      background: lvl.active ? "#E3F7EC" : "#FFF6E8",
+                      color:      lvl.active ? "#178A55" : "#5F7491",
                     }}>
                       {lvl.active ? "Active" : "Hidden"}
                     </span>
@@ -353,19 +353,19 @@ export default function ProgressionLevelsPanel() {
       {/* Modal */}
       {modal && (
         <div style={{
-          position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)",
+          position: "fixed", inset: 0, background: "rgba(11,22,38,0.55)",
           display: "flex", alignItems: "center", justifyContent: "center",
           zIndex: 1000,
         }}>
           <div style={{
-            background: "#0f1f35",
-            border: "1px solid #1e3a5f",
+            background: "#F4F7FB",
+            border: "1px solid #DCE4EE",
             borderRadius: 12,
             padding: 28,
             width: "100%",
             maxWidth: 480,
           }}>
-            <h3 style={{ margin: "0 0 20px", color: "#f1f5f9" }}>
+            <h3 style={{ margin: "0 0 20px", color: "#0D1F33" }}>
               {modal.mode === "create" ? "➕ Add Progression Level" : `✏️ Edit — ${modal.form.name}`}
             </h3>
 
@@ -379,7 +379,7 @@ export default function ProgressionLevelsPanel() {
               ]
             ).map(({ label, key, type, disabled }) => (
               <div key={key} style={{ marginBottom: 14 }}>
-                <label style={{ display: "block", color: "#94a3b8", fontSize: 12, marginBottom: 4 }}>
+                <label style={{ display: "block", color: "#3C516C", fontSize: 12, marginBottom: 4 }}>
                   {label}
                 </label>
                 <input
@@ -395,10 +395,10 @@ export default function ProgressionLevelsPanel() {
                   }) : null)}
                   style={{
                     width: "100%",
-                    background: disabled ? "#0b1624" : "#0b1624",
-                    border: "1px solid #1e3a5f",
+                    background: disabled ? "#F4F7FB" : "#F4F7FB",
+                    border: "1px solid #DCE4EE",
                     borderRadius: 6,
-                    color: disabled ? "#475569" : "#e2e8f0",
+                    color: disabled ? "#5F7491" : "#0D1F33",
                     padding: "8px 10px",
                     fontSize: 14,
                     boxSizing: "border-box",
@@ -409,7 +409,7 @@ export default function ProgressionLevelsPanel() {
             ))}
 
             <div style={{ marginBottom: 20 }}>
-              <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", color: "#94a3b8", fontSize: 13 }}>
+              <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", color: "#3C516C", fontSize: 13 }}>
                 <input
                   type="checkbox"
                   checked={modal.form.active}

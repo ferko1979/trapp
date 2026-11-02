@@ -56,7 +56,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:textColor="#FCD34D"
+                        android:textColor="@color/accent_gold"
                         android:textSize="15sp"
                         android:text="⚡ 0" />
 
@@ -66,7 +66,7 @@
                         android:layout_height="18dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginEnd="12dp"
-                        android:background="#1E2D45" />
+                        android:background="@color/bg_surface2" />
 
                     <!-- Identity -->
                     <TextView
@@ -76,7 +76,7 @@
                         android:maxWidth="160dp"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:textColor="#94A3B8"
+                        android:textColor="@color/text_secondary"
                         android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -194,7 +194,7 @@
                         android:layout_height="wrap_content"
                         android:text="---"
                         android:background="@drawable/bg_rounded_dark"
-                        android:backgroundTint="#FFECC8"
+                        android:backgroundTint="@color/accent_gold_20"
                         android:paddingHorizontal="6dp"
                         android:paddingVertical="1dp"
                         android:textColor="@color/accent_gold"
@@ -219,10 +219,10 @@
                         android:layout_gravity="end"
                         android:text="Free"
                         android:background="@drawable/bg_rounded_dark"
-                        android:backgroundTint="#1A3A5C"
+                        android:backgroundTint="@color/accent_cyan_20"
                         android:paddingHorizontal="6dp"
                         android:paddingVertical="1dp"
-                        android:textColor="#7DD3FC"
+                        android:textColor="@color/accent_cyan"
                         android:textSize="9sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -249,11 +249,11 @@
         android:layout_gravity="top|center_horizontal"
         android:layout_marginTop="86dp"
         android:background="@drawable/bg_rounded_dark"
-        android:backgroundTint="#CC1E3A5F"
+        android:backgroundTint="@color/scrim_dark"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp"
         android:text="@string/hint_tap_map_to_place"
-        android:textColor="#94A3B8"
+        android:textColor="@color/text_secondary"
         android:textSize="12sp"
         android:elevation="12dp"
         android:visibility="gone" />
@@ -282,7 +282,7 @@
         android:layout_gravity="top|end"
         android:layout_marginTop="105dp"
         android:layout_marginEnd="16dp"
-        app:cardBackgroundColor="#CCFFFFFF"
+        app:cardBackgroundColor="@color/scrim_dark"
         app:cardCornerRadius="50dp"
         app:cardElevation="15dp"
         app:strokeColor="@color/border_default"
@@ -321,7 +321,7 @@
         android:layout_gravity="top|end"
         android:layout_marginTop="213dp"
         android:layout_marginEnd="42dp"
-        app:cardBackgroundColor="#CC000D1A"
+        app:cardBackgroundColor="#CC070E1A"
         app:cardCornerRadius="24dp"
         app:cardElevation="8dp"
         app:strokeColor="@color/border_default"
@@ -333,7 +333,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:src="@android:drawable/ic_menu_rotate"
-            android:tint="#FF60A5FA"
+            android:tint="@color/accent_cyan"
             android:padding="10dp"
             android:contentDescription="Reload map" />
 
@@ -347,7 +347,7 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="130dp"
         android:elevation="2dp"
-        android:background="#0D1626"
+        android:background="@color/bg_surface"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
         android:visibility="gone">
@@ -357,7 +357,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="top"
-            android:background="#1E3A5F" />
+            android:background="@color/border_default" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/bannerAdView"
@@ -446,7 +446,7 @@
             android:visibility="gone"
             app:srcCompat="@drawable/ic_disassemble"
             app:fabSize="normal"
-            app:backgroundTint="#BFF59E0B"
+            app:backgroundTint="#BFFFB648"
             app:tint="@color/white"
             android:contentDescription="Disassemble Nearby Trap"
             app:borderWidth="0dp"
@@ -460,7 +460,7 @@
             android:layout_marginBottom="8dp"
             app:srcCompat="@android:drawable/ic_menu_mylocation"
             app:fabSize="normal"
-            app:backgroundTint="#BF0066CC"
+            app:backgroundTint="@color/accent_deep"
             app:tint="@color/white"
             android:contentDescription="@string/action_my_location"
             app:borderWidth="0dp"
@@ -474,7 +474,7 @@
             android:layout_marginBottom="8dp"
             app:srcCompat="@drawable/ic_plus"
             app:fabSize="mini"
-            app:backgroundTint="#BF0066CC"
+            app:backgroundTint="@color/accent_deep"
             app:tint="@color/white"
             android:contentDescription="@string/action_zoom_in"
             app:borderWidth="0dp"
@@ -487,7 +487,7 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_minus"
             app:fabSize="mini"
-            app:backgroundTint="#BF0066CC"
+            app:backgroundTint="@color/accent_deep"
             app:tint="@color/white"
             android:contentDescription="@string/action_zoom_out"
             app:borderWidth="0dp"
@@ -621,7 +621,7 @@
         android:id="@+id/loadingOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EE000D1A"
+        android:background="#EE070E1A"
         android:elevation="300dp"
         android:visibility="visible">
 
@@ -636,7 +636,7 @@
             <ProgressBar
                 android:layout_width="52dp"
                 android:layout_height="52dp"
-                android:indeterminateTint="#3B82F6" />
+                android:indeterminateTint="@color/accent_cyan" />
 
             <TextView
                 android:id="@+id/tvLoadingStatus"
@@ -644,7 +644,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/label_loading"
-                android:textColor="#64748B"
+                android:textColor="@color/text_muted"
                 android:textSize="13sp"
                 android:letterSpacing="0.05" />
         </LinearLayout>

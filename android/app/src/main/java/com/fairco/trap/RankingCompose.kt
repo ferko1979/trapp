@@ -1,6 +1,7 @@
 package com.fairco.trap
 
 import androidx.compose.foundation.background
+import com.fairco.trap.ui.theme.Radar
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -51,13 +52,13 @@ sealed class LeaderboardState {
 fun RankSummaryCard(summary: RankSummary) {
     Card(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF0A1628)),
+        colors = CardDefaults.cardColors(containerColor = Radar.Bg),
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(
                 stringResource(R.string.label_rank_summary),
-                color = Color(0xFF94A3B8),
+                color = Radar.TextSec,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 1.sp
@@ -69,34 +70,34 @@ fun RankSummaryCard(summary: RankSummary) {
                 RankChip(
                     label = "⚡",
                     value = stringResource(R.string.label_score_pts, summary.score),
-                    color = Color(0xFFFCD34D)
+                    color = Radar.Gold
                 )
                 if (summary.globalRank != null && summary.globalTotal != null) {
                     RankChip(
                         label = "🌍",
                         value = "#${summary.globalRank}/${summary.globalTotal}",
-                        color = Color(0xFF3B82F6)
+                        color = Radar.Accent
                     )
                 }
                 if (summary.hasFriends && summary.friendsRank != null && summary.friendsTotal != null) {
                     RankChip(
                         label = "👥",
                         value = "#${summary.friendsRank}/${summary.friendsTotal}",
-                        color = Color(0xFF22C55E)
+                        color = Radar.Safe
                     )
                 }
                 if (summary.allyRank != null && summary.allyTotal != null) {
                     RankChip(
                         label = "🤝",
                         value = "#${summary.allyRank}/${summary.allyTotal}",
-                        color = Color(0xFFF59E0B)
+                        color = Radar.Gold
                     )
                 }
             }
             if (!summary.allyGroupName.isNullOrBlank()) {
                 Text(
                     stringResource(R.string.label_alliance_name, summary.allyGroupName),
-                    color = Color(0xFFF59E0B),
+                    color = Radar.Gold,
                     fontSize = 11.sp
                 )
             }
@@ -117,14 +118,14 @@ fun LeaderboardTab(state: LeaderboardState, myUid: String) {
     when (state) {
         is LeaderboardState.Loading -> {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(color = Color(0xFF3B82F6))
+                CircularProgressIndicator(color = Radar.Accent)
             }
         }
         is LeaderboardState.Empty -> {
             Box(modifier = Modifier.fillMaxSize().padding(32.dp), contentAlignment = Alignment.Center) {
                 Text(
                     state.message,
-                    color = Color(0xFF64748B),
+                    color = Radar.TextMuted,
                     fontSize = 15.sp,
                     textAlign = TextAlign.Center
                 )
@@ -132,7 +133,7 @@ fun LeaderboardTab(state: LeaderboardState, myUid: String) {
         }
         is LeaderboardState.Error -> {
             Box(modifier = Modifier.fillMaxSize().padding(32.dp), contentAlignment = Alignment.Center) {
-                Text(state.message, color = Color(0xFFEF4444), fontSize = 14.sp, textAlign = TextAlign.Center)
+                Text(state.message, color = Radar.Trap, fontSize = 14.sp, textAlign = TextAlign.Center)
             }
         }
         is LeaderboardState.Loaded -> {
@@ -140,7 +141,7 @@ fun LeaderboardTab(state: LeaderboardState, myUid: String) {
                 state.subtitle?.let {
                     Text(
                         it,
-                        color = Color(0xFFF59E0B),
+                        color = Radar.Gold,
                         fontSize = 12.sp,
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
                     )
@@ -148,7 +149,7 @@ fun LeaderboardTab(state: LeaderboardState, myUid: String) {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     itemsIndexed(state.entries) { _, entry ->
                         LeaderboardRow(entry = entry, isMe = entry.uid == myUid)
-                        HorizontalDivider(color = Color(0xFF1E2D45), thickness = 0.5.dp)
+                        HorizontalDivider(color = Radar.Surface2, thickness = 0.5.dp)
                     }
                 }
             }
@@ -158,12 +159,12 @@ fun LeaderboardTab(state: LeaderboardState, myUid: String) {
 
 @Composable
 private fun LeaderboardRow(entry: LeaderboardEntry, isMe: Boolean) {
-    val bgColor = if (isMe) Color(0xFF0F2540) else Color.Transparent
+    val bgColor = if (isMe) Radar.Surface2 else Color.Transparent
     val rankColor = when (entry.rank) {
-        1 -> Color(0xFFFFD700)
+        1 -> Radar.Gold
         2 -> Color(0xFFC0C0C0)
         3 -> Color(0xFFCD7F32)
-        else -> Color(0xFF64748B)
+        else -> Radar.TextMuted
     }
 
     Row(
@@ -178,7 +179,7 @@ private fun LeaderboardRow(entry: LeaderboardEntry, isMe: Boolean) {
             modifier = Modifier
                 .size(32.dp)
                 .clip(CircleShape)
-                .background(if (entry.rank <= 3) rankColor.copy(alpha = 0.15f) else Color(0xFF1E2D45)),
+                .background(if (entry.rank <= 3) rankColor.copy(alpha = 0.15f) else Radar.Surface2),
             contentAlignment = Alignment.Center
         ) {
             Text(
@@ -195,7 +196,7 @@ private fun LeaderboardRow(entry: LeaderboardEntry, isMe: Boolean) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     entry.displayName,
-                    color = if (isMe) Color(0xFF93C5FD) else Color(0xFFE2E8F0),
+                    color = if (isMe) Radar.Accent else Radar.Text,
                     fontSize = 14.sp,
                     fontWeight = if (isMe) FontWeight.Bold else FontWeight.Normal
                 )
@@ -203,7 +204,7 @@ private fun LeaderboardRow(entry: LeaderboardEntry, isMe: Boolean) {
                     Spacer(Modifier.width(6.dp))
                     Text(
                         stringResource(R.string.label_rank_you),
-                        color = Color(0xFF3B82F6),
+                        color = Radar.Accent,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -211,7 +212,7 @@ private fun LeaderboardRow(entry: LeaderboardEntry, isMe: Boolean) {
             }
             Text(
                 stringResource(R.string.label_captures_count, entry.captureCount),
-                color = Color(0xFF64748B),
+                color = Radar.TextMuted,
                 fontSize = 11.sp
             )
         }
@@ -219,7 +220,7 @@ private fun LeaderboardRow(entry: LeaderboardEntry, isMe: Boolean) {
         // Score
         Text(
             stringResource(R.string.label_score_pts, entry.score),
-            color = Color(0xFFFCD34D),
+            color = Radar.Gold,
             fontSize = 13.sp,
             fontWeight = FontWeight.Bold
         )

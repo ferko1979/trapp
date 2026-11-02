@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="#0F172A"
+        android:background="@color/bg_deep"
         android:paddingVertical="20dp"
         android:paddingHorizontal="24dp">
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Set traps. Catch friends."
-            android:textColor="#F1F5F9"
+            android:textColor="@color/text_primary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Invite your contacts to join TRAPP"
-            android:textColor="#64748B"
+            android:textColor="@color/text_muted"
             android:textSize="13sp"
             android:layout_marginTop="4dp"/>
     </LinearLayout>
@@ -61,7 +61,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="4dp"
         app:startIconDrawable="@drawable/ic_search"
-        app:hintTextColor="#64748B"
+        app:hintTextColor="@color/text_muted"
         android:hint="Search contacts…">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -86,7 +86,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textColor="#64748B"
+            android:textColor="@color/text_muted"
             android:textSize="12sp"
             tools:text="0 selected"/>
 
@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select All"
-            android:textColor="#3B82F6"
+            android:textColor="@color/accent_cyan"
             android:textSize="12sp"/>
 
         <Button
@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Clear"
-            android:textColor="#64748B"
+            android:textColor="@color/text_muted"
             android:textSize="12sp"/>
     </LinearLayout>
 
@@ -124,7 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="12dp"
-        app:cardBackgroundColor="#1E293B"
+        app:cardBackgroundColor="@color/bg_surface"
         app:cardCornerRadius="0dp">
 
         <LinearLayout
@@ -138,7 +138,7 @@
                 android:id="@+id/tvMessagePreview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#94A3B8"
+                android:textColor="@color/text_secondary"
                 android:textSize="12sp"
                 android:maxLines="2"
                 android:ellipsize="end"
@@ -159,7 +159,7 @@
                     android:layout_weight="1"
                     android:layout_height="44dp"
                     android:text="📱 SMS"
-                    android:backgroundTint="#1E3A8A"
+                    android:backgroundTint="@color/accent_deep"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
                     android:enabled="false"
@@ -215,7 +215,7 @@
                     android:layout_weight="1"
                     android:layout_height="44dp"
                     android:text="✉ Email"
-                    android:backgroundTint="#475569"
+                    android:backgroundTint="#FF3C516C"
                     android:textColor="#FFFFFF"
                     android:textSize="11sp"
                     android:enabled="false"

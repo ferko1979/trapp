@@ -68,8 +68,8 @@ const TEMPLATE_TYPES = [
 // ── Shared styles ─────────────────────────────────────────────────────────────
 
 const card: React.CSSProperties = {
-  background: "#0a1628",
-  border: "1px solid #1e3a5f",
+  background: "#F4F7FB",
+  border: "1px solid #DCE4EE",
   borderRadius: 12,
   overflow: "hidden",
 };
@@ -77,10 +77,10 @@ const card: React.CSSProperties = {
 const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "9px 12px",
-  background: "#060e1a",
-  border: "1px solid #1e3a5f",
+  background: "#F4F7FB",
+  border: "1px solid #DCE4EE",
   borderRadius: 8,
-  color: "#e2e8f0",
+  color: "#0D1F33",
   fontSize: "0.875rem",
   outline: "none",
   boxSizing: "border-box",
@@ -90,7 +90,7 @@ const labelStyle: React.CSSProperties = {
   display: "block",
   fontSize: "0.73rem",
   fontWeight: 600,
-  color: "#64748b",
+  color: "#5F7491",
   textTransform: "uppercase",
   letterSpacing: "0.07em",
   marginBottom: 6,
@@ -98,10 +98,10 @@ const labelStyle: React.CSSProperties = {
 
 const btn = (primary?: boolean, danger?: boolean): React.CSSProperties => ({
   padding: "8px 16px",
-  background: danger ? "#7f1d1d" : primary ? "#1d4ed8" : "transparent",
-  border: `1px solid ${danger ? "#dc2626" : primary ? "#3b82f6" : "#1e3a5f"}`,
+  background: danger ? "#F5C2C9" : primary ? "#0B6C86" : "transparent",
+  border: `1px solid ${danger ? "#C8283B" : primary ? "#0B6C86" : "#DCE4EE"}`,
   borderRadius: 7,
-  color: danger ? "#fca5a5" : primary ? "#fff" : "#94a3b8",
+  color: danger ? "#C8283B" : primary ? "#fff" : "#3C516C",
   fontWeight: 600,
   fontSize: "0.8rem",
   cursor: "pointer",
@@ -170,8 +170,8 @@ export default function EmailTemplatesPanel() {
               padding: "10px 20px",
               borderRadius: 8,
               fontSize: "0.875rem",
-              background: tab === t ? "#1d4ed8" : "transparent",
-              color: tab === t ? "#fff" : "#64748b",
+              background: tab === t ? "#0B6C86" : "transparent",
+              color: tab === t ? "#fff" : "#5F7491",
             }}
           >
             {label}
@@ -196,13 +196,13 @@ export default function EmailTemplatesPanel() {
       </div>
 
       {msg && (
-        <div style={{ padding: "10px 14px", borderRadius: 8, fontSize: "0.875rem", background: "#3b0000", border: "1px solid #7f1d1d", color: "#fca5a5" }}>
+        <div style={{ padding: "10px 14px", borderRadius: 8, fontSize: "0.875rem", background: "#FDE7EA", border: "1px solid #F5C2C9", color: "#C8283B" }}>
           {msg}
         </div>
       )}
 
       {loading ? (
-        <div style={{ color: "#64748b", padding: 20 }}>Loading templates…</div>
+        <div style={{ color: "#5F7491", padding: 20 }}>Loading templates…</div>
       ) : tab === "system" ? (
         <SystemTab
           systemTemplates={systemTemplates}
@@ -308,13 +308,13 @@ function SystemTab({
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       {/* Tools card */}
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
           ⚙️ System Template Tools
         </div>
         <div style={{ padding: "16px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
-          <p style={{ color: "#94a3b8", fontSize: "0.875rem", margin: 0, lineHeight: 1.7 }}>
+          <p style={{ color: "#3C516C", fontSize: "0.875rem", margin: 0, lineHeight: 1.7 }}>
             System templates replace Firebase's built-in emails. The Android app calls{" "}
-            <code style={{ color: "#c4b5fd" }}>sendPasswordResetCustom</code> which picks the
+            <code style={{ color: "#6D3FC9" }}>sendPasswordResetCustom</code> which picks the
             user's locale and falls back to English. Seed English defaults first, then AI-translate.
           </p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
@@ -333,7 +333,7 @@ function SystemTab({
               placeholder="test@example.com"
               style={{ ...inputStyle, flex: 1, maxWidth: 280 }}
             />
-            <span style={{ color: "#64748b", fontSize: "0.8rem" }}>← test email address</span>
+            <span style={{ color: "#5F7491", fontSize: "0.8rem" }}>← test email address</span>
           </div>
         </div>
       </div>
@@ -341,16 +341,16 @@ function SystemTab({
       {/* AI translate results */}
       {translateResults && (
         <div style={{ ...card }}>
-          <div style={{ padding: "12px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.85rem" }}>
+          <div style={{ padding: "12px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.85rem" }}>
             AI Translation Results
           </div>
           <div style={{ padding: "12px 20px", display: "flex", gap: 10, flexWrap: "wrap" }}>
             {translateResults.map((r) => (
               <div key={r.locale} style={{
                 padding: "6px 12px", borderRadius: 6, fontSize: "0.8rem",
-                background: r.status === "error" ? "#3b0000" : "#052e16",
-                border: `1px solid ${r.status === "error" ? "#7f1d1d" : "#14532d"}`,
-                color: r.status === "error" ? "#fca5a5" : "#4ade80",
+                background: r.status === "error" ? "#FDE7EA" : "#E3F7EC",
+                border: `1px solid ${r.status === "error" ? "#F5C2C9" : "#BFE8D2"}`,
+                color: r.status === "error" ? "#C8283B" : "#178A55",
               }}>
                 {LOCALE_FLAGS[r.locale]} {r.locale.toUpperCase()} — {r.status}
                 {r.error ? `: ${r.error}` : ""}
@@ -369,13 +369,13 @@ function SystemTab({
         return (
           <div key={key} style={card}>
             <div style={{
-              padding: "14px 20px", borderBottom: "1px solid #1e3a5f",
+              padding: "14px 20px", borderBottom: "1px solid #DCE4EE",
               display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8,
             }}>
               <div>
-                <div style={{ fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>{label}</div>
-                <div style={{ color: "#64748b", fontSize: "0.75rem", marginTop: 2 }}>
-                  type: <code style={{ color: "#c4b5fd" }}>{key}</code>
+                <div style={{ fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>{label}</div>
+                <div style={{ color: "#5F7491", fontSize: "0.75rem", marginTop: 2 }}>
+                  type: <code style={{ color: "#6D3FC9" }}>{key}</code>
                 </div>
               </div>
               {hasEn && (
@@ -391,8 +391,8 @@ function SystemTab({
 
             <div style={{ padding: "16px 20px" }}>
               {typeTemplates.length === 0 ? (
-                <div style={{ color: "#475569", fontSize: "0.875rem" }}>
-                  No templates yet — click <strong style={{ color: "#e2e8f0" }}>Seed English Defaults</strong>.
+                <div style={{ color: "#5F7491", fontSize: "0.875rem" }}>
+                  No templates yet — click <strong style={{ color: "#0D1F33" }}>Seed English Defaults</strong>.
                 </div>
               ) : (
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
@@ -403,19 +403,19 @@ function SystemTab({
                         key={locale}
                         style={{
                           minWidth: 130, flex: "1 1 130px", maxWidth: 160,
-                          background: t ? "#0d1b2e" : "#060e1a",
-                          border: `1px solid ${t ? "#1e3a5f" : "#0f2035"}`,
+                          background: t ? "#F4F7FB" : "#F4F7FB",
+                          border: `1px solid ${t ? "#DCE4EE" : "#F4F7FB"}`,
                           borderRadius: 8, padding: "12px 14px",
                           display: "flex", flexDirection: "column", gap: 8,
                         }}
                       >
                         <div style={{ fontSize: "1.4rem" }}>{LOCALE_FLAGS[locale]}</div>
-                        <div style={{ fontWeight: 700, color: t ? "#e2e8f0" : "#334155", fontSize: "0.85rem" }}>
+                        <div style={{ fontWeight: 700, color: t ? "#0D1F33" : "#DCE4EE", fontSize: "0.85rem" }}>
                           {locale.toUpperCase()}
                         </div>
                         {t ? (
                           <>
-                            <div style={{ color: "#64748b", fontSize: "0.72rem", lineHeight: 1.4 }}>
+                            <div style={{ color: "#5F7491", fontSize: "0.72rem", lineHeight: 1.4 }}>
                               {t.subject.length > 40 ? t.subject.slice(0, 40) + "…" : t.subject}
                             </div>
                             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -435,7 +435,7 @@ function SystemTab({
                             </div>
                           </>
                         ) : (
-                          <div style={{ color: "#334155", fontSize: "0.75rem" }}>missing</div>
+                          <div style={{ color: "#DCE4EE", fontSize: "0.75rem" }}>missing</div>
                         )}
                       </div>
                     );
@@ -508,20 +508,20 @@ function CustomTab({
           placeholder="test@example.com"
           style={{ ...inputStyle, flex: 1, maxWidth: 280 }}
         />
-        <span style={{ color: "#64748b", fontSize: "0.8rem" }}>← email for test sends</span>
+        <span style={{ color: "#5F7491", fontSize: "0.8rem" }}>← email for test sends</span>
       </div>
 
       {templates.length === 0 ? (
-        <div style={{ ...card, padding: "24px 20px", color: "#475569", fontSize: "0.875rem" }}>
-          No custom templates yet. Click <strong style={{ color: "#e2e8f0" }}>+ New Template</strong> above.
+        <div style={{ ...card, padding: "24px 20px", color: "#5F7491", fontSize: "0.875rem" }}>
+          No custom templates yet. Click <strong style={{ color: "#0D1F33" }}>+ New Template</strong> above.
         </div>
       ) : (
         <div style={card}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
-              <tr style={{ borderBottom: "1px solid #1e3a5f" }}>
+              <tr style={{ borderBottom: "1px solid #DCE4EE" }}>
                 {["Name", "Type", "Locale", "Subject", "Updated", "Actions"].map((h) => (
-                  <th key={h} style={{ padding: "10px 16px", textAlign: "left", color: "#64748b", fontSize: "0.73rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+                  <th key={h} style={{ padding: "10px 16px", textAlign: "left", color: "#5F7491", fontSize: "0.73rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em" }}>
                     {h}
                   </th>
                 ))}
@@ -529,14 +529,14 @@ function CustomTab({
             </thead>
             <tbody>
               {templates.map((t, i) => (
-                <tr key={t.id} style={{ borderBottom: i < templates.length - 1 ? "1px solid #0f2035" : "none" }}>
-                  <td style={{ padding: "12px 16px", color: "#e2e8f0", fontWeight: 600, fontSize: "0.875rem" }}>{t.name}</td>
-                  <td style={{ padding: "12px 16px", color: "#94a3b8", fontSize: "0.8rem" }}>{t.type}</td>
+                <tr key={t.id} style={{ borderBottom: i < templates.length - 1 ? "1px solid #F4F7FB" : "none" }}>
+                  <td style={{ padding: "12px 16px", color: "#0D1F33", fontWeight: 600, fontSize: "0.875rem" }}>{t.name}</td>
+                  <td style={{ padding: "12px 16px", color: "#3C516C", fontSize: "0.8rem" }}>{t.type}</td>
                   <td style={{ padding: "12px 16px", fontSize: "1rem" }}>{LOCALE_FLAGS[t.locale] ?? "🌐"} {t.locale}</td>
-                  <td style={{ padding: "12px 16px", color: "#64748b", fontSize: "0.8rem", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  <td style={{ padding: "12px 16px", color: "#5F7491", fontSize: "0.8rem", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {t.subject}
                   </td>
-                  <td style={{ padding: "12px 16px", color: "#475569", fontSize: "0.75rem", whiteSpace: "nowrap" }}>
+                  <td style={{ padding: "12px 16px", color: "#5F7491", fontSize: "0.75rem", whiteSpace: "nowrap" }}>
                     {t.updatedAt ? new Date(t.updatedAt).toLocaleDateString() : "—"}
                   </td>
                   <td style={{ padding: "12px 16px" }}>
@@ -637,13 +637,13 @@ function EditorView({
     <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 860 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <button onClick={onCancel} style={btn()}>← Back</button>
-        <h2 style={{ margin: 0, color: "#e2e8f0", fontSize: "1.1rem", fontWeight: 700 }}>
+        <h2 style={{ margin: 0, color: "#0D1F33", fontSize: "1.1rem", fontWeight: 700 }}>
           {savedId && initial.id ? "Edit Template" : "New Template"}
         </h2>
       </div>
 
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.875rem" }}>Template Settings</div>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.875rem" }}>Template Settings</div>
         <div style={{ padding: "16px 20px", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
           <div>
             <label style={labelStyle}>Name</label>
@@ -669,14 +669,14 @@ function EditorView({
       </div>
 
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <span style={{ fontWeight: 700, color: "#e2e8f0", fontSize: "0.875rem" }}>HTML Body</span>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ fontWeight: 700, color: "#0D1F33", fontSize: "0.875rem" }}>HTML Body</span>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
             {VARS.map((v) => (
               <button
                 key={v}
                 onClick={() => setBodyHtml((prev) => prev + v)}
-                style={{ ...btn(), padding: "3px 8px", fontSize: "0.72rem", color: "#c4b5fd", borderColor: "#4c1d95" }}
+                style={{ ...btn(), padding: "3px 8px", fontSize: "0.72rem", color: "#6D3FC9", borderColor: "#EFE8FB" }}
               >
                 {v}
               </button>
@@ -694,7 +694,7 @@ function EditorView({
       </div>
 
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.875rem" }}>Plain Text Body</div>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.875rem" }}>Plain Text Body</div>
         <div style={{ padding: "14px 20px" }}>
           <textarea
             value={bodyText}
@@ -707,7 +707,7 @@ function EditorView({
       </div>
 
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.875rem" }}>Send & Save</div>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.875rem" }}>Send & Save</div>
         <div style={{ padding: "16px 20px", display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
           <button onClick={() => void save()} disabled={saving} style={btn(true)}>
             {saving ? "⏳ Saving…" : "💾 Save"}
@@ -727,9 +727,9 @@ function EditorView({
         {msg && (
           <div style={{
             margin: "0 20px 16px", padding: "10px 14px", borderRadius: 8, fontSize: "0.875rem",
-            background: msg.startsWith("Error") ? "#3b0000" : "#052e16",
-            border: `1px solid ${msg.startsWith("Error") ? "#7f1d1d" : "#14532d"}`,
-            color: msg.startsWith("Error") ? "#fca5a5" : "#4ade80",
+            background: msg.startsWith("Error") ? "#FDE7EA" : "#E3F7EC",
+            border: `1px solid ${msg.startsWith("Error") ? "#F5C2C9" : "#BFE8D2"}`,
+            color: msg.startsWith("Error") ? "#C8283B" : "#178A55",
           }}>
             {msg}
           </div>
@@ -799,9 +799,9 @@ function Toggle({ checked, onChange, disabled, label }: { checked: boolean; onCh
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
         disabled={disabled}
-        style={{ width: 16, height: 16, accentColor: "#3b82f6" }}
+        style={{ width: 16, height: 16, accentColor: "#0B6C86" }}
       />
-      <span style={{ color: "#e2e8f0", fontSize: "0.875rem" }}>
+      <span style={{ color: "#0D1F33", fontSize: "0.875rem" }}>
         {checked ? "✅" : "⬜"} {label}
       </span>
     </label>
@@ -864,7 +864,7 @@ function AutomationTab({ setMsg }: { setMsg: (m: string) => void }) {
     }
   }
 
-  if (loading) return <div style={{ color: "#64748b", padding: 20 }}>Loading…</div>;
+  if (loading) return <div style={{ color: "#5F7491", padding: 20 }}>Loading…</div>;
 
   const s = settings!;
 
@@ -873,12 +873,12 @@ function AutomationTab({ setMsg }: { setMsg: (m: string) => void }) {
 
       {/* Purchase email */}
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
           🧾 Purchase Confirmation Emails
         </div>
         <div style={{ padding: "16px 20px", display: "flex", flexDirection: "column", gap: 12 }}>
-          <p style={{ color: "#94a3b8", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
-            Sent after every successful Revolut / Stripe payment. Uses the <strong style={{ color: "#e2e8f0" }}>Purchase Confirmation</strong> template.
+          <p style={{ color: "#3C516C", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
+            Sent after every successful Revolut / Stripe payment. Uses the <strong style={{ color: "#0D1F33" }}>Purchase Confirmation</strong> template.
           </p>
           <Toggle
             checked={s.purchaseEmailEnabled}
@@ -891,11 +891,11 @@ function AutomationTab({ setMsg }: { setMsg: (m: string) => void }) {
 
       {/* Registration reminders */}
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
           📧 Registration Reminders (Unverified Accounts)
         </div>
         <div style={{ padding: "16px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
-          <p style={{ color: "#94a3b8", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
+          <p style={{ color: "#3C516C", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
             Sent to users who signed up but haven't verified their email. Each stage fires once per user (one-time). Each email includes a fresh verification link.
           </p>
           <Toggle
@@ -905,7 +905,7 @@ function AutomationTab({ setMsg }: { setMsg: (m: string) => void }) {
             label="Enable registration reminders (master toggle)"
           />
           {s.regReminderEnabled && (
-            <div style={{ paddingLeft: 20, display: "flex", flexDirection: "column", gap: 10, borderLeft: "2px solid #1e3a5f" }}>
+            <div style={{ paddingLeft: 20, display: "flex", flexDirection: "column", gap: 10, borderLeft: "2px solid #DCE4EE" }}>
               <Toggle checked={s.regReminder1dEnabled} onChange={(v) => void save({ regReminder1dEnabled: v })} disabled={saving} label={'1-day reminder — "Don\'t forget to verify"'} />
               <Toggle checked={s.regReminder3dEnabled} onChange={(v) => void save({ regReminder3dEnabled: v })} disabled={saving} label={'3-day reminder — "Still waiting on your verification"'} />
               <Toggle checked={s.regReminder7dEnabled} onChange={(v) => void save({ regReminder7dEnabled: v })} disabled={saving} label={'7-day final notice — "Last chance to activate"'} />
@@ -920,11 +920,11 @@ function AutomationTab({ setMsg }: { setMsg: (m: string) => void }) {
 
       {/* Inactivity emails */}
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
           😴 Inactivity Emails (Multi-Stage)
         </div>
         <div style={{ padding: "16px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
-          <p style={{ color: "#94a3b8", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
+          <p style={{ color: "#3C516C", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
             Runs daily at 09:00 Budapest time. Sends to verified users who haven't opened the app. Each stage fires once per inactivity window — if the user returns and goes inactive again, the cycle restarts. Each run sends the highest pending stage per user.
           </p>
           <Toggle
@@ -934,7 +934,7 @@ function AutomationTab({ setMsg }: { setMsg: (m: string) => void }) {
             label="Enable inactivity emails (master toggle)"
           />
           {s.inactivityEnabled && (
-            <div style={{ paddingLeft: 20, display: "flex", flexDirection: "column", gap: 10, borderLeft: "2px solid #1e3a5f" }}>
+            <div style={{ paddingLeft: 20, display: "flex", flexDirection: "column", gap: 10, borderLeft: "2px solid #DCE4EE" }}>
               <Toggle checked={s.inactivity1dEnabled} onChange={(v) => void save({ inactivity1dEnabled: v })} disabled={saving} label={'Day 1 — "Your traps are calling"'} />
               <Toggle checked={s.inactivity3dEnabled} onChange={(v) => void save({ inactivity3dEnabled: v })} disabled={saving} label={'Day 3 — "3 days without traps?"'} />
               <Toggle checked={s.inactivity7dEnabled} onChange={(v) => void save({ inactivity7dEnabled: v })} disabled={saving} label={'Day 7 — "A whole week, we miss you!"'} />
@@ -947,13 +947,13 @@ function AutomationTab({ setMsg }: { setMsg: (m: string) => void }) {
 
           {s.lastRunAt && (
             <div style={{
-              padding: "10px 14px", background: "#0d1b2e", border: "1px solid #1e3a5f",
-              borderRadius: 8, fontSize: "0.8rem", color: "#94a3b8",
+              padding: "10px 14px", background: "#F4F7FB", border: "1px solid #DCE4EE",
+              borderRadius: 8, fontSize: "0.8rem", color: "#3C516C",
               display: "flex", gap: 20, flexWrap: "wrap",
             }}>
-              <span>Last run: <strong style={{ color: "#e2e8f0" }}>{new Date(s.lastRunAt).toLocaleString()}</strong></span>
-              <span>Sent: <strong style={{ color: "#4ade80" }}>{s.lastRunSent}</strong></span>
-              <span>Failed: <strong style={{ color: s.lastRunFailed > 0 ? "#f87171" : "#64748b" }}>{s.lastRunFailed}</strong></span>
+              <span>Last run: <strong style={{ color: "#0D1F33" }}>{new Date(s.lastRunAt).toLocaleString()}</strong></span>
+              <span>Sent: <strong style={{ color: "#178A55" }}>{s.lastRunSent}</strong></span>
+              <span>Failed: <strong style={{ color: s.lastRunFailed > 0 ? "#C8283B" : "#5F7491" }}>{s.lastRunFailed}</strong></span>
             </div>
           )}
         </div>
@@ -961,11 +961,11 @@ function AutomationTab({ setMsg }: { setMsg: (m: string) => void }) {
 
       {/* Manual trigger */}
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
           🚀 Manual Trigger
         </div>
         <div style={{ padding: "16px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
-          <p style={{ color: "#94a3b8", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
+          <p style={{ color: "#3C516C", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
             Manually run all automation emails (registration reminders + inactivity) using the current settings above.
           </p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -987,26 +987,26 @@ function AutomationTab({ setMsg }: { setMsg: (m: string) => void }) {
           {triggerResult && (
             <div style={{
               padding: "14px 16px", borderRadius: 8, fontSize: "0.875rem",
-              background: triggerResult.dryRun ? "#0d1b2e" : "#052e16",
-              border: `1px solid ${triggerResult.dryRun ? "#1e3a5f" : "#14532d"}`,
+              background: triggerResult.dryRun ? "#F4F7FB" : "#E3F7EC",
+              border: `1px solid ${triggerResult.dryRun ? "#DCE4EE" : "#BFE8D2"}`,
               display: "flex", flexDirection: "column", gap: 10,
             }}>
-              <div style={{ fontWeight: 700, color: "#e2e8f0" }}>
+              <div style={{ fontWeight: 700, color: "#0D1F33" }}>
                 {triggerResult.dryRun ? "🔍 Dry Run Result" : "✅ Send Complete"}
               </div>
-              <div style={{ display: "flex", gap: 20, flexWrap: "wrap", color: "#94a3b8" }}>
-                <span>Total {triggerResult.dryRun ? "would send" : "sent"}: <strong style={{ color: "#4ade80" }}>{triggerResult.sent}</strong></span>
-                <span>Skipped: <strong style={{ color: "#64748b" }}>{triggerResult.skipped}</strong></span>
-                {!triggerResult.dryRun && <span>Failed: <strong style={{ color: triggerResult.failed > 0 ? "#f87171" : "#64748b" }}>{triggerResult.failed}</strong></span>}
+              <div style={{ display: "flex", gap: 20, flexWrap: "wrap", color: "#3C516C" }}>
+                <span>Total {triggerResult.dryRun ? "would send" : "sent"}: <strong style={{ color: "#178A55" }}>{triggerResult.sent}</strong></span>
+                <span>Skipped: <strong style={{ color: "#5F7491" }}>{triggerResult.skipped}</strong></span>
+                {!triggerResult.dryRun && <span>Failed: <strong style={{ color: triggerResult.failed > 0 ? "#C8283B" : "#5F7491" }}>{triggerResult.failed}</strong></span>}
               </div>
               {triggerResult.registration && (
-                <div style={{ fontSize: "0.8rem", color: "#64748b" }}>
+                <div style={{ fontSize: "0.8rem", color: "#5F7491" }}>
                   📧 Registration reminders — sent: {triggerResult.registration.sent}
                   {triggerResult.registration.breakdown && ` (1d: ${triggerResult.registration.breakdown["1d"]}, 3d: ${triggerResult.registration.breakdown["3d"]}, 7d: ${triggerResult.registration.breakdown["7d"]})`}
                 </div>
               )}
               {triggerResult.inactivity && (
-                <div style={{ fontSize: "0.8rem", color: "#64748b" }}>
+                <div style={{ fontSize: "0.8rem", color: "#5F7491" }}>
                   😴 Inactivity emails — sent: {triggerResult.inactivity.sent}
                   {triggerResult.inactivity.breakdown && ` (1d: ${triggerResult.inactivity.breakdown["1d"]}, 3d: ${triggerResult.inactivity.breakdown["3d"]}, 7d: ${triggerResult.inactivity.breakdown["7d"]})`}
                 </div>
@@ -1060,7 +1060,7 @@ function GatewayTab({ setMsg }: { setMsg: (m: string) => void }) {
     }
   }
 
-  if (loading) return <div style={{ color: "#64748b", padding: 20 }}>Loading…</div>;
+  if (loading) return <div style={{ color: "#5F7491", padding: 20 }}>Loading…</div>;
 
   const s = settings!;
 
@@ -1069,12 +1069,12 @@ function GatewayTab({ setMsg }: { setMsg: (m: string) => void }) {
 
       {/* Provider selector */}
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
           📡 Email Sending Provider
         </div>
         <div style={{ padding: "16px 20px", display: "flex", flexDirection: "column", gap: 16 }}>
-          <p style={{ color: "#94a3b8", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
-            Choose your outbound email provider. <strong style={{ color: "#e2e8f0" }}>SMTP</strong> uses environment variables set on the server (no hourly limits depends on your SMTP provider). <strong style={{ color: "#e2e8f0" }}>AWS SES</strong> has no hourly limits and scales to high volume — credentials are stored securely in Firestore.
+          <p style={{ color: "#3C516C", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
+            Choose your outbound email provider. <strong style={{ color: "#0D1F33" }}>SMTP</strong> uses environment variables set on the server (no hourly limits depends on your SMTP provider). <strong style={{ color: "#0D1F33" }}>AWS SES</strong> has no hourly limits and scales to high volume — credentials are stored securely in Firestore.
           </p>
           <div style={{ display: "flex", gap: 16 }}>
             {(["smtp", "ses"] as const).map((p) => (
@@ -1085,9 +1085,9 @@ function GatewayTab({ setMsg }: { setMsg: (m: string) => void }) {
                   value={p}
                   checked={s.emailProvider === p}
                   onChange={() => void save({ emailProvider: p })}
-                  style={{ accentColor: "#3b82f6" }}
+                  style={{ accentColor: "#0B6C86" }}
                 />
-                <span style={{ color: "#e2e8f0", fontWeight: 600 }}>{p === "ses" ? "AWS SES" : "SMTP"}</span>
+                <span style={{ color: "#0D1F33", fontWeight: 600 }}>{p === "ses" ? "AWS SES" : "SMTP"}</span>
               </label>
             ))}
           </div>
@@ -1096,25 +1096,25 @@ function GatewayTab({ setMsg }: { setMsg: (m: string) => void }) {
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {/* Source banner */}
               {s.smtpSource === "env" && (
-                <div style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px", borderRadius: 8, background: "#1c2a14", border: "1px solid #365314", fontSize: "0.8rem", color: "#86efac" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px", borderRadius: 8, background: "#E3F7EC", border: "1px solid #BFE8D2", fontSize: "0.8rem", color: "#178A55" }}>
                   <span style={{ fontSize: "1rem", flexShrink: 0 }}>ℹ️</span>
-                  <span>Values shown below are currently read from <strong>server environment variables</strong> (<code style={{ color: "#bbf7d0" }}>SMTP_*</code>). Fill in and save any field here to override it with a Firestore-stored value instead — or leave as-is to keep using the env vars.</span>
+                  <span>Values shown below are currently read from <strong>server environment variables</strong> (<code style={{ color: "#178A55" }}>SMTP_*</code>). Fill in and save any field here to override it with a Firestore-stored value instead — or leave as-is to keep using the env vars.</span>
                 </div>
               )}
               {s.smtpSource === "firestore" && (
-                <div style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px", borderRadius: 8, background: "#0c1e38", border: "1px solid #1e40af", fontSize: "0.8rem", color: "#93c5fd" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px", borderRadius: 8, background: "#F4F7FB", border: "1px solid #0B6C86", fontSize: "0.8rem", color: "#0B6C86" }}>
                   <span style={{ fontSize: "1rem", flexShrink: 0 }}>✅</span>
                   <span>SMTP settings are stored in <strong>Firestore</strong> and override any server environment variables.</span>
                 </div>
               )}
               {s.smtpSource === "none" && (
-                <div style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px", borderRadius: 8, background: "#2d1010", border: "1px solid #7f1d1d", fontSize: "0.8rem", color: "#fca5a5" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px", borderRadius: 8, background: "#FDE7EA", border: "1px solid #F5C2C9", fontSize: "0.8rem", color: "#C8283B" }}>
                   <span style={{ fontSize: "1rem", flexShrink: 0 }}>⚠️</span>
-                  <span>No SMTP configuration detected. Fill in the fields below to set up email sending, or set <code style={{ color: "#fecaca" }}>SMTP_HOST</code> as a server environment variable.</span>
+                  <span>No SMTP configuration detected. Fill in the fields below to set up email sending, or set <code style={{ color: "#C8283B" }}>SMTP_HOST</code> as a server environment variable.</span>
                 </div>
               )}
-              <p style={{ color: "#94a3b8", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
-                Enter your SMTP credentials below — they are stored securely in Firestore and override the server environment variables. Leave <strong style={{ color: "#e2e8f0" }}>Host</strong> blank to fall back to the <code style={{ color: "#7dd3fc" }}>SMTP_*</code> env vars instead.
+              <p style={{ color: "#3C516C", fontSize: "0.875rem", margin: 0, lineHeight: 1.6 }}>
+                Enter your SMTP credentials below — they are stored securely in Firestore and override the server environment variables. Leave <strong style={{ color: "#0D1F33" }}>Host</strong> blank to fall back to the <code style={{ color: "#0B6C86" }}>SMTP_*</code> env vars instead.
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 120px", gap: 10 }}>
                 <div>
@@ -1172,9 +1172,9 @@ function GatewayTab({ setMsg }: { setMsg: (m: string) => void }) {
                       type="checkbox"
                       checked={s.smtpSecure}
                       onChange={(e) => void save({ smtpSecure: e.target.checked })}
-                      style={{ accentColor: "#3b82f6", width: 16, height: 16 }}
+                      style={{ accentColor: "#0B6C86", width: 16, height: 16 }}
                     />
-                    <span style={{ color: "#e2e8f0", fontSize: "0.875rem" }}>Use TLS (port 465)</span>
+                    <span style={{ color: "#0D1F33", fontSize: "0.875rem" }}>Use TLS (port 465)</span>
                   </label>
                 </div>
               </div>
@@ -1200,15 +1200,15 @@ function GatewayTab({ setMsg }: { setMsg: (m: string) => void }) {
                   </button>
                 </div>
               </div>
-              <div style={{ background: "#0d1b2e", border: "1px solid #1e3a5f", borderRadius: 8, padding: "12px 14px", fontSize: "0.8rem", color: "#94a3b8", lineHeight: 1.7 }}>
-                <strong style={{ color: "#e2e8f0", display: "block", marginBottom: 4 }}>Common SMTP providers:</strong>
+              <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 8, padding: "12px 14px", fontSize: "0.8rem", color: "#3C516C", lineHeight: 1.7 }}>
+                <strong style={{ color: "#0D1F33", display: "block", marginBottom: 4 }}>Common SMTP providers:</strong>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px" }}>
-                  <span>Gmail: <code style={{ color: "#7dd3fc" }}>smtp.gmail.com</code> port <code style={{ color: "#7dd3fc" }}>587</code></span>
-                  <span>Outlook: <code style={{ color: "#7dd3fc" }}>smtp.office365.com</code> port <code style={{ color: "#7dd3fc" }}>587</code></span>
-                  <span>SendGrid: <code style={{ color: "#7dd3fc" }}>smtp.sendgrid.net</code> port <code style={{ color: "#7dd3fc" }}>587</code></span>
-                  <span>Mailgun: <code style={{ color: "#7dd3fc" }}>smtp.mailgun.org</code> port <code style={{ color: "#7dd3fc" }}>587</code></span>
-                  <span>Brevo: <code style={{ color: "#7dd3fc" }}>smtp-relay.brevo.com</code> port <code style={{ color: "#7dd3fc" }}>587</code></span>
-                  <span>Postmark: <code style={{ color: "#7dd3fc" }}>smtp.postmarkapp.com</code> port <code style={{ color: "#7dd3fc" }}>587</code></span>
+                  <span>Gmail: <code style={{ color: "#0B6C86" }}>smtp.gmail.com</code> port <code style={{ color: "#0B6C86" }}>587</code></span>
+                  <span>Outlook: <code style={{ color: "#0B6C86" }}>smtp.office365.com</code> port <code style={{ color: "#0B6C86" }}>587</code></span>
+                  <span>SendGrid: <code style={{ color: "#0B6C86" }}>smtp.sendgrid.net</code> port <code style={{ color: "#0B6C86" }}>587</code></span>
+                  <span>Mailgun: <code style={{ color: "#0B6C86" }}>smtp.mailgun.org</code> port <code style={{ color: "#0B6C86" }}>587</code></span>
+                  <span>Brevo: <code style={{ color: "#0B6C86" }}>smtp-relay.brevo.com</code> port <code style={{ color: "#0B6C86" }}>587</code></span>
+                  <span>Postmark: <code style={{ color: "#0B6C86" }}>smtp.postmarkapp.com</code> port <code style={{ color: "#0B6C86" }}>587</code></span>
                 </div>
               </div>
             </div>
@@ -1274,13 +1274,13 @@ function GatewayTab({ setMsg }: { setMsg: (m: string) => void }) {
                 </div>
               </div>
               <div style={{ gridColumn: "1 / -1" }}>
-                <div style={{ background: "#0d1b2e", border: "1px solid #1e3a5f", borderRadius: 8, padding: "12px 14px", fontSize: "0.8rem", color: "#94a3b8", lineHeight: 1.6 }}>
-                  <strong style={{ color: "#e2e8f0", display: "block", marginBottom: 4 }}>SES setup checklist:</strong>
+                <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 8, padding: "12px 14px", fontSize: "0.8rem", color: "#3C516C", lineHeight: 1.6 }}>
+                  <strong style={{ color: "#0D1F33", display: "block", marginBottom: 4 }}>SES setup checklist:</strong>
                   <ul style={{ margin: 0, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 3 }}>
                     <li>Verify your "From" domain or email in AWS SES console</li>
-                    <li>Create an IAM user with <code style={{ color: "#7dd3fc" }}>ses:SendRawEmail</code> permission</li>
+                    <li>Create an IAM user with <code style={{ color: "#0B6C86" }}>ses:SendRawEmail</code> permission</li>
                     <li>If your account is in SES sandbox, request production access for unlimited sending</li>
-                    <li>Use region closest to your users (e.g. <code style={{ color: "#7dd3fc" }}>eu-west-1</code> for Europe)</li>
+                    <li>Use region closest to your users (e.g. <code style={{ color: "#0B6C86" }}>eu-west-1</code> for Europe)</li>
                   </ul>
                 </div>
               </div>
@@ -1292,11 +1292,11 @@ function GatewayTab({ setMsg }: { setMsg: (m: string) => void }) {
       {/* SMTP env vars help (always shown as reference) */}
       {s.emailProvider === "ses" && (
         <div style={card}>
-          <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+          <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
             ℹ️ About SMTP Fallback
           </div>
-          <div style={{ padding: "16px 20px", fontSize: "0.875rem", color: "#94a3b8", lineHeight: 1.7 }}>
-            Password reset and email verification links always use the SMTP env vars as a fallback (for security, those links bypass Firestore config). Make sure <code style={{ color: "#7dd3fc" }}>SMTP_*</code> env vars are set even when using SES for automation emails.
+          <div style={{ padding: "16px 20px", fontSize: "0.875rem", color: "#3C516C", lineHeight: 1.7 }}>
+            Password reset and email verification links always use the SMTP env vars as a fallback (for security, those links bypass Firestore config). Make sure <code style={{ color: "#0B6C86" }}>SMTP_*</code> env vars are set even when using SES for automation emails.
           </div>
         </div>
       )}
@@ -1322,7 +1322,7 @@ function MaxInput({ value, onSave, saving }: { value: number; onSave: (v: number
       >
         Save
       </button>
-      <span style={{ color: "#475569", fontSize: "0.75rem" }}>Currently: {value}</span>
+      <span style={{ color: "#5F7491", fontSize: "0.75rem" }}>Currently: {value}</span>
     </div>
   );
 }

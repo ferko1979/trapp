@@ -31,19 +31,19 @@ function fmtDuration(d: string): string {
 }
 
 const STATUS_COLOR: Record<string, string> = {
-  completed: "#22c55e",
-  pending:   "#f59e0b",
-  failed:    "#ef4444",
-  refunded:  "#a78bfa",
+  completed: "#178A55",
+  pending:   "#8A5A0B",
+  failed:    "#C8283B",
+  refunded:  "#6D3FC9",
 };
 
 const SUB_STATUS_COLOR: Record<string, string> = {
-  active:          "#22c55e",
-  trialing:        "#60a5fa",
-  pending_payment: "#f59e0b",
-  cancelled:       "#f87171",
-  expired:         "#94a3b8",
-  payment_failed:  "#ef4444",
+  active:          "#178A55",
+  trialing:        "#0B6C86",
+  pending_payment: "#8A5A0B",
+  cancelled:       "#C8283B",
+  expired:         "#3C516C",
+  payment_failed:  "#C8283B",
 };
 
 const STRIPE_WEBHOOK_URL = "https://europe-west1-playtrapnow.cloudfunctions.net/stripeWebhook";
@@ -53,19 +53,19 @@ const REVOLUT_WEBHOOK_URL = "https://europe-west1-playtrapnow.cloudfunctions.net
 
 function StatCard({ label, value, sub, color }: { label: string; value: React.ReactNode; sub?: string; color?: string }) {
   return (
-    <div style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 12, padding: "16px 20px" }}>
-      <div style={{ fontSize: "0.75rem", color: "#64748b", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.06em" }}>{label}</div>
-      <div style={{ fontSize: "1.5rem", fontWeight: 700, color: color ?? "#f1f5f9" }}>{value}</div>
-      {sub && <div style={{ fontSize: "0.75rem", color: "#475569", marginTop: 2 }}>{sub}</div>}
+    <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 12, padding: "16px 20px" }}>
+      <div style={{ fontSize: "0.75rem", color: "#5F7491", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.06em" }}>{label}</div>
+      <div style={{ fontSize: "1.5rem", fontWeight: 700, color: color ?? "#0D1F33" }}>{value}</div>
+      {sub && <div style={{ fontSize: "0.75rem", color: "#5F7491", marginTop: 2 }}>{sub}</div>}
     </div>
   );
 }
 
 function Card({ children, title, icon }: { children: React.ReactNode; title?: string; icon?: string }) {
   return (
-    <div style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 14, padding: 22, display: "grid", gap: 16 }}>
+    <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 14, padding: 22, display: "grid", gap: 16 }}>
       {title && (
-        <div style={{ fontWeight: 700, fontSize: "1rem", color: "#f1f5f9", display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ fontWeight: 700, fontSize: "1rem", color: "#0D1F33", display: "flex", alignItems: "center", gap: 8 }}>
           {icon && <span>{icon}</span>}
           {title}
         </div>
@@ -78,7 +78,7 @@ function Card({ children, title, icon }: { children: React.ReactNode; title?: st
 function Msg({ text, error }: { text: string; error: boolean }) {
   if (!text) return null;
   return (
-    <span style={{ fontSize: "0.875rem", color: error ? "#f87171" : "#4ade80" }}>
+    <span style={{ fontSize: "0.875rem", color: error ? "#C8283B" : "#178A55" }}>
       {error ? "⚠ " : "✓ "}{text}
     </span>
   );
@@ -157,11 +157,11 @@ function StripeSettingsTab() {
   return (
     <>
       {settings && (
-        <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 18px", borderRadius: 10, background: settings.enabled ? "rgba(22,163,74,0.1)" : "rgba(100,116,139,0.1)", border: `1px solid ${settings.enabled ? "rgba(34,197,94,0.25)" : "#1e3a5f"}` }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 18px", borderRadius: 10, background: settings.enabled ? "rgba(22,163,74,0.1)" : "rgba(100,116,139,0.1)", border: `1px solid ${settings.enabled ? "rgba(34,197,94,0.25)" : "#DCE4EE"}` }}>
           <span style={{ fontSize: "1.2rem" }}>{settings.enabled ? "✅" : "⏸"}</span>
           <div>
-            <div style={{ fontWeight: 600, color: settings.enabled ? "#4ade80" : "#94a3b8" }}>Stripe {settings.enabled ? "enabled" : "disabled"}</div>
-            <div style={{ fontSize: "0.78rem", color: "#64748b" }}>{settings.isTestMode ? "🔬 Test mode" : settings.hasSecretKey ? "🔴 Live mode" : "No key configured"}{settings.updatedAtMs ? ` · Saved ${fmt(settings.updatedAtMs)}` : ""}</div>
+            <div style={{ fontWeight: 600, color: settings.enabled ? "#178A55" : "#3C516C" }}>Stripe {settings.enabled ? "enabled" : "disabled"}</div>
+            <div style={{ fontSize: "0.78rem", color: "#5F7491" }}>{settings.isTestMode ? "🔬 Test mode" : settings.hasSecretKey ? "🔴 Live mode" : "No key configured"}{settings.updatedAtMs ? ` · Saved ${fmt(settings.updatedAtMs)}` : ""}</div>
           </div>
         </div>
       )}
@@ -172,14 +172,14 @@ function StripeSettingsTab() {
           { key: "webhookSecret", label: "Webhook Signing Secret", placeholder: "whsec_…", type: "password" },
         ].map(({ key, label, placeholder, type }) => (
           <label key={key}>
-            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>{label}</span>
+            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>{label}</span>
             <input value={String(f[key] ?? "")} onChange={(e) => set(key, e.target.value)} placeholder={placeholder} type={type} autoComplete="off" style={{ fontFamily: "monospace", fontSize: "0.85rem" }} />
           </label>
         ))}
-        <div style={{ background: "#0a1628", border: "1px solid #1e3a5f", borderRadius: 8, padding: "12px 16px" }}>
-          <div style={{ fontSize: "0.78rem", color: "#64748b", marginBottom: 6, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em" }}>Webhook Endpoint URL</div>
+        <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 8, padding: "12px 16px" }}>
+          <div style={{ fontSize: "0.78rem", color: "#5F7491", marginBottom: 6, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em" }}>Webhook Endpoint URL</div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <code style={{ flex: 1, fontSize: "0.82rem", color: "#93c5fd", wordBreak: "break-all" }}>{STRIPE_WEBHOOK_URL}</code>
+            <code style={{ flex: 1, fontSize: "0.82rem", color: "#0B6C86", wordBreak: "break-all" }}>{STRIPE_WEBHOOK_URL}</code>
             <button onClick={() => void navigator.clipboard.writeText(STRIPE_WEBHOOK_URL)} style={{ fontSize: "0.75rem", padding: "4px 10px" }}>📋 Copy</button>
           </div>
         </div>
@@ -187,7 +187,7 @@ function StripeSettingsTab() {
       <Card title="Configuration" icon="⚙️">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
           <label>
-            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>Currency</span>
+            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Currency</span>
             <select value={String(f.currency ?? "EUR")} onChange={(e) => set("currency", e.target.value)} style={{ width: "100%" }}>
               {["EUR","USD","GBP","HUF","HRK","RON","CZK","PLN"].map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
@@ -204,7 +204,7 @@ function StripeSettingsTab() {
           { key: "cancelUrl",  label: "Cancel URL",  placeholder: "https://yourapp.com/payment/cancel" },
         ].map(({ key, label, placeholder }) => (
           <label key={key}>
-            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>{label}</span>
+            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>{label}</span>
             <input value={String(f[key] ?? "")} onChange={(e) => set(key, e.target.value)} placeholder={placeholder} />
           </label>
         ))}
@@ -290,11 +290,11 @@ function RevolutSettingsTab() {
   return (
     <>
       {settings && (
-        <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 18px", borderRadius: 10, background: settings.enabled ? "rgba(22,163,74,0.1)" : "rgba(100,116,139,0.1)", border: `1px solid ${settings.enabled ? "rgba(34,197,94,0.25)" : "#1e3a5f"}` }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 18px", borderRadius: 10, background: settings.enabled ? "rgba(22,163,74,0.1)" : "rgba(100,116,139,0.1)", border: `1px solid ${settings.enabled ? "rgba(34,197,94,0.25)" : "#DCE4EE"}` }}>
           <span style={{ fontSize: "1.4rem" }}>🔄</span>
           <div>
-            <div style={{ fontWeight: 600, color: settings.enabled ? "#4ade80" : "#94a3b8" }}>Revolut {settings.enabled ? "enabled" : "disabled"}</div>
-            <div style={{ fontSize: "0.78rem", color: "#64748b" }}>
+            <div style={{ fontWeight: 600, color: settings.enabled ? "#178A55" : "#3C516C" }}>Revolut {settings.enabled ? "enabled" : "disabled"}</div>
+            <div style={{ fontSize: "0.78rem", color: "#5F7491" }}>
               {settings.sandboxMode ? "🔬 Sandbox mode" : "🔴 Production mode"}
               {settings.updatedAtMs ? ` · Saved ${fmt(settings.updatedAtMs)}` : ""}
             </div>
@@ -303,7 +303,7 @@ function RevolutSettingsTab() {
       )}
 
       <Card title="Revolut Merchant API Keys" icon="🔑">
-        <div style={{ background: "rgba(251,191,36,0.07)", border: "1px solid rgba(251,191,36,0.25)", borderRadius: 8, padding: "12px 14px", fontSize: "0.8rem", color: "#fbbf24", lineHeight: 1.6 }}>
+        <div style={{ background: "rgba(251,191,36,0.07)", border: "1px solid rgba(251,191,36,0.25)", borderRadius: 8, padding: "12px 14px", fontSize: "0.8rem", color: "#8A5A0B", lineHeight: 1.6 }}>
           <strong>Setup:</strong> Go to Revolut Business → Merchant API → API Keys to get your secret key.
           Register the webhook URL below in <em>Revolut Merchant → Webhooks</em> and listen for <code>ORDER_COMPLETED</code> and <code>ORDER_PAYMENT_FAILED</code> events.
         </div>
@@ -312,24 +312,24 @@ function RevolutSettingsTab() {
           { key: "webhookSecret", label: "Webhook Signing Secret", placeholder: "whsec_…", type: "password" },
         ].map(({ key, label, placeholder, type }) => (
           <label key={key}>
-            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>{label}</span>
+            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>{label}</span>
             <input value={String(f[key] ?? "")} onChange={(e) => set(key, e.target.value)} placeholder={placeholder} type={type} autoComplete="off" style={{ fontFamily: "monospace", fontSize: "0.85rem" }} />
           </label>
         ))}
         {/* Webhook endpoint + register + verify */}
-        <div style={{ background: "#0a1628", border: "1px solid #1e3a5f", borderRadius: 10, padding: "14px 16px", display: "grid", gap: 12 }}>
+        <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 10, padding: "14px 16px", display: "grid", gap: 12 }}>
           {/* URL row */}
           <div>
-            <div style={{ fontSize: "0.72rem", color: "#64748b", marginBottom: 5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em" }}>Webhook Endpoint URL</div>
+            <div style={{ fontSize: "0.72rem", color: "#5F7491", marginBottom: 5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em" }}>Webhook Endpoint URL</div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <code style={{ flex: 1, fontSize: "0.8rem", color: "#93c5fd", wordBreak: "break-all" }}>{REVOLUT_WEBHOOK_URL}</code>
+              <code style={{ flex: 1, fontSize: "0.8rem", color: "#0B6C86", wordBreak: "break-all" }}>{REVOLUT_WEBHOOK_URL}</code>
               <button onClick={() => void navigator.clipboard.writeText(REVOLUT_WEBHOOK_URL)} style={{ fontSize: "0.72rem", padding: "3px 9px", flexShrink: 0 }}>📋 Copy</button>
             </div>
           </div>
 
           {/* Environment hint */}
-          <div style={{ fontSize: "0.75rem", color: "#64748b", background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.2)", borderRadius: 7, padding: "8px 12px", lineHeight: 1.6 }}>
-            ⚠️ <strong style={{ color: "#fbbf24" }}>Key must match environment:</strong> Production keys (<code>sk_live_…</code> or <code>sk_A…</code>) → uncheck Sandbox. Sandbox keys (<code>sk_sandbox_…</code>) → keep Sandbox checked.
+          <div style={{ fontSize: "0.75rem", color: "#5F7491", background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.2)", borderRadius: 7, padding: "8px 12px", lineHeight: 1.6 }}>
+            ⚠️ <strong style={{ color: "#8A5A0B" }}>Key must match environment:</strong> Production keys (<code>sk_live_…</code> or <code>sk_A…</code>) → uncheck Sandbox. Sandbox keys (<code>sk_sandbox_…</code>) → keep Sandbox checked.
           </div>
 
           {/* Action buttons */}
@@ -337,48 +337,48 @@ function RevolutSettingsTab() {
             <button
               onClick={() => void registerWebhook()}
               disabled={webhookLoading || checkLoading}
-              style={{ padding: "7px 16px", borderRadius: 8, border: "1px solid rgba(96,165,250,0.4)", background: "rgba(96,165,250,0.12)", color: "#93c5fd", fontWeight: 600, fontSize: "0.82rem", cursor: "pointer" }}
+              style={{ padding: "7px 16px", borderRadius: 8, border: "1px solid rgba(96,165,250,0.4)", background: "rgba(96,165,250,0.12)", color: "#0B6C86", fontWeight: 600, fontSize: "0.82rem", cursor: "pointer" }}
             >
               {webhookLoading ? "⏳ Registering…" : "🔗 Register Webhook"}
             </button>
             <button
               onClick={() => void checkWebhook()}
               disabled={checkLoading || webhookLoading}
-              style={{ padding: "7px 16px", borderRadius: 8, border: "1px solid rgba(167,139,250,0.4)", background: "rgba(167,139,250,0.1)", color: "#c4b5fd", fontWeight: 600, fontSize: "0.82rem", cursor: "pointer" }}
+              style={{ padding: "7px 16px", borderRadius: 8, border: "1px solid rgba(167,139,250,0.4)", background: "rgba(167,139,250,0.1)", color: "#6D3FC9", fontWeight: 600, fontSize: "0.82rem", cursor: "pointer" }}
             >
               {checkLoading ? "⏳ Checking…" : "🔍 Verify Webhook Status"}
             </button>
           </div>
 
           {webhookMsg && (
-            <div style={{ fontSize: "0.78rem", padding: "8px 12px", borderRadius: 7, background: webhookErr ? "rgba(239,68,68,0.1)" : "rgba(34,197,94,0.1)", border: `1px solid ${webhookErr ? "rgba(239,68,68,0.3)" : "rgba(34,197,94,0.3)"}`, color: webhookErr ? "#f87171" : "#4ade80" }}>
+            <div style={{ fontSize: "0.78rem", padding: "8px 12px", borderRadius: 7, background: webhookErr ? "rgba(239,68,68,0.1)" : "rgba(34,197,94,0.1)", border: `1px solid ${webhookErr ? "rgba(239,68,68,0.3)" : "rgba(34,197,94,0.3)"}`, color: webhookErr ? "#C8283B" : "#178A55" }}>
               {webhookMsg}
             </div>
           )}
 
           {/* Verification result panel */}
           {checkResult && (
-            <div style={{ background: "#060f1c", border: "1px solid #1e3a5f", borderRadius: 8, padding: "12px 14px", display: "grid", gap: 10 }}>
-              <div style={{ fontWeight: 700, fontSize: "0.82rem", color: "#f1f5f9" }}>Webhook Status — {checkResult.environment.toUpperCase()}</div>
+            <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 8, padding: "12px 14px", display: "grid", gap: 10 }}>
+              <div style={{ fontWeight: 700, fontSize: "0.82rem", color: "#0D1F33" }}>Webhook Status — {checkResult.environment.toUpperCase()}</div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                 {[
                   { label: "Webhook Registered", ok: checkResult.ourWebhookRegistered, yes: `✓ Yes (ID: ${checkResult.ourWebhookId?.slice(0, 8)}…)`, no: "✗ Not registered" },
                   { label: "Signing Secret Saved", ok: checkResult.signingSecretConfigured, yes: "✓ Saved in Firestore", no: "✗ Missing — register webhook to auto-save" },
                 ].map(({ label, ok, yes, no }) => (
                   <div key={label} style={{ background: ok ? "rgba(34,197,94,0.08)" : "rgba(239,68,68,0.08)", border: `1px solid ${ok ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.2)"}`, borderRadius: 7, padding: "8px 12px" }}>
-                    <div style={{ fontSize: "0.7rem", color: "#64748b", marginBottom: 3 }}>{label}</div>
-                    <div style={{ fontSize: "0.82rem", fontWeight: 600, color: ok ? "#4ade80" : "#f87171" }}>{ok ? yes : no}</div>
+                    <div style={{ fontSize: "0.7rem", color: "#5F7491", marginBottom: 3 }}>{label}</div>
+                    <div style={{ fontSize: "0.82rem", fontWeight: 600, color: ok ? "#178A55" : "#C8283B" }}>{ok ? yes : no}</div>
                   </div>
                 ))}
               </div>
               {checkResult.ourWebhookRegistered && checkResult.ourWebhookEvents.length > 0 && (
-                <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
-                  <strong style={{ color: "#94a3b8" }}>Listening for events: </strong>
+                <div style={{ fontSize: "0.75rem", color: "#5F7491" }}>
+                  <strong style={{ color: "#3C516C" }}>Listening for events: </strong>
                   {checkResult.ourWebhookEvents.join(", ")}
                 </div>
               )}
               {checkResult.webhooks.length > 1 && (
-                <div style={{ fontSize: "0.72rem", color: "#475569" }}>
+                <div style={{ fontSize: "0.72rem", color: "#5F7491" }}>
                   {checkResult.webhooks.length} total webhook(s) registered with Revolut for this account.
                 </div>
               )}
@@ -390,7 +390,7 @@ function RevolutSettingsTab() {
       <Card title="Configuration" icon="⚙️">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
           <label>
-            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>Currency</span>
+            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Currency</span>
             <select value={String(f.currency ?? "EUR")} onChange={(e) => set("currency", e.target.value)} style={{ width: "100%" }}>
               {["EUR","USD","GBP","HUF","CZK","PLN","RON","HRK"].map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
@@ -411,7 +411,7 @@ function RevolutSettingsTab() {
           { key: "cancelUrl",  label: "Cancel URL",  placeholder: "https://playtrapnow.web.app/payment/cancel" },
         ].map(({ key, label, placeholder }) => (
           <label key={key}>
-            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>{label}</span>
+            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>{label}</span>
             <input value={String(f[key] ?? "")} onChange={(e) => set(key, e.target.value)} placeholder={placeholder} />
           </label>
         ))}
@@ -519,36 +519,36 @@ function PackagesTab() {
         <Card title={isNew ? "Create Package" : "Edit Package"} icon="📦">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
             <label>
-              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>Name *</span>
+              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Name *</span>
               <input value={e?.name ?? ""} onChange={(ev) => setE("name", ev.target.value)} placeholder="Monthly Premium" />
             </label>
             <label>
-              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>Duration</span>
+              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Duration</span>
               <select value={e?.duration ?? "1m"} onChange={(ev) => setE("duration", ev.target.value)} style={{ width: "100%" }}>
                 {DURATIONS.map((d) => <option key={d} value={d}>{fmtDuration(d)}</option>)}
               </select>
             </label>
             <label>
-              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>Price (minor units — e.g. 999 = €9.99)</span>
+              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Price (minor units — e.g. 999 = €9.99)</span>
               <input type="number" value={e?.price ?? 0} onChange={(ev) => setE("price", Number(ev.target.value))} min={0} />
             </label>
             <label>
-              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>Currency</span>
+              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Currency</span>
               <select value={e?.currency ?? "EUR"} onChange={(ev) => setE("currency", ev.target.value)} style={{ width: "100%" }}>
                 {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
               </select>
             </label>
             <label>
-              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>Trial Days (0 = no trial)</span>
+              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Trial Days (0 = no trial)</span>
               <input type="number" value={e?.trialDays ?? 0} onChange={(ev) => setE("trialDays", Number(ev.target.value))} min={0} />
             </label>
             <label>
-              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>Sort Order</span>
+              <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Sort Order</span>
               <input type="number" value={e?.sortOrder ?? 99} onChange={(ev) => setE("sortOrder", Number(ev.target.value))} min={0} />
             </label>
           </div>
           <label>
-            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#94a3b8" }}>Description</span>
+            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Description</span>
             <input value={e?.description ?? ""} onChange={(ev) => setE("description", ev.target.value)} placeholder="Unlimited access for 1 month" />
           </label>
           <div style={{ display: "flex", gap: 20 }}>
@@ -570,45 +570,45 @@ function PackagesTab() {
 
       {/* Package list */}
       {packages.length === 0 && !loading && (
-        <div style={{ padding: "32px", textAlign: "center", color: "#475569", background: "#0f172a", borderRadius: 14, border: "1px solid #1e3a5f" }}>
+        <div style={{ padding: "32px", textAlign: "center", color: "#5F7491", background: "#F4F7FB", borderRadius: 14, border: "1px solid #DCE4EE" }}>
           No packages yet. Create your first payment package above.
         </div>
       )}
       {packages.map((pkg) => (
-        <div key={pkg.id} style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 14, padding: 18 }}>
+        <div key={pkg.id} style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 14, padding: 18 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
             <div style={{ flex: 1 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ fontWeight: 700, fontSize: "1rem", color: "#f1f5f9" }}>{pkg.name}</span>
-                <span style={{ fontSize: "0.72rem", padding: "2px 8px", borderRadius: 999, background: pkg.isActive ? "rgba(34,197,94,0.15)" : "rgba(100,116,139,0.15)", color: pkg.isActive ? "#4ade80" : "#64748b", fontWeight: 600 }}>
+                <span style={{ fontWeight: 700, fontSize: "1rem", color: "#0D1F33" }}>{pkg.name}</span>
+                <span style={{ fontSize: "0.72rem", padding: "2px 8px", borderRadius: 999, background: pkg.isActive ? "rgba(34,197,94,0.15)" : "rgba(100,116,139,0.15)", color: pkg.isActive ? "#178A55" : "#5F7491", fontWeight: 600 }}>
                   {pkg.isActive ? "Active" : "Inactive"}
                 </span>
-                {pkg.isRecurring && <span style={{ fontSize: "0.72rem", padding: "2px 8px", borderRadius: 999, background: "rgba(167,139,250,0.15)", color: "#a78bfa", fontWeight: 600 }}>🔄 Recurring</span>}
-                {pkg.trialDays > 0 && <span style={{ fontSize: "0.72rem", padding: "2px 8px", borderRadius: 999, background: "rgba(96,165,250,0.15)", color: "#60a5fa", fontWeight: 600 }}>{pkg.trialDays}d trial</span>}
+                {pkg.isRecurring && <span style={{ fontSize: "0.72rem", padding: "2px 8px", borderRadius: 999, background: "rgba(167,139,250,0.15)", color: "#6D3FC9", fontWeight: 600 }}>🔄 Recurring</span>}
+                {pkg.trialDays > 0 && <span style={{ fontSize: "0.72rem", padding: "2px 8px", borderRadius: 999, background: "rgba(96,165,250,0.15)", color: "#0B6C86", fontWeight: 600 }}>{pkg.trialDays}d trial</span>}
               </div>
-              <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: 3 }}>
+              <div style={{ fontSize: "0.8rem", color: "#5F7491", marginTop: 3 }}>
                 {fmtDuration(pkg.duration)} · {fmtMoney(pkg.price, pkg.currency)} · Sort: {pkg.sortOrder}
                 {pkg.description ? ` · ${pkg.description}` : ""}
               </div>
             </div>
             <div style={{ display: "flex", gap: 8 }}>
               <button onClick={() => { setIsNew(false); setEditing({ ...pkg }); setMsg(""); setErr(false); }} style={{ fontSize: "0.8rem", padding: "5px 12px" }}>✏️ Edit</button>
-              <button onClick={() => void del(pkg.id, pkg.name)} style={{ fontSize: "0.8rem", padding: "5px 12px", background: "rgba(220,38,38,0.1)", border: "1px solid rgba(220,38,38,0.3)", color: "#fca5a5", borderRadius: 6, cursor: "pointer" }}>🗑 Delete</button>
+              <button onClick={() => void del(pkg.id, pkg.name)} style={{ fontSize: "0.8rem", padding: "5px 12px", background: "rgba(220,38,38,0.1)", border: "1px solid rgba(220,38,38,0.3)", color: "#C8283B", borderRadius: 6, cursor: "pointer" }}>🗑 Delete</button>
             </div>
           </div>
 
           {/* Discounts */}
-          <div style={{ borderTop: "1px solid #1a2e45", paddingTop: 12 }}>
-            <div style={{ fontSize: "0.8rem", color: "#94a3b8", fontWeight: 600, marginBottom: 8 }}>🏷 Discount Codes ({pkg.discounts.length})</div>
+          <div style={{ borderTop: "1px solid #DCE4EE", paddingTop: 12 }}>
+            <div style={{ fontSize: "0.8rem", color: "#3C516C", fontWeight: 600, marginBottom: 8 }}>🏷 Discount Codes ({pkg.discounts.length})</div>
             {pkg.discounts.length > 0 && (
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 8 }}>
                 {pkg.discounts.map((d) => (
-                  <div key={d.code} style={{ background: "#0a1628", border: "1px solid #1e3a5f", borderRadius: 8, padding: "6px 12px", display: "flex", alignItems: "center", gap: 8 }}>
-                    <code style={{ fontSize: "0.8rem", color: "#f59e0b" }}>{d.code}</code>
-                    <span style={{ fontSize: "0.75rem", color: "#4ade80" }}>-{d.discountPercent}%</span>
-                    {d.maxUses && <span style={{ fontSize: "0.72rem", color: "#64748b" }}>{d.usedCount}/{d.maxUses} uses</span>}
-                    {d.validUntil && <span style={{ fontSize: "0.72rem", color: "#64748b" }}>until {new Date(d.validUntil).toLocaleDateString()}</span>}
-                    <button onClick={() => void removeDiscount(pkg.id, d.code)} style={{ fontSize: "0.7rem", padding: "2px 6px", background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.3)", color: "#fca5a5", borderRadius: 4, cursor: "pointer" }}>✕</button>
+                  <div key={d.code} style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 8, padding: "6px 12px", display: "flex", alignItems: "center", gap: 8 }}>
+                    <code style={{ fontSize: "0.8rem", color: "#8A5A0B" }}>{d.code}</code>
+                    <span style={{ fontSize: "0.75rem", color: "#178A55" }}>-{d.discountPercent}%</span>
+                    {d.maxUses && <span style={{ fontSize: "0.72rem", color: "#5F7491" }}>{d.usedCount}/{d.maxUses} uses</span>}
+                    {d.validUntil && <span style={{ fontSize: "0.72rem", color: "#5F7491" }}>until {new Date(d.validUntil).toLocaleDateString()}</span>}
+                    <button onClick={() => void removeDiscount(pkg.id, d.code)} style={{ fontSize: "0.7rem", padding: "2px 6px", background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.3)", color: "#C8283B", borderRadius: 4, cursor: "pointer" }}>✕</button>
                   </div>
                 ))}
               </div>
@@ -616,19 +616,19 @@ function PackagesTab() {
             {discPkgId === pkg.id ? (
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "flex-end" }}>
                 <div>
-                  <div style={{ fontSize: "0.75rem", color: "#64748b", marginBottom: 3 }}>Code</div>
+                  <div style={{ fontSize: "0.75rem", color: "#5F7491", marginBottom: 3 }}>Code</div>
                   <input value={discForm.code} onChange={(ev) => setDiscForm((p) => ({ ...p, code: ev.target.value.toUpperCase() }))} placeholder="PROMO10" style={{ width: 100 }} />
                 </div>
                 <div>
-                  <div style={{ fontSize: "0.75rem", color: "#64748b", marginBottom: 3 }}>Discount %</div>
+                  <div style={{ fontSize: "0.75rem", color: "#5F7491", marginBottom: 3 }}>Discount %</div>
                   <input type="number" value={discForm.discountPercent} onChange={(ev) => setDiscForm((p) => ({ ...p, discountPercent: Number(ev.target.value) }))} min={1} max={100} style={{ width: 70 }} />
                 </div>
                 <div>
-                  <div style={{ fontSize: "0.75rem", color: "#64748b", marginBottom: 3 }}>Valid until (optional)</div>
+                  <div style={{ fontSize: "0.75rem", color: "#5F7491", marginBottom: 3 }}>Valid until (optional)</div>
                   <input type="date" value={discForm.validUntil} onChange={(ev) => setDiscForm((p) => ({ ...p, validUntil: ev.target.value }))} style={{ width: 130 }} />
                 </div>
                 <div>
-                  <div style={{ fontSize: "0.75rem", color: "#64748b", marginBottom: 3 }}>Max uses (optional)</div>
+                  <div style={{ fontSize: "0.75rem", color: "#5F7491", marginBottom: 3 }}>Max uses (optional)</div>
                   <input type="number" value={discForm.maxUses} onChange={(ev) => setDiscForm((p) => ({ ...p, maxUses: ev.target.value }))} placeholder="∞" style={{ width: 80 }} />
                 </div>
                 <button className="btn-primary" onClick={() => void addDiscount(pkg.id)} style={{ fontSize: "0.8rem" }}>Add</button>
@@ -682,9 +682,9 @@ function SubscriptionsTab() {
       {subs.length > 0 && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 12 }}>
           <StatCard label="Total" value={subs.length} />
-          <StatCard label="Active" value={active} color="#22c55e" />
-          <StatCard label="Trialing" value={trials} color="#60a5fa" />
-          <StatCard label="Cancelled" value={subs.filter((s) => s.status === "cancelled").length} color="#f87171" />
+          <StatCard label="Active" value={active} color="#178A55" />
+          <StatCard label="Trialing" value={trials} color="#0B6C86" />
+          <StatCard label="Cancelled" value={subs.filter((s) => s.status === "cancelled").length} color="#C8283B" />
         </div>
       )}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
@@ -697,54 +697,54 @@ function SubscriptionsTab() {
         <input value={uidFilter} onChange={(e) => setUidFilter(e.target.value)} placeholder="Filter by UID…" style={{ width: 220, fontFamily: "monospace", fontSize: "0.82rem" }} onKeyDown={(e) => { if (e.key === "Enter") void load(); }} />
         <button onClick={() => void load()} disabled={loading}>🔄 {loading ? "Loading…" : "Refresh"}</button>
       </div>
-      <div style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 14, overflow: "hidden" }}>
+      <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 14, overflow: "hidden" }}>
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.84rem" }}>
             <thead>
-              <tr style={{ background: "#0a1628" }}>
+              <tr style={{ background: "#F4F7FB" }}>
                 {["Created","User UID","Package","Duration","Status","Gateway Order","Actions"].map((h) => (
-                  <th key={h} style={{ padding: "12px 14px", textAlign: "left", color: "#64748b", fontWeight: 600, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap", borderBottom: "1px solid #1e3a5f" }}>{h}</th>
+                  <th key={h} style={{ padding: "12px 14px", textAlign: "left", color: "#5F7491", fontWeight: 600, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap", borderBottom: "1px solid #DCE4EE" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {subs.length === 0 && (
-                <tr><td colSpan={7} style={{ padding: "32px 14px", textAlign: "center", color: "#475569" }}>{loading ? "Loading…" : "No subscriptions found."}</td></tr>
+                <tr><td colSpan={7} style={{ padding: "32px 14px", textAlign: "center", color: "#5F7491" }}>{loading ? "Loading…" : "No subscriptions found."}</td></tr>
               )}
               {subs.map((sub, idx) => (
-                <tr key={sub.id} style={{ background: idx % 2 === 0 ? "transparent" : "rgba(15,23,42,0.5)" }}>
-                  <td style={{ padding: "10px 14px", color: "#94a3b8", whiteSpace: "nowrap", verticalAlign: "top" }}>{fmt(sub.createdAtMs)}</td>
+                <tr key={sub.id} style={{ background: idx % 2 === 0 ? "transparent" : "#F4F7FB" }}>
+                  <td style={{ padding: "10px 14px", color: "#3C516C", whiteSpace: "nowrap", verticalAlign: "top" }}>{fmt(sub.createdAtMs)}</td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
-                    <div style={{ fontSize: "0.75rem", fontFamily: "monospace", color: "#64748b" }}>{sub.uid?.slice(0, 16) ?? "—"}…</div>
+                    <div style={{ fontSize: "0.75rem", fontFamily: "monospace", color: "#5F7491" }}>{sub.uid?.slice(0, 16) ?? "—"}…</div>
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
-                    <div style={{ color: "#e2e8f0" }}>{sub.packageName ?? sub.packageId ?? "—"}</div>
-                    <div style={{ fontSize: "0.75rem", color: "#475569" }}>{fmtMoney(sub.amount, sub.currency)}</div>
-                    {sub.discountCode && <div style={{ fontSize: "0.72rem", color: "#f59e0b" }}>Code: {sub.discountCode}</div>}
+                    <div style={{ color: "#0D1F33" }}>{sub.packageName ?? sub.packageId ?? "—"}</div>
+                    <div style={{ fontSize: "0.75rem", color: "#5F7491" }}>{fmtMoney(sub.amount, sub.currency)}</div>
+                    {sub.discountCode && <div style={{ fontSize: "0.72rem", color: "#8A5A0B" }}>Code: {sub.discountCode}</div>}
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top", whiteSpace: "nowrap" }}>
                     {sub.currentPeriodEnd ? (
                       <>
-                        <div style={{ color: "#94a3b8", fontSize: "0.8rem" }}>Until {new Date(sub.currentPeriodEnd).toLocaleDateString()}</div>
-                        {sub.trialEnd && <div style={{ color: "#60a5fa", fontSize: "0.75rem" }}>Trial ends {new Date(sub.trialEnd).toLocaleDateString()}</div>}
-                        {sub.cancelAtPeriodEnd && <div style={{ color: "#f87171", fontSize: "0.72rem" }}>⚠ Cancels at period end</div>}
+                        <div style={{ color: "#3C516C", fontSize: "0.8rem" }}>Until {new Date(sub.currentPeriodEnd).toLocaleDateString()}</div>
+                        {sub.trialEnd && <div style={{ color: "#0B6C86", fontSize: "0.75rem" }}>Trial ends {new Date(sub.trialEnd).toLocaleDateString()}</div>}
+                        {sub.cancelAtPeriodEnd && <div style={{ color: "#C8283B", fontSize: "0.72rem" }}>⚠ Cancels at period end</div>}
                       </>
                     ) : "—"}
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
-                    <span style={{ fontSize: "0.73rem", fontWeight: 700, padding: "3px 9px", borderRadius: 999, background: `${SUB_STATUS_COLOR[sub.status] ?? "#94a3b8"}20`, color: SUB_STATUS_COLOR[sub.status] ?? "#94a3b8", textTransform: "capitalize" }}>
+                    <span style={{ fontSize: "0.73rem", fontWeight: 700, padding: "3px 9px", borderRadius: 999, background: `${SUB_STATUS_COLOR[sub.status] ?? "#3C516C"}20`, color: SUB_STATUS_COLOR[sub.status] ?? "#3C516C", textTransform: "capitalize" }}>
                       {sub.status.replace("_", " ")}
                     </span>
-                    <div style={{ fontSize: "0.72rem", color: "#475569", marginTop: 3 }}>{sub.gateway}</div>
+                    <div style={{ fontSize: "0.72rem", color: "#5F7491", marginTop: 3 }}>{sub.gateway}</div>
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
                     {sub.revolutOrderId && (
-                      <div style={{ fontSize: "0.72rem", fontFamily: "monospace", color: "#475569" }} title={sub.revolutOrderId}>{sub.revolutOrderId.slice(0, 16)}…</div>
+                      <div style={{ fontSize: "0.72rem", fontFamily: "monospace", color: "#5F7491" }} title={sub.revolutOrderId}>{sub.revolutOrderId.slice(0, 16)}…</div>
                     )}
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
                     {["active","trialing","pending_payment"].includes(sub.status) && (
-                      <button onClick={() => void cancel(sub.id)} disabled={cancelling === sub.id} style={{ fontSize: "0.75rem", padding: "4px 10px", background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.3)", color: "#fca5a5", borderRadius: 6, cursor: "pointer", whiteSpace: "nowrap" }}>
+                      <button onClick={() => void cancel(sub.id)} disabled={cancelling === sub.id} style={{ fontSize: "0.75rem", padding: "4px 10px", background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.3)", color: "#C8283B", borderRadius: 6, cursor: "pointer", whiteSpace: "nowrap" }}>
                         {cancelling === sub.id ? "Cancelling…" : "🚫 Cancel"}
                       </button>
                     )}
@@ -795,11 +795,11 @@ function PaymentHistoryTab() {
       {stats && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 12 }}>
           <StatCard label="Total" value={stats.total} />
-          <StatCard label="Completed" value={stats.completed} color="#22c55e" />
-          <StatCard label="Pending" value={stats.pending} color="#f59e0b" />
-          <StatCard label="Failed" value={stats.failed} color="#ef4444" />
-          <StatCard label="Revenue" value={fmtMoney(stats.totalRevenue, stats.currency)} color="#60a5fa" sub="completed only" />
-          <StatCard label="Active Subs" value={stats.activeSubscriptions} color="#a78bfa" sub="unique subscribers" />
+          <StatCard label="Completed" value={stats.completed} color="#178A55" />
+          <StatCard label="Pending" value={stats.pending} color="#8A5A0B" />
+          <StatCard label="Failed" value={stats.failed} color="#C8283B" />
+          <StatCard label="Revenue" value={fmtMoney(stats.totalRevenue, stats.currency)} color="#0B6C86" sub="completed only" />
+          <StatCard label="Active Subs" value={stats.activeSubscriptions} color="#6D3FC9" sub="unique subscribers" />
         </div>
       )}
       <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
@@ -810,49 +810,49 @@ function PaymentHistoryTab() {
         <button onClick={() => void load()} disabled={loading}>{loading ? "Loading…" : "🔄 Refresh"}</button>
         {msg && <Msg text={msg} error={err} />}
       </div>
-      <div style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 14, overflow: "hidden" }}>
+      <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 14, overflow: "hidden" }}>
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.84rem" }}>
             <thead>
-              <tr style={{ background: "#0a1628" }}>
+              <tr style={{ background: "#F4F7FB" }}>
                 {["Date","User","Package / Level","Amount","Gateway","Type","Status","Actions"].map((h) => (
-                  <th key={h} style={{ padding: "12px 14px", textAlign: "left", color: "#64748b", fontWeight: 600, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap", borderBottom: "1px solid #1e3a5f" }}>{h}</th>
+                  <th key={h} style={{ padding: "12px 14px", textAlign: "left", color: "#5F7491", fontWeight: 600, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap", borderBottom: "1px solid #DCE4EE" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {items.length === 0 && (
-                <tr><td colSpan={8} style={{ padding: "32px 14px", textAlign: "center", color: "#475569" }}>{loading ? "Loading…" : "No payments found."}</td></tr>
+                <tr><td colSpan={8} style={{ padding: "32px 14px", textAlign: "center", color: "#5F7491" }}>{loading ? "Loading…" : "No payments found."}</td></tr>
               )}
               {items.map((item, idx) => (
-                <tr key={item.id} style={{ background: idx % 2 === 0 ? "transparent" : "rgba(15,23,42,0.5)" }}>
-                  <td style={{ padding: "10px 14px", color: "#94a3b8", whiteSpace: "nowrap", verticalAlign: "top" }}>{fmt(item.createdAtMs)}</td>
+                <tr key={item.id} style={{ background: idx % 2 === 0 ? "transparent" : "#F4F7FB" }}>
+                  <td style={{ padding: "10px 14px", color: "#3C516C", whiteSpace: "nowrap", verticalAlign: "top" }}>{fmt(item.createdAtMs)}</td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
-                    <div style={{ color: "#e2e8f0", fontSize: "0.82rem" }}>{item.email ?? "—"}</div>
-                    <div style={{ color: "#475569", fontSize: "0.75rem", fontFamily: "monospace" }}>{item.uid ?? ""}</div>
+                    <div style={{ color: "#0D1F33", fontSize: "0.82rem" }}>{item.email ?? "—"}</div>
+                    <div style={{ color: "#5F7491", fontSize: "0.75rem", fontFamily: "monospace" }}>{item.uid ?? ""}</div>
                   </td>
-                  <td style={{ padding: "10px 14px", color: "#94a3b8", verticalAlign: "top" }}>
+                  <td style={{ padding: "10px 14px", color: "#3C516C", verticalAlign: "top" }}>
                     {item.packageName ?? item.levelName ?? item.packageId ?? item.levelId ?? "—"}
                   </td>
-                  <td style={{ padding: "10px 14px", fontWeight: 600, color: "#f1f5f9", verticalAlign: "top", whiteSpace: "nowrap" }}>{fmtMoney(item.amount, item.currency)}</td>
+                  <td style={{ padding: "10px 14px", fontWeight: 600, color: "#0D1F33", verticalAlign: "top", whiteSpace: "nowrap" }}>{fmtMoney(item.amount, item.currency)}</td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
-                    <span style={{ fontSize: "0.73rem", fontWeight: 600, padding: "2px 8px", borderRadius: 999, background: item.gateway === "revolut" ? "rgba(96,165,250,0.15)" : "rgba(167,139,250,0.15)", color: item.gateway === "revolut" ? "#60a5fa" : "#a78bfa" }}>
+                    <span style={{ fontSize: "0.73rem", fontWeight: 600, padding: "2px 8px", borderRadius: 999, background: item.gateway === "revolut" ? "rgba(96,165,250,0.15)" : "rgba(167,139,250,0.15)", color: item.gateway === "revolut" ? "#0B6C86" : "#6D3FC9" }}>
                       {item.gateway === "revolut" ? "🔄 Revolut" : "🟣 Stripe"}
                     </span>
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
-                    <span style={{ fontSize: "0.73rem", fontWeight: 600, padding: "3px 8px", borderRadius: 999, background: item.paymentType === "recurring" ? "rgba(167,139,250,0.15)" : "rgba(96,165,250,0.13)", color: item.paymentType === "recurring" ? "#a78bfa" : "#60a5fa", whiteSpace: "nowrap" }}>
+                    <span style={{ fontSize: "0.73rem", fontWeight: 600, padding: "3px 8px", borderRadius: 999, background: item.paymentType === "recurring" ? "rgba(167,139,250,0.15)" : "rgba(96,165,250,0.13)", color: item.paymentType === "recurring" ? "#6D3FC9" : "#0B6C86", whiteSpace: "nowrap" }}>
                       {item.isRenewal ? "🔄 Renewal" : item.paymentType === "recurring" ? "📅 Subscription" : "1× One-time"}
                     </span>
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
-                    <span style={{ fontSize: "0.73rem", fontWeight: 700, padding: "3px 9px", borderRadius: 999, background: `${STATUS_COLOR[item.status] ?? "#94a3b8"}20`, color: STATUS_COLOR[item.status] ?? "#94a3b8", textTransform: "capitalize" }}>
+                    <span style={{ fontSize: "0.73rem", fontWeight: 700, padding: "3px 9px", borderRadius: 999, background: `${STATUS_COLOR[item.status] ?? "#3C516C"}20`, color: STATUS_COLOR[item.status] ?? "#3C516C", textTransform: "capitalize" }}>
                       {item.status}
                     </span>
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
                     {item.status === "completed" && (item.stripePaymentIntentId || item.revolutOrderId) && (
-                      <button onClick={() => void refund(item)} disabled={refundingId === item.id} style={{ fontSize: "0.75rem", padding: "4px 10px", background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.3)", color: "#fca5a5", borderRadius: 6, cursor: "pointer", whiteSpace: "nowrap" }}>
+                      <button onClick={() => void refund(item)} disabled={refundingId === item.id} style={{ fontSize: "0.75rem", padding: "4px 10px", background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.3)", color: "#C8283B", borderRadius: 6, cursor: "pointer", whiteSpace: "nowrap" }}>
                         {refundingId === item.id ? "Refunding…" : "💸 Refund"}
                       </button>
                     )}
@@ -863,7 +863,7 @@ function PaymentHistoryTab() {
           </table>
         </div>
       </div>
-      {items.length > 0 && <div style={{ fontSize: "0.75rem", color: "#374151" }}>Showing up to 100 most recent payments.</div>}
+      {items.length > 0 && <div style={{ fontSize: "0.75rem", color: "#DCE4EE" }}>Showing up to 100 most recent payments.</div>}
     </>
   );
 }
@@ -903,14 +903,14 @@ function VerificationTab() {
   return (
     <>
       <Card>
-        <div style={{ fontWeight: 700, fontSize: "1rem", color: "#f1f5f9", marginBottom: 10 }}>🔍 Membership Verification</div>
-        <p style={{ fontSize: "0.875rem", color: "#64748b", lineHeight: 1.7, margin: 0 }}>
-          The <strong style={{ color: "#94a3b8" }}>daily scheduled sweep</strong> runs automatically and revokes memberships where <code style={{ color: "#93c5fd", fontSize: "0.82rem" }}>membershipExpiresAt</code> has passed.
-          Use <strong style={{ color: "#94a3b8" }}>Run Check Now</strong> to trigger it immediately.
+        <div style={{ fontWeight: 700, fontSize: "1rem", color: "#0D1F33", marginBottom: 10 }}>🔍 Membership Verification</div>
+        <p style={{ fontSize: "0.875rem", color: "#5F7491", lineHeight: 1.7, margin: 0 }}>
+          The <strong style={{ color: "#3C516C" }}>daily scheduled sweep</strong> runs automatically and revokes memberships where <code style={{ color: "#0B6C86", fontSize: "0.82rem" }}>membershipExpiresAt</code> has passed.
+          Use <strong style={{ color: "#3C516C" }}>Run Check Now</strong> to trigger it immediately.
         </p>
       </Card>
       <Card>
-        <div style={{ fontWeight: 700, fontSize: "1rem", color: "#f1f5f9", marginBottom: 14 }}>▶ Run Membership Check Now</div>
+        <div style={{ fontWeight: 700, fontSize: "1rem", color: "#0D1F33", marginBottom: 14 }}>▶ Run Membership Check Now</div>
         <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 16 }}>
           <button className="btn-primary" onClick={() => void runVerify()} disabled={verifyLoading}>{verifyLoading ? "⏳ Running…" : "🔍 Run Check"}</button>
           {verifyMsg && <Msg text={verifyMsg} error={verifyErr} />}
@@ -918,30 +918,30 @@ function VerificationTab() {
         {verifyResult && (
           <>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))", gap: 10, marginBottom: 16 }}>
-              {[["Checked", verifyResult.checked, "#94a3b8"], ["Active", verifyResult.active, "#4ade80"], ["Revoked", verifyResult.revoked, "#f87171"], ["Errors", verifyResult.errors, "#f59e0b"]].map(([label, value, color]) => (
-                <div key={label as string} style={{ background: "#0a1628", border: "1px solid #1e3a5f", borderRadius: 10, padding: "12px 16px" }}>
-                  <div style={{ fontSize: "0.72rem", color: "#64748b", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 4 }}>{label}</div>
+              {[["Checked", verifyResult.checked, "#3C516C"], ["Active", verifyResult.active, "#178A55"], ["Revoked", verifyResult.revoked, "#C8283B"], ["Errors", verifyResult.errors, "#8A5A0B"]].map(([label, value, color]) => (
+                <div key={label as string} style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 10, padding: "12px 16px" }}>
+                  <div style={{ fontSize: "0.72rem", color: "#5F7491", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 4 }}>{label}</div>
                   <div style={{ fontSize: "1.4rem", fontWeight: 700, color: color as string }}>{value as number}</div>
                 </div>
               ))}
             </div>
-            <div style={{ fontSize: "0.72rem", color: "#475569", marginBottom: 10 }}>Checked at: {new Date(verifyResult.checkedAt).toLocaleString()}</div>
+            <div style={{ fontSize: "0.72rem", color: "#5F7491", marginBottom: 10 }}>Checked at: {new Date(verifyResult.checkedAt).toLocaleString()}</div>
             {verifyResult.revokedUsers.length === 0 ? (
-              <div style={{ fontSize: "0.875rem", color: "#4ade80", padding: 12, background: "rgba(22,163,74,0.08)", borderRadius: 8, border: "1px solid rgba(34,197,94,0.2)" }}>✓ No expired memberships found.</div>
+              <div style={{ fontSize: "0.875rem", color: "#178A55", padding: 12, background: "rgba(22,163,74,0.08)", borderRadius: 8, border: "1px solid rgba(34,197,94,0.2)" }}>✓ No expired memberships found.</div>
             ) : (
-              <div style={{ fontSize: "0.82rem", color: "#f87171", marginBottom: 8 }}>{verifyResult.revokedUsers.length} revoked user(s)</div>
+              <div style={{ fontSize: "0.82rem", color: "#C8283B", marginBottom: 8 }}>{verifyResult.revokedUsers.length} revoked user(s)</div>
             )}
           </>
         )}
       </Card>
       <Card>
-        <div style={{ fontWeight: 700, fontSize: "1rem", color: "#f1f5f9", marginBottom: 14 }}>🔗 Sync Individual User from Stripe</div>
+        <div style={{ fontWeight: 700, fontSize: "1rem", color: "#0D1F33", marginBottom: 14 }}>🔗 Sync Individual User from Stripe</div>
         <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
           <input value={syncUid} onChange={(e) => setSyncUid(e.target.value)} placeholder="User UID" style={{ flex: 1, fontFamily: "monospace", fontSize: "0.85rem" }} onKeyDown={(e) => { if (e.key === "Enter") void runSync(); }} />
           <button className="btn-primary" onClick={() => void runSync()} disabled={syncLoading || !syncUid.trim()} style={{ whiteSpace: "nowrap" }}>{syncLoading ? "Syncing…" : "🔗 Sync"}</button>
         </div>
         {syncResult && (
-          <div style={{ padding: "10px 14px", borderRadius: 8, background: syncResult.ok ? "rgba(22,163,74,0.1)" : "rgba(239,68,68,0.1)", border: `1px solid ${syncResult.ok ? "rgba(34,197,94,0.3)" : "rgba(239,68,68,0.3)"}`, fontSize: "0.875rem", color: syncResult.ok ? "#4ade80" : "#f87171" }}>
+          <div style={{ padding: "10px 14px", borderRadius: 8, background: syncResult.ok ? "rgba(22,163,74,0.1)" : "rgba(239,68,68,0.1)", border: `1px solid ${syncResult.ok ? "rgba(34,197,94,0.3)" : "rgba(239,68,68,0.3)"}`, fontSize: "0.875rem", color: syncResult.ok ? "#178A55" : "#C8283B" }}>
             {syncResult.ok ? "✓ " : "✗ "}{syncResult.syncNote}
           </div>
         )}
@@ -969,7 +969,7 @@ export default function PaymentOptionsPanel() {
   return (
     <div style={{ display: "grid", gap: 20, maxWidth: 1100 }}>
       {/* Tab bar */}
-      <div style={{ display: "flex", gap: 4, background: "#0f172a", borderRadius: 10, padding: 4, border: "1px solid #1e3a5f", width: "fit-content", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 4, background: "#F4F7FB", borderRadius: 10, padding: 4, border: "1px solid #DCE4EE", width: "fit-content", flexWrap: "wrap" }}>
         {TABS.map(({ key, label }) => (
           <button
             key={key}
@@ -978,8 +978,8 @@ export default function PaymentOptionsPanel() {
               padding: "8px 18px",
               borderRadius: 7,
               border: "none",
-              background: tab === key ? "#1d4ed8" : "transparent",
-              color: tab === key ? "#fff" : "#94a3b8",
+              background: tab === key ? "#0B6C86" : "transparent",
+              color: tab === key ? "#fff" : "#3C516C",
               fontWeight: tab === key ? 600 : 400,
               fontSize: "0.875rem",
               cursor: "pointer",

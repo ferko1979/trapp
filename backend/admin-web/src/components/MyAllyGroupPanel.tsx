@@ -71,7 +71,7 @@ export default function MyAllyGroupPanel({
       <h2 style={{ margin: 0 }}>My Ally Group</h2>
 
       {!groupId ? (
-        <div style={{ border: "1px solid #334155", borderRadius: 10, padding: 12 }}>
+        <div style={{ border: "1px solid #DCE4EE", borderRadius: 10, padding: 12 }}>
           <div>You are not currently in an active ally group.</div>
           {pendingInviteGroupId ? (
             <div style={{ marginTop: 10 }}>
@@ -82,11 +82,11 @@ export default function MyAllyGroupPanel({
         </div>
       ) : (
         <>
-          <div style={{ border: "1px solid #334155", borderRadius: 10, padding: 12 }}>
+          <div style={{ border: "1px solid #DCE4EE", borderRadius: 10, padding: 12 }}>
             Active group ID: {groupId}
           </div>
 
-          <div style={{ border: "1px solid #334155", borderRadius: 10, padding: 12 }}>
+          <div style={{ border: "1px solid #DCE4EE", borderRadius: 10, padding: 12 }}>
             <h3 style={{ marginTop: 0 }}>Members</h3>
             <div style={{ display: "grid", gap: 8 }}>
               {members.map((member) => (
@@ -98,7 +98,7 @@ export default function MyAllyGroupPanel({
             </div>
           </div>
 
-          <div style={{ border: "1px solid #334155", borderRadius: 10, padding: 12 }}>
+          <div style={{ border: "1px solid #DCE4EE", borderRadius: 10, padding: 12 }}>
             <h3 style={{ marginTop: 0 }}>Enemy Ally Groups</h3>
             <div style={{ display: "grid", gap: 8 }}>
               {enemies.length === 0 ? <div>No enemies configured.</div> : null}

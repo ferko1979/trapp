@@ -74,8 +74,8 @@ export default function NewsletterPanel() {
   const chosenSegment = SEGMENTS.find((s) => s.value === segment);
 
   const card: React.CSSProperties = {
-    background: "#0a1628",
-    border: "1px solid #1e3a5f",
+    background: "#F4F7FB",
+    border: "1px solid #DCE4EE",
     borderRadius: 12,
     overflow: "hidden",
   };
@@ -83,10 +83,10 @@ export default function NewsletterPanel() {
   const inputStyle: React.CSSProperties = {
     width: "100%",
     padding: "9px 12px",
-    background: "#060e1a",
-    border: "1px solid #1e3a5f",
+    background: "#F4F7FB",
+    border: "1px solid #DCE4EE",
     borderRadius: 8,
-    color: "#e2e8f0",
+    color: "#0D1F33",
     fontSize: "0.875rem",
     outline: "none",
     boxSizing: "border-box",
@@ -96,7 +96,7 @@ export default function NewsletterPanel() {
     display: "block",
     fontSize: "0.73rem",
     fontWeight: 600,
-    color: "#64748b",
+    color: "#5F7491",
     textTransform: "uppercase",
     letterSpacing: "0.07em",
     marginBottom: 8,
@@ -107,22 +107,22 @@ export default function NewsletterPanel() {
 
       {/* How it works */}
       <div style={{ ...card }}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
           📰 Send Newsletter
         </div>
-        <div style={{ padding: "16px 20px", color: "#94a3b8", fontSize: "0.875rem", lineHeight: 1.7 }}>
+        <div style={{ padding: "16px 20px", color: "#3C516C", fontSize: "0.875rem", lineHeight: 1.7 }}>
           <p style={{ margin: 0 }}>
-            Compose your newsletter in <strong style={{ color: "#e2e8f0" }}>Email Templates</strong>, then
+            Compose your newsletter in <strong style={{ color: "#0D1F33" }}>Email Templates</strong>, then
             select it here and choose which users to send it to. The email is sent via your configured
-            SMTP server and personalizes <code style={{ color: "#c4b5fd" }}>{"{{name}}"}</code> and{" "}
-            <code style={{ color: "#c4b5fd" }}>{"{{username}}"}</code> for each recipient.
+            SMTP server and personalizes <code style={{ color: "#6D3FC9" }}>{"{{name}}"}</code> and{" "}
+            <code style={{ color: "#6D3FC9" }}>{"{{username}}"}</code> for each recipient.
           </p>
         </div>
       </div>
 
       {/* Compose form */}
       <div style={card}>
-        <div style={{ padding: "14px 20px", borderBottom: "1px solid #1e3a5f", fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+        <div style={{ padding: "14px 20px", borderBottom: "1px solid #DCE4EE", fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
           Configure Send
         </div>
         <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: 18 }}>
@@ -131,14 +131,14 @@ export default function NewsletterPanel() {
           <div>
             <label style={labelStyle}>Email Template</label>
             {loadingTemplates ? (
-              <div style={{ color: "#64748b", fontSize: "0.875rem" }}>Loading templates…</div>
+              <div style={{ color: "#5F7491", fontSize: "0.875rem" }}>Loading templates…</div>
             ) : templates.length === 0 ? (
               <div style={{
                 padding: "12px 14px",
                 background: "rgba(113,63,18,0.15)",
-                border: "1px solid #713f12",
+                border: "1px solid #F3D9A8",
                 borderRadius: 8,
-                color: "#fde68a",
+                color: "#8A5A0B",
                 fontSize: "0.875rem",
               }}>
                 No newsletter templates found. Go to <strong>Email Templates</strong> and create one
@@ -163,13 +163,13 @@ export default function NewsletterPanel() {
               <div style={{
                 marginTop: 10,
                 padding: "10px 14px",
-                background: "#0d1b2e",
-                border: "1px solid #1e3a5f",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 8,
                 fontSize: "0.8rem",
-                color: "#94a3b8",
+                color: "#3C516C",
               }}>
-                <strong style={{ color: "#cbd5e1" }}>Subject:</strong> {chosenTemplate.subject}
+                <strong style={{ color: "#26394F" }}>Subject:</strong> {chosenTemplate.subject}
               </div>
             )}
           </div>
@@ -186,8 +186,8 @@ export default function NewsletterPanel() {
                     alignItems: "flex-start",
                     gap: 10,
                     padding: "12px 14px",
-                    background: segment === s.value ? "rgba(29,78,216,0.12)" : "#060e1a",
-                    border: `1px solid ${segment === s.value ? "#3b82f6" : "#1e3a5f"}`,
+                    background: segment === s.value ? "rgba(11,108,134,0.12)" : "#F4F7FB",
+                    border: `1px solid ${segment === s.value ? "#0B6C86" : "#DCE4EE"}`,
                     borderRadius: 8,
                     cursor: "pointer",
                   }}
@@ -198,11 +198,11 @@ export default function NewsletterPanel() {
                     value={s.value}
                     checked={segment === s.value}
                     onChange={() => setSegment(s.value)}
-                    style={{ marginTop: 2, accentColor: "#3b82f6" }}
+                    style={{ marginTop: 2, accentColor: "#0B6C86" }}
                   />
                   <div>
-                    <div style={{ color: "#e2e8f0", fontWeight: 600, fontSize: "0.875rem" }}>{s.label}</div>
-                    <div style={{ color: "#64748b", fontSize: "0.8rem", marginTop: 2 }}>{s.desc}</div>
+                    <div style={{ color: "#0D1F33", fontWeight: 600, fontSize: "0.875rem" }}>{s.label}</div>
+                    <div style={{ color: "#5F7491", fontSize: "0.8rem", marginTop: 2 }}>{s.desc}</div>
                   </div>
                 </label>
               ))}
@@ -214,9 +214,9 @@ export default function NewsletterPanel() {
             <div style={{
               padding: "10px 14px",
               background: "rgba(113,63,18,0.2)",
-              border: "1px solid #92400e",
+              border: "1px solid #F3D9A8",
               borderRadius: 8,
-              color: "#fde68a",
+              color: "#8A5A0B",
               fontSize: "0.825rem",
             }}>
               ⚠️ <strong>All users</strong> includes accounts that haven't verified their email.
@@ -230,10 +230,10 @@ export default function NewsletterPanel() {
             onClick={() => setConfirmOpen(true)}
             style={{
               padding: "12px 28px",
-              background: !selectedTemplate || sending ? "#0f2035" : "#1d4ed8",
-              border: `1px solid ${!selectedTemplate || sending ? "#1e3a5f" : "#3b82f6"}`,
+              background: !selectedTemplate || sending ? "#F4F7FB" : "#0B6C86",
+              border: `1px solid ${!selectedTemplate || sending ? "#DCE4EE" : "#0B6C86"}`,
               borderRadius: 8,
-              color: !selectedTemplate || sending ? "#475569" : "#fff",
+              color: !selectedTemplate || sending ? "#5F7491" : "#fff",
               fontWeight: 700,
               fontSize: "0.9rem",
               cursor: !selectedTemplate || sending ? "not-allowed" : "pointer",
@@ -248,9 +248,9 @@ export default function NewsletterPanel() {
               padding: "10px 14px",
               borderRadius: 8,
               fontSize: "0.875rem",
-              background: msg.startsWith("Error") ? "#3b0000" : "#052e16",
-              border: `1px solid ${msg.startsWith("Error") ? "#7f1d1d" : "#14532d"}`,
-              color: msg.startsWith("Error") ? "#fca5a5" : "#4ade80",
+              background: msg.startsWith("Error") ? "#FDE7EA" : "#E3F7EC",
+              border: `1px solid ${msg.startsWith("Error") ? "#F5C2C9" : "#BFE8D2"}`,
+              color: msg.startsWith("Error") ? "#C8283B" : "#178A55",
             }}>
               {msg}
             </div>
@@ -262,28 +262,28 @@ export default function NewsletterPanel() {
       {result && (
         <div style={{
           ...card,
-          border: `1px solid ${result.failed > 0 ? "#713f12" : "#14532d"}`,
+          border: `1px solid ${result.failed > 0 ? "#F3D9A8" : "#BFE8D2"}`,
         }}>
-          <div style={{ padding: "14px 20px", borderBottom: `1px solid ${result.failed > 0 ? "#713f12" : "#14532d"}`, fontWeight: 700, color: "#e2e8f0", fontSize: "0.9rem" }}>
+          <div style={{ padding: "14px 20px", borderBottom: `1px solid ${result.failed > 0 ? "#F3D9A8" : "#BFE8D2"}`, fontWeight: 700, color: "#0D1F33", fontSize: "0.9rem" }}>
             {result.failed > 0 ? "⚠️ " : "✅ "}Send Complete
           </div>
           <div style={{ padding: "20px", display: "flex", gap: 20, flexWrap: "wrap" }}>
             {[
-              { label: "Total Users", value: result.total, color: "#94a3b8" },
-              { label: "Sent", value: result.sent, color: "#4ade80" },
-              { label: "Failed", value: result.failed, color: result.failed > 0 ? "#f87171" : "#94a3b8" },
+              { label: "Total Users", value: result.total, color: "#3C516C" },
+              { label: "Sent", value: result.sent, color: "#178A55" },
+              { label: "Failed", value: result.failed, color: result.failed > 0 ? "#C8283B" : "#3C516C" },
             ].map((s) => (
               <div key={s.label} style={{
                 textAlign: "center",
                 flex: 1,
                 minWidth: 100,
-                background: "#0d1b2e",
-                border: "1px solid #1e3a5f",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: "16px 12px",
               }}>
                 <div style={{ fontSize: "2rem", fontWeight: 800, color: s.color }}>{s.value}</div>
-                <div style={{ color: "#64748b", fontSize: "0.8rem", marginTop: 4, fontWeight: 600 }}>{s.label}</div>
+                <div style={{ color: "#5F7491", fontSize: "0.8rem", marginTop: 4, fontWeight: 600 }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -295,28 +295,28 @@ export default function NewsletterPanel() {
         <div style={{
           position: "fixed",
           inset: 0,
-          background: "rgba(0,0,0,0.7)",
+          background: "rgba(11,22,38,0.55)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           zIndex: 1000,
         }}>
           <div style={{
-            background: "#0a1628",
-            border: "1px solid #1e3a5f",
+            background: "#F4F7FB",
+            border: "1px solid #DCE4EE",
             borderRadius: 14,
             padding: "28px 32px",
             maxWidth: 440,
             width: "90%",
           }}>
-            <div style={{ fontWeight: 800, color: "#e2e8f0", fontSize: "1.1rem", marginBottom: 12 }}>
+            <div style={{ fontWeight: 800, color: "#0D1F33", fontSize: "1.1rem", marginBottom: 12 }}>
               Confirm Newsletter Send
             </div>
-            <p style={{ color: "#94a3b8", fontSize: "0.9rem", lineHeight: 1.6, margin: "0 0 20px" }}>
-              You are about to send <strong style={{ color: "#e2e8f0" }}>{chosenTemplate?.name}</strong> to
-              {" "}<strong style={{ color: "#e2e8f0" }}>{chosenSegment?.label}</strong>.
+            <p style={{ color: "#3C516C", fontSize: "0.9rem", lineHeight: 1.6, margin: "0 0 20px" }}>
+              You are about to send <strong style={{ color: "#0D1F33" }}>{chosenTemplate?.name}</strong> to
+              {" "}<strong style={{ color: "#0D1F33" }}>{chosenSegment?.label}</strong>.
               <br /><br />
-              This action <strong style={{ color: "#f87171" }}>cannot be undone</strong>. Each recipient
+              This action <strong style={{ color: "#C8283B" }}>cannot be undone</strong>. Each recipient
               receives an individual email. Continue?
             </p>
             <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
@@ -325,9 +325,9 @@ export default function NewsletterPanel() {
                 style={{
                   padding: "9px 20px",
                   background: "none",
-                  border: "1px solid #1e3a5f",
+                  border: "1px solid #DCE4EE",
                   borderRadius: 8,
-                  color: "#94a3b8",
+                  color: "#3C516C",
                   cursor: "pointer",
                   fontWeight: 600,
                 }}
@@ -338,8 +338,8 @@ export default function NewsletterPanel() {
                 onClick={() => void sendNewsletter()}
                 style={{
                   padding: "9px 20px",
-                  background: "#1d4ed8",
-                  border: "1px solid #3b82f6",
+                  background: "#0B6C86",
+                  border: "1px solid #0B6C86",
                   borderRadius: 8,
                   color: "#fff",
                   fontWeight: 700,

@@ -10,7 +10,7 @@ export default function AllyGroupsPanel() {
     <section style={{ display: "grid", gap: 20 }}>
       <CreateAllyGroupPanel onCreated={setSelectedGroupId} />
 
-      <div style={{ border: "1px solid #334155", borderRadius: 12, padding: 16 }}>
+      <div style={{ border: "1px solid #DCE4EE", borderRadius: 12, padding: 16 }}>
         <h3 style={{ marginTop: 0 }}>Open Existing Ally Group</h3>
         <div style={{ display: "flex", gap: 8 }}>
           <input

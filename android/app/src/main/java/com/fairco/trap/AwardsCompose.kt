@@ -1,6 +1,7 @@
 package com.fairco.trap
 
 import androidx.compose.animation.*
+import com.fairco.trap.ui.theme.Radar
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -37,26 +38,26 @@ import java.util.*
 import kotlin.random.Random
 import kotlinx.coroutines.delay
 
-private val BG           = Color(0xFF000D1A)
-private val SURFACE      = Color(0xFF0D1626)
-private val SURFACE2     = Color(0xFF0A1F35)
-private val SURFACE3     = Color(0xFF061222)
-private val ACCENT_BLUE  = Color(0xFF3B82F6)
-private val ACCENT_GREEN = Color(0xFF22C55E)
-private val MUTED        = Color(0xFF64748B)
-private val TEXT         = Color(0xFFE2E8F0)
-private val TEXT_SEC     = Color(0xFF94A3B8)
-private val AMBER        = Color(0xFFF59E0B)
+private val BG           = Radar.Bg
+private val SURFACE      = Radar.Surface
+private val SURFACE2     = Radar.Surface2
+private val SURFACE3     = Radar.Bg
+private val ACCENT_BLUE  = Radar.Accent
+private val ACCENT_GREEN = Radar.Safe
+private val MUTED        = Radar.TextMuted
+private val TEXT         = Radar.Text
+private val TEXT_SEC     = Radar.TextSec
+private val AMBER        = Radar.Gold
 private val CARD_GREEN1  = Color(0xFF064E3B)
 private val CARD_GREEN2  = Color(0xFF065F46)
 private val CARD_ICE1    = Color(0xFF0C2D48)
 private val CARD_ICE2    = Color(0xFF0E3A5C)
-private val ACCENT_ICE   = Color(0xFF38BDF8)
-private val CARD_USED    = Color(0xFF111827)
+private val ACCENT_ICE   = Radar.Accent
+private val CARD_USED    = Radar.Bg
 
 // Confetti colours
 private val CONFETTI_COLORS = listOf(
-    Color(0xFFF59E0B), Color(0xFF22C55E), Color(0xFF3B82F6),
+    Radar.Gold, Radar.Safe, Radar.Accent,
     Color(0xFFEC4899), Color(0xFFA855F7), Color(0xFFF97316),
 )
 
@@ -244,7 +245,7 @@ fun AwardsScreen(viewModel: AwardsViewModel, onBack: () -> Unit) {
                         Modifier.fillMaxSize().padding(32.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text("⚠️ ${state.error}", color = Color(0xFFFCA5A5), textAlign = TextAlign.Center)
+                        Text("⚠️ ${state.error}", color = Radar.TrapSoft, textAlign = TextAlign.Center)
                     }
                     tabIndex == 0 -> CardsTab(state)
                     else          -> StreakTab(state)
@@ -294,9 +295,9 @@ private fun CardTypeSection(ct: CardTypeContent, state: AwardsUiState, sectionIn
     val freeze  = isFreeze(ct)
     val accent  = if (freeze) ACCENT_ICE else ACCENT_GREEN
     val heroGrad = if (freeze)
-        Brush.horizontalGradient(listOf(Color(0xFF0C1A2E), Color(0xFF071420)))
+        Brush.horizontalGradient(listOf(Radar.Surface, Radar.Bg))
     else
-        Brush.horizontalGradient(listOf(Color(0xFF052E16), Color(0xFF0A1628)))
+        Brush.horizontalGradient(listOf(Color(0xFF052E16), Radar.Bg))
 
     val unused = state.unusedCards.filter { it.type == ct.id }
     val used   = state.usedCards.filter   { it.type == ct.id }
@@ -434,7 +435,7 @@ private fun CardTypeSection(ct: CardTypeContent, state: AwardsUiState, sectionIn
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0xFF0F172A), RoundedCornerShape(8.dp))
+                        .background(Radar.Bg, RoundedCornerShape(8.dp))
                         .padding(horizontal = 12.dp, vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)

@@ -1,6 +1,8 @@
 ﻿package com.fairco.trap
 
 import android.content.Intent
+import com.fairco.trap.ui.theme.TrappTheme
+import com.fairco.trap.ui.theme.Radar
 import android.net.Uri
 import android.os.Bundle
 import androidx.browser.customtabs.CustomTabsIntent
@@ -73,9 +75,9 @@ class SubscriptionActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
-        setContent {
+        setContent { TrappTheme {
             SubscriptionScreen(uid = uid)
-        }
+        } }
     }
 }
 
@@ -233,7 +235,7 @@ private fun SubscriptionScreen(uid: String) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF000D1A))
+            .background(Radar.Bg)
     ) {
         // Top bar
         Row(
@@ -252,13 +254,13 @@ private fun SubscriptionScreen(uid: String) {
                 modifier = Modifier.weight(1f)
             )
             IconButton(onClick = { activity?.finish() }) {
-                Text("✕", color = Color(0xFF94A3B8), fontSize = 18.sp)
+                Text("✕", color = Radar.TextSec, fontSize = 18.sp)
             }
         }
 
         if (loading) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(color = Color(0xFF3B82F6))
+                CircularProgressIndicator(color = Radar.Accent)
             }
             return@Column
         }
@@ -315,7 +317,7 @@ private fun SubscriptionScreen(uid: String) {
                     )
                     Text(
                         "Bigger bag · Faster actions · No ads",
-                        color = Color(0xFF64748B),
+                        color = Radar.TextMuted,
                         fontSize = 13.sp,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(top = 6.dp)
@@ -329,8 +331,8 @@ private fun SubscriptionScreen(uid: String) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(12.dp))
-                        .background(Color(0xFF0F172A))
-                        .border(1.dp, Color(0xFF1E293B), RoundedCornerShape(12.dp))
+                        .background(Radar.Bg)
+                        .border(1.dp, Radar.Surface, RoundedCornerShape(12.dp))
                         .padding(14.dp)
                 ) {
                     Row(
@@ -339,20 +341,20 @@ private fun SubscriptionScreen(uid: String) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Column {
-                            Text("FREE", color = Color(0xFF475569), fontWeight = FontWeight.ExtraBold, fontSize = 16.sp, letterSpacing = 1.sp)
-                            Text("Your current plan", color = Color(0xFF334155), fontSize = 12.sp, modifier = Modifier.padding(top = 2.dp))
+                            Text("FREE", color = Radar.TextMuted, fontWeight = FontWeight.ExtraBold, fontSize = 16.sp, letterSpacing = 1.sp)
+                            Text("Your current plan", color = Radar.Line, fontSize = 12.sp, modifier = Modifier.padding(top = 2.dp))
                         }
-                        Text("€0", color = Color(0xFF475569), fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                        Text("€0", color = Radar.TextMuted, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                     }
                     Spacer(Modifier.height(10.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        BenefitChip("Bag", "4 kg", Color(0xFF475569), Modifier.weight(1f))
-                        BenefitChip("Traps/day", "2", Color(0xFF475569), Modifier.weight(1f))
-                        BenefitChip("Radius", "200 m", Color(0xFF475569), Modifier.weight(1f))
-                        BenefitChip("Speed", "+0%", Color(0xFF475569), Modifier.weight(1f))
+                        BenefitChip("Bag", "4 kg", Radar.TextMuted, Modifier.weight(1f))
+                        BenefitChip("Traps/day", "2", Radar.TextMuted, Modifier.weight(1f))
+                        BenefitChip("Radius", "200 m", Radar.TextMuted, Modifier.weight(1f))
+                        BenefitChip("Speed", "+0%", Radar.TextMuted, Modifier.weight(1f))
                     }
                     Spacer(Modifier.height(6.dp))
                     Row(
@@ -364,8 +366,8 @@ private fun SubscriptionScreen(uid: String) {
                         horizontalArrangement = Arrangement.spacedBy(6.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Ads:", color = Color(0xFF475569), fontSize = 11.sp)
-                        Text("Banner · Interstitial · Rewarded", color = Color(0xFFFCA5A5), fontSize = 10.sp, fontWeight = FontWeight.SemiBold,
+                        Text("Ads:", color = Radar.TextMuted, fontSize = 11.sp)
+                        Text("Banner · Interstitial · Rewarded", color = Radar.TrapSoft, fontSize = 10.sp, fontWeight = FontWeight.SemiBold,
                             modifier = Modifier.background(Color(0xFF1C0A0A), RoundedCornerShape(999.dp)).padding(horizontal = 7.dp, vertical = 3.dp))
                     }
                 }
@@ -376,11 +378,11 @@ private fun SubscriptionScreen(uid: String) {
                 OutlinedTextField(
                     value = discountCode,
                     onValueChange = { discountCode = it.uppercase() },
-                    label = { Text("Discount code (optional)", color = Color(0xFF64748B)) },
+                    label = { Text("Discount code (optional)", color = Radar.TextMuted) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = Color(0xFF3B82F6),
-                        unfocusedBorderColor = Color(0xFF1E3A5F),
+                        focusedBorderColor = Radar.Accent,
+                        unfocusedBorderColor = Radar.Line,
                         focusedTextColor = Color.White,
                         unfocusedTextColor = Color.White,
                     ),
@@ -396,14 +398,14 @@ private fun SubscriptionScreen(uid: String) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(12.dp))
-                            .background(Color(0xFF1E293B))
+                            .background(Radar.Surface)
                             .padding(20.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             Text("🔧", fontSize = 28.sp)
-                            Text("Payment Temporarily Unavailable", color = Color(0xFFE2E8F0), fontWeight = FontWeight.Bold, fontSize = 15.sp, textAlign = TextAlign.Center)
-                            Text("Please check back shortly.", color = Color(0xFF64748B), fontSize = 13.sp, textAlign = TextAlign.Center)
+                            Text("Payment Temporarily Unavailable", color = Radar.Text, fontWeight = FontWeight.Bold, fontSize = 15.sp, textAlign = TextAlign.Center)
+                            Text("Please check back shortly.", color = Radar.TextMuted, fontSize = 13.sp, textAlign = TextAlign.Center)
                         }
                     }
                 }
@@ -415,7 +417,7 @@ private fun SubscriptionScreen(uid: String) {
                 item {
                     Text(
                         "No premium packages available yet.",
-                        color = Color(0xFF475569),
+                        color = Radar.TextMuted,
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().padding(32.dp)
@@ -442,7 +444,7 @@ private fun SubscriptionScreen(uid: String) {
             item {
                 Text(
                     "Cancel at any time. No charge if cancelled before the billing date. Prices shown in package currency.",
-                    color = Color(0xFF334155),
+                    color = Radar.Line,
                     fontSize = 11.sp,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
@@ -454,7 +456,7 @@ private fun SubscriptionScreen(uid: String) {
         recurringConsentPkg?.let { pkg ->
             AlertDialog(
                 onDismissRequest = { recurringConsentPkg = null },
-                containerColor = Color(0xFF0F172A),
+                containerColor = Radar.Bg,
                 title = {
                     Text("🔄 Recurring Subscription", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                 },
@@ -462,20 +464,20 @@ private fun SubscriptionScreen(uid: String) {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text(
                             "${pkg.name} is a recurring subscription that automatically renews every ${formatDuration(pkg.duration).removePrefix("per ")}.",
-                            color = Color(0xFFE2E8F0), fontSize = 14.sp, lineHeight = 20.sp
+                            color = Radar.Text, fontSize = 14.sp, lineHeight = 20.sp
                         )
                         Text(
                             "You will be charged ${formatPrice(pkg.price, pkg.currency)} at the start of each period.",
-                            color = Color(0xFF94A3B8), fontSize = 13.sp
+                            color = Radar.TextSec, fontSize = 13.sp
                         )
                         Text(
                             "✅ You can cancel at any time from the app (Profile → Subscription → Cancel). Cancellation takes effect at the end of the current period — you keep access until then.",
-                            color = Color(0xFF4ADE80), fontSize = 13.sp, lineHeight = 19.sp
+                            color = Radar.Safe, fontSize = 13.sp, lineHeight = 19.sp
                         )
                         if (pkg.trialDays > 0) {
                             Text(
                                 "🔬 Your first ${pkg.trialDays} days are FREE. No charge if you cancel before the trial ends.",
-                                color = Color(0xFF60A5FA), fontSize = 13.sp
+                                color = Radar.Accent, fontSize = 13.sp
                             )
                         }
                     }
@@ -487,14 +489,14 @@ private fun SubscriptionScreen(uid: String) {
                             recurringConsentPkg = null
                             startCheckout(confirmedPkg)
                         },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1D4ED8))
+                        colors = ButtonDefaults.buttonColors(containerColor = Radar.AccentDeep)
                     ) {
                         Text("I Understand — Continue", color = Color.White, fontWeight = FontWeight.Bold)
                     }
                 },
                 dismissButton = {
                     TextButton(onClick = { recurringConsentPkg = null }) {
-                        Text("Cancel", color = Color(0xFF64748B))
+                        Text("Cancel", color = Radar.TextMuted)
                     }
                 }
             )
@@ -504,7 +506,7 @@ private fun SubscriptionScreen(uid: String) {
         gatewayPickerPkg?.let { pkg ->
             AlertDialog(
                 onDismissRequest = { gatewayPickerPkg = null },
-                containerColor = Color(0xFF0F172A),
+                containerColor = Radar.Bg,
                 title = {
                     Text("Choose Payment Method", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                 },
@@ -517,7 +519,7 @@ private fun SubscriptionScreen(uid: String) {
                                     gatewayPickerPkg = null
                                     scope.launch { doCheckout(p, PaymentGateway.REVOLUT) }
                                 },
-                                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1D4ED8)),
+                                colors = ButtonDefaults.buttonColors(containerColor = Radar.AccentDeep),
                                 modifier = Modifier.fillMaxWidth(),
                                 shape = RoundedCornerShape(10.dp)
                             ) {
@@ -543,7 +545,7 @@ private fun SubscriptionScreen(uid: String) {
                 confirmButton = {},
                 dismissButton = {
                     TextButton(onClick = { gatewayPickerPkg = null }) {
-                        Text("Cancel", color = Color(0xFF64748B))
+                        Text("Cancel", color = Radar.TextMuted)
                     }
                 }
             )
@@ -564,9 +566,9 @@ private fun ActiveSubscriptionCard(
         else       -> sub.status
     }
     val statusColor = when (sub.status) {
-        "trialing" -> Color(0xFF60A5FA)
-        "active"   -> Color(0xFF4ADE80)
-        else       -> Color(0xFF94A3B8)
+        "trialing" -> Radar.Accent
+        "active"   -> Radar.Safe
+        else       -> Radar.TextSec
     }
     val fmt = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
 
@@ -574,8 +576,8 @@ private fun ActiveSubscriptionCard(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .background(Color(0xFF0F172A))
-            .border(1.dp, Color(0xFF1E3A5F), RoundedCornerShape(16.dp))
+            .background(Radar.Bg)
+            .border(1.dp, Radar.Line, RoundedCornerShape(16.dp))
             .padding(20.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -605,12 +607,12 @@ private fun ActiveSubscriptionCard(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(10.dp)
             ) {
-                Text(if (cancelLoading) "Cancelling…" else "Cancel Subscription", color = Color(0xFFFCA5A5))
+                Text(if (cancelLoading) "Cancelling…" else "Cancel Subscription", color = Radar.TrapSoft)
             }
             Spacer(Modifier.height(6.dp))
             Text(
                 "Your access continues until the end of the current period.",
-                color = Color(0xFF475569),
+                color = Radar.TextMuted,
                 fontSize = 11.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -618,7 +620,7 @@ private fun ActiveSubscriptionCard(
         } else if (sub.cancelAtPeriodEnd) {
             Text(
                 "Subscription cancelled — access continues until ${sub.currentPeriodEnd?.let { fmt.format(Date(it)) } ?: "period end"}.",
-                color = Color(0xFF94A3B8),
+                color = Radar.TextSec,
                 fontSize = 13.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -628,21 +630,21 @@ private fun ActiveSubscriptionCard(
 }
 
 private fun tierAccentColor(levelId: String): Color = when (levelId) {
-    "silver"  -> Color(0xFF94A3B8)
-    "gold"    -> Color(0xFFD97706)
-    "pro"     -> Color(0xFF3B82F6)
+    "silver"  -> Radar.TextSec
+    "gold"    -> Radar.Gold
+    "pro"     -> Radar.Accent
     "elite"   -> Color(0xFF8B5CF6)
-    "diamond" -> Color(0xFF06B6D4)
-    else      -> Color(0xFF475569)
+    "diamond" -> Radar.Accent
+    else      -> Radar.TextMuted
 }
 
 private fun tierBgColor(levelId: String): Color = when (levelId) {
-    "silver"  -> Color(0xFF1C2333)
+    "silver"  -> Radar.Surface
     "gold"    -> Color(0xFF1C1600)
-    "pro"     -> Color(0xFF0C1A2E)
+    "pro"     -> Radar.Surface
     "elite"   -> Color(0xFF150C29)
     "diamond" -> Color(0xFF001A20)
-    else      -> Color(0xFF0F172A)
+    else      -> Radar.Bg
 }
 
 @Composable
@@ -700,21 +702,21 @@ private fun PackageCard(
                     if (pkg.trialDays > 0) {
                         Text(
                             "${pkg.trialDays}d free trial",
-                            color = Color(0xFF60A5FA),
+                            color = Radar.Accent,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,
                             modifier = Modifier
-                                .background(Color(0xFF1E3A5F), RoundedCornerShape(999.dp))
+                                .background(Radar.Line, RoundedCornerShape(999.dp))
                                 .padding(horizontal = 8.dp, vertical = 2.dp)
                         )
                     }
                     if (pkg.isRecurring) {
                         Text(
                             "Auto-renews",
-                            color = Color(0xFF64748B),
+                            color = Radar.TextMuted,
                             fontSize = 11.sp,
                             modifier = Modifier
-                                .background(Color(0xFF0D1626), RoundedCornerShape(999.dp))
+                                .background(Radar.Surface, RoundedCornerShape(999.dp))
                                 .padding(horizontal = 8.dp, vertical = 2.dp)
                         )
                     }
@@ -722,7 +724,7 @@ private fun PackageCard(
             }
             Column(horizontalAlignment = Alignment.End) {
                 Text(priceDisplay, color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 20.sp)
-                Text(durationLabel, color = Color(0xFF64748B), fontSize = 12.sp)
+                Text(durationLabel, color = Radar.TextMuted, fontSize = 12.sp)
             }
         }
 
@@ -758,7 +760,7 @@ private fun PackageCard(
             shape = RoundedCornerShape(10.dp)
         ) {
             if (loading) {
-                CircularProgressIndicator(color = Color.White, modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
+                CircularProgressIndicator(color = Radar.contentOn(accent), modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
                 Spacer(Modifier.width(8.dp))
             }
             val gatewayLabel = when {
@@ -772,7 +774,7 @@ private fun PackageCard(
                 val n = pkg.levelName.takeIf { it.isNotBlank() } ?: pkg.name
                 "Get $n$gatewayLabel"
             }
-            Text(label, fontWeight = FontWeight.Bold, color = Color.White)
+            Text(label, fontWeight = FontWeight.Bold, color = Radar.contentOn(accent))
         }
     }
 }
@@ -787,7 +789,7 @@ private fun BenefitChip(label: String, value: String, accent: Color, modifier: M
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(value, color = accent, fontWeight = FontWeight.Bold, fontSize = 13.sp)
-        Text(label, color = Color(0xFF64748B), fontSize = 10.sp)
+        Text(label, color = Radar.TextMuted, fontSize = 10.sp)
     }
 }
 
@@ -809,7 +811,7 @@ private fun AdStatusRow(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text("Ads:", color = Color(0xFF64748B), fontSize = 11.sp)
+        Text("Ads:", color = Radar.TextMuted, fontSize = 11.sp)
         AdChip("Banner", !disableBanner)
         AdChip("Interstitial", !disableInterstitial)
         AdChip("Rewarded", !disableRewarded, optional = disableInterstitial)
@@ -819,9 +821,9 @@ private fun AdStatusRow(
 @Composable
 private fun AdChip(label: String, shown: Boolean, optional: Boolean = false) {
     val (bg, fg, prefix) = when {
-        !shown && optional -> Triple(Color(0xFF0A1A0A), Color(0xFF86EFAC), "opt")
-        shown              -> Triple(Color(0xFF1C0A0A), Color(0xFFFCA5A5), "✕")
-        else               -> Triple(Color(0xFF0A1A0A), Color(0xFF86EFAC), "✓ off")
+        !shown && optional -> Triple(Color(0xFF0A1A0A), Radar.Safe, "opt")
+        shown              -> Triple(Color(0xFF1C0A0A), Radar.TrapSoft, "✕")
+        else               -> Triple(Color(0xFF0A1A0A), Radar.Safe, "✓ off")
     }
     Text(
         "$prefix $label",
@@ -851,8 +853,8 @@ private fun InfoRow(label: String, value: String) {
             .padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(label, color = Color(0xFF64748B), fontSize = 13.sp)
-        Text(value, color = Color(0xFFE2E8F0), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+        Text(label, color = Radar.TextMuted, fontSize = 13.sp)
+        Text(value, color = Radar.Text, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
     }
 }
 

@@ -1,6 +1,7 @@
 package com.fairco.trap
 
 import androidx.compose.foundation.background
+import com.fairco.trap.ui.theme.Radar
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
@@ -52,7 +53,7 @@ fun DisassembleProgressOverlay(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xEE000D1A)),
+            .background(Radar.Bg.copy(alpha = 0.93f)),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -70,7 +71,7 @@ fun DisassembleProgressOverlay(
 
             Text(
                 text = stringResource(R.string.label_disassembling),
-                color = Color(0xFFE2E8F0),
+                color = Radar.Text,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
@@ -79,14 +80,14 @@ fun DisassembleProgressOverlay(
             if (state.isWaitingForServer) {
                 Spacer(Modifier.height(16.dp))
                 CircularProgressIndicator(
-                    color = Color(0xFFF59E0B),
+                    color = Radar.Gold,
                     trackColor = Color(0xFF3B1E00),
                     modifier = Modifier.size(56.dp)
                 )
                 Spacer(Modifier.height(16.dp))
                 Text(
                     text = "Communicating with server…",
-                    color = Color(0xFF94A3B8),
+                    color = Radar.TextSec,
                     fontSize = 15.sp,
                     textAlign = TextAlign.Center
                 )
@@ -94,7 +95,7 @@ fun DisassembleProgressOverlay(
             } else {
                 Text(
                     text = remainingSecs.toString(),
-                    color = Color(0xFFF59E0B),
+                    color = Radar.Gold,
                     fontSize = 56.sp,
                     fontWeight = FontWeight.ExtraBold
                 )
@@ -104,7 +105,7 @@ fun DisassembleProgressOverlay(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(8.dp),
-                    color = Color(0xFFF59E0B),
+                    color = Radar.Gold,
                     trackColor = Color(0xFF3B1E00)
                 )
 
@@ -112,7 +113,7 @@ fun DisassembleProgressOverlay(
                     Spacer(Modifier.height(4.dp))
                     Text(
                         text = stringResource(R.string.warning_return_to_zone, state.outOfZoneCountdown),
-                        color = Color(0xFFEF4444),
+                        color = Radar.Trap,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Center
@@ -131,7 +132,7 @@ fun DisassembleProgressOverlay(
                     ) {
                         Text(
                             text = "⏱️  Use Card — Skip 5 min${if (cardCount > 1) "  ($cardCount left)" else ""}",
-                            color = Color(0xFF4ADE80),
+                            color = Radar.Safe,
                             fontSize = 14.sp,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
                         )
@@ -149,7 +150,7 @@ fun DisassembleProgressOverlay(
                     ) {
                         Text(
                             text = "📺  Watch Ad — Skip $rewardedLabel${if (adUsesRemaining > 1) "  ($adUsesRemaining left)" else ""}",
-                            color = Color(0xFFFCD34D),
+                            color = Radar.Gold,
                             fontSize = 14.sp,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
                         )
@@ -160,7 +161,7 @@ fun DisassembleProgressOverlay(
                 TextButton(onClick = onCancel) {
                     Text(
                         text = stringResource(R.string.action_cancel),
-                        color = Color(0xFF64748B),
+                        color = Radar.TextMuted,
                         fontSize = 14.sp
                     )
                 }
@@ -182,7 +183,7 @@ fun DisassembleOverlay(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xEE000D1A)),
+            .background(Radar.Bg.copy(alpha = 0.93f)),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -195,7 +196,7 @@ fun DisassembleOverlay(
             Text(
                 text = if (info.isMine) stringResource(R.string.label_your_trap_info)
                        else stringResource(R.string.label_others_trap_info),
-                color = Color(0xFF94A3B8),
+                color = Radar.TextSec,
                 fontSize = 13.sp,
                 textAlign = TextAlign.Center
             )
@@ -204,7 +205,7 @@ fun DisassembleOverlay(
                 TrapImage(item = trapItem, size = 72.dp)
                 Text(
                     text = trapItem.name,
-                    color = Color(0xFFCBD5E1),
+                    color = Radar.TextSec,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center
@@ -217,7 +218,7 @@ fun DisassembleOverlay(
                 isComplete -> {
                     Text(
                         text = stringResource(R.string.msg_disassemble_success),
-                        color = Color(0xFF4ADE80),
+                        color = Radar.Safe,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
@@ -226,14 +227,14 @@ fun DisassembleOverlay(
                 countdown >= 0 -> {
                     Text(
                         text = stringResource(R.string.label_disassembling),
-                        color = Color(0xFFE2E8F0),
+                        color = Radar.Text,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
                     )
                     Text(
                         text = stringResource(R.string.label_disassemble_countdown, countdown),
-                        color = Color(0xFFFCD34D),
+                        color = Radar.Gold,
                         fontSize = 40.sp,
                         fontWeight = FontWeight.ExtraBold,
                         textAlign = TextAlign.Center
@@ -250,12 +251,12 @@ fun DisassembleOverlay(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0x33EF4444), shape = androidx.compose.foundation.shape.RoundedCornerShape(10.dp))
+                        .background(Radar.Trap.copy(alpha = 0.20f), shape = androidx.compose.foundation.shape.RoundedCornerShape(10.dp))
                         .padding(horizontal = 14.dp, vertical = 10.dp)
                 ) {
                     Text(
                         text = "⚠️ $startError",
-                        color = Color(0xFFFCA5A5),
+                        color = Radar.TrapSoft,
                         fontSize = 13.sp,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
@@ -268,7 +269,7 @@ fun DisassembleOverlay(
                 TextButton(onClick = onDismiss) {
                     Text(
                         text = stringResource(R.string.action_cancel),
-                        color = Color(0xFF64748B),
+                        color = Radar.TextMuted,
                         fontSize = 14.sp
                     )
                 }
@@ -334,7 +335,7 @@ private fun DisassembleHoldButton(onConfirm: () -> Unit, resetKey: Any? = null) 
             // ── Processing state — no interaction ──
             Text(
                 text = stringResource(R.string.label_confirming_disassembly),
-                color = Color(0xFF94A3B8),
+                color = Radar.TextSec,
                 fontSize = 15.sp,
                 textAlign = TextAlign.Center
             )
@@ -358,7 +359,7 @@ private fun DisassembleHoldButton(onConfirm: () -> Unit, resetKey: Any? = null) 
                             style = Stroke(width = strokePx)
                         )
                         drawArc(
-                            color = Color(0xFFF59E0B),
+                            color = Radar.Gold,
                             startAngle = -90f,
                             sweepAngle = 360f,
                             useCenter = false,
@@ -381,7 +382,7 @@ private fun DisassembleHoldButton(onConfirm: () -> Unit, resetKey: Any? = null) 
             // ── Normal hold-button state ──
             Text(
                 text = stringResource(R.string.label_hold_to_disassemble),
-                color = Color(0xFF64748B),
+                color = Radar.TextMuted,
                 fontSize = 13.sp,
                 textAlign = TextAlign.Center
             )
@@ -405,7 +406,7 @@ private fun DisassembleHoldButton(onConfirm: () -> Unit, resetKey: Any? = null) 
                         val arcSize = Size(size.width - inset * 2, size.height - inset * 2)
 
                         drawArc(
-                            color = Color(0xFF1E3A5F),
+                            color = Radar.Line,
                             startAngle = 0f,
                             sweepAngle = 360f,
                             useCenter = false,
@@ -415,7 +416,7 @@ private fun DisassembleHoldButton(onConfirm: () -> Unit, resetKey: Any? = null) 
                         )
                         if (progress > 0f) {
                             drawArc(
-                                color = Color(0xFFF59E0B),
+                                color = Radar.Gold,
                                 startAngle = -90f,
                                 sweepAngle = 360f * progress,
                                 useCenter = false,
@@ -426,14 +427,14 @@ private fun DisassembleHoldButton(onConfirm: () -> Unit, resetKey: Any? = null) 
                         }
                         val innerRadius = size.minDimension / 2 - strokePx - 6.dp.toPx()
                         drawCircle(
-                            color = if (isHeld) Color(0xFFB45309) else Color(0xFFF59E0B),
+                            color = if (isHeld) Color(0xFFB45309) else Radar.Gold,
                             radius = innerRadius
                         )
                     }
             ) {
                 Text(
                     text = stringResource(R.string.action_disassemble),
-                    color = Color.White,
+                    color = if (isHeld) Color.White else Radar.OnGold,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.ExtraBold,
                     letterSpacing = 1.sp,

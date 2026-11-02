@@ -1,6 +1,7 @@
 package com.fairco.trap
 
 import android.Manifest
+import com.fairco.trap.ui.theme.TrappTheme
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -274,7 +275,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     private fun setupBagBottomSheet() {
-        binding.composeBagView.setContent {
+        binding.composeBagView.setContent { TrappTheme {
             val phase by gameVm.placementPhase.collectAsState()
             TrapBagCard(
                 viewModel = gameVm,
@@ -289,7 +290,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                 },
                 onOpenAwards = { startActivity(Intent(this@GameActivity, AwardsActivity::class.java)) }
             )
-        }
+        } }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -304,7 +305,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     private fun setupPlacementOverlay() {
-        binding.composePlacementOverlay.setContent {
+        binding.composePlacementOverlay.setContent { TrappTheme {
             val phase by gameVm.placementPhase.collectAsState()
             val trap by gameVm.selectedTrapForPlacement.collectAsState()
             val progress by gameVm.placementProgress.collectAsState()
@@ -352,7 +353,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                     )
                 }
             }
-        }
+        } }
     }
 
     private fun observeBagLoading() {
@@ -477,15 +478,15 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                     // But these might not exist in android.R.drawable.
                     
                     binding.btnToggleTheme.setImageDrawable(icon)
-                    binding.btnToggleTheme.setColorFilter(if (isDark) 0xFFFCD34D.toInt() else 0xFF94A3B8.toInt())
+                    binding.btnToggleTheme.setColorFilter(if (isDark) 0xFFFFB648.toInt() else 0xFFA7B7CC.toInt())
 
                     // Style the banner ad container to match the current theme
                     if (isDark) {
-                        binding.bannerAdContainer.setBackgroundColor(0xFF0D1626.toInt())
-                        binding.bannerAdTopBorder.setBackgroundColor(0xFF1E3A5F.toInt())
+                        binding.bannerAdContainer.setBackgroundColor(0xFF0E1828.toInt())
+                        binding.bannerAdTopBorder.setBackgroundColor(0xFF22385A.toInt())
                     } else {
                         binding.bannerAdContainer.setBackgroundColor(0xFFFFFFFF.toInt())
-                        binding.bannerAdTopBorder.setBackgroundColor(0xFFE2E8F0.toInt())
+                        binding.bannerAdTopBorder.setBackgroundColor(0xFFEAF1FA.toInt())
                     }
 
                     if (::map.isInitialized) {
@@ -718,7 +719,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
             val nightMode = resources.configuration.uiMode and
                 android.content.res.Configuration.UI_MODE_NIGHT_MASK ==
                 android.content.res.Configuration.UI_MODE_NIGHT_YES
-            val iconTint = if (nightMode) android.graphics.Color.WHITE else android.graphics.Color.parseColor("#1A3A5F")
+            val iconTint = if (nightMode) android.graphics.Color.WHITE else android.graphics.Color.parseColor("#22385A")
             for (i in 0 until popup.menu.size()) {
                 popup.menu.getItem(i).icon?.let { d ->
                     val wrapped = DrawableCompat.wrap(d).mutate()
@@ -837,8 +838,8 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         // Tint the background shape (preserves rounded corners from bg_rounded_dark)
         val bgColor = when {
             state.isExpired            -> 0xFF92400E.toInt()   // amber-900
-            state.membership == "paid" -> 0xFF1A3A5C.toInt()   // deep blue
-            else                       -> 0xFF1E293B.toInt()   // slate (free)
+            state.membership == "paid" -> 0xFF15233A.toInt()   // deep blue
+            else                       -> 0xFF15233A.toInt()   // slate (free)
         }
         androidx.core.widget.TextViewCompat.setCompoundDrawableTintList(
             binding.tvMembershipBadge, null
@@ -847,9 +848,9 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
             android.content.res.ColorStateList.valueOf(bgColor)
 
         val textColor = when {
-            state.isExpired            -> 0xFFFCD34D.toInt()   // amber-300
-            state.membership == "paid" -> 0xFF7DD3FC.toInt()   // sky-300
-            else                       -> 0xFF64748B.toInt()   // slate-500 (free)
+            state.isExpired            -> 0xFFFFB648.toInt()   // amber-300
+            state.membership == "paid" -> 0xFF38D3F2.toInt()   // sky-300
+            else                       -> 0xFF7D91AB.toInt()   // slate-500 (free)
         }
         binding.tvMembershipBadge.setTextColor(textColor)
     }
@@ -1214,7 +1215,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     // ── Trap compass ──────────────────────────────────────────────────────────
 
     private fun setupTrapCompass() {
-        binding.composeTrapCompass.setContent {
+        binding.composeTrapCompass.setContent { TrappTheme {
             val disarmState by disarmVm.disarmState.collectAsState()
             val trap = when (val s = disarmState) {
                 is DisarmState.NearbyDetected -> s.trap
@@ -1233,7 +1234,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                     deviceAzimuthDeg = azimuth,
                 )
             }
-        }
+        } }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -1357,8 +1358,8 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
             com.google.android.gms.maps.model.CircleOptions()
                 .center(LatLng(lat, lng))
                 .radius(radiusMeters)
-                .strokeColor(android.graphics.Color.parseColor("#8800AAFF"))
-                .fillColor(android.graphics.Color.parseColor("#2200AAFF"))
+                .strokeColor(android.graphics.Color.parseColor("#8838D3F2"))
+                .fillColor(android.graphics.Color.parseColor("#2238D3F2"))
                 .strokeWidth(3f)
                 .zIndex(5f)
         )
@@ -1542,12 +1543,12 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
             container.addView(TextView(this).apply {
                 text = label
                 textSize = 11f
-                setTextColor(0xFF9CA3AF.toInt())
+                setTextColor(0xFFA7B7CC.toInt())
             })
             container.addView(TextView(this).apply {
                 text = value
                 textSize = 14f
-                setTextColor(0xFF1E293B.toInt())
+                setTextColor(0xFF15233A.toInt())
                 setPadding(0, 2, 0, smallGap)
             })
         }
@@ -1559,7 +1560,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         container.addView(TextView(this).apply {
             text = getString(R.string.label_new_email)
             textSize = 11f
-            setTextColor(0xFF9CA3AF.toInt())
+            setTextColor(0xFFA7B7CC.toInt())
         })
         val newEmailInput = EditText(this).apply {
             hint = getString(R.string.hint_new_email)
@@ -1906,7 +1907,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     private fun setupDisassembleOverlay() {
-        binding.composeTrapInfoOverlay.setContent {
+        binding.composeTrapInfoOverlay.setContent { TrappTheme {
             val state by gameVm.disassembleUiState.collectAsState()
             val disassemblyProgress by gameVm.disassemblyProgress.collectAsState()
             val bagState by gameVm.bagState.collectAsState()
@@ -1955,11 +1956,11 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                     }
                 }
             }
-        }
+        } }
     }
 
     private fun setupTrappedOverlay() {
-        binding.composeTrappedOverlay.setContent {
+        binding.composeTrappedOverlay.setContent { TrappTheme {
             val event by gameVm.trappedEvent.collectAsState()
             if (event != null) {
                 TrappedOverlay(
@@ -1977,7 +1978,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                     }
                 )
             }
-        }
+        } }
 
         // Show/hide the ComposeView itself based on state
         lifecycleScope.launch {
@@ -1990,7 +1991,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     private fun setupRewardOverlay() {
-        binding.composeRewardOverlay.setContent {
+        binding.composeRewardOverlay.setContent { TrappTheme {
             val reward by gameVm.pendingReward.collectAsState()
             if (reward != null) {
                 RewardOverlay(
@@ -1998,7 +1999,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                     onDismiss = { onRewardCollected(gameVm.dismissReward()) }
                 )
             }
-        }
+        } }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -2024,7 +2025,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     private fun setupCaptureVictoryOverlay() {
-        binding.composeCaptureVictoryOverlay.setContent {
+        binding.composeCaptureVictoryOverlay.setContent { TrappTheme {
             val victory by gameVm.captureVictoryEvent.collectAsState()
             if (victory != null) {
                 CaptureVictoryOverlay(
@@ -2032,7 +2033,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                     onDismiss = { gameVm.dismissCaptureVictoryEvent() }
                 )
             }
-        }
+        } }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -2092,12 +2093,12 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         val originalText = tv.text
         val gained = "⚡ +$xp XP!"
         tv.text = gained
-        tv.setTextColor(0xFF22C55E.toInt())
+        tv.setTextColor(0xFF3EE08F.toInt())
         tv.animate().scaleX(1.3f).scaleY(1.3f).setDuration(200).withEndAction {
             tv.animate().scaleX(1f).scaleY(1f).setDuration(300).withEndAction {
                 android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                     tv.text = originalText
-                    tv.setTextColor(0xFFFCD34D.toInt())
+                    tv.setTextColor(0xFFFFB648.toInt())
                 }, 1500)
             }.start()
         }.start()
@@ -2288,8 +2289,8 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                             if (binding.bannerAdContainer.visibility != android.view.View.VISIBLE) {
                                 // Apply theme-correct background before making visible
                                 val isDark = ThemeManager.isDarkMode.value
-                                binding.bannerAdContainer.setBackgroundColor(if (isDark) 0xFF0D1626.toInt() else 0xFFFFFFFF.toInt())
-                                binding.bannerAdTopBorder.setBackgroundColor(if (isDark) 0xFF1E3A5F.toInt() else 0xFFE2E8F0.toInt())
+                                binding.bannerAdContainer.setBackgroundColor(if (isDark) 0xFF0E1828.toInt() else 0xFFFFFFFF.toInt())
+                                binding.bannerAdTopBorder.setBackgroundColor(if (isDark) 0xFF22385A.toInt() else 0xFFEAF1FA.toInt())
                                 binding.bannerAdView.loadAd(com.google.android.gms.ads.AdRequest.Builder().build())
                                 binding.bannerAdContainer.visibility = android.view.View.VISIBLE
                             }

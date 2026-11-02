@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#0F172A"
+    android:background="@color/bg_deep"
     android:paddingHorizontal="16dp"
     android:paddingVertical="12dp">
 
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="11sp"
-        android:textColor="#64748B"
+        android:textColor="@color/text_muted"
         android:fontFamily="monospace"
         tools:text="TCK-20260512-0003"/>
 
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:textColor="#F1F5F9"
+        android:textColor="@color/text_primary"
         android:textStyle="bold"
         android:layout_marginTop="2dp"
         tools:text="Change my email address"/>
@@ -47,9 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="#1E293B"
+        android:background="@color/bg_surface"
         android:padding="8dp"
-        android:textColor="#FDBA74"
+        android:textColor="@color/accent_gold"
         android:textSize="12sp"
         android:textStyle="bold"
         android:visibility="gone"

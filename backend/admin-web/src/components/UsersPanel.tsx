@@ -19,7 +19,7 @@ export default function UsersPanel() {
   }
 
   return (
-    <section style={{ background: "#1e293b", padding: 20, borderRadius: 12 }}>
+    <section style={{ background: "#EEF2F7", padding: 20, borderRadius: 12 }}>
       <h2>Admin Users</h2>
       <input
         value={targetUid}

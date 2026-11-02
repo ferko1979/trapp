@@ -20,7 +20,7 @@ export default function PaymentSuccessPage() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#0b1120",
+        background: "#F4F7FB",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -56,7 +56,7 @@ export default function PaymentSuccessPage() {
 
         <h1
           style={{
-            color: "#f8fafc",
+            color: "#0D1F33",
             fontSize: "1.8rem",
             fontWeight: 800,
             marginBottom: 12,
@@ -68,7 +68,7 @@ export default function PaymentSuccessPage() {
 
         <p
           style={{
-            color: "#94a3b8",
+            color: "#3C516C",
             fontSize: "1rem",
             lineHeight: 1.6,
             marginBottom: 32,
@@ -81,7 +81,7 @@ export default function PaymentSuccessPage() {
         {/* Info card */}
         <div
           style={{
-            background: "#0f172a",
+            background: "#F4F7FB",
             border: "1px solid rgba(34,197,94,0.25)",
             borderRadius: 14,
             padding: "20px 24px",
@@ -92,7 +92,7 @@ export default function PaymentSuccessPage() {
           <div
             style={{
               fontSize: "0.78rem",
-              color: "#64748b",
+              color: "#5F7491",
               textTransform: "uppercase",
               letterSpacing: "0.07em",
               fontWeight: 600,
@@ -113,11 +113,11 @@ export default function PaymentSuccessPage() {
                 alignItems: "flex-start",
                 gap: 12,
                 padding: "8px 0",
-                borderBottom: "1px solid #1a2e45",
+                borderBottom: "1px solid #DCE4EE",
               }}
             >
               <span style={{ fontSize: "1.1rem", flexShrink: 0 }}>{icon}</span>
-              <span style={{ fontSize: "0.875rem", color: "#cbd5e1", lineHeight: 1.5 }}>{text}</span>
+              <span style={{ fontSize: "0.875rem", color: "#26394F", lineHeight: 1.5 }}>{text}</span>
             </div>
           ))}
         </div>
@@ -127,7 +127,7 @@ export default function PaymentSuccessPage() {
           href="playtrap://"
           style={{
             display: "block",
-            background: "#2563eb",
+            background: "#0B6C86",
             color: "#fff",
             textDecoration: "none",
             padding: "14px 24px",
@@ -138,16 +138,16 @@ export default function PaymentSuccessPage() {
             transition: "background 0.15s",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background = "#1d4ed8";
+            (e.currentTarget as HTMLAnchorElement).style.background = "#0B6C86";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background = "#2563eb";
+            (e.currentTarget as HTMLAnchorElement).style.background = "#0B6C86";
           }}
         >
           🪤 Return to Playtrap
         </a>
 
-        <p style={{ fontSize: "0.78rem", color: "#374151" }}>
+        <p style={{ fontSize: "0.78rem", color: "#DCE4EE" }}>
           You may close this window.
           {countdown > 0 ? ` Auto-closing in ${countdown}s…` : ""}
         </p>
@@ -157,7 +157,7 @@ export default function PaymentSuccessPage() {
           <p
             style={{
               fontSize: "0.68rem",
-              color: "#1e3a5f",
+              color: "#DCE4EE",
               marginTop: 24,
               fontFamily: "monospace",
               wordBreak: "break-all",
@@ -172,9 +172,9 @@ export default function PaymentSuccessPage() {
           style={{
             marginTop: 40,
             paddingTop: 24,
-            borderTop: "1px solid #1e293b",
+            borderTop: "1px solid #EEF2F7",
             fontSize: "0.75rem",
-            color: "#374151",
+            color: "#DCE4EE",
           }}
         >
           🪤 Playtrap · Secure payment processed by Stripe

@@ -1,6 +1,7 @@
 package com.fairco.trap
 
 import androidx.compose.animation.AnimatedVisibility
+import com.fairco.trap.ui.theme.Radar
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
@@ -48,7 +49,7 @@ fun TrapBagCard(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(0xFF0D1626))
+            .background(Radar.Surface)
             .animateContentSize()
             .padding(horizontal = 12.dp, vertical = if (peekMode) 8.dp else 10.dp)
     ) {
@@ -58,7 +59,7 @@ fun TrapBagCard(
         AnimatedVisibility(visible = peekMode) {
             Text(
                 stringResource(R.string.hint_tap_map_to_place),
-                color = Color(0xFF4B5563),
+                color = Radar.TextMuted,
                 fontSize = 10.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
@@ -81,7 +82,7 @@ fun TrapBagCard(
                         contentAlignment = Alignment.Center
                     ) {
                         CircularProgressIndicator(
-                            color = Color(0xFF3B82F6),
+                            color = Radar.Accent,
                             modifier = Modifier.size(24.dp),
                             strokeWidth = 2.dp
                         )
@@ -93,7 +94,7 @@ fun TrapBagCard(
                     ) {
                         Text(
                             stringResource(R.string.msg_bag_empty_refill),
-                            color = Color(0xFF4B5563),
+                            color = Radar.TextMuted,
                             fontSize = 12.sp
                         )
                     }
@@ -126,25 +127,25 @@ fun TrapBagCard(
     if (showWeightInfo) {
         AlertDialog(
             onDismissRequest = { showWeightInfo = false },
-            containerColor = Color(0xFF0D1626),
+            containerColor = Radar.Surface,
             title = {
                 Text(
                     stringResource(R.string.label_bag_weight_info_title),
-                    color = Color(0xFFE2E8F0),
+                    color = Radar.Text,
                     fontWeight = FontWeight.Bold
                 )
             },
             text = {
                 Text(
                     stringResource(R.string.msg_bag_weight_info),
-                    color = Color(0xFF94A3B8),
+                    color = Radar.TextSec,
                     fontSize = 14.sp,
                     lineHeight = 20.sp
                 )
             },
             confirmButton = {
                 TextButton(onClick = { showWeightInfo = false }) {
-                    Text(stringResource(R.string.action_close), color = Color(0xFF3B82F6))
+                    Text(stringResource(R.string.action_close), color = Radar.Accent)
                 }
             }
         )
@@ -162,9 +163,9 @@ private fun BagHeader(
         (state.currentWeightKg / state.maxWeightKg).coerceIn(0f, 1f) else 0f
 
     val barColor = when {
-        fillFraction > 0.9f -> Color(0xFFEF4444)
-        fillFraction > 0.7f -> Color(0xFFF59E0B)
-        else -> Color(0xFF22C55E)
+        fillFraction > 0.9f -> Radar.Trap
+        fillFraction > 0.7f -> Radar.Gold
+        else -> Radar.Safe
     }
 
     Column {
@@ -174,7 +175,7 @@ private fun BagHeader(
         ) {
             Text(
                 stringResource(R.string.label_trap_bag_title),
-                color = Color(0xFF94A3B8),
+                color = Radar.TextSec,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -183,11 +184,11 @@ private fun BagHeader(
             Box(
                 modifier = Modifier
                     .size(16.dp)
-                    .background(Color(0xFF1E3A5F), CircleShape)
+                    .background(Radar.Line, CircleShape)
                     .clickable { onInfoClick() },
                 contentAlignment = Alignment.Center
             ) {
-                Text("i", color = Color(0xFF60A5FA), fontSize = 9.sp, fontWeight = FontWeight.ExtraBold)
+                Text("i", color = Radar.Accent, fontSize = 9.sp, fontWeight = FontWeight.ExtraBold)
             }
             Spacer(Modifier.width(6.dp))
             Box(
@@ -195,7 +196,7 @@ private fun BagHeader(
                     .weight(1f)
                     .height(6.dp)
                     .clip(RoundedCornerShape(3.dp))
-                    .background(Color(0xFF1E2D45))
+                    .background(Radar.Surface2)
             ) {
                 Box(
                     modifier = Modifier
@@ -207,7 +208,7 @@ private fun BagHeader(
             Spacer(Modifier.width(8.dp))
             Text(
                 "${state.currentWeightKg.toInt()} / ${state.maxWeightKg.toInt()} kg",
-                color = Color(0xFF64748B),
+                color = Radar.TextMuted,
                 fontSize = 11.sp
             )
         }
@@ -226,7 +227,7 @@ private fun BagHeader(
                 Text("⏱️", fontSize = 12.sp)
                 Text(
                     "$cardCount card${if (cardCount > 1) "s" else ""} available · tap to view",
-                    color = Color(0xFF22C55E),
+                    color = Radar.Safe,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -248,15 +249,15 @@ private fun TrapChip(
     var showDescription by remember { mutableStateOf(false) }
 
     val borderColor = when {
-        isFull  -> Color(0xFF22C55E)
-        isEmpty -> Color(0xFF374151)
-        else    -> Color(0xFF3B82F6)
+        isFull  -> Radar.Safe
+        isEmpty -> Radar.Line
+        else    -> Radar.Accent
     }
-    val badgeBg = if (isEmpty) Color(0xFF374151) else Color(0xFF3B82F6)
+    val badgeBg = if (isEmpty) Radar.Line else Radar.Accent
 
     Card(
         modifier = Modifier.width(90.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF0A1628)),
+        colors = CardDefaults.cardColors(containerColor = Radar.Bg),
         border = BorderStroke(1.dp, borderColor),
         shape = RoundedCornerShape(12.dp)
     ) {
@@ -287,7 +288,7 @@ private fun TrapChip(
                     ) {
                         Text(
                             "${item.bagCount}",
-                            color = Color.White,
+                            color = if (isEmpty) Color.White else Radar.OnAccent,
                             fontSize = 8.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -299,11 +300,11 @@ private fun TrapChip(
                         modifier = Modifier
                             .size(14.dp)
                             .align(Alignment.TopEnd)
-                            .background(Color(0xFF1E3A5F), CircleShape)
+                            .background(Radar.Line, CircleShape)
                             .clickable { showDescription = true },
                         contentAlignment = Alignment.Center
                     ) {
-                        Text("i", color = Color(0xFF60A5FA), fontSize = 8.sp, fontWeight = FontWeight.ExtraBold)
+                        Text("i", color = Radar.Accent, fontSize = 8.sp, fontWeight = FontWeight.ExtraBold)
                     }
                 }
             }
@@ -313,7 +314,7 @@ private fun TrapChip(
             // ── Trap name ─────────────────────────────────────────────────
             Text(
                 text = item.name,
-                color = if (isEmpty) Color(0xFF4B5563) else Color(0xFFCBD5E1),
+                color = if (isEmpty) Radar.TextMuted else Radar.TextSec,
                 fontSize = 9.sp,
                 fontWeight = FontWeight.SemiBold,
                 maxLines = 2,
@@ -328,7 +329,7 @@ private fun TrapChip(
                     Spacer(Modifier.height(3.dp))
                     Text(
                         stringResource(R.string.label_blocked_weight),
-                        color = Color(0xFFEF4444),
+                        color = Radar.Trap,
                         fontSize = 9.sp,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Center,
@@ -339,7 +340,7 @@ private fun TrapChip(
                     Spacer(Modifier.height(3.dp))
                     Text(
                         stringResource(R.string.label_blocked_slots),
-                        color = Color(0xFFF59E0B),
+                        color = Radar.Gold,
                         fontSize = 9.sp,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Center,
@@ -350,7 +351,7 @@ private fun TrapChip(
                     Spacer(Modifier.height(3.dp))
                     Text(
                         "⏳ ${formatCountdown(item.secondsUntilNextRefill!!)}",
-                        color = Color(0xFFF59E0B),
+                        color = Radar.Gold,
                         fontSize = 9.sp,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Center,
@@ -361,14 +362,14 @@ private fun TrapChip(
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .background(Color(0xFF1E3A5F), RoundedCornerShape(4.dp))
+                                .background(Radar.Line, RoundedCornerShape(4.dp))
                                 .clickable { onWatchRefillAd(item.trapTypeId) }
                                 .padding(vertical = 3.dp),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 "📺 Speed up",
-                                color = Color(0xFF60A5FA),
+                                color = Radar.Accent,
                                 fontSize = 8.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 textAlign = TextAlign.Center,
@@ -385,7 +386,7 @@ private fun TrapChip(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        if (isEmpty) Color(0xFF1F2937) else Color(0xFF2563EB),
+                        if (isEmpty) Radar.Surface else Radar.AccentDeep,
                         RoundedCornerShape(5.dp)
                     )
                     .clickable(enabled = !isEmpty) { onPlaceTrap(item) }
@@ -394,7 +395,7 @@ private fun TrapChip(
             ) {
                 Text(
                     stringResource(R.string.action_place_trap),
-                    color = if (isEmpty) Color(0xFF4B5563) else Color.White,
+                    color = if (isEmpty) Radar.TextMuted else Color.White,
                     fontSize = 8.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -413,7 +414,7 @@ fun TrapDescriptionDialog(item: TrapInventoryItem, onDismiss: () -> Unit) {
     Dialog(onDismissRequest = onDismiss) {
         Card(
             shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFF0D1626)),
+            colors = CardDefaults.cardColors(containerColor = Radar.Surface),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
@@ -429,7 +430,7 @@ fun TrapDescriptionDialog(item: TrapInventoryItem, onDismiss: () -> Unit) {
 
                 Text(
                     text = item.name,
-                    color = Color(0xFFE2E8F0),
+                    color = Radar.Text,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
@@ -439,7 +440,7 @@ fun TrapDescriptionDialog(item: TrapInventoryItem, onDismiss: () -> Unit) {
                     Spacer(Modifier.height(4.dp))
                     Text(
                         text = "✨ ${item.effectKind.replaceFirstChar { it.uppercase() }}",
-                        color = Color(0xFF60A5FA),
+                        color = Radar.Accent,
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center
                     )
@@ -450,7 +451,7 @@ fun TrapDescriptionDialog(item: TrapInventoryItem, onDismiss: () -> Unit) {
                 if (item.description.isNotBlank()) {
                     Text(
                         text = item.description,
-                        color = Color(0xFF94A3B8),
+                        color = Radar.TextSec,
                         fontSize = 14.sp,
                         lineHeight = 20.sp,
                         textAlign = TextAlign.Center
@@ -475,7 +476,7 @@ fun TrapDescriptionDialog(item: TrapInventoryItem, onDismiss: () -> Unit) {
                 Spacer(Modifier.height(16.dp))
 
                 TextButton(onClick = onDismiss) {
-                    Text(stringResource(R.string.action_close), color = Color(0xFF3B82F6))
+                    Text(stringResource(R.string.action_close), color = Radar.Accent)
                 }
             }
         }
@@ -486,7 +487,7 @@ fun TrapDescriptionDialog(item: TrapInventoryItem, onDismiss: () -> Unit) {
 private fun TrapStatChip(label: String, value: String) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(label, fontSize = 14.sp)
-        Text(value, color = Color(0xFFCBD5E1), fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
+        Text(value, color = Radar.TextSec, fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
     }
 }
 

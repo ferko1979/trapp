@@ -1,8 +1,8 @@
 package com.fairco.trap
 
 import android.os.Bundle
+import com.fairco.trap.ui.theme.TrappTheme
 import androidx.activity.viewModels
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
 
 class AwardsActivity : BaseActivity() {
@@ -14,7 +14,7 @@ class AwardsActivity : BaseActivity() {
         vm.load()
         setContentView(ComposeView(this).apply {
             setContent {
-                MaterialTheme {
+                TrappTheme {
                     AwardsScreen(viewModel = vm, onBack = { finish() })
                 }
             }

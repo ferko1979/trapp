@@ -102,10 +102,10 @@ export default function UserInboxPanel() {
     <div style={{ display: "grid", gridTemplateColumns: "320px 1fr", gap: 20 }}>
       <section
         style={{
-          background: "#1e293b",
+          background: "#EEF2F7",
           borderRadius: 12,
           padding: 16,
-          border: "1px solid #334155",
+          border: "1px solid #DCE4EE",
           maxHeight: "82vh",
           overflow: "auto",
         }}
@@ -125,11 +125,11 @@ export default function UserInboxPanel() {
               style={{
                 textAlign: "left",
                 background:
-                  selectedConversationId === item.id ? "#1d4ed8" : "#0f172a",
-                border: "1px solid #334155",
+                  selectedConversationId === item.id ? "#E6F6FB" : "#FFFFFF",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: 12,
-                color: "#fff",
+                color: "#0D1F33",
                 cursor: "pointer",
               }}
             >
@@ -146,8 +146,8 @@ export default function UserInboxPanel() {
                   <span
                     style={{
                       fontSize: 11,
-                      color: "#fecaca",
-                      background: "#7f1d1d",
+                      color: "#C8283B",
+                      background: "#F5C2C9",
                       padding: "2px 8px",
                       borderRadius: 999,
                     }}
@@ -186,10 +186,10 @@ export default function UserInboxPanel() {
 
       <section
         style={{
-          background: "#1e293b",
+          background: "#EEF2F7",
           borderRadius: 12,
           padding: 16,
-          border: "1px solid #334155",
+          border: "1px solid #DCE4EE",
           minHeight: 500,
         }}
       >
@@ -228,8 +228,8 @@ export default function UserInboxPanel() {
                   key={message.id}
                   style={{
                     background:
-                      message.kind === "support" ? "#1e3a8a" : "#0f172a",
-                    border: "1px solid #334155",
+                      message.kind === "support" ? "#E6F6FB" : "#F4F7FB",
+                    border: "1px solid #DCE4EE",
                     borderRadius: 10,
                     padding: 12,
                   }}
@@ -265,7 +265,7 @@ export default function UserInboxPanel() {
           </div>
         )}
 
-        {error ? <div style={{ color: "#fca5a5", marginTop: 10 }}>{error}</div> : null}
+        {error ? <div style={{ color: "#C8283B", marginTop: 10 }}>{error}</div> : null}
       </section>
     </div>
   );

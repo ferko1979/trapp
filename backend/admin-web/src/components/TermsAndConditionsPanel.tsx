@@ -41,11 +41,11 @@ type Package = {
 };
 
 function inputStyle(): React.CSSProperties {
-  return { width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid #475569", background: "#0f172a", color: "white", boxSizing: "border-box" };
+  return { width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid #5F7491", background: "#F4F7FB", color: "#0D1F33", boxSizing: "border-box" };
 }
 
 function sectionCardStyle(): React.CSSProperties {
-  return { background: "#1e293b", padding: 20, borderRadius: 12, border: "1px solid #334155" };
+  return { background: "#EEF2F7", padding: 20, borderRadius: 12, border: "1px solid #DCE4EE" };
 }
 
 function formatEpochMs(value?: number | null) {
@@ -271,26 +271,26 @@ export default function TermsAndConditionsPanel() {
 
         {/* Auto-sync card */}
         <div style={{ background: "rgba(96,165,250,0.07)", border: "1px solid rgba(96,165,250,0.25)", borderRadius: 10, padding: "16px 18px" }}>
-          <div style={{ fontWeight: 700, color: "#93c5fd", marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ fontWeight: 700, color: "#0B6C86", marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
             <span>⚡</span> Auto-generate from Payment Plans
           </div>
-          <p style={{ fontSize: "0.85rem", color: "#64748b", margin: "0 0 12px", lineHeight: 1.6 }}>
-            Click the button below to pull your current active payment packages and automatically insert/update a <strong style={{ color: "#94a3b8" }}>Subscription Plans &amp; Pricing</strong> section into the T&amp;C content.
-            The revision number will be incremented automatically. <strong style={{ color: "#94a3b8" }}>Review the changes, then click Save.</strong>
+          <p style={{ fontSize: "0.85rem", color: "#5F7491", margin: "0 0 12px", lineHeight: 1.6 }}>
+            Click the button below to pull your current active payment packages and automatically insert/update a <strong style={{ color: "#3C516C" }}>Subscription Plans &amp; Pricing</strong> section into the T&amp;C content.
+            The revision number will be incremented automatically. <strong style={{ color: "#3C516C" }}>Review the changes, then click Save.</strong>
           </p>
           <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
             <button
               className="btn-primary"
               onClick={() => void syncFromPlans()}
               disabled={syncing || loading}
-              style={{ background: "rgba(96,165,250,0.2)", border: "1px solid rgba(96,165,250,0.4)", color: "#93c5fd" }}
+              style={{ background: "rgba(96,165,250,0.2)", border: "1px solid rgba(96,165,250,0.4)", color: "#0B6C86" }}
             >
               {syncing ? "⏳ Generating…" : "⚡ Generate from Plans"}
             </button>
             <button onClick={() => setPreview((p) => !p)}>
               {preview ? "✏️ Edit mode" : "👁 Preview"}
             </button>
-            <span style={{ fontSize: "0.78rem", color: "#475569" }}>
+            <span style={{ fontSize: "0.78rem", color: "#5F7491" }}>
               Existing content is preserved — only the plan section is replaced.
             </span>
           </div>
@@ -298,12 +298,12 @@ export default function TermsAndConditionsPanel() {
 
         {/* Language tabs + translate */}
         <div style={{ background: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.25)", borderRadius: 10, padding: "16px 18px" }}>
-          <div style={{ fontWeight: 700, color: "#c4b5fd", marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ fontWeight: 700, color: "#6D3FC9", marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
             <span>🌐</span> Multi-language Translation
           </div>
-          <p style={{ fontSize: "0.85rem", color: "#64748b", margin: "0 0 12px", lineHeight: 1.6 }}>
+          <p style={{ fontSize: "0.85rem", color: "#5F7491", margin: "0 0 12px", lineHeight: 1.6 }}>
             Auto-translate the English content into all supported languages using Google Translate.
-            <strong style={{ color: "#94a3b8" }}> English content must be saved first.</strong> Review each language tab after translating.
+            <strong style={{ color: "#3C516C" }}> English content must be saved first.</strong> Review each language tab after translating.
           </p>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 14 }}>
             {/* EN tab */}
@@ -311,9 +311,9 @@ export default function TermsAndConditionsPanel() {
               onClick={() => setActiveLocaleTab("en")}
               style={{
                 padding: "5px 14px", borderRadius: 20, fontSize: "0.82rem", cursor: "pointer",
-                background: activeLocaleTab === "en" ? "#1565C0" : "#1e293b",
-                border: activeLocaleTab === "en" ? "1px solid #42A5F5" : "1px solid #334155",
-                color: activeLocaleTab === "en" ? "white" : "#94a3b8",
+                background: activeLocaleTab === "en" ? "#0B6C86" : "#EEF2F7",
+                border: activeLocaleTab === "en" ? "1px solid #0B6C86" : "1px solid #DCE4EE",
+                color: activeLocaleTab === "en" ? "white" : "#3C516C",
               }}
             >EN — English ✎</button>
             {LOCALES.map((loc) => {
@@ -325,9 +325,9 @@ export default function TermsAndConditionsPanel() {
                   onClick={() => setActiveLocaleTab(loc.code)}
                   style={{
                     padding: "5px 14px", borderRadius: 20, fontSize: "0.82rem", cursor: "pointer",
-                    background: activeLocaleTab === loc.code ? "#5b21b6" : "#1e293b",
-                    border: activeLocaleTab === loc.code ? "1px solid #a78bfa" : "1px solid #334155",
-                    color: activeLocaleTab === loc.code ? "white" : hasContent ? "#a78bfa" : "#475569",
+                    background: activeLocaleTab === loc.code ? "#6D3FC9" : "#EEF2F7",
+                    border: activeLocaleTab === loc.code ? "1px solid #6D3FC9" : "1px solid #DCE4EE",
+                    color: activeLocaleTab === loc.code ? "white" : hasContent ? "#6D3FC9" : "#5F7491",
                   }}
                 >
                   {isTranslating ? "⏳" : hasContent ? "✓" : "○"} {loc.code.toUpperCase()} — {loc.label}
@@ -340,7 +340,7 @@ export default function TermsAndConditionsPanel() {
               className="btn-primary"
               onClick={() => void translateAllLocales()}
               disabled={translateAll || loading || translatingLocale !== null}
-              style={{ background: "rgba(167,139,250,0.2)", border: "1px solid rgba(167,139,250,0.4)", color: "#c4b5fd" }}
+              style={{ background: "rgba(167,139,250,0.2)", border: "1px solid rgba(167,139,250,0.4)", color: "#6D3FC9" }}
             >
               {translateAll ? `⏳ Translating ${translatingLocale?.toUpperCase() ?? ""}…` : "🌐 Translate to All Languages"}
             </button>
@@ -349,7 +349,7 @@ export default function TermsAndConditionsPanel() {
                 key={loc.code}
                 onClick={() => void translateLocale(loc.code).then((ok) => ok && setResult(`✓ ${loc.label} translated. Review the tab, then click Save.`))}
                 disabled={translateAll || translatingLocale !== null || loading}
-                style={{ padding: "5px 12px", fontSize: "0.78rem", borderRadius: 8, background: "#1e293b", border: "1px solid #334155", color: "#94a3b8", cursor: "pointer" }}
+                style={{ padding: "5px 12px", fontSize: "0.78rem", borderRadius: 8, background: "#EEF2F7", border: "1px solid #DCE4EE", color: "#3C516C", cursor: "pointer" }}
               >
                 {translatingLocale === loc.code ? "⏳" : loc.code.toUpperCase()}
               </button>
@@ -365,7 +365,7 @@ export default function TermsAndConditionsPanel() {
           </div>
           <div>
             <label style={{ fontSize: 12, opacity: 0.9, marginBottom: 4, display: "block" }}>
-              Version / Revision <span style={{ color: "#64748b", fontWeight: 400 }}>(auto-incremented on sync)</span>
+              Version / Revision <span style={{ color: "#5F7491", fontWeight: 400 }}>(auto-incremented on sync)</span>
             </label>
             <input style={inputStyle()} value={version} onChange={(e) => setVersion(e.target.value)} placeholder="v1" />
           </div>
@@ -374,8 +374,8 @@ export default function TermsAndConditionsPanel() {
         {/* Content / Preview — EN or locale tab */}
         {activeLocaleTab === "en" ? (
           preview ? (
-            <div style={{ background: "#0f172a", border: "1px solid #334155", borderRadius: 10, padding: "18px 20px", minHeight: 400, maxHeight: 700, overflowY: "auto" }}>
-              <pre style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-word", fontSize: "0.875rem", color: "#e2e8f0", lineHeight: 1.7, fontFamily: "inherit" }}>{content || <span style={{ color: "#475569" }}>No content yet.</span>}</pre>
+            <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 10, padding: "18px 20px", minHeight: 400, maxHeight: 700, overflowY: "auto" }}>
+              <pre style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-word", fontSize: "0.875rem", color: "#0D1F33", lineHeight: 1.7, fontFamily: "inherit" }}>{content || <span style={{ color: "#5F7491" }}>No content yet.</span>}</pre>
             </div>
           ) : (
             <div>
@@ -397,7 +397,7 @@ export default function TermsAndConditionsPanel() {
               <button
                 onClick={() => void translateLocale(activeLocaleTab).then((ok) => ok && setResult(`✓ ${activeLocaleTab.toUpperCase()} re-translated. Review and click Save.`))}
                 disabled={translatingLocale !== null || loading}
-                style={{ padding: "4px 10px", fontSize: "0.78rem", borderRadius: 8, background: "#1e293b", border: "1px solid rgba(167,139,250,0.4)", color: "#c4b5fd", cursor: "pointer" }}
+                style={{ padding: "4px 10px", fontSize: "0.78rem", borderRadius: 8, background: "#EEF2F7", border: "1px solid rgba(167,139,250,0.4)", color: "#6D3FC9", cursor: "pointer" }}
               >
                 {translatingLocale === activeLocaleTab ? "⏳ Translating…" : "🔄 Re-translate"}
               </button>
@@ -415,14 +415,14 @@ export default function TermsAndConditionsPanel() {
         )}
 
         {/* T&C active toggle */}
-        <label style={{ display: "flex", gap: 8, alignItems: "center", background: "#0f172a", padding: 12, borderRadius: 8, border: "1px solid #334155" }}>
+        <label style={{ display: "flex", gap: 8, alignItems: "center", background: "#F4F7FB", padding: 12, borderRadius: 8, border: "1px solid #DCE4EE" }}>
           <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} />
           <span>T&amp;C is active and should be shown to users</span>
         </label>
 
         {/* Meta */}
-        <div style={{ fontSize: 13, opacity: 0.8, color: "#64748b" }}>
-          Last saved: {formatEpochMs(updatedAtEpochMs)} · By: {updatedByUid ?? "-"} · Revision: <strong style={{ color: "#93c5fd" }}>{version}</strong>
+        <div style={{ fontSize: 13, opacity: 0.8, color: "#5F7491" }}>
+          Last saved: {formatEpochMs(updatedAtEpochMs)} · By: {updatedByUid ?? "-"} · Revision: <strong style={{ color: "#0B6C86" }}>{version}</strong>
         </div>
 
         {/* Actions */}
@@ -439,7 +439,7 @@ export default function TermsAndConditionsPanel() {
             borderRadius: 8,
             background: result.startsWith("⚠") || result.toLowerCase().includes("failed") ? "rgba(239,68,68,0.1)" : "rgba(22,163,74,0.1)",
             border: `1px solid ${result.startsWith("⚠") || result.toLowerCase().includes("failed") ? "rgba(239,68,68,0.3)" : "rgba(34,197,94,0.3)"}`,
-            color: result.startsWith("⚠") || result.toLowerCase().includes("failed") ? "#f87171" : "#4ade80",
+            color: result.startsWith("⚠") || result.toLowerCase().includes("failed") ? "#C8283B" : "#178A55",
             fontSize: "0.875rem",
             whiteSpace: "pre-wrap",
           }}>

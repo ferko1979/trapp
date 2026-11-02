@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="40dp"
-    android:background="#0B1320">
+    android:background="@color/radar_bg">
 
     <!-- Icon / Emoji display -->
     <TextView
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:textColor="#94A3B8"
+        android:textColor="@color/text_secondary"
         android:gravity="center"
         android:lineSpacingMultiplier="1.5"
         android:layout_marginBottom="12dp" />
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="13sp"
-            android:textColor="#7DD3FC"
+            android:textColor="@color/accent_cyan"
             android:lineSpacingMultiplier="1.35" />
 
     </LinearLayout>

@@ -249,17 +249,17 @@ export default function AppTranslationsPanel() {
 
   function coverageColor(loc: string) {
     const enCount = enKeys.length;
-    if (enCount === 0) return "#64748b";
+    if (enCount === 0) return "#5F7491";
     const filled = enKeys.filter((k) => allStrings[loc]?.[k]?.trim()).length;
     const pct = filled / enCount;
-    return pct >= 1 ? "#22c55e" : pct > 0.5 ? "#f59e0b" : "#ef4444";
+    return pct >= 1 ? "#178A55" : pct > 0.5 ? "#8A5A0B" : "#C8283B";
   }
 
-  if (loading) return <div style={{ color: "#64748b", padding: 32 }}>Loading translations…</div>;
+  if (loading) return <div style={{ color: "#5F7491", padding: 32 }}>Loading translations…</div>;
   if (err) return (
-    <div style={{ color: "#fca5a5", padding: 32 }}>
+    <div style={{ color: "#C8283B", padding: 32 }}>
       {err}
-      <button onClick={load} style={{ marginLeft: 12, color: "#93c5fd", cursor: "pointer", background: "none", border: "none" }}>Retry</button>
+      <button onClick={load} style={{ marginLeft: 12, color: "#0B6C86", cursor: "pointer", background: "none", border: "none" }}>Retry</button>
     </div>
   );
 
@@ -268,7 +268,7 @@ export default function AppTranslationsPanel() {
 
       {/* Coverage overview + actions */}
       <div style={{
-        background: "#0a1628", border: "1px solid #1e3a5f", borderRadius: 12,
+        background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 12,
         padding: "16px 20px", display: "flex", alignItems: "center", gap: 0, flexWrap: "wrap",
       }}>
         <div style={{ flex: 1, display: "flex", gap: 20, flexWrap: "wrap" }}>
@@ -278,14 +278,14 @@ export default function AppTranslationsPanel() {
             const pct = enCount > 0 ? Math.round((filled / enCount) * 100) : 0;
             return (
               <div key={loc} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                <span style={{ fontSize: "0.7rem", color: "#64748b", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                <span style={{ fontSize: "0.7rem", color: "#5F7491", textTransform: "uppercase", letterSpacing: "0.08em" }}>
                   {localeFlag(loc)} {loc.toUpperCase()}
                 </span>
                 <span style={{ fontSize: "0.95rem", fontWeight: 700, color: coverageColor(loc) }}>{pct}%</span>
-                <span style={{ fontSize: "0.68rem", color: "#475569" }}>
+                <span style={{ fontSize: "0.68rem", color: "#5F7491" }}>
                   {filled}/{enCount}
                   {serverMeta[loc] > 0 && (
-                    <span style={{ marginLeft: 4, color: "#334155" }}>
+                    <span style={{ marginLeft: 4, color: "#DCE4EE" }}>
                       · {new Date(serverMeta[loc]).toLocaleDateString()}
                     </span>
                   )}
@@ -301,13 +301,13 @@ export default function AppTranslationsPanel() {
           <button onClick={() => setShowImport(true)} style={ghostBtn}>
             📥 Import XML
           </button>
-          <button onClick={load} style={{ ...ghostBtn, color: "#64748b" }}>↻ Reload</button>
+          <button onClick={load} style={{ ...ghostBtn, color: "#5F7491" }}>↻ Reload</button>
         </div>
       </div>
 
       {/* AI API key (inline, quick access) */}
       <div style={{
-        background: "#0a1628", border: `1px solid ${apiKeyMasked ? "#14532d" : "#713f12"}`,
+        background: "#F4F7FB", border: `1px solid ${apiKeyMasked ? "#BFE8D2" : "#F3D9A8"}`,
         borderRadius: 10, overflow: "hidden",
       }}>
         <button onClick={() => setShowKeySection((v) => !v)} style={{
@@ -315,20 +315,20 @@ export default function AppTranslationsPanel() {
           display: "flex", alignItems: "center", gap: 10, cursor: "pointer",
         }}>
           <span style={{ fontSize: "1rem" }}>{apiKeyMasked ? "🤖" : "⚠️"}</span>
-          <span style={{ fontSize: "0.875rem", fontWeight: 600, color: "#e2e8f0", flex: 1 }}>Claude AI Translation</span>
+          <span style={{ fontSize: "0.875rem", fontWeight: 600, color: "#0D1F33", flex: 1 }}>Claude AI Translation</span>
           <span style={{
             fontSize: "0.75rem", padding: "2px 8px", borderRadius: 10,
-            background: apiKeyMasked ? "rgba(20,83,45,0.5)" : "rgba(113,63,18,0.4)",
-            color: apiKeyMasked ? "#4ade80" : "#fde68a",
+            background: apiKeyMasked ? "#E3F7EC" : "rgba(113,63,18,0.4)",
+            color: apiKeyMasked ? "#178A55" : "#8A5A0B",
           }}>
             {apiKeyMasked ? `Configured · ${apiKeyMasked}` : "Not configured"}
           </span>
-          <span style={{ color: "#475569", fontSize: "0.8rem" }}>{showKeySection ? "▲" : "▼"}</span>
+          <span style={{ color: "#5F7491", fontSize: "0.8rem" }}>{showKeySection ? "▲" : "▼"}</span>
         </button>
         {showKeySection && (
-          <div style={{ padding: "0 16px 16px", borderTop: "1px solid #1e3a5f" }}>
-            <p style={{ fontSize: "0.8rem", color: "#64748b", margin: "12px 0 10px", lineHeight: 1.5 }}>
-              Get your key at <span style={{ color: "#93c5fd" }}>console.anthropic.com</span>. Full management in Admin Tools → AI / API Keys.
+          <div style={{ padding: "0 16px 16px", borderTop: "1px solid #DCE4EE" }}>
+            <p style={{ fontSize: "0.8rem", color: "#5F7491", margin: "12px 0 10px", lineHeight: 1.5 }}>
+              Get your key at <span style={{ color: "#0B6C86" }}>console.anthropic.com</span>. Full management in Admin Tools → AI / API Keys.
             </p>
             <div style={{ display: "flex", gap: 8 }}>
               <input type="password" placeholder="sk-ant-api03-…" value={apiKeyInput}
@@ -345,8 +345,8 @@ export default function AppTranslationsPanel() {
       {/* No English strings warning */}
       {enKeys.length === 0 && (
         <div style={{
-          padding: "16px 20px", background: "#1c1200", border: "1px solid #713f12",
-          borderRadius: 10, color: "#fde68a", fontSize: "0.875rem", lineHeight: 1.6,
+          padding: "16px 20px", background: "#FFF6E8", border: "1px solid #F3D9A8",
+          borderRadius: 10, color: "#8A5A0B", fontSize: "0.875rem", lineHeight: 1.6,
         }}>
           <strong>No strings loaded yet.</strong> Click <strong>Import XML</strong> above and paste the contents of
           your Android <code>app/src/main/res/values/strings.xml</code> to seed the English source strings.
@@ -365,10 +365,10 @@ export default function AppTranslationsPanel() {
                 onClick={() => { setActiveLocale(loc); setSearch(""); setFilterMissing(false); setSaveMsg(""); setTranslateMsg(""); }}
                 style={{
                   padding: "9px 18px",
-                  background: active ? "#1d4ed8" : "#0a1628",
-                  border: `1px solid ${active ? "#3b82f6" : "#1e3a5f"}`,
+                  background: active ? "#0B6C86" : "#F4F7FB",
+                  border: `1px solid ${active ? "#0B6C86" : "#DCE4EE"}`,
                   borderRadius: 9,
-                  color: active ? "#fff" : "#94a3b8",
+                  color: active ? "#fff" : "#3C516C",
                   fontWeight: active ? 700 : 400,
                   cursor: "pointer", fontSize: "0.875rem",
                   display: "flex", alignItems: "center", gap: 6,
@@ -379,7 +379,7 @@ export default function AppTranslationsPanel() {
                 <span>{loc.toUpperCase()}</span>
                 {missing > 0 && (
                   <span style={{
-                    background: active ? "rgba(255,255,255,0.25)" : "#dc2626",
+                    background: active ? "rgba(255,255,255,0.25)" : "#C8283B",
                     color: "#fff", borderRadius: 10, padding: "1px 6px",
                     fontSize: "0.68rem", fontWeight: 700, minWidth: 18, textAlign: "center",
                   }}>
@@ -398,7 +398,7 @@ export default function AppTranslationsPanel() {
                   title={`Remove ${loc.toUpperCase()}`}
                   style={{
                     position: "absolute", right: 6, top: "50%", transform: "translateY(-50%)",
-                    background: "none", border: "none", color: "#475569", cursor: "pointer",
+                    background: "none", border: "none", color: "#5F7491", cursor: "pointer",
                     fontSize: "0.7rem", padding: "2px 3px", lineHeight: 1,
                   }}
                 >
@@ -412,16 +412,16 @@ export default function AppTranslationsPanel() {
 
       {/* Active locale action bar */}
       <div style={{
-        background: "#0a1628", border: "1px solid #1e3a5f", borderRadius: 10,
+        background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 10,
         padding: "12px 16px", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
       }}>
         <div>
-          <span style={{ fontWeight: 600, color: "#e2e8f0" }}>
+          <span style={{ fontWeight: 600, color: "#0D1F33" }}>
             {localeFlag(activeLocale)} {localeNames[activeLocale] ?? activeLocale.toUpperCase()}
           </span>
-          <span style={{ marginLeft: 10, color: "#475569", fontSize: "0.8rem" }}>
+          <span style={{ marginLeft: 10, color: "#5F7491", fontSize: "0.8rem" }}>
             {Object.keys(allStrings[activeLocale] ?? {}).length} strings
-            {missingCount > 0 && <span style={{ marginLeft: 8, color: "#f87171" }}>· {missingCount} missing</span>}
+            {missingCount > 0 && <span style={{ marginLeft: 8, color: "#C8283B" }}>· {missingCount} missing</span>}
           </span>
         </div>
         <div style={{ flex: 1 }} />
@@ -430,16 +430,16 @@ export default function AppTranslationsPanel() {
             <button onClick={() => handleAiTranslate(true)} disabled={translating || missingCount === 0}
               title="Only translates empty strings"
               style={{
-                padding: "7px 13px", background: "#0c1a3d", border: "1px solid #1d4ed8",
-                borderRadius: 7, color: translating ? "#475569" : "#93c5fd", fontSize: "0.8rem",
+                padding: "7px 13px", background: "#E6F6FB", border: "1px solid #0B6C86",
+                borderRadius: 7, color: translating ? "#5F7491" : "#0B6C86", fontSize: "0.8rem",
                 cursor: translating || missingCount === 0 ? "not-allowed" : "pointer", opacity: missingCount === 0 ? 0.4 : 1,
               }}>
               {translating ? "⏳ Translating…" : `✨ AI Fill Missing (${missingCount})`}
             </button>
             <button onClick={() => handleAiTranslate(false)} disabled={translating}
               style={{
-                padding: "7px 13px", background: "rgba(109,40,217,0.12)", border: "1px solid #6d28d9",
-                borderRadius: 7, color: translating ? "#475569" : "#c4b5fd", fontSize: "0.8rem",
+                padding: "7px 13px", background: "rgba(109,40,217,0.12)", border: "1px solid #6D3FC9",
+                borderRadius: 7, color: translating ? "#5F7491" : "#6D3FC9", fontSize: "0.8rem",
                 cursor: translating ? "not-allowed" : "pointer",
               }}>
               {translating ? "⏳" : "✨ AI Retranslate All"}
@@ -447,7 +447,7 @@ export default function AppTranslationsPanel() {
           </>
         )}
         <button onClick={handleSave} disabled={saving || enKeys.length === 0} style={{
-          padding: "7px 18px", background: "#1d4ed8", border: "1px solid #3b82f6",
+          padding: "7px 18px", background: "#0B6C86", border: "1px solid #0B6C86",
           borderRadius: 7, color: "#fff", fontWeight: 600, fontSize: "0.875rem",
           cursor: saving ? "not-allowed" : "pointer", opacity: saving ? 0.6 : 1,
         }}>
@@ -463,19 +463,19 @@ export default function AppTranslationsPanel() {
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <input type="text" placeholder="Search by key or value…" value={search}
             onChange={(e) => setSearch(e.target.value)}
-            style={{ flex: 1, padding: "9px 14px", background: "#0a1628", border: "1px solid #1e3a5f", borderRadius: 8, color: "#e2e8f0", fontSize: "0.875rem", outline: "none" }} />
+            style={{ flex: 1, padding: "9px 14px", background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 8, color: "#0D1F33", fontSize: "0.875rem", outline: "none" }} />
           {activeLocale !== "en" && missingCount > 0 && (
             <button onClick={() => setFilterMissing((v) => !v)} style={{
               padding: "9px 14px",
-              background: filterMissing ? "#3b0000" : "#0a1628",
-              border: `1px solid ${filterMissing ? "#ef4444" : "#1e3a5f"}`,
-              borderRadius: 8, color: filterMissing ? "#fca5a5" : "#64748b",
+              background: filterMissing ? "#FDE7EA" : "#F4F7FB",
+              border: `1px solid ${filterMissing ? "#C8283B" : "#DCE4EE"}`,
+              borderRadius: 8, color: filterMissing ? "#C8283B" : "#5F7491",
               fontSize: "0.8rem", cursor: "pointer", whiteSpace: "nowrap",
             }}>
               {filterMissing ? "✗ Missing only" : "Show missing only"}
             </button>
           )}
-          <span style={{ color: "#334155", fontSize: "0.78rem", whiteSpace: "nowrap" }}>
+          <span style={{ color: "#DCE4EE", fontSize: "0.78rem", whiteSpace: "nowrap" }}>
             {filteredKeys.length} of {enKeys.length}
           </span>
         </div>
@@ -483,10 +483,10 @@ export default function AppTranslationsPanel() {
 
       {/* Strings table */}
       {enKeys.length > 0 && (
-        <div style={{ background: "#060e1a", border: "1px solid #1e3a5f", borderRadius: 10, overflow: "auto", maxHeight: "calc(100vh - 420px)" }}>
+        <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 10, overflow: "auto", maxHeight: "calc(100vh - 420px)" }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
-              <tr style={{ position: "sticky", top: 0, background: "#060e1a", zIndex: 10 }}>
+              <tr style={{ position: "sticky", top: 0, background: "#F4F7FB", zIndex: 10 }}>
                 <th style={thStyle}>Key</th>
                 {activeLocale !== "en" && <th style={thStyle}>English</th>}
                 <th style={thStyle}>{localeNames[activeLocale] ?? activeLocale.toUpperCase()}</th>
@@ -494,7 +494,7 @@ export default function AppTranslationsPanel() {
             </thead>
             <tbody>
               {filteredKeys.length === 0 ? (
-                <tr><td colSpan={activeLocale !== "en" ? 3 : 2} style={{ padding: 24, color: "#64748b", textAlign: "center" }}>
+                <tr><td colSpan={activeLocale !== "en" ? 3 : 2} style={{ padding: 24, color: "#5F7491", textAlign: "center" }}>
                   {search ? "No strings match your search." : filterMissing ? "No missing strings — all translated!" : ""}
                 </td></tr>
               ) : (
@@ -503,28 +503,28 @@ export default function AppTranslationsPanel() {
                   const enValue = allStrings["en"]?.[key] ?? "";
                   const isEmpty = activeLocale !== "en" && !value.trim();
                   return (
-                    <tr key={key} style={{ background: i % 2 === 0 ? "transparent" : "rgba(30,58,95,0.12)" }}>
-                      <td style={keyTdStyle}><code style={{ fontSize: "0.72rem", color: "#475569", wordBreak: "break-all" }}>{key}</code></td>
+                    <tr key={key} style={{ background: i % 2 === 0 ? "transparent" : "rgba(11,108,134,0.08)" }}>
+                      <td style={keyTdStyle}><code style={{ fontSize: "0.72rem", color: "#5F7491", wordBreak: "break-all" }}>{key}</code></td>
                       {activeLocale !== "en" && (
-                        <td style={{ ...valueTdStyle, color: "#64748b", fontSize: "0.78rem" }}>
-                          {enValue || <span style={{ color: "#334155", fontStyle: "italic" }}>—</span>}
+                        <td style={{ ...valueTdStyle, color: "#5F7491", fontSize: "0.78rem" }}>
+                          {enValue || <span style={{ color: "#DCE4EE", fontStyle: "italic" }}>—</span>}
                         </td>
                       )}
                       <td style={cellTdStyle}>
                         <textarea value={value} onChange={(e) => handleEdit(key, e.target.value)}
                           rows={value.includes("\n") ? 3 : 1}
                           style={{
-                            width: "100%", background: isEmpty ? "rgba(220,38,38,0.07)" : "rgba(30,58,95,0.2)",
+                            width: "100%", background: isEmpty ? "rgba(220,38,38,0.07)" : "rgba(11,108,134,0.08)",
                             border: `1px solid ${isEmpty ? "rgba(220,38,38,0.4)" : "transparent"}`,
-                            borderRadius: 5, color: "#e2e8f0", fontSize: "0.8rem", padding: "5px 8px",
+                            borderRadius: 5, color: "#0D1F33", fontSize: "0.8rem", padding: "5px 8px",
                             resize: "vertical", minHeight: 28, fontFamily: "inherit", outline: "none",
                             boxSizing: "border-box", transition: "border 0.1s, background 0.1s",
                           }}
-                          onFocus={(e) => { e.currentTarget.style.border = "1px solid #3b82f6"; e.currentTarget.style.background = "rgba(29,78,216,0.15)"; }}
+                          onFocus={(e) => { e.currentTarget.style.border = "1px solid #0B6C86"; e.currentTarget.style.background = "rgba(11,108,134,0.15)"; }}
                           onBlur={(e) => {
                             const miss = activeLocale !== "en" && !e.currentTarget.value.trim();
                             e.currentTarget.style.border = `1px solid ${miss ? "rgba(220,38,38,0.4)" : "transparent"}`;
-                            e.currentTarget.style.background = miss ? "rgba(220,38,38,0.07)" : "rgba(30,58,95,0.2)";
+                            e.currentTarget.style.background = miss ? "rgba(220,38,38,0.07)" : "rgba(11,108,134,0.08)";
                           }} />
                       </td>
                     </tr>
@@ -539,8 +539,8 @@ export default function AppTranslationsPanel() {
       {/* Add Language modal */}
       {showAddLang && (
         <Modal onClose={() => { setShowAddLang(false); setAddLangMsg(""); setNewLocaleCode(""); setNewLocaleName(""); }}>
-          <h3 style={{ margin: "0 0 4px", fontSize: "1rem", color: "#e2e8f0" }}>Add Language</h3>
-          <p style={{ margin: "0 0 16px", fontSize: "0.8rem", color: "#64748b" }}>
+          <h3 style={{ margin: "0 0 4px", fontSize: "1rem", color: "#0D1F33" }}>Add Language</h3>
+          <p style={{ margin: "0 0 16px", fontSize: "0.8rem", color: "#5F7491" }}>
             Enter the ISO 639-1 language code and display name. An empty strings document will be created for you to fill via AI or manual import.
           </p>
           <label style={labelStyle}>Language code (e.g. fr, pt, ja)</label>
@@ -562,8 +562,8 @@ export default function AppTranslationsPanel() {
       {/* Import XML modal */}
       {showImport && (
         <Modal onClose={() => { setShowImport(false); setImportXml(""); setImportMsg(""); }}>
-          <h3 style={{ margin: "0 0 4px", fontSize: "1rem", color: "#e2e8f0" }}>Import Android strings.xml</h3>
-          <p style={{ margin: "0 0 12px", fontSize: "0.8rem", color: "#64748b" }}>
+          <h3 style={{ margin: "0 0 4px", fontSize: "1rem", color: "#0D1F33" }}>Import Android strings.xml</h3>
+          <p style={{ margin: "0 0 12px", fontSize: "0.8rem", color: "#5F7491" }}>
             Paste the content of <code>values/strings.xml</code> (English) or <code>values-hu/strings.xml</code> etc.
           </p>
           <label style={labelStyle}>Target locale</label>
@@ -571,9 +571,9 @@ export default function AppTranslationsPanel() {
             {supportedLocales.map((loc) => (
               <button key={loc} onClick={() => setImportLocale(loc)} style={{
                 padding: "5px 12px",
-                background: importLocale === loc ? "#1d4ed8" : "#0a1628",
-                border: `1px solid ${importLocale === loc ? "#3b82f6" : "#1e3a5f"}`,
-                borderRadius: 6, color: importLocale === loc ? "#fff" : "#64748b", cursor: "pointer", fontSize: "0.8rem",
+                background: importLocale === loc ? "#0B6C86" : "#F4F7FB",
+                border: `1px solid ${importLocale === loc ? "#0B6C86" : "#DCE4EE"}`,
+                borderRadius: 6, color: importLocale === loc ? "#fff" : "#5F7491", cursor: "pointer", fontSize: "0.8rem",
               }}>
                 {localeFlag(loc)} {loc.toUpperCase()}
               </button>
@@ -602,9 +602,9 @@ function StatusMsg({ msg, blue }: { msg: string; blue?: boolean }) {
   return (
     <div style={{
       padding: "9px 14px", borderRadius: 8, fontSize: "0.875rem",
-      background: isErr ? "#3b0000" : blue ? "#071428" : "#052e16",
-      border: `1px solid ${isErr ? "#7f1d1d" : blue ? "#1d4ed8" : "#14532d"}`,
-      color: isErr ? "#fca5a5" : blue ? "#93c5fd" : "#4ade80",
+      background: isErr ? "#FDE7EA" : blue ? "#E6F6FB" : "#E3F7EC",
+      border: `1px solid ${isErr ? "#F5C2C9" : blue ? "#0B6C86" : "#BFE8D2"}`,
+      color: isErr ? "#C8283B" : blue ? "#0B6C86" : "#178A55",
     }}>
       {msg}
     </div>
@@ -614,16 +614,16 @@ function StatusMsg({ msg, blue }: { msg: string; blue?: boolean }) {
 function Modal({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
   return (
     <div style={{
-      position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)",
+      position: "fixed", inset: 0, background: "rgba(11,22,38,0.55)",
       display: "flex", alignItems: "center", justifyContent: "center", zIndex: 200,
     }}>
       <div style={{
-        background: "#0b1120", border: "1px solid #1e3a5f", borderRadius: 14,
+        background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 14,
         padding: 28, width: "92%", maxWidth: 520, maxHeight: "85vh",
         display: "flex", flexDirection: "column", gap: 0, overflow: "auto",
       }}>
         <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
-          <button onClick={onClose} style={{ background: "none", border: "none", color: "#64748b", fontSize: "1.2rem", cursor: "pointer" }}>✕</button>
+          <button onClick={onClose} style={{ background: "none", border: "none", color: "#5F7491", fontSize: "1.2rem", cursor: "pointer" }}>✕</button>
         </div>
         {children}
       </div>
@@ -636,30 +636,30 @@ function Modal({ children, onClose }: { children: React.ReactNode; onClose: () =
 const thStyle: React.CSSProperties = {
   padding: "9px 14px", textAlign: "left", fontSize: "0.68rem",
   fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em",
-  color: "#475569", borderBottom: "1px solid #1e3a5f",
+  color: "#5F7491", borderBottom: "1px solid #DCE4EE",
 };
-const keyTdStyle: React.CSSProperties = { padding: "7px 12px", verticalAlign: "top", borderBottom: "1px solid #0d1f35", width: "22%", minWidth: 120 };
-const valueTdStyle: React.CSSProperties = { padding: "7px 12px", verticalAlign: "top", borderBottom: "1px solid #0d1f35", width: "30%" };
-const cellTdStyle: React.CSSProperties = { padding: "5px 8px", borderBottom: "1px solid #0d1f35" };
+const keyTdStyle: React.CSSProperties = { padding: "7px 12px", verticalAlign: "top", borderBottom: "1px solid #F4F7FB", width: "22%", minWidth: 120 };
+const valueTdStyle: React.CSSProperties = { padding: "7px 12px", verticalAlign: "top", borderBottom: "1px solid #F4F7FB", width: "30%" };
+const cellTdStyle: React.CSSProperties = { padding: "5px 8px", borderBottom: "1px solid #F4F7FB" };
 
 const ghostBtn: React.CSSProperties = {
-  padding: "7px 13px", background: "#0f1f35", border: "1px solid #1e3a5f",
-  borderRadius: 7, color: "#93c5fd", fontSize: "0.8rem", cursor: "pointer",
+  padding: "7px 13px", background: "#F4F7FB", border: "1px solid #DCE4EE",
+  borderRadius: 7, color: "#0B6C86", fontSize: "0.8rem", cursor: "pointer",
 };
 const primaryBtn: React.CSSProperties = {
-  padding: "8px 18px", background: "#1d4ed8", border: "1px solid #3b82f6",
+  padding: "8px 18px", background: "#0B6C86", border: "1px solid #0B6C86",
   borderRadius: 7, color: "#fff", fontWeight: 600, fontSize: "0.875rem", cursor: "pointer",
 };
 const cancelBtn: React.CSSProperties = {
-  padding: "8px 18px", background: "transparent", border: "1px solid #1e3a5f",
-  borderRadius: 7, color: "#64748b", cursor: "pointer", fontSize: "0.875rem",
+  padding: "8px 18px", background: "transparent", border: "1px solid #DCE4EE",
+  borderRadius: 7, color: "#5F7491", cursor: "pointer", fontSize: "0.875rem",
 };
 const monoInput: React.CSSProperties = {
-  width: "100%", padding: "8px 12px", background: "#060e1a", border: "1px solid #1e3a5f",
-  borderRadius: 7, color: "#e2e8f0", fontSize: "0.875rem", outline: "none",
+  width: "100%", padding: "8px 12px", background: "#F4F7FB", border: "1px solid #DCE4EE",
+  borderRadius: 7, color: "#0D1F33", fontSize: "0.875rem", outline: "none",
   fontFamily: "monospace", boxSizing: "border-box",
 };
 const labelStyle: React.CSSProperties = {
-  display: "block", fontSize: "0.72rem", fontWeight: 600, color: "#64748b",
+  display: "block", fontSize: "0.72rem", fontWeight: 600, color: "#5F7491",
   textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 6,
 };

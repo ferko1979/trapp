@@ -1,6 +1,7 @@
 package com.fairco.trap
 
 import androidx.compose.animation.core.*
+import com.fairco.trap.ui.theme.Radar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -91,7 +92,7 @@ fun TrappedOverlay(
             // ── TRAPPED title ────────────────────────────────────────────
             Text(
                 text = stringResource(R.string.label_trapped_title),
-                color = Color(0xFFEF4444),
+                color = Radar.Trap,
                 fontSize = 42.sp,
                 fontWeight = FontWeight.ExtraBold,
                 letterSpacing = 4.sp,
@@ -136,7 +137,7 @@ fun TrappedOverlay(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
                         text = "Set by",
-                        color = Color(0xFF94A3B8),
+                        color = Radar.TextSec,
                         fontSize = 12.sp
                     )
                     Box(
@@ -148,7 +149,7 @@ fun TrappedOverlay(
                     ) {
                         Text(
                             text = "⚔️ @${event.ownerUsername}",
-                            color = Color(0xFFFCA5A5),
+                            color = Radar.TrapSoft,
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -189,13 +190,13 @@ fun TrappedOverlay(
             // ── Dismiss button + countdown ───────────────────────────────
             Button(
                 onClick = onDismiss,
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF374151)),
+                colors = ButtonDefaults.buttonColors(containerColor = Radar.Line),
                 shape = RoundedCornerShape(12.dp),
                 modifier = Modifier.fillMaxWidth(0.6f)
             ) {
                 Text(
                     text = stringResource(R.string.action_close) + " ($remaining)",
-                    color = Color(0xFFCBD5E1),
+                    color = Radar.TextSec,
                     fontWeight = FontWeight.SemiBold
                 )
             }
@@ -211,26 +212,26 @@ enum class EnemyAction { ADD_FRIEND, MESSAGE }
 fun EnemyActionsDialog(username: String, onAction: (EnemyAction) -> Unit, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        containerColor = Color(0xFF0D1626),
-        titleContentColor = Color(0xFFFCA5A5),
+        containerColor = Radar.Surface,
+        titleContentColor = Radar.TrapSoft,
         title = { Text("⚔️ @$username", fontWeight = FontWeight.Bold, fontSize = 16.sp) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(
                     onClick = { onAction(EnemyAction.ADD_FRIEND) },
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1E3A5F))
+                    colors = ButtonDefaults.buttonColors(containerColor = Radar.Line)
                 ) { Text("👥 Add Friend", color = Color.White) }
                 Button(
                     onClick = { onAction(EnemyAction.MESSAGE) },
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF374151))
+                    colors = ButtonDefaults.buttonColors(containerColor = Radar.Line)
                 ) { Text("💬 Send Message", color = Color.White) }
             }
         },
         confirmButton = {},
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel", color = Color(0xFF64748B)) }
+            TextButton(onClick = onDismiss) { Text("Cancel", color = Radar.TextMuted) }
         }
     )
 }
@@ -241,13 +242,13 @@ fun EnemyUsernameChip(username: String, enabled: Boolean = true, onClick: () -> 
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(if (enabled) Color(0xFF450A0A) else Color(0xFF1E293B))
+            .background(if (enabled) Color(0xFF450A0A) else Radar.Surface)
             .clickable(enabled = enabled, onClick = onClick)
             .padding(horizontal = 10.dp, vertical = 4.dp)
     ) {
         Text(
             text = "⚔️ @$username",
-            color = if (enabled) Color(0xFFFCA5A5) else Color(0xFF64748B),
+            color = if (enabled) Radar.TrapSoft else Radar.TextMuted,
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold
         )
@@ -265,9 +266,9 @@ private fun effectLabel(effectKind: String, effectValue: Double): String = when 
 
 /** Accent colour for the effect chip. */
 private fun effectColor(effectKind: String): Color = when (effectKind) {
-    "timeout"  -> Color(0xFFF59E0B)
-    "laughter" -> Color(0xFF22C55E)
-    "slowdown" -> Color(0xFF60A5FA)
-    "penalty"  -> Color(0xFFEF4444)
-    else       -> Color(0xFF94A3B8)
+    "timeout"  -> Radar.Gold
+    "laughter" -> Radar.Safe
+    "slowdown" -> Radar.Accent
+    "penalty"  -> Radar.Trap
+    else       -> Radar.TextSec
 }

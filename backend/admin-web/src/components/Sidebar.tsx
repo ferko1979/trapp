@@ -157,17 +157,17 @@ export default function Sidebar({
     setOpen((prev) => ({ ...prev, [key]: !prev[key] }));
   }
 
-  const sidebarBg   = "#0d1827";
-  const borderColor = "#1a2e45";
-  const activeBg    = "#1d4ed8";
-  const hoverBg     = "#162033";
-  const groupLabelColor = "#64748b";
+  const sidebarBg   = "#0B1626";
+  const borderColor = "#16263D";
+  const activeBg    = "#13233A";
+  const hoverBg     = "#101E33";
+  const groupLabelColor = "#7D91AB";
 
   return (
     <aside
       style={{
-        width: 230,
-        minWidth: 230,
+        width: 248,
+        minWidth: 248,
         background: sidebarBg,
         borderRight: `1px solid ${borderColor}`,
         display: "flex",
@@ -206,20 +206,21 @@ export default function Sidebar({
               style={{
                 fontSize: "1.05rem",
                 fontWeight: 800,
-                color: "#f8fafc",
-                letterSpacing: "-0.3px",
+                color: "#fff",
+                letterSpacing: "0.04em",
                 lineHeight: 1.2,
               }}
             >
-              Trapp
+              TRAPP
             </div>
             <div
               style={{
-                fontSize: "0.65rem",
-                fontWeight: 600,
-                color: "#3b82f6",
+                fontFamily: "var(--font-label)",
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                color: "#38D3F2",
                 textTransform: "uppercase",
-                letterSpacing: "0.1em",
+                letterSpacing: "0.14em",
               }}
             >
               Admin Console
@@ -266,19 +267,20 @@ export default function Sidebar({
                   border: "none",
                   borderRadius: 8,
                   cursor: "pointer",
-                  color: groupActive ? "#e2e8f0" : groupLabelColor,
-                  fontSize: "0.72rem",
+                  color: groupActive ? "#C9D5E4" : groupLabelColor,
+                  fontFamily: "var(--font-label)",
+                  fontSize: "0.8rem",
                   fontWeight: 700,
-                  letterSpacing: "0.07em",
+                  letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   transition: "color 0.15s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.color = "#e2e8f0";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#C9D5E4";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLButtonElement).style.color =
-                    groupActive ? "#e2e8f0" : groupLabelColor;
+                    groupActive ? "#C9D5E4" : groupLabelColor;
                 }}
               >
                 <span style={{ fontSize: "0.95rem" }}>{entry.icon}</span>
@@ -342,21 +344,21 @@ export default function Sidebar({
             alignItems: "center",
             gap: 8,
             padding: "10px 12px",
-            background: "rgba(153,27,27,0.18)",
-            border: "1px solid rgba(153,27,27,0.4)",
-            borderRadius: 9,
-            color: "#fca5a5",
+            background: "rgba(255,79,98,0.12)",
+            border: "1px solid rgba(255,79,98,0.35)",
+            borderRadius: 10,
+            color: "#FF8A97",
             fontWeight: 600,
             fontSize: "0.875rem",
             cursor: "pointer",
             transition: "background 0.15s",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background = "#7f1d1d";
+            (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,79,98,0.24)";
           }}
           onMouseLeave={(e) => {
             (e.currentTarget as HTMLButtonElement).style.background =
-              "rgba(153,27,27,0.18)";
+              "rgba(255,79,98,0.12)";
           }}
         >
           <span>🚪</span>
@@ -399,15 +401,15 @@ function NavButton({
         padding: indent ? "8px 10px" : "9px 10px",
         background: active ? activeBg : hovered ? hoverBg : "transparent",
         border: "none",
-        borderRadius: 8,
-        color: active ? "#fff" : hovered ? "#e2e8f0" : "#94a3b8",
+        borderRadius: 10,
+        color: active ? "#fff" : hovered ? "#fff" : "#C9D5E4",
         fontWeight: active ? 600 : 400,
         fontSize: indent ? "0.875rem" : "0.9rem",
         cursor: "pointer",
         textAlign: "left",
         transition: "background 0.12s, color 0.12s",
         marginBottom: 1,
-        boxShadow: active ? "0 2px 8px rgba(29,78,216,0.35)" : "none",
+        boxShadow: active ? "inset 3px 0 0 #38D3F2" : "none",
       }}
     >
       <span style={{ fontSize: "0.9rem", opacity: active ? 1 : 0.7 }}>{icon}</span>

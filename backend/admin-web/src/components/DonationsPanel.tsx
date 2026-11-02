@@ -33,7 +33,7 @@ function fmtMoney(amount: number, currency: string) {
 }
 
 const STATUS_COLOR: Record<string, string> = {
-  completed: "#22c55e", pending: "#f59e0b", failed: "#ef4444",
+  completed: "#178A55", pending: "#8A5A0B", failed: "#C8283B",
 };
 
 export default function DonationsPanel() {
@@ -65,13 +65,13 @@ export default function DonationsPanel() {
       {stats && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 12 }}>
           {[
-            { label: "Total Donations", value: stats.total, color: "#94a3b8" },
-            { label: "Completed",       value: stats.completed, color: "#22c55e" },
-            { label: "Pending",         value: stats.pending, color: "#f59e0b" },
-            { label: "Total Raised",    value: fmtMoney(stats.totalAmount, stats.currency), color: "#60a5fa" },
+            { label: "Total Donations", value: stats.total, color: "#3C516C" },
+            { label: "Completed",       value: stats.completed, color: "#178A55" },
+            { label: "Pending",         value: stats.pending, color: "#8A5A0B" },
+            { label: "Total Raised",    value: fmtMoney(stats.totalAmount, stats.currency), color: "#0B6C86" },
           ].map(({ label, value, color }) => (
-            <div key={label} style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 12, padding: "16px 20px" }}>
-              <div style={{ fontSize: "0.75rem", color: "#64748b", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.06em" }}>{label}</div>
+            <div key={label} style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 12, padding: "16px 20px" }}>
+              <div style={{ fontSize: "0.75rem", color: "#5F7491", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.06em" }}>{label}</div>
               <div style={{ fontSize: "1.5rem", fontWeight: 700, color }}>{value}</div>
             </div>
           ))}
@@ -79,10 +79,10 @@ export default function DonationsPanel() {
       )}
 
       {/* Info */}
-      <div style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 14, padding: 18 }}>
-        <div style={{ fontWeight: 700, color: "#f1f5f9", marginBottom: 8 }}>🎁 About Donations</div>
-        <p style={{ fontSize: "0.875rem", color: "#64748b", lineHeight: 1.7, margin: 0 }}>
-          Users can donate <strong style={{ color: "#94a3b8" }}>€1, €5, €15, €30</strong> or a custom amount from the app (Profile → Support the App).
+      <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 14, padding: 18 }}>
+        <div style={{ fontWeight: 700, color: "#0D1F33", marginBottom: 8 }}>🎁 About Donations</div>
+        <p style={{ fontSize: "0.875rem", color: "#5F7491", lineHeight: 1.7, margin: 0 }}>
+          Users can donate <strong style={{ color: "#3C516C" }}>€1, €5, €15, €30</strong> or a custom amount from the app (Profile → Support the App).
           Donations are one-time Revolut payments. Suggested amounts can be updated in the Revolut API client.
           Each donation is logged here and in the unified Payment History.
         </p>
@@ -91,45 +91,45 @@ export default function DonationsPanel() {
       {/* Refresh + message */}
       <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
         <button onClick={() => void load()} disabled={loading}>🔄 {loading ? "Loading…" : "Refresh"}</button>
-        {msg && <span style={{ fontSize: "0.875rem", color: err ? "#f87171" : "#4ade80" }}>{err ? "⚠ " : "✓ "}{msg}</span>}
+        {msg && <span style={{ fontSize: "0.875rem", color: err ? "#C8283B" : "#178A55" }}>{err ? "⚠ " : "✓ "}{msg}</span>}
       </div>
 
       {/* Table */}
-      <div style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 14, overflow: "hidden" }}>
+      <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 14, overflow: "hidden" }}>
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.84rem" }}>
             <thead>
-              <tr style={{ background: "#0a1628" }}>
+              <tr style={{ background: "#F4F7FB" }}>
                 {["Date", "User", "Amount", "Status", "Message", "Order ID"].map((h) => (
-                  <th key={h} style={{ padding: "12px 14px", textAlign: "left", color: "#64748b", fontWeight: 600, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap", borderBottom: "1px solid #1e3a5f" }}>{h}</th>
+                  <th key={h} style={{ padding: "12px 14px", textAlign: "left", color: "#5F7491", fontWeight: 600, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap", borderBottom: "1px solid #DCE4EE" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {items.length === 0 && (
-                <tr><td colSpan={6} style={{ padding: "32px 14px", textAlign: "center", color: "#475569" }}>{loading ? "Loading…" : "No donations yet."}</td></tr>
+                <tr><td colSpan={6} style={{ padding: "32px 14px", textAlign: "center", color: "#5F7491" }}>{loading ? "Loading…" : "No donations yet."}</td></tr>
               )}
               {items.map((item, idx) => (
-                <tr key={item.id} style={{ background: idx % 2 === 0 ? "transparent" : "rgba(15,23,42,0.5)" }}>
-                  <td style={{ padding: "10px 14px", color: "#94a3b8", whiteSpace: "nowrap", verticalAlign: "top" }}>{fmt(item.createdAtMs)}</td>
+                <tr key={item.id} style={{ background: idx % 2 === 0 ? "transparent" : "#F4F7FB" }}>
+                  <td style={{ padding: "10px 14px", color: "#3C516C", whiteSpace: "nowrap", verticalAlign: "top" }}>{fmt(item.createdAtMs)}</td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
-                    <div style={{ fontSize: "0.82rem", color: "#e2e8f0" }}>{item.email ?? "—"}</div>
-                    <div style={{ fontSize: "0.75rem", color: "#475569", fontFamily: "monospace" }}>{item.uid?.slice(0, 12) ?? ""}…</div>
+                    <div style={{ fontSize: "0.82rem", color: "#0D1F33" }}>{item.email ?? "—"}</div>
+                    <div style={{ fontSize: "0.75rem", color: "#5F7491", fontFamily: "monospace" }}>{item.uid?.slice(0, 12) ?? ""}…</div>
                   </td>
-                  <td style={{ padding: "10px 14px", fontWeight: 700, color: "#f1f5f9", whiteSpace: "nowrap", verticalAlign: "top" }}>
+                  <td style={{ padding: "10px 14px", fontWeight: 700, color: "#0D1F33", whiteSpace: "nowrap", verticalAlign: "top" }}>
                     {fmtMoney(item.amount, item.currency)}
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
-                    <span style={{ fontSize: "0.73rem", fontWeight: 700, padding: "3px 9px", borderRadius: 999, background: `${STATUS_COLOR[item.status] ?? "#94a3b8"}20`, color: STATUS_COLOR[item.status] ?? "#94a3b8", textTransform: "capitalize" }}>
+                    <span style={{ fontSize: "0.73rem", fontWeight: 700, padding: "3px 9px", borderRadius: 999, background: `${STATUS_COLOR[item.status] ?? "#3C516C"}20`, color: STATUS_COLOR[item.status] ?? "#3C516C", textTransform: "capitalize" }}>
                       {item.status}
                     </span>
                   </td>
-                  <td style={{ padding: "10px 14px", color: "#64748b", fontSize: "0.82rem", verticalAlign: "top", maxWidth: 200 }}>
-                    {item.message ?? <span style={{ color: "#374151" }}>—</span>}
+                  <td style={{ padding: "10px 14px", color: "#5F7491", fontSize: "0.82rem", verticalAlign: "top", maxWidth: 200 }}>
+                    {item.message ?? <span style={{ color: "#DCE4EE" }}>—</span>}
                   </td>
                   <td style={{ padding: "10px 14px", verticalAlign: "top" }}>
                     {item.revolutOrderId && (
-                      <div style={{ fontSize: "0.72rem", fontFamily: "monospace", color: "#475569" }} title={item.revolutOrderId}>
+                      <div style={{ fontSize: "0.72rem", fontFamily: "monospace", color: "#5F7491" }} title={item.revolutOrderId}>
                         {item.revolutOrderId.slice(0, 16)}…
                       </div>
                     )}

@@ -109,7 +109,7 @@ export default function AllyGroupMembersPanel({ groupId }: { groupId: string }) 
     <section style={{ display: "grid", gap: 16 }}>
       <h3 style={{ margin: 0 }}>Members</h3>
 
-      <div style={{ border: "1px solid #334155", borderRadius: 10, padding: 12 }}>
+      <div style={{ border: "1px solid #DCE4EE", borderRadius: 10, padding: 12 }}>
         <h4 style={{ marginTop: 0 }}>Invite member</h4>
         <div style={{ display: "flex", gap: 8 }}>
           <input
@@ -126,7 +126,7 @@ export default function AllyGroupMembersPanel({ groupId }: { groupId: string }) 
           <div
             key={member.id}
             style={{
-              border: "1px solid #334155",
+              border: "1px solid #DCE4EE",
               borderRadius: 10,
               padding: 12,
               display: "grid",

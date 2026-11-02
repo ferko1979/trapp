@@ -1,5 +1,6 @@
 package com.fairco.trap
 
+import com.fairco.trap.ui.theme.Radar
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -60,7 +61,7 @@ fun TrapCompassOverlay(
     Box(
         modifier = Modifier
             .size(88.dp)
-            .background(Color(0xCC1A0A00), shape = RoundedCornerShape(12.dp))
+            .background(Radar.Bg.copy(alpha = 0.8f), shape = RoundedCornerShape(12.dp))
             .padding(8.dp),
         contentAlignment = Alignment.Center,
     ) {
@@ -72,13 +73,13 @@ fun TrapCompassOverlay(
             Box(
                 modifier = Modifier
                     .size(48.dp)
-                    .background(Color(0x33FF3300), shape = CircleShape),
+                    .background(Radar.Trap.copy(alpha = 0.2f), shape = CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
                     imageVector = Icons.Default.Navigation,
                     contentDescription = "Direction to trap",
-                    tint = Color(0xFFFF4400),
+                    tint = Radar.Trap,
                     modifier = Modifier
                         .size(32.dp)
                         .rotate(arrowRotation),
@@ -94,7 +95,7 @@ fun TrapCompassOverlay(
 
             Text(
                 text = "⚠ TRAP",
-                color = Color(0xFFFF4400),
+                color = Radar.Trap,
                 fontSize = 9.sp,
                 fontWeight = FontWeight.Bold,
             )

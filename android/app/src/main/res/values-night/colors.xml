@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
- <color name="bg_deep">#FF080C10</color>
-      <color name="bg_surface">#FF0D1520</color>
-      <color name="bg_surface2">#FF111D2E</color>
-      <color name="bg_surface3">#FF162540</color>
-      <color name="scrim_dark">#CC080C10</color>
-      <color name="scrim_heavy">#F2080C10</color>
-      <color name="border_default">#FF1A3050</color>
+ <color name="bg_deep">#FF070E1A</color>
+      <color name="bg_surface">#FF0E1828</color>
+      <color name="bg_surface2">#FF15233A</color>
+      <color name="bg_surface3">#FF1B2C47</color>
+      <color name="scrim_dark">#CC070E1A</color>
+      <color name="scrim_heavy">#F2070E1A</color>
+      <color name="border_default">#FF22385A</color>
       <color name="border_subtle">#1AFFFFFF</color>
-      <color name="accent_cyan">#FF00E5FF</color>
-      <color name="accent_cyan_10">#1A00E5FF</color>
-      <color name="accent_cyan_20">#3300E5FF</color>
-      <color name="accent_cyan_30">#4D00E5FF</color>
-      <color name="accent_red">#FFFF3D6B</color>
-      <color name="accent_red_10">#1AFF3D6B</color>
-      <color name="accent_red_20">#33FF3D6B</color>
-      <color name="accent_green">#FF39FF6E</color>
-      <color name="accent_green_10">#1A39FF6E</color>
-      <color name="accent_green_20">#3339FF6E</color>
-      <color name="accent_gold">#FFFFB800</color>
-      <color name="accent_gold_10">#1AFFB800</color>
-      <color name="accent_gold_20">#33FFB800</color>
-      <color name="text_primary">#FFE0F0FF</color>
-      <color name="text_secondary">#FF8AAABB</color>
-      <color name="text_muted">#FF4A6080</color>
-      <color name="status_online">#FF39FF6E</color>
-      <color name="rank_gold">#FFFFB800</color>
+      <color name="accent_cyan">#FF38D3F2</color>
+      <color name="accent_cyan_10">#1A38D3F2</color>
+      <color name="accent_cyan_20">#3338D3F2</color>
+      <color name="accent_cyan_30">#4D38D3F2</color>
+      <color name="accent_red">#FFFF4F62</color>
+      <color name="accent_red_10">#1AFF4F62</color>
+      <color name="accent_red_20">#33FF4F62</color>
+      <color name="accent_green">#FF3EE08F</color>
+      <color name="accent_green_10">#1A3EE08F</color>
+      <color name="accent_green_20">#333EE08F</color>
+      <color name="accent_gold">#FFFFB648</color>
+      <color name="accent_gold_10">#1AFFB648</color>
+      <color name="accent_gold_20">#33FFB648</color>
+      <color name="text_primary">#FFEAF1FA</color>
+      <color name="text_secondary">#FFA7B7CC</color>
+      <color name="text_muted">#FF7D91AB</color>
+      <color name="status_online">#FF3EE08F</color>
+      <color name="rank_gold">#FFFFB648</color>
       <color name="rank_silver">#FFC0C0C0</color>
       <color name="rank_bronze">#FFCD7F32</color>
       <color name="transparent">#00000000</color>
-      <color name="map_bg">#FF0A1420</color>
+      <color name="map_bg">#FF0A1424</color>
       <color name="map_road">#0DFFFFFF</color>
 
     <!-- Standard colours referenced by legacy layouts -->
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+    <!-- Text on accent_cyan fills: white on deep cyan (day), ink on bright cyan (night) -->
+    <color name="on_primary">#FF04121C</color>
 </resources>

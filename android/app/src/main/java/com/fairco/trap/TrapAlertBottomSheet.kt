@@ -94,7 +94,7 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
                 binding.pbProximity.max = 200
                 binding.pbProximity.progress = (200 - dist).coerceAtLeast(0)
                 binding.pbProximity.progressTintList =
-                    ColorStateList.valueOf(android.graphics.Color.parseColor("#F59E0B"))
+                    ColorStateList.valueOf(android.graphics.Color.parseColor("#FFB648"))
 
                 // Option cards: fill in contextual text
                 val disarmRange = state.trap.disarmRadiusMeters
@@ -130,7 +130,7 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
                     val countdown = state.outOfRangeCountdown ?: 5
                     val needed = (dist - disarmRange).coerceAtLeast(1)
                     binding.pbProximity.progressTintList =
-                        ColorStateList.valueOf(android.graphics.Color.parseColor("#F59E0B"))
+                        ColorStateList.valueOf(android.graphics.Color.parseColor("#FFB648"))
                     binding.tvInstructions.text =
                         "⚠️ You left the zone! Return within ${disarmRange}m — move ${needed}m closer"
                     binding.tvDisarmCountdown.text = "⏳ Cancelling in ${countdown}s…"
@@ -161,7 +161,7 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
                     binding.tvAlertTitle.text = "⚠️ Move Closer!"
                     binding.tvTrapDistance.text = "Disassembly paused — ${state.trap.distanceMeters}m away"
                     binding.pbProximity.progressTintList =
-                        ColorStateList.valueOf(android.graphics.Color.parseColor("#F59E0B"))
+                        ColorStateList.valueOf(android.graphics.Color.parseColor("#FFB648"))
                     binding.tvInstructions.text =
                         "⚠️ Move ${state.metersToClose}m closer! Return within ${disarmRange}m"
                     binding.tvDisarmCountdown.text = "⏳ Cancelling in ${countdown}s…"
@@ -188,7 +188,7 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
                 binding.tvTrapDistance.text = "You stepped into the trap zone"
                 binding.pbProximity.progress = binding.pbProximity.max
                 binding.pbProximity.progressTintList =
-                    ColorStateList.valueOf(android.graphics.Color.parseColor("#EF4444"))
+                    ColorStateList.valueOf(android.graphics.Color.parseColor("#FF4F62"))
                 binding.tvInstructions.text =
                     "You entered the danger zone (${state.trap.radiusMeters}m) during disassembly — the trap fired!"
                 binding.btnAction.text = "Dismiss"

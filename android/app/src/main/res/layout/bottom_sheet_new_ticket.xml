@@ -73,7 +73,7 @@
         android:fontFamily="@font/rajdhani_bold"
         android:text="Send Ticket"
         android:textAllCaps="true"
-        android:textColor="@color/white"
+        android:textColor="@color/on_primary"
         android:textSize="18sp"
         app:cornerRadius="12dp" />
 

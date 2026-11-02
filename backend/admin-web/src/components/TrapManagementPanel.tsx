@@ -77,12 +77,12 @@ const EFFECT_KINDS = [
 ] as const;
 
 const STATUS_COLORS: Record<string, string> = {
-  active:   "#22c55e",
-  inactive: "#64748b",
-  captured: "#f59e0b",
-  disarmed: "#3b82f6",
-  blown:    "#ef4444",
-  used:     "#8b5cf6",
+  active:   "#178A55",
+  inactive: "#5F7491",
+  captured: "#8A5A0B",
+  disarmed: "#0B6C86",
+  blown:    "#C8283B",
+  used:     "#6D3FC9",
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -104,7 +104,7 @@ function fmtTime(trap: LiveTrap): string {
 }
 
 function StatusBadge({ status }: { status?: string }) {
-  const color = STATUS_COLORS[status ?? ""] ?? "#94a3b8";
+  const color = STATUS_COLORS[status ?? ""] ?? "#3C516C";
   return (
     <span
       style={{
@@ -144,8 +144,8 @@ function TabBar({
         cursor: "pointer",
         fontWeight: 700,
         fontSize: 13,
-        background: active === id ? "#2563eb" : "#0f172a",
-        color:      active === id ? "#fff"     : "#64748b",
+        background: active === id ? "#0B6C86" : "#F4F7FB",
+        color:      active === id ? "#fff"     : "#5F7491",
         transition: "background 0.15s, color 0.15s",
       }}
     >
@@ -183,9 +183,9 @@ function AgeToggle({ value, onChange }: { value: AgeFilter; onChange: (v: AgeFil
         padding: "6px 14px",
         borderRadius: 7,
         border: "1px solid",
-        borderColor: value === v ? "#2563eb" : "#334155",
-        background:  value === v ? "#1e3a5f" : "transparent",
-        color:       value === v ? "#93c5fd" : "#64748b",
+        borderColor: value === v ? "#0B6C86" : "#DCE4EE",
+        background:  value === v ? "#DCE4EE" : "transparent",
+        color:       value === v ? "#0B6C86" : "#5F7491",
         fontWeight: 700,
         fontSize: 12,
         cursor: "pointer",
@@ -401,8 +401,8 @@ function LiveTrapsTab() {
 
     return (
       <div style={{
-        background: "#0f172a",
-        border: `1px solid ${ag === "minor" ? "#581c87" : "#1e3a5f"}`,
+        background: "#F4F7FB",
+        border: `1px solid ${ag === "minor" ? "#EFE8FB" : "#DCE4EE"}`,
         borderRadius: 10,
         padding: "14px 16px",
         display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
@@ -414,34 +414,34 @@ function LiveTrapsTab() {
         {/* Age badge */}
         <span style={{
           padding: "2px 8px", borderRadius: 6, fontSize: 11, fontWeight: 700,
-          background: ag === "minor" ? "#581c8722" : "#1e3a5f",
-          color:      ag === "minor" ? "#d8b4fe"   : "#93c5fd",
-          border:     `1px solid ${ag === "minor" ? "#7e22ce44" : "#1e40af44"}`,
+          background: ag === "minor" ? "#EFE8FB22" : "#DCE4EE",
+          color:      ag === "minor" ? "#6D3FC9"   : "#0B6C86",
+          border:     `1px solid ${ag === "minor" ? "#6D3FC944" : "#0B6C8644"}`,
         }}>
           {ag === "minor" ? "🧒 Kids" : "👤 Adult"}
         </span>
 
         <div style={{ flex: 1, minWidth: 200 }}>
-          <div style={{ fontWeight: 700, fontSize: 13, color: "#cbd5e1" }}>
+          <div style={{ fontWeight: 700, fontSize: 13, color: "#26394F" }}>
             {trap.trapTypeId ?? "unknown type"}
           </div>
-          <div style={{ fontSize: 11, color: "#475569", marginTop: 2 }}>ID: {trap.id}</div>
-          <div style={{ fontSize: 11, color: "#475569" }}>Owner: {trap.ownerUid ?? "—"}</div>
+          <div style={{ fontSize: 11, color: "#5F7491", marginTop: 2 }}>ID: {trap.id}</div>
+          <div style={{ fontSize: 11, color: "#5F7491" }}>Owner: {trap.ownerUid ?? "—"}</div>
           {trap.lat != null && trap.lng != null && (
-            <div style={{ fontSize: 11, color: "#475569" }}>
+            <div style={{ fontSize: 11, color: "#5F7491" }}>
               {trap.lat.toFixed(5)}, {trap.lng.toFixed(5)}
             </div>
           )}
         </div>
 
-        <div style={{ fontSize: 11, color: "#475569", minWidth: 120 }}>
+        <div style={{ fontSize: 11, color: "#5F7491", minWidth: 120 }}>
           <div>{fmtTime(trap)}</div>
         </div>
 
         <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
           {isActive ? (
             <button onClick={() => void deactivate(trap.id)} disabled={anyBusy} style={{
-              background: "#1e3a5f", color: "#93c5fd", border: "1px solid #1e40af",
+              background: "#DCE4EE", color: "#0B6C86", border: "1px solid #0B6C86",
               padding: "5px 12px", borderRadius: 7, fontSize: 12, fontWeight: 700,
               cursor: anyBusy ? "not-allowed" : "pointer",
             }}>
@@ -449,7 +449,7 @@ function LiveTrapsTab() {
             </button>
           ) : (
             <button onClick={() => void activate(trap.id)} disabled={anyBusy} style={{
-              background: "#14532d22", color: "#4ade80", border: "1px solid #166534",
+              background: "#BFE8D222", color: "#178A55", border: "1px solid #BFE8D2",
               padding: "5px 12px", borderRadius: 7, fontSize: 12, fontWeight: 700,
               cursor: anyBusy ? "not-allowed" : "pointer",
             }}>
@@ -457,7 +457,7 @@ function LiveTrapsTab() {
             </button>
           )}
           <button onClick={() => void deleteTrap(trap.id)} disabled={anyBusy} style={{
-            background: "#7f1d1d22", color: "#fca5a5", border: "1px solid #991b1b",
+            background: "#F5C2C922", color: "#C8283B", border: "1px solid #F5C2C9",
             padding: "5px 12px", borderRadius: 7, fontSize: 12, fontWeight: 700,
             cursor: anyBusy ? "not-allowed" : "pointer",
           }}>
@@ -489,27 +489,27 @@ function LiveTrapsTab() {
           borderBottom: `2px solid ${borderColor}`,
         }}>
           <span style={{ fontSize: 15, fontWeight: 800, color: accentColor }}>
-            {icon} {label} <span style={{ fontWeight: 400, color: "#475569", fontSize: 12 }}>({trapsInSection.length})</span>
+            {icon} {label} <span style={{ fontWeight: 400, color: "#5F7491", fontSize: 12 }}>({trapsInSection.length})</span>
           </span>
           <div style={{ flex: 1 }} />
           {sectionNonActive.length > 0 && (
             <BulkBtn
               label={working === "__activate__" ? "Activating…" : `▶ Activate ${sectionNonActive.length}`}
               onClick={() => void activateFiltered(trapsInSection)}
-              disabled={isBulkWorking} color="#4ade80" bg="#14532d22" border="#166534"
+              disabled={isBulkWorking} color="#178A55" bg="#BFE8D222" border="#BFE8D2"
             />
           )}
           {sectionActive.length > 0 && (
             <BulkBtn
               label={working === "__deactivate__" ? "Deactivating…" : `⏸ Deactivate ${sectionActive.length}`}
               onClick={() => void deactivateFiltered(trapsInSection)}
-              disabled={isBulkWorking} color="#93c5fd" bg="#1e3a5f" border="#1e40af"
+              disabled={isBulkWorking} color="#0B6C86" bg="#DCE4EE" border="#0B6C86"
             />
           )}
           <BulkBtn
             label={working === "__delete__" ? "Deleting…" : `🗑 Delete ${trapsInSection.length}`}
             onClick={() => void deleteFiltered(trapsInSection)}
-            disabled={isBulkWorking} color="#fca5a5" bg="#7f1d1d" border="#991b1b"
+            disabled={isBulkWorking} color="#C8283B" bg="#F5C2C9" border="#F5C2C9"
           />
         </div>
         <div style={{ display: "grid", gap: 8 }}>
@@ -524,7 +524,7 @@ function LiveTrapsTab() {
 
       {/* Toolbar */}
       <div style={{
-        background: "#1e293b", border: "1px solid #334155", borderRadius: 12,
+        background: "#EEF2F7", border: "1px solid #DCE4EE", borderRadius: 12,
         padding: 20, display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
       }}>
         <button onClick={() => void load()} disabled={loading || isBulkWorking} style={{ minWidth: 100 }}>
@@ -559,14 +559,14 @@ function LiveTrapsTab() {
               <BulkBtn
                 label={working === "__activate__" ? "Activating…" : `▶ Activate ${nonActiveInView.length} ${ageName}`}
                 onClick={() => void activateFiltered(visible)}
-                disabled={isBulkWorking} color="#4ade80" bg="#14532d22" border="#166534"
+                disabled={isBulkWorking} color="#178A55" bg="#BFE8D222" border="#BFE8D2"
               />
             )}
             {activeInView.length > 0 && (
               <BulkBtn
                 label={working === "__deactivate__" ? "Deactivating…" : `⏸ Deactivate ${activeInView.length} ${ageName}`}
                 onClick={() => void deactivateFiltered(visible)}
-                disabled={isBulkWorking} color="#93c5fd" bg="#1e3a5f" border="#1e40af"
+                disabled={isBulkWorking} color="#0B6C86" bg="#DCE4EE" border="#0B6C86"
               />
             )}
             <BulkBtn
@@ -577,7 +577,7 @@ function LiveTrapsTab() {
                   : `🗑 Delete ${visible.length} "${statusFilter}" ${ageName}`}
               onClick={() => void deleteFiltered(visible)}
               disabled={isBulkWorking || visible.length === 0}
-              color="#fca5a5" bg="#7f1d1d" border="#991b1b"
+              color="#C8283B" bg="#F5C2C9" border="#F5C2C9"
             />
           </>
         )}
@@ -590,7 +590,7 @@ function LiveTrapsTab() {
                 : `🗑 Delete ${visible.length} "${statusFilter}"`}
             onClick={() => void deleteFiltered(visible)}
             disabled={isBulkWorking || visible.length === 0}
-            color="#fca5a5" bg="#7f1d1d" border="#991b1b"
+            color="#C8283B" bg="#F5C2C9" border="#F5C2C9"
           />
         )}
       </div>
@@ -600,9 +600,9 @@ function LiveTrapsTab() {
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
           <span onClick={() => setFilter("all")} style={{
             padding: "4px 12px", borderRadius: 20, fontSize: 12, fontWeight: 700,
-            background: statusFilter === "all" ? "#1e40af44" : "#1e293b",
-            color: statusFilter === "all" ? "#93c5fd" : "#475569",
-            border: `1px solid ${statusFilter === "all" ? "#1e40af" : "#334155"}`,
+            background: statusFilter === "all" ? "#0B6C8644" : "#EEF2F7",
+            color: statusFilter === "all" ? "#0B6C86" : "#5F7491",
+            border: `1px solid ${statusFilter === "all" ? "#0B6C86" : "#DCE4EE"}`,
             cursor: "pointer", userSelect: "none",
           }}>
             all · {traps.filter(byAge).length}
@@ -611,10 +611,10 @@ function LiveTrapsTab() {
             <span key={s} onClick={() => setFilter(s)} style={{
               padding: "4px 12px", borderRadius: 20, fontSize: 12, fontWeight: 700,
               background: statusFilter === s
-                ? (STATUS_COLORS[s] ?? "#94a3b8") + "44"
-                : (STATUS_COLORS[s] ?? "#94a3b8") + "18",
-              color: STATUS_COLORS[s] ?? "#94a3b8",
-              border: `1px solid ${(STATUS_COLORS[s] ?? "#94a3b8")}${statusFilter === s ? "88" : "33"}`,
+                ? (STATUS_COLORS[s] ?? "#3C516C") + "44"
+                : (STATUS_COLORS[s] ?? "#3C516C") + "18",
+              color: STATUS_COLORS[s] ?? "#3C516C",
+              border: `1px solid ${(STATUS_COLORS[s] ?? "#3C516C")}${statusFilter === s ? "88" : "33"}`,
               cursor: "pointer", userSelect: "none",
             }}>
               {s} · {n}
@@ -625,11 +625,11 @@ function LiveTrapsTab() {
 
       {/* Isolation verification banner */}
       <div style={{
-        background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 10,
-        padding: "10px 16px", fontSize: 12, color: "#475569",
+        background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 10,
+        padding: "10px 16px", fontSize: 12, color: "#5F7491",
         display: "flex", gap: 16, flexWrap: "wrap",
       }}>
-        <span style={{ color: "#4ade80", fontWeight: 700 }}>✓ Age isolation active</span>
+        <span style={{ color: "#178A55", fontWeight: 700 }}>✓ Age isolation active</span>
         <span>Adults see only adult traps · Kids see only kids traps</span>
         <span>Cross-capture, reveal &amp; disarm all blocked server-side</span>
         <span>
@@ -642,9 +642,9 @@ function LiveTrapsTab() {
       {msg && (
         <div style={{
           padding: "10px 14px", borderRadius: 8,
-          background: msg.startsWith("✅") ? "#14532d22" : "#7f1d1d22",
-          color:      msg.startsWith("✅") ? "#4ade80"   : "#fca5a5",
-          border:     `1px solid ${msg.startsWith("✅") ? "#166534" : "#991b1b"}`,
+          background: msg.startsWith("✅") ? "#BFE8D222" : "#F5C2C922",
+          color:      msg.startsWith("✅") ? "#178A55"   : "#C8283B",
+          border:     `1px solid ${msg.startsWith("✅") ? "#BFE8D2" : "#F5C2C9"}`,
           fontSize: 13,
         }}>
           {msg}
@@ -653,9 +653,9 @@ function LiveTrapsTab() {
 
       {/* Trap list */}
       {loading ? (
-        <div style={{ color: "#64748b", padding: 24, textAlign: "center" }}>Loading traps…</div>
+        <div style={{ color: "#5F7491", padding: 24, textAlign: "center" }}>Loading traps…</div>
       ) : visible.length === 0 ? (
-        <div style={{ color: "#64748b", padding: 24, textAlign: "center" }}>
+        <div style={{ color: "#5F7491", padding: 24, textAlign: "center" }}>
           {traps.length === 0 ? "No live traps found." : "No traps match this filter."}
         </div>
       ) : ageFilter !== "all" ? (
@@ -667,11 +667,11 @@ function LiveTrapsTab() {
         // Split into Adults + Kids sections with per-section bulk buttons
         <div style={{ display: "grid", gap: 28 }}>
           <TrapSection
-            label="Adults" icon="👤" borderColor="#1e40af" accentColor="#93c5fd"
+            label="Adults" icon="👤" borderColor="#0B6C86" accentColor="#0B6C86"
             trapsInSection={adultTraps}
           />
           <TrapSection
-            label="Kids" icon="🧒" borderColor="#7e22ce" accentColor="#d8b4fe"
+            label="Kids" icon="🧒" borderColor="#6D3FC9" accentColor="#6D3FC9"
             trapsInSection={kidTraps}
           />
         </div>
@@ -693,9 +693,9 @@ function LocaleMapEditor({
   rows: { lang: string; value: string }[];
   onChange: (rows: { lang: string; value: string }[]) => void;
 }) {
-  const inputStyle: React.CSSProperties = { flex: 1, padding: "4px 8px", background: "#0f172a", border: "1px solid #334155", borderRadius: 6, color: "#e2e8f0", fontSize: 13 };
+  const inputStyle: React.CSSProperties = { flex: 1, padding: "4px 8px", background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 6, color: "#0D1F33", fontSize: 13 };
   return (
-    <div style={{ border: "1px solid #334155", borderRadius: 10, padding: 12, background: "#0f172a" }}>
+    <div style={{ border: "1px solid #DCE4EE", borderRadius: 10, padding: 12, background: "#F4F7FB" }}>
       <div style={{ fontWeight: 700, marginBottom: 8 }}>{label}</div>
       <div style={{ fontSize: 11, opacity: 0.6, marginBottom: 8 }}>{hint}</div>
       {rows.map((row, i) => (
@@ -723,7 +723,7 @@ function LocaleMapEditor({
           />
           <button
             onClick={() => onChange(rows.filter((_, j) => j !== i))}
-            style={{ background: "#7f1d1d", border: "none", borderRadius: 6, color: "#fca5a5", cursor: "pointer", padding: "4px 8px" }}
+            style={{ background: "#F5C2C9", border: "none", borderRadius: 6, color: "#C8283B", cursor: "pointer", padding: "4px 8px" }}
           >✕</button>
         </div>
       ))}
@@ -880,7 +880,7 @@ function TrapDefinitionsTab() {
 
   return (
     <section style={{ display: "grid", gap: 20 }}>
-      <div style={{ background: "#1e293b", padding: 20, borderRadius: 12, border: "1px solid #334155" }}>
+      <div style={{ background: "#EEF2F7", padding: 20, borderRadius: 12, border: "1px solid #DCE4EE" }}>
         <h2 style={{ marginTop: 0 }}>
           {editingId ? "Edit Trap Definition" : "Create Trap Definition"}
         </h2>
@@ -914,13 +914,13 @@ function TrapDefinitionsTab() {
                   setTranslating(false);
                 }
               }}
-              style={{ background: "#1d4ed8", color: "#fff", border: "none", borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontWeight: 600 }}
+              style={{ background: "#0B6C86", color: "#fff", border: "none", borderRadius: 8, padding: "8px 16px", cursor: "pointer", fontWeight: 600 }}
             >
               {translating ? "Translating…" : "🌐 Auto-translate name & description"}
             </button>
             {helper("Uses Claude AI to translate the English name/description into all supported languages. Overwrites existing translations.")}
           </div>
-          {translateError && <div style={{ color: "#f87171", fontSize: 13 }}>{translateError}</div>}
+          {translateError && <div style={{ color: "#C8283B", fontSize: 13 }}>{translateError}</div>}
 
           {/* ── Per-language translations ─────────────────────────────── */}
           <LocaleMapEditor
@@ -997,7 +997,7 @@ function TrapDefinitionsTab() {
           <label>Refill hours<input type="number" value={refillHours} onChange={(e) => setRefillHours(Number(e.target.value))} /></label>
           <label>Max bag slots<input type="number" value={maxBagSlots} onChange={(e) => setMaxBagSlots(Number(e.target.value))} /></label>
 
-          <div style={{ border: "1px solid #334155", borderRadius: 10, padding: 12, background: "#0f172a" }}>
+          <div style={{ border: "1px solid #DCE4EE", borderRadius: 10, padding: 12, background: "#F4F7FB" }}>
             <div style={{ fontWeight: 700, marginBottom: 8 }}>Available age groups</div>
             <label style={{ display: "block", marginBottom: 6 }}>
               <input type="checkbox" checked={allowedAgeGroups.includes("minor")} onChange={() => toggleAgeGroup("minor")} />{" "}Minor
@@ -1021,11 +1021,11 @@ function TrapDefinitionsTab() {
         </div>
       </div>
 
-      <div style={{ background: "#1e293b", padding: 20, borderRadius: 12, border: "1px solid #334155" }}>
+      <div style={{ background: "#EEF2F7", padding: 20, borderRadius: 12, border: "1px solid #DCE4EE" }}>
         <h2 style={{ marginTop: 0 }}>Trap Definitions</h2>
         <div style={{ display: "grid", gap: 10 }}>
           {items.map((item) => (
-            <div key={item.id} style={{ border: "1px solid #334155", borderRadius: 10, padding: 12, display: "grid", gap: 6 }}>
+            <div key={item.id} style={{ border: "1px solid #DCE4EE", borderRadius: 10, padding: 12, display: "grid", gap: 6 }}>
               <div><strong>{item.name ?? item.id}</strong></div>
               <div>ID: {item.id}</div>
               <div>Icon: {item.iconKey ?? "-"}</div>

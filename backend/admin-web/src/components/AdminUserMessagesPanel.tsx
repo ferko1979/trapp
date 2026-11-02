@@ -63,10 +63,10 @@ export default function AdminUserMessagesPanel() {
     <div style={{ display: "grid", gridTemplateColumns: "320px 1fr", gap: 20 }}>
       <section
         style={{
-          background: "#1e293b",
+          background: "#EEF2F7",
           borderRadius: 12,
           padding: 16,
-          border: "1px solid #334155",
+          border: "1px solid #DCE4EE",
         }}
       >
         <h3 style={{ marginTop: 0 }}>User Messages</h3>
@@ -78,11 +78,11 @@ export default function AdminUserMessagesPanel() {
               style={{
                 textAlign: "left",
                 background:
-                  selectedConversationId === item.id ? "#1d4ed8" : "#0f172a",
-                border: "1px solid #334155",
+                  selectedConversationId === item.id ? "#E6F6FB" : "#FFFFFF",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: 12,
-                color: "#fff",
+                color: "#0D1F33",
                 cursor: "pointer",
               }}
             >
@@ -93,7 +93,7 @@ export default function AdminUserMessagesPanel() {
                 {item.lastMessageText}
               </div>
               {item.unread ? (
-                <div style={{ marginTop: 6, fontSize: 12, color: "#fca5a5" }}>
+                <div style={{ marginTop: 6, fontSize: 12, color: "#C8283B" }}>
                   Unread
                 </div>
               ) : null}
@@ -104,10 +104,10 @@ export default function AdminUserMessagesPanel() {
 
       <section
         style={{
-          background: "#1e293b",
+          background: "#EEF2F7",
           borderRadius: 12,
           padding: 16,
-          border: "1px solid #334155",
+          border: "1px solid #DCE4EE",
         }}
       >
         {!selectedConversationId ? (
@@ -118,8 +118,8 @@ export default function AdminUserMessagesPanel() {
               <div
                 key={message.id}
                 style={{
-                  background: "#0f172a",
-                  border: "1px solid #334155",
+                  background: "#F4F7FB",
+                  border: "1px solid #DCE4EE",
                   borderRadius: 10,
                   padding: 12,
                 }}
@@ -140,7 +140,7 @@ export default function AdminUserMessagesPanel() {
           </div>
         )}
 
-        {error ? <div style={{ color: "#fca5a5", marginTop: 10 }}>{error}</div> : null}
+        {error ? <div style={{ color: "#C8283B", marginTop: 10 }}>{error}</div> : null}
       </section>
     </div>
   );

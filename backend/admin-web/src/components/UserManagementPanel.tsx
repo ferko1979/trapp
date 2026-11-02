@@ -188,9 +188,9 @@ function inputStyle(): React.CSSProperties {
     width: "100%",
     padding: "10px 12px",
     borderRadius: 8,
-    border: "1px solid #475569",
-    background: "#0f172a",
-    color: "white",
+    border: "1px solid #5F7491",
+    background: "#F4F7FB",
+    color: "#0D1F33",
     boxSizing: "border-box",
   };
 }
@@ -207,10 +207,10 @@ function readonlyFieldStyle(): React.CSSProperties {
 
 function sectionCardStyle(): React.CSSProperties {
   return {
-    background: "#1e293b",
+    background: "#EEF2F7",
     padding: 20,
     borderRadius: 12,
-    border: "1px solid #334155",
+    border: "1px solid #DCE4EE",
   };
 }
 
@@ -703,8 +703,8 @@ export default function UserManagementPanel() {
 
           <div
             style={{
-              background: "#0f172a",
-              border: "1px solid #334155",
+              background: "#F4F7FB",
+              border: "1px solid #DCE4EE",
               borderRadius: 10,
               padding: 16,
               display: "grid",
@@ -830,10 +830,10 @@ export default function UserManagementPanel() {
               display: "flex",
               gap: 8,
               alignItems: "flex-start",
-              background: "#0f172a",
+              background: "#F4F7FB",
               padding: 12,
               borderRadius: 8,
-              border: "1px solid #334155",
+              border: "1px solid #DCE4EE",
             }}
           >
             <input
@@ -971,11 +971,11 @@ export default function UserManagementPanel() {
                 key={u.uid}
                 style={{
                   padding: 14,
-                  border: "1px solid #334155",
+                  border: "1px solid #DCE4EE",
                   borderRadius: 10,
                   display: "grid",
                   gap: 10,
-                  background: "#0f172a",
+                  background: "#F4F7FB",
                 }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
@@ -1003,8 +1003,8 @@ export default function UserManagementPanel() {
                   style={{
                     padding: 10,
                     borderRadius: 8,
-                    border: "1px solid #334155",
-                    background: "#111827",
+                    border: "1px solid #DCE4EE",
+                    background: "#F4F7FB",
                   }}
                 >
                   <strong>Profile details</strong>
@@ -1019,10 +1019,10 @@ export default function UserManagementPanel() {
                     style={{
                       display: "grid",
                       gap: 14,
-                      border: "1px solid #334155",
+                      border: "1px solid #DCE4EE",
                       borderRadius: 10,
                       padding: 14,
-                      background: "#111827",
+                      background: "#F4F7FB",
                     }}
                   >
                     <strong>Edit user details</strong>
@@ -1168,8 +1168,8 @@ export default function UserManagementPanel() {
                             display: "flex",
                             gap: 8,
                             alignItems: "center",
-                            background: "#0f172a",
-                            border: "1px solid #475569",
+                            background: "#F4F7FB",
+                            border: "1px solid #5F7491",
                             borderRadius: 8,
                             padding: "10px 12px",
                             minHeight: 42,
@@ -1212,8 +1212,8 @@ export default function UserManagementPanel() {
                             display: "flex",
                             gap: 8,
                             alignItems: "center",
-                            background: "#0f172a",
-                            border: "1px solid #475569",
+                            background: "#F4F7FB",
+                            border: "1px solid #5F7491",
                             borderRadius: 8,
                             padding: "10px 12px",
                             minHeight: 42,
@@ -1283,15 +1283,15 @@ export default function UserManagementPanel() {
 
                 <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
                   {u.emailVerified ? (
-                    <span style={{ color: "#4ade80", fontWeight: 600 }}>
+                    <span style={{ color: "#178A55", fontWeight: 600 }}>
                       ✅ Email verified
                     </span>
                   ) : u.verificationTriggeredAtEpochMs ? (
-                    <span style={{ color: "#fbbf24", fontWeight: 600 }}>
+                    <span style={{ color: "#8A5A0B", fontWeight: 600 }}>
                       📧 Verification email sent — awaiting user action
                     </span>
                   ) : (
-                    <span style={{ color: "#f87171", fontWeight: 600 }}>
+                    <span style={{ color: "#C8283B", fontWeight: 600 }}>
                       ⚠️ Verification not triggered
                     </span>
                   )}
@@ -1401,9 +1401,9 @@ export default function UserManagementPanel() {
                 marginInline: 6,
                 padding: "6px 8px",
                 borderRadius: 6,
-                border: "1px solid #475569",
-                background: "#0f172a",
-                color: "white",
+                border: "1px solid #5F7491",
+                background: "#F4F7FB",
+                color: "#0D1F33",
               }}
             />{" "}
             / {totalPages}

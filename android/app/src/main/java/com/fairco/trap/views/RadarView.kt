@@ -23,14 +23,14 @@ class RadarView @JvmOverloads constructor(
     private val MAX_RANGE_M = 100
 
     private val crosshairPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = 0xFF1E293B.toInt()
+        color = 0xFF15233A.toInt()
         style = Paint.Style.STROKE
         strokeWidth = 1f
     }
 
     // 100m warning ring — amber
     private val ring100Paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = 0xFFF59E0B.toInt()
+        color = 0xFFFFB648.toInt()
         style = Paint.Style.STROKE
         strokeWidth = 2f
         alpha = 140
@@ -38,7 +38,7 @@ class RadarView @JvmOverloads constructor(
 
     // 30m reveal ring — cyan
     private val ring30Paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = 0xFF22D3EE.toInt()
+        color = 0xFF38D3F2.toInt()
         style = Paint.Style.STROKE
         strokeWidth = 2f
         alpha = 180
@@ -46,14 +46,14 @@ class RadarView @JvmOverloads constructor(
 
     // 25m danger ring — red
     private val ring25Paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = 0xFFEF4444.toInt()
+        color = 0xFFFF4F62.toInt()
         style = Paint.Style.STROKE
         strokeWidth = 2f
         alpha = 200
     }
 
     private val labelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = 0xFF94A3B8.toInt()
+        color = 0xFFA7B7CC.toInt()
         textSize = 22f
         typeface = Typeface.MONOSPACE
     }
@@ -67,7 +67,7 @@ class RadarView @JvmOverloads constructor(
 
     // Scan line — dynamic colour via setStatusColor()
     private val scanPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = 0xFF22D3EE.toInt()
+        color = 0xFF38D3F2.toInt()
         style = Paint.Style.STROKE
         strokeWidth = 4f
     }

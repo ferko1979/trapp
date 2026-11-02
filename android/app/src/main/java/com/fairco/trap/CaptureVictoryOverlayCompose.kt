@@ -1,6 +1,7 @@
 package com.fairco.trap
 
 import androidx.compose.animation.core.*
+import com.fairco.trap.ui.theme.Radar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -71,7 +72,7 @@ fun CaptureVictoryOverlay(
                 .clip(RoundedCornerShape(24.dp))
                 .background(
                     Brush.verticalGradient(
-                        listOf(Color(0xFF0D2B4A), Color(0xFF0A1628))
+                        listOf(Color(0xFF0D2B4A), Radar.Bg)
                     )
                 )
                 .padding(32.dp),
@@ -89,7 +90,7 @@ fun CaptureVictoryOverlay(
                 text = "YOUR TRAP FIRED!",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.ExtraBold,
-                color = Color(0xFFFCD34D),
+                color = Radar.Gold,
                 letterSpacing = 2.sp
             )
 
@@ -100,7 +101,7 @@ fun CaptureVictoryOverlay(
             Text(
                 text = "caught",
                 fontSize = 13.sp,
-                color = Color(0xFF94A3B8)
+                color = Radar.TextSec
             )
             Text(
                 text = "@${event.capturedUsername}",
@@ -119,7 +120,7 @@ fun CaptureVictoryOverlay(
             Text(
                 text = "Tap anywhere to dismiss",
                 fontSize = 11.sp,
-                color = Color(0xFF64748B)
+                color = Radar.TextMuted
             )
         }
 
@@ -141,7 +142,7 @@ private fun TrapImageOrEmoji(event: CaptureVictoryEvent) {
         modifier = Modifier
             .size(100.dp)
             .clip(CircleShape)
-            .background(Color(0xFF1E3A5F)),
+            .background(Radar.Line),
         contentAlignment = Alignment.Center
     ) {
         if (!event.imageUrl.isNullOrBlank()) {
@@ -159,10 +160,10 @@ private fun TrapImageOrEmoji(event: CaptureVictoryEvent) {
 @Composable
 private fun EffectTag(effectKind: String) {
     val (bg, label) = when (effectKind) {
-        "timeout"  -> Color(0xFF1E40AF) to "⏳ Timeout penalty"
+        "timeout"  -> Radar.AccentDeep to "⏳ Timeout penalty"
         "laughter" -> Color(0xFF7C3AED) to "😂 Prank zone"
         "score"    -> Color(0xFF065F46) to "⚡ XP deducted"
-        else       -> Color(0xFF374151) to "🪤 Trap sprung"
+        else       -> Radar.Line to "🪤 Trap sprung"
     }
     Box(
         modifier = Modifier

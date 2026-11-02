@@ -156,8 +156,8 @@ export default function GameSettingsPanel() {
 
   function sectionStyle(): React.CSSProperties {
     return {
-      background: "#0f172a",
-      border: "1px solid #334155",
+      background: "#F4F7FB",
+      border: "1px solid #DCE4EE",
       borderRadius: 12,
       padding: 16,
       display: "grid",
@@ -169,14 +169,14 @@ export default function GameSettingsPanel() {
     return {
       padding: 10,
       borderRadius: 8,
-      border: "1px solid #475569",
-      background: "#111827",
-      color: "#e5e7eb",
+      border: "1px solid #5F7491",
+      background: "#F4F7FB",
+      color: "#0D1F33",
     };
   }
 
   return (
-    <section style={{ background: "#1e293b", padding: 20, borderRadius: 12 }}>
+    <section style={{ background: "#EEF2F7", padding: 20, borderRadius: 12 }}>
       <h2 style={{ marginTop: 0 }}>Game Settings</h2>
 
       <div style={{ display: "grid", gap: 18, maxWidth: 820 }}>
@@ -196,7 +196,7 @@ export default function GameSettingsPanel() {
                 onChange={(e) =>
                   setSettings({ ...settings, minAndroidVersionCode: Number(e.target.value) })
                 }
-                style={{ width: "100%", padding: "6px 8px", borderRadius: 6, border: "1px solid #475569", background: "#0f172a", color: "white" }}
+                style={{ width: "100%", padding: "6px 8px", borderRadius: 6, border: "1px solid #5F7491", background: "#F4F7FB", color: "#0D1F33" }}
               />
               {helper("Users below this version see a forced update dialog and cannot continue.")}
             </div>
@@ -213,7 +213,7 @@ export default function GameSettingsPanel() {
                 onChange={(e) =>
                   setSettings({ ...settings, latestAndroidVersionCode: Number(e.target.value) })
                 }
-                style={{ width: "100%", padding: "6px 8px", borderRadius: 6, border: "1px solid #475569", background: "#0f172a", color: "white" }}
+                style={{ width: "100%", padding: "6px 8px", borderRadius: 6, border: "1px solid #5F7491", background: "#F4F7FB", color: "#0D1F33" }}
               />
               {helper("Users below this version see a soft update prompt they can dismiss.")}
             </div>
@@ -377,23 +377,23 @@ export default function GameSettingsPanel() {
         <div
           style={{
             ...sectionStyle(),
-            border: "1px solid #1e4d8c",
-            background: "linear-gradient(135deg, #0f1f3a 0%, #0f172a 100%)",
+            border: "1px solid #0B6C86",
+            background: "linear-gradient(135deg, #F4F7FB 0%, #F4F7FB 100%)",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 2 }}>
             <span style={{ fontSize: "1.3rem" }}>📺</span>
-            <h3 style={{ margin: 0, color: "#93c5fd" }}>Advertising (AdMob)</h3>
+            <h3 style={{ margin: 0, color: "#0B6C86" }}>Advertising (AdMob)</h3>
           </div>
           <div
             style={{
               fontSize: "0.8rem",
-              color: "#475569",
+              color: "#5F7491",
               lineHeight: 1.6,
               padding: "8px 12px",
-              background: "rgba(15,23,42,0.6)",
+              background: "#F4F7FB",
               borderRadius: 8,
-              border: "1px solid #1a3050",
+              border: "1px solid #DCE4EE",
             }}
           >
             Changes here take effect immediately — the mobile app fetches these settings at launch via{" "}
@@ -412,8 +412,8 @@ export default function GameSettingsPanel() {
               <div
                 key={key}
                 style={{
-                  background: settings[key] ? "rgba(59,130,246,0.08)" : "#080f1c",
-                  border: `1px solid ${settings[key] ? "rgba(59,130,246,0.3)" : "#1a2840"}`,
+                  background: settings[key] ? "rgba(11,108,134,0.08)" : "#F4F7FB",
+                  border: `1px solid ${settings[key] ? "rgba(11,108,134,0.3)" : "#DCE4EE"}`,
                   borderRadius: 10,
                   padding: "12px 14px",
                   display: "flex",
@@ -426,11 +426,11 @@ export default function GameSettingsPanel() {
                     type="checkbox"
                     checked={!!settings[key]}
                     onChange={(e) => setSettings({ ...settings, [key]: e.target.checked })}
-                    style={{ accentColor: "#3b82f6", width: 16, height: 16 }}
+                    style={{ accentColor: "#0B6C86", width: 16, height: 16 }}
                   />
                   {label}
                 </label>
-                <div style={{ fontSize: "0.75rem", color: "#4b5563", lineHeight: 1.5 }}>{desc}</div>
+                <div style={{ fontSize: "0.75rem", color: "#5F7491", lineHeight: 1.5 }}>{desc}</div>
               </div>
             ))}
           </div>
@@ -438,8 +438,8 @@ export default function GameSettingsPanel() {
           {/* Rewarded ad reward configuration */}
           <div
             style={{
-              background: settings.rewardedAdEnabled ? "rgba(251,191,36,0.06)" : "#080f1c",
-              border: `1px solid ${settings.rewardedAdEnabled ? "rgba(251,191,36,0.2)" : "#1a2840"}`,
+              background: settings.rewardedAdEnabled ? "rgba(251,191,36,0.06)" : "#F4F7FB",
+              border: `1px solid ${settings.rewardedAdEnabled ? "rgba(251,191,36,0.2)" : "#DCE4EE"}`,
               borderRadius: 10,
               padding: "16px 18px",
               display: "grid",
@@ -447,7 +447,7 @@ export default function GameSettingsPanel() {
               opacity: settings.rewardedAdEnabled ? 1 : 0.5,
             }}
           >
-            <div style={{ fontWeight: 700, color: "#fbbf24", fontSize: "0.875rem" }}>
+            <div style={{ fontWeight: 700, color: "#8A5A0B", fontSize: "0.875rem" }}>
               🎁 Rewarded Ad Timer Discount
             </div>
 
@@ -457,8 +457,8 @@ export default function GameSettingsPanel() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 10,
-                background: "rgba(15,23,42,0.8)",
-                border: "1px solid #1e3a5f",
+                background: "#F4F7FB",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: "10px 16px",
                 width: "fit-content",
@@ -467,15 +467,15 @@ export default function GameSettingsPanel() {
             >
               <span style={{ fontSize: "1.4rem" }}>📺</span>
               <div>
-                <div style={{ fontWeight: 700, color: "#f8fafc", fontSize: "0.875rem" }}>
+                <div style={{ fontWeight: 700, color: "#0D1F33", fontSize: "0.875rem" }}>
                   Preview — what the player sees:
                 </div>
-                <div style={{ color: "#93c5fd", fontSize: "0.82rem", marginTop: 2 }}>
+                <div style={{ color: "#0B6C86", fontSize: "0.82rem", marginTop: 2 }}>
                   {settings.rewardedAdReductionType === "percent"
                     ? `"Watch a short ad to cut ${settings.rewardedAdReductionValue ?? 50}% off your placement time!"`
                     : `"Watch a short ad to save ${settings.rewardedAdReductionValue ?? 30} ${settings.rewardedAdReductionType ?? "seconds"} off your placement timer!"`}
                 </div>
-                <div style={{ color: "#475569", fontSize: "0.75rem", marginTop: 3 }}>
+                <div style={{ color: "#5F7491", fontSize: "0.75rem", marginTop: 3 }}>
                   Up to {settings.rewardedAdMaxUsesPerSession ?? 1} use(s) per session
                 </div>
               </div>
@@ -483,7 +483,7 @@ export default function GameSettingsPanel() {
 
             <div style={{ display: "grid", gap: 14, gridTemplateColumns: "1fr 1fr 1fr" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <label htmlFor="rewardedAdReductionType" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#94a3b8" }}>
+                <label htmlFor="rewardedAdReductionType" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#3C516C" }}>
                   Reduction type
                 </label>
                 <select
@@ -501,7 +501,7 @@ export default function GameSettingsPanel() {
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <label htmlFor="rewardedAdReductionValue" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#94a3b8" }}>
+                <label htmlFor="rewardedAdReductionValue" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#3C516C" }}>
                   Amount ({settings.rewardedAdReductionType === "percent" ? "%" : settings.rewardedAdReductionType ?? "sec"})
                 </label>
                 <input
@@ -517,7 +517,7 @@ export default function GameSettingsPanel() {
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <label htmlFor="rewardedAdMaxUsesPerSession" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#94a3b8" }}>
+                <label htmlFor="rewardedAdMaxUsesPerSession" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#3C516C" }}>
                   Max uses / session
                 </label>
                 <input
@@ -539,17 +539,17 @@ export default function GameSettingsPanel() {
                 gap: 6,
                 gridTemplateColumns: "1fr 1fr",
                 fontSize: "0.75rem",
-                color: "#4b5563",
+                color: "#5F7491",
                 lineHeight: 1.5,
               }}
             >
               <div>
-                <strong style={{ color: "#64748b" }}>Reduction type:</strong> "Fixed" deducts a set
+                <strong style={{ color: "#5F7491" }}>Reduction type:</strong> "Fixed" deducts a set
                 number of seconds/minutes/hours from the remaining timer. "%" removes that
                 percentage of the total required hold time.
               </div>
               <div>
-                <strong style={{ color: "#64748b" }}>Max uses / session:</strong> How many times one
+                <strong style={{ color: "#5F7491" }}>Max uses / session:</strong> How many times one
                 user can use rewarded ads during a single trap placement session (1–10).
                 The timer is updated immediately after each successfully watched ad.
               </div>
@@ -559,8 +559,8 @@ export default function GameSettingsPanel() {
           {/* Trap Refill Reward section */}
           <div
             style={{
-              background: settings.rewardedRefillAdEnabled ? "rgba(34,197,94,0.06)" : "#080f1c",
-              border: `1px solid ${settings.rewardedRefillAdEnabled ? "rgba(34,197,94,0.2)" : "#1a2840"}`,
+              background: settings.rewardedRefillAdEnabled ? "rgba(34,197,94,0.06)" : "#F4F7FB",
+              border: `1px solid ${settings.rewardedRefillAdEnabled ? "rgba(34,197,94,0.2)" : "#DCE4EE"}`,
               borderRadius: 10,
               padding: "16px 18px",
               display: "grid",
@@ -571,10 +571,10 @@ export default function GameSettingsPanel() {
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <span style={{ fontSize: "1.2rem" }}>🔄</span>
               <div>
-                <div style={{ fontWeight: 700, color: "#4ade80", fontSize: "0.875rem" }}>
+                <div style={{ fontWeight: 700, color: "#178A55", fontSize: "0.875rem" }}>
                   Trap Refill Reward
                 </div>
-                <div style={{ fontSize: "0.75rem", color: "#4b5563", marginTop: 2 }}>
+                <div style={{ fontSize: "0.75rem", color: "#5F7491", marginTop: 2 }}>
                   Separate from placement/disassembly rewards — players watch an ad to reduce the
                   refill wait time on an empty trap slot.
                 </div>
@@ -584,7 +584,7 @@ export default function GameSettingsPanel() {
                   type="checkbox"
                   checked={!!settings.rewardedRefillAdEnabled}
                   onChange={(e) => setSettings({ ...settings, rewardedRefillAdEnabled: e.target.checked })}
-                  style={{ accentColor: "#22c55e", width: 16, height: 16 }}
+                  style={{ accentColor: "#178A55", width: 16, height: 16 }}
                 />
                 <span style={{ fontSize: "0.85rem", fontWeight: 600 }}>Enabled</span>
               </label>
@@ -592,14 +592,14 @@ export default function GameSettingsPanel() {
 
             <div style={{ display: "grid", gap: 14, gridTemplateColumns: "1fr 1fr 1fr" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <label htmlFor="rewardedRefillAdReductionType" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#94a3b8" }}>
+                <label htmlFor="rewardedRefillAdReductionType" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#3C516C" }}>
                   Reduction type
                 </label>
                 <select
                   id="rewardedRefillAdReductionType"
                   value={settings.rewardedRefillAdReductionType ?? "minutes"}
                   onChange={(e) => setSettings({ ...settings, rewardedRefillAdReductionType: e.target.value })}
-                  style={{ padding: 10, borderRadius: 8, border: "1px solid #475569", background: "#111827", color: "#e5e7eb", fontSize: "0.875rem" }}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #5F7491", background: "#F4F7FB", color: "#0D1F33", fontSize: "0.875rem" }}
                   disabled={!settings.rewardedRefillAdEnabled}
                 >
                   <option value="seconds">Fixed — seconds</option>
@@ -609,7 +609,7 @@ export default function GameSettingsPanel() {
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <label htmlFor="rewardedRefillAdReductionValue" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#94a3b8" }}>
+                <label htmlFor="rewardedRefillAdReductionValue" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#3C516C" }}>
                   Amount ({settings.rewardedRefillAdReductionType ?? "minutes"})
                 </label>
                 <input
@@ -619,13 +619,13 @@ export default function GameSettingsPanel() {
                   max={9999}
                   value={settings.rewardedRefillAdReductionValue ?? 30}
                   onChange={(e) => setSettings({ ...settings, rewardedRefillAdReductionValue: Number(e.target.value) })}
-                  style={{ padding: 10, borderRadius: 8, border: "1px solid #475569", background: "#111827", color: "#e5e7eb", fontSize: "0.875rem" }}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #5F7491", background: "#F4F7FB", color: "#0D1F33", fontSize: "0.875rem" }}
                   disabled={!settings.rewardedRefillAdEnabled}
                 />
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <label htmlFor="rewardedRefillAdMaxUsesPerSession" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#94a3b8" }}>
+                <label htmlFor="rewardedRefillAdMaxUsesPerSession" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#3C516C" }}>
                   Max uses / session
                 </label>
                 <input
@@ -635,13 +635,13 @@ export default function GameSettingsPanel() {
                   max={10}
                   value={settings.rewardedRefillAdMaxUsesPerSession ?? 1}
                   onChange={(e) => setSettings({ ...settings, rewardedRefillAdMaxUsesPerSession: Number(e.target.value) })}
-                  style={{ padding: 10, borderRadius: 8, border: "1px solid #475569", background: "#111827", color: "#e5e7eb", fontSize: "0.875rem" }}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #5F7491", background: "#F4F7FB", color: "#0D1F33", fontSize: "0.875rem" }}
                   disabled={!settings.rewardedRefillAdEnabled}
                 />
               </div>
             </div>
 
-            <div style={{ fontSize: "0.75rem", color: "#4b5563", lineHeight: 1.5 }}>
+            <div style={{ fontSize: "0.75rem", color: "#5F7491", lineHeight: 1.5 }}>
               Example: "30 minutes" subtracts 30 minutes from the refill countdown when the user
               watches a full ad. The countdown is updated immediately on the server.
             </div>
@@ -655,13 +655,13 @@ export default function GameSettingsPanel() {
               borderRadius: 9,
               padding: "10px 14px",
               fontSize: "0.78rem",
-              color: "#94a3b8",
+              color: "#3C516C",
               lineHeight: 1.6,
             }}
           >
-            <strong style={{ color: "#f87171" }}>🇪🇺 GDPR / Hungary (EEA):</strong> The mobile app must
+            <strong style={{ color: "#C8283B" }}>🇪🇺 GDPR / Hungary (EEA):</strong> The mobile app must
             trigger the{" "}
-            <strong style={{ color: "#fca5a5" }}>Google User Messaging Platform (UMP)</strong> consent
+            <strong style={{ color: "#C8283B" }}>Google User Messaging Platform (UMP)</strong> consent
             flow at launch <em>before</em> loading any ads. Configure this in AdMob → Privacy &amp;
             messaging. Non-personalized ads will be served to users who decline or are underage.
           </div>
@@ -671,23 +671,23 @@ export default function GameSettingsPanel() {
         <div
           style={{
             ...sectionStyle(),
-            border: "1px solid #1e4d2e",
-            background: "linear-gradient(135deg, #0a1f12 0%, #0f172a 100%)",
+            border: "1px solid #E3F7EC",
+            background: "linear-gradient(135deg, #E3F7EC 0%, #F4F7FB 100%)",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
             <span style={{ fontSize: "1.3rem" }}>🔑</span>
-            <h3 style={{ margin: 0, color: "#86efac" }}>AdMob App & Ad Unit IDs</h3>
+            <h3 style={{ margin: 0, color: "#178A55" }}>AdMob App & Ad Unit IDs</h3>
           </div>
           <div
             style={{
               fontSize: "0.8rem",
-              color: "#475569",
+              color: "#5F7491",
               lineHeight: 1.6,
               padding: "8px 12px",
-              background: "rgba(15,23,42,0.6)",
+              background: "#F4F7FB",
               borderRadius: 8,
-              border: "1px solid #1a3020",
+              border: "1px solid #E3F7EC",
             }}
           >
             These IDs are fetched by the app at launch via <code>getPublicGameSettings</code> and used
@@ -704,7 +704,7 @@ export default function GameSettingsPanel() {
               borderRadius: 8,
               padding: "9px 13px",
               fontSize: "0.78rem",
-              color: "#fca5a5",
+              color: "#C8283B",
               display: "flex",
               gap: 8,
               alignItems: "flex-start",
@@ -755,7 +755,7 @@ export default function GameSettingsPanel() {
             <div key={key} style={{ display: "grid", gap: 5 }}>
               <label
                 htmlFor={key}
-                style={{ fontWeight: 600, fontSize: "0.85rem", color: "#86efac" }}
+                style={{ fontWeight: 600, fontSize: "0.85rem", color: "#178A55" }}
               >
                 {label}
               </label>
@@ -770,10 +770,10 @@ export default function GameSettingsPanel() {
                   fontFamily: "monospace",
                   fontSize: "0.82rem",
                   letterSpacing: "0.02em",
-                  borderColor: settings[key] ? "#2d6a40" : "#475569",
+                  borderColor: settings[key] ? "#DCE4EE" : "#5F7491",
                 }}
               />
-              <div style={{ fontSize: "0.73rem", color: "#475569", lineHeight: 1.5 }}>
+              <div style={{ fontSize: "0.73rem", color: "#5F7491", lineHeight: 1.5 }}>
                 {desc}
               </div>
             </div>
@@ -815,8 +815,8 @@ export default function GameSettingsPanel() {
               padding: "10px 16px",
               borderRadius: 8,
               border: "none",
-              background: "#22c55e",
-              color: "#052e16",
+              background: "#178A55",
+              color: "#E3F7EC",
               fontWeight: 700,
             }}
           >

@@ -39,7 +39,7 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#F1F5F9"
+            android:textColor="@color/text_primary"
             android:textSize="14sp"
             tools:text="Alice Smith"/>
 
@@ -47,7 +47,7 @@
             android:id="@+id/tvPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#64748B"
+            android:textColor="@color/text_muted"
             android:textSize="12sp"
             tools:text="+1 555 123 4567"/>
     </LinearLayout>
@@ -57,5 +57,5 @@
         android:id="@+id/cbSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:buttonTint="#3B82F6"/>
+        app:buttonTint="@color/accent_cyan"/>
 </LinearLayout>

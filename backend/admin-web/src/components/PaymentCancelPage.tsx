@@ -21,7 +21,7 @@ export default function PaymentCancelPage() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#0b1120",
+        background: "#F4F7FB",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -56,7 +56,7 @@ export default function PaymentCancelPage() {
 
         <h1
           style={{
-            color: "#f8fafc",
+            color: "#0D1F33",
             fontSize: "1.8rem",
             fontWeight: 800,
             marginBottom: 12,
@@ -68,7 +68,7 @@ export default function PaymentCancelPage() {
 
         <p
           style={{
-            color: "#94a3b8",
+            color: "#3C516C",
             fontSize: "1rem",
             lineHeight: 1.6,
             marginBottom: 32,
@@ -81,8 +81,8 @@ export default function PaymentCancelPage() {
         {/* Info card */}
         <div
           style={{
-            background: "#0f172a",
-            border: "1px solid #1e3a5f",
+            background: "#F4F7FB",
+            border: "1px solid #DCE4EE",
             borderRadius: 14,
             padding: "20px 24px",
             marginBottom: 28,
@@ -92,7 +92,7 @@ export default function PaymentCancelPage() {
           <div
             style={{
               fontSize: "0.78rem",
-              color: "#64748b",
+              color: "#5F7491",
               textTransform: "uppercase",
               letterSpacing: "0.07em",
               fontWeight: 600,
@@ -113,11 +113,11 @@ export default function PaymentCancelPage() {
                 alignItems: "flex-start",
                 gap: 12,
                 padding: "8px 0",
-                borderBottom: "1px solid #1a2e45",
+                borderBottom: "1px solid #DCE4EE",
               }}
             >
               <span style={{ fontSize: "1.1rem", flexShrink: 0 }}>{icon}</span>
-              <span style={{ fontSize: "0.875rem", color: "#cbd5e1", lineHeight: 1.5 }}>{text}</span>
+              <span style={{ fontSize: "0.875rem", color: "#26394F", lineHeight: 1.5 }}>{text}</span>
             </div>
           ))}
         </div>
@@ -127,7 +127,7 @@ export default function PaymentCancelPage() {
           <button
             onClick={tryAgain}
             style={{
-              background: "#2563eb",
+              background: "#0B6C86",
               color: "#fff",
               border: "none",
               padding: "14px 24px",
@@ -139,10 +139,10 @@ export default function PaymentCancelPage() {
               fontFamily: "inherit",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "#1d4ed8";
+              (e.currentTarget as HTMLButtonElement).style.background = "#0B6C86";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "#2563eb";
+              (e.currentTarget as HTMLButtonElement).style.background = "#0B6C86";
             }}
           >
             🔄 Try Again
@@ -153,8 +153,8 @@ export default function PaymentCancelPage() {
             disabled={closing}
             style={{
               background: "transparent",
-              color: "#64748b",
-              border: "1px solid #1e3a5f",
+              color: "#5F7491",
+              border: "1px solid #DCE4EE",
               padding: "12px 24px",
               borderRadius: 10,
               fontWeight: 500,
@@ -164,12 +164,12 @@ export default function PaymentCancelPage() {
               fontFamily: "inherit",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.color = "#94a3b8";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = "#334155";
+              (e.currentTarget as HTMLButtonElement).style.color = "#3C516C";
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "#DCE4EE";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.color = "#64748b";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = "#1e3a5f";
+              (e.currentTarget as HTMLButtonElement).style.color = "#5F7491";
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "#DCE4EE";
             }}
           >
             {closing ? "Closing…" : "← Back to App"}
@@ -180,7 +180,7 @@ export default function PaymentCancelPage() {
         <p
           style={{
             fontSize: "0.8rem",
-            color: "#374151",
+            color: "#DCE4EE",
             marginTop: 28,
             lineHeight: 1.6,
           }}
@@ -193,9 +193,9 @@ export default function PaymentCancelPage() {
           style={{
             marginTop: 40,
             paddingTop: 24,
-            borderTop: "1px solid #1e293b",
+            borderTop: "1px solid #EEF2F7",
             fontSize: "0.75rem",
-            color: "#374151",
+            color: "#DCE4EE",
           }}
         >
           🪤 Playtrap · Secure payment processed by Stripe

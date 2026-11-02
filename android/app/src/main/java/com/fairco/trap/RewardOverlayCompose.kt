@@ -1,6 +1,7 @@
 package com.fairco.trap
 
 import androidx.compose.animation.*
+import com.fairco.trap.ui.theme.Radar
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -38,13 +39,13 @@ data class AwardItem(
     val bagRefillGranted: Int
 )
 
-private val DARK_BG = Color(0xFF060D18)
-private val CARD_BG = Color(0xFF0E1A2E)
-private val ACCENT_GREEN = Color(0xFF22C55E)
-private val ACCENT_GOLD  = Color(0xFFFCD34D)
-private val ACCENT_BLUE  = Color(0xFF3B82F6)
-private val TEXT_PRIMARY = Color(0xFFE2E8F0)
-private val TEXT_DIM     = Color(0xFF64748B)
+private val DARK_BG = Radar.Bg
+private val CARD_BG = Radar.Surface
+private val ACCENT_GREEN = Radar.Safe
+private val ACCENT_GOLD  = Radar.Gold
+private val ACCENT_BLUE  = Radar.Accent
+private val TEXT_PRIMARY = Radar.Text
+private val TEXT_DIM     = Radar.TextMuted
 
 @Composable
 fun RewardOverlay(event: RewardEvent, onDismiss: () -> Unit) {
@@ -76,7 +77,7 @@ fun RewardOverlay(event: RewardEvent, onDismiss: () -> Unit) {
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(24.dp))
                 .background(
-                    Brush.verticalGradient(listOf(Color(0xFF0F1F38), Color(0xFF060D18)))
+                    Brush.verticalGradient(listOf(Radar.Surface2, Radar.Bg))
                 )
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -105,7 +106,7 @@ fun RewardOverlay(event: RewardEvent, onDismiss: () -> Unit) {
                 StreakBadge(streak = event.streak, isDay1 = event.isDay1)
             }
 
-            Divider(color = Color(0xFF1E3A5F), thickness = 1.dp)
+            Divider(color = Radar.Line, thickness = 1.dp)
 
             // Award list
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -171,7 +172,7 @@ private fun StreakBadge(streak: Int, isDay1: Boolean) {
             .clip(RoundedCornerShape(50.dp))
             .background(
                 Brush.horizontalGradient(
-                    listOf(Color(0xFF7C3AED), Color(0xFF3B82F6))
+                    listOf(Color(0xFF7C3AED), Radar.AccentDeep)
                 )
             )
             .padding(horizontal = 20.dp, vertical = 8.dp)
@@ -215,7 +216,7 @@ private fun AwardRow(award: AwardItem) {
             modifier = Modifier
                 .size(44.dp)
                 .clip(CircleShape)
-                .background(Color(0xFF1E3A5F)),
+                .background(Radar.Line),
             contentAlignment = Alignment.Center
         ) {
             Text(award.iconEmoji, fontSize = 22.sp)

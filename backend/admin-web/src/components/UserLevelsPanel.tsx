@@ -207,7 +207,7 @@ export default function UserLevelsPanel() {
     extraAction?: React.ReactNode
   ) {
     return (
-      <div style={{ background: "#1e293b", padding: 20, borderRadius: 12 }}>
+      <div style={{ background: "#EEF2F7", padding: 20, borderRadius: 12 }}>
         <h2>{title}</h2>
 
         <div style={{ display: "grid", gap: 18, maxWidth: 760 }}>
@@ -438,9 +438,9 @@ export default function UserLevelsPanel() {
             {helper("Multiplies how many seconds players at this level can leave the placement/disarm zone before the session cancels. 1 = no change, 2 = twice as long.")}
           </div>
 
-          <div style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 10, padding: "14px 16px", display: "grid", gap: 10 }}>
-            <h3 style={{ margin: 0, color: "#f1f5f9" }}>📺 Advertisements</h3>
-            <p style={{ margin: 0, fontSize: 12, color: "#94a3b8" }}>
+          <div style={{ background: "#F4F7FB", border: "1px solid #DCE4EE", borderRadius: 10, padding: "14px 16px", display: "grid", gap: 10 }}>
+            <h3 style={{ margin: 0, color: "#0D1F33" }}>📺 Advertisements</h3>
+            <p style={{ margin: 0, fontSize: 12, color: "#3C516C" }}>
               Users at this level will have the checked ad types hidden. The global Game Settings
               ad toggles still take priority — if an ad type is disabled globally, it is off for
               everyone regardless of level.
@@ -497,9 +497,9 @@ export default function UserLevelsPanel() {
         true
       )}
 
-      <div style={{ background: "#1e293b", padding: 20, borderRadius: 12 }}>
+      <div style={{ background: "#EEF2F7", padding: 20, borderRadius: 12 }}>
         <h2>💎 Membership Plans</h2>
-        <p style={{ margin: "0 0 16px", color: "#94a3b8", fontSize: 13 }}>
+        <p style={{ margin: "0 0 16px", color: "#3C516C", fontSize: 13 }}>
           Payment-based membership tiers (Free, Monthly, Annual, etc.).
           These are separate from the XP-based Player Levels.
         </p>
@@ -508,7 +508,7 @@ export default function UserLevelsPanel() {
           {items.map((item) => (
             <div
               key={item.id}
-              style={{ padding: 12, border: "1px solid #334155", borderRadius: 8 }}
+              style={{ padding: 12, border: "1px solid #DCE4EE", borderRadius: 8 }}
             >
               <div>
                 <strong>{item.name ?? "Unnamed level"}</strong> ({item.id})
@@ -539,11 +539,11 @@ export default function UserLevelsPanel() {
                 range ×{item.rangeMultiplier ?? 1} | leave ×{item.leaveMultiplier ?? 1}
               </div>
               <div style={{ marginTop: 4, display: "flex", gap: 6, flexWrap: "wrap" }}>
-                {item.disableBannerAd && <span style={{ fontSize: 11, padding: "2px 7px", borderRadius: 999, background: "rgba(248,113,113,0.15)", color: "#f87171" }}>🚫 Banner</span>}
-                {item.disableInterstitialAd && <span style={{ fontSize: 11, padding: "2px 7px", borderRadius: 999, background: "rgba(248,113,113,0.15)", color: "#f87171" }}>🚫 Interstitial</span>}
-                {item.disableRewardedAd && <span style={{ fontSize: 11, padding: "2px 7px", borderRadius: 999, background: "rgba(248,113,113,0.15)", color: "#f87171" }}>🚫 Rewarded</span>}
+                {item.disableBannerAd && <span style={{ fontSize: 11, padding: "2px 7px", borderRadius: 999, background: "rgba(248,113,113,0.15)", color: "#C8283B" }}>🚫 Banner</span>}
+                {item.disableInterstitialAd && <span style={{ fontSize: 11, padding: "2px 7px", borderRadius: 999, background: "rgba(248,113,113,0.15)", color: "#C8283B" }}>🚫 Interstitial</span>}
+                {item.disableRewardedAd && <span style={{ fontSize: 11, padding: "2px 7px", borderRadius: 999, background: "rgba(248,113,113,0.15)", color: "#C8283B" }}>🚫 Rewarded</span>}
                 {!item.disableBannerAd && !item.disableInterstitialAd && !item.disableRewardedAd && (
-                  <span style={{ fontSize: 11, color: "#475569" }}>All ads shown</span>
+                  <span style={{ fontSize: 11, color: "#5F7491" }}>All ads shown</span>
                 )}
               </div>
 

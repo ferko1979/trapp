@@ -106,8 +106,8 @@ const WORLD_COUNTRIES = [
 // ─── Styles ───────────────────────────────────────────────────────────────────
 
 const card: React.CSSProperties = {
-  background: "#0f172a",
-  border: "1px solid #1e3a5f",
+  background: "#F4F7FB",
+  border: "1px solid #DCE4EE",
   borderRadius: 12,
   padding: "20px 24px",
   marginBottom: 20,
@@ -115,7 +115,7 @@ const card: React.CSSProperties = {
 
 const lbl: React.CSSProperties = {
   display: "block",
-  color: "#94a3b8",
+  color: "#3C516C",
   fontSize: "0.8rem",
   fontWeight: 600,
   marginBottom: 6,
@@ -125,10 +125,10 @@ const lbl: React.CSSProperties = {
 
 const inp: React.CSSProperties = {
   width: "100%",
-  background: "#0a1628",
-  border: "1px solid #1e3a5f",
+  background: "#F4F7FB",
+  border: "1px solid #DCE4EE",
   borderRadius: 8,
-  color: "#e2e8f0",
+  color: "#0D1F33",
   fontSize: "0.9rem",
   padding: "9px 12px",
   boxSizing: "border-box",
@@ -136,7 +136,7 @@ const inp: React.CSSProperties = {
 };
 
 const btnPrimary: React.CSSProperties = {
-  background: "#1d4ed8",
+  background: "#0B6C86",
   color: "#fff",
   border: "none",
   borderRadius: 8,
@@ -147,9 +147,9 @@ const btnPrimary: React.CSSProperties = {
 };
 
 const btnSecondary: React.CSSProperties = {
-  background: "#162033",
-  color: "#94a3b8",
-  border: "1px solid #1e3a5f",
+  background: "#F4F7FB",
+  color: "#3C516C",
+  border: "1px solid #DCE4EE",
   borderRadius: 8,
   padding: "10px 22px",
   fontSize: "0.9rem",
@@ -159,8 +159,8 @@ const btnSecondary: React.CSSProperties = {
 
 const tag: React.CSSProperties = {
   display: "inline-block",
-  background: "#1e3a5f",
-  color: "#93c5fd",
+  background: "#DCE4EE",
+  color: "#0B6C86",
   borderRadius: 6,
   padding: "3px 10px",
   fontSize: "0.78rem",
@@ -536,24 +536,24 @@ export default function TrapGeneratorPanel() {
   const previewMap = job?.result?.preview ? groupBy(job.result.preview, (p) => p.trapTypeId) : null;
 
   return (
-    <div style={{ padding: "24px 28px", color: "#e2e8f0", maxWidth: 900 }}>
+    <div style={{ padding: "24px 28px", color: "#0D1F33", maxWidth: 900 }}>
 
       {/* ── First-Login Auto-Placement Settings ───────────────────────────── */}
-      <div style={{ ...card, marginBottom: 28, border: "1px solid #1e3a5f" }}>
+      <div style={{ ...card, marginBottom: 28, border: "1px solid #DCE4EE" }}>
         {/* Header row */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
           <h3 style={{ margin: 0, fontSize: "1rem", fontWeight: 700 }}>
             First-Login Auto-Placement
           </h3>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ color: "#94a3b8", fontSize: "0.85rem" }}>
+            <span style={{ color: "#3C516C", fontSize: "0.85rem" }}>
               {flSettings.firstLoginTrapGenEnabled ? "Enabled" : "Disabled"}
             </span>
             <div
               onClick={() => !flLoading && setFlSettings((s) => ({ ...s, firstLoginTrapGenEnabled: !s.firstLoginTrapGenEnabled }))}
               style={{
                 width: 44, height: 24, borderRadius: 12,
-                background: flSettings.firstLoginTrapGenEnabled ? "#22c55e" : "#374151",
+                background: flSettings.firstLoginTrapGenEnabled ? "#178A55" : "#DCE4EE",
                 position: "relative", cursor: flLoading ? "default" : "pointer",
                 transition: "background 0.2s", flexShrink: 0,
               }}
@@ -567,7 +567,7 @@ export default function TrapGeneratorPanel() {
             </div>
           </div>
         </div>
-        <p style={{ color: "#64748b", margin: "0 0 16px", fontSize: "0.82rem" }}>
+        <p style={{ color: "#5F7491", margin: "0 0 16px", fontSize: "0.82rem" }}>
           When enabled, the system places traps near a new user's GPS location on their very first
           login after email verification. Idempotent — safe to call multiple times per user.
         </p>
@@ -585,7 +585,7 @@ export default function TrapGeneratorPanel() {
                     ...s, firstLoginTrapMinDistanceMeters: Math.max(0, Math.min(500, parseInt(e.target.value) || 0)),
                   }))}
                 />
-                <div style={{ fontSize: "0.75rem", color: "#64748b", marginTop: 3 }}>
+                <div style={{ fontSize: "0.75rem", color: "#5F7491", marginTop: 3 }}>
                   Inner exclusion zone — no trap closer than this (0 = directly next to user is OK)
                 </div>
               </div>
@@ -598,7 +598,7 @@ export default function TrapGeneratorPanel() {
                     ...s, firstLoginTrapRadiusMeters: Math.max(50, Math.min(50000, parseInt(e.target.value) || 1000)),
                   }))}
                 />
-                <div style={{ fontSize: "0.75rem", color: "#64748b", marginTop: 3 }}>
+                <div style={{ fontSize: "0.75rem", color: "#5F7491", marginTop: 3 }}>
                   Outer radius — traps placed closest-first up to this distance
                 </div>
               </div>
@@ -635,7 +635,7 @@ export default function TrapGeneratorPanel() {
                     style={{
                       ...btnSecondary,
                       ...(flSettings.firstLoginTrapTypeMode === mode
-                        ? { background: "#1d4ed8", color: "#fff", border: "1px solid #2563eb" }
+                        ? { background: "#0B6C86", color: "#fff", border: "1px solid #0B6C86" }
                         : {}),
                       minWidth: 130,
                     }}
@@ -660,14 +660,14 @@ export default function TrapGeneratorPanel() {
                   </div>
                   <div style={{ ...lbl, marginBottom: 8 }}>
                     Restrict to types{" "}
-                    <span style={{ color: "#475569", textTransform: "none", fontWeight: 400, letterSpacing: 0 }}>
+                    <span style={{ color: "#5F7491", textTransform: "none", fontWeight: 400, letterSpacing: 0 }}>
                       — leave all unchecked to use every enabled type randomly
                     </span>
                   </div>
                   {trapDefsLoading ? (
-                    <div style={{ color: "#64748b", fontSize: "0.83rem" }}>Loading trap types…</div>
+                    <div style={{ color: "#5F7491", fontSize: "0.83rem" }}>Loading trap types…</div>
                   ) : trapDefs.length === 0 ? (
-                    <div style={{ color: "#64748b", fontSize: "0.83rem" }}>No trap definitions found.</div>
+                    <div style={{ color: "#5F7491", fontSize: "0.83rem" }}>No trap definitions found.</div>
                   ) : (
                     <div style={{
                       display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 8,
@@ -686,14 +686,14 @@ export default function TrapGeneratorPanel() {
                             style={{
                               display: "flex", alignItems: "center", gap: 10, padding: "8px 12px",
                               borderRadius: 8, cursor: "pointer",
-                              border: `1px solid ${checked ? "#2563eb" : "#1e3a5f"}`,
-                              background: checked ? "rgba(29,78,216,0.12)" : "#060d1a",
+                              border: `1px solid ${checked ? "#0B6C86" : "#DCE4EE"}`,
+                              background: checked ? "rgba(11,108,134,0.12)" : "#F4F7FB",
                             }}
                           >
                             <div style={{
                               width: 16, height: 16, borderRadius: 4, flexShrink: 0,
-                              border: `2px solid ${checked ? "#1d4ed8" : "#1e3a5f"}`,
-                              background: checked ? "#1d4ed8" : "transparent",
+                              border: `2px solid ${checked ? "#0B6C86" : "#DCE4EE"}`,
+                              background: checked ? "#0B6C86" : "transparent",
                               display: "flex", alignItems: "center", justifyContent: "center",
                             }}>
                               {checked && (
@@ -702,7 +702,7 @@ export default function TrapGeneratorPanel() {
                                 </svg>
                               )}
                             </div>
-                            <span style={{ fontSize: "0.85rem", color: checked ? "#93c5fd" : "#e2e8f0" }}>
+                            <span style={{ fontSize: "0.85rem", color: checked ? "#0B6C86" : "#0D1F33" }}>
                               {def.name || def.id}
                             </span>
                           </div>
@@ -711,7 +711,7 @@ export default function TrapGeneratorPanel() {
                     </div>
                   )}
                   {flSettings.firstLoginTrapTypeIds.length === 0 && !trapDefsLoading && (
-                    <div style={{ marginTop: 8, fontSize: "0.78rem", color: "#475569" }}>
+                    <div style={{ marginTop: 8, fontSize: "0.78rem", color: "#5F7491" }}>
                       All {trapDefs.length} enabled type{trapDefs.length !== 1 ? "s" : ""} will be used at random.
                     </div>
                   )}
@@ -721,14 +721,14 @@ export default function TrapGeneratorPanel() {
               {/* Fixed mode */}
               {flSettings.firstLoginTrapTypeMode === "fixed" && (
                 <>
-                  <div style={{ fontSize: "0.82rem", color: "#64748b", marginBottom: 12 }}>
+                  <div style={{ fontSize: "0.82rem", color: "#5F7491", marginBottom: 12 }}>
                     Set an exact count for each trap type. Total traps = sum of all counts.
                     Types with count 0 are skipped.
                   </div>
                   {trapDefsLoading ? (
-                    <div style={{ color: "#64748b", fontSize: "0.83rem" }}>Loading trap types…</div>
+                    <div style={{ color: "#5F7491", fontSize: "0.83rem" }}>Loading trap types…</div>
                   ) : trapDefs.length === 0 ? (
-                    <div style={{ color: "#64748b", fontSize: "0.83rem" }}>No trap definitions found.</div>
+                    <div style={{ color: "#5F7491", fontSize: "0.83rem" }}>No trap definitions found.</div>
                   ) : (
                     <>
                       <div style={{
@@ -743,11 +743,11 @@ export default function TrapGeneratorPanel() {
                               style={{
                                 display: "flex", alignItems: "center", gap: 10, padding: "8px 12px",
                                 borderRadius: 8,
-                                border: `1px solid ${count > 0 ? "#2563eb" : "#1e3a5f"}`,
-                                background: count > 0 ? "rgba(29,78,216,0.08)" : "#060d1a",
+                                border: `1px solid ${count > 0 ? "#0B6C86" : "#DCE4EE"}`,
+                                background: count > 0 ? "rgba(11,108,134,0.08)" : "#F4F7FB",
                               }}
                             >
-                              <span style={{ flex: 1, fontSize: "0.85rem", color: count > 0 ? "#93c5fd" : "#94a3b8" }}>
+                              <span style={{ flex: 1, fontSize: "0.85rem", color: count > 0 ? "#0B6C86" : "#3C516C" }}>
                                 {def.name || def.id}
                               </span>
                               <input
@@ -764,8 +764,8 @@ export default function TrapGeneratorPanel() {
                                   });
                                 }}
                                 style={{
-                                  width: 60, background: "#0a1628", border: "1px solid #1e3a5f",
-                                  borderRadius: 6, color: "#e2e8f0", fontSize: "0.88rem",
+                                  width: 60, background: "#F4F7FB", border: "1px solid #DCE4EE",
+                                  borderRadius: 6, color: "#0D1F33", fontSize: "0.88rem",
                                   padding: "4px 8px", textAlign: "center",
                                 }}
                               />
@@ -776,7 +776,7 @@ export default function TrapGeneratorPanel() {
                       {(() => {
                         const total = flSettings.firstLoginTrapTypeCounts.reduce((s, e) => s + e.count, 0);
                         return (
-                          <div style={{ fontSize: "0.83rem", color: total > 0 ? "#86efac" : "#64748b" }}>
+                          <div style={{ fontSize: "0.83rem", color: total > 0 ? "#178A55" : "#5F7491" }}>
                             Total traps that will be placed: <strong>{total}</strong>
                             {total === 0 && " — set at least one count above"}
                           </div>
@@ -801,7 +801,7 @@ export default function TrapGeneratorPanel() {
           {flSaveMsg && (
             <span style={{
               fontSize: "0.85rem",
-              color: flSaveMsg.startsWith("Error") ? "#f87171" : "#86efac",
+              color: flSaveMsg.startsWith("Error") ? "#C8283B" : "#178A55",
             }}>
               {flSaveMsg}
             </span>
@@ -812,7 +812,7 @@ export default function TrapGeneratorPanel() {
       <h2 style={{ margin: "0 0 6px", fontSize: "1.3rem", fontWeight: 700 }}>
         Trap Placer
       </h2>
-      <p style={{ color: "#64748b", margin: "0 0 24px", fontSize: "0.9rem" }}>
+      <p style={{ color: "#5F7491", margin: "0 0 24px", fontSize: "0.9rem" }}>
         Select a country and the cities within it where you want traps placed. Checking a single
         city targets just that location. Runs as a background job with real-time progress.
       </p>
@@ -841,8 +841,8 @@ export default function TrapGeneratorPanel() {
                   position: "absolute",
                   top: "100%", left: 0, right: 0,
                   maxHeight: 240, overflowY: "auto",
-                  background: "#0f172a",
-                  border: "1px solid #1e3a5f",
+                  background: "#F4F7FB",
+                  border: "1px solid #DCE4EE",
                   borderRadius: 8,
                   zIndex: 100,
                   marginTop: 4,
@@ -859,14 +859,14 @@ export default function TrapGeneratorPanel() {
                     style={{
                       padding: "9px 14px",
                       cursor: "pointer",
-                      color: c === selectedCountry ? "#93c5fd" : "#e2e8f0",
-                      background: c === selectedCountry ? "#0f2940" : "transparent",
+                      color: c === selectedCountry ? "#0B6C86" : "#0D1F33",
+                      background: c === selectedCountry ? "#F4F7FB" : "transparent",
                       fontSize: "0.88rem",
                     }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.background = "#0f2940"; }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.background = "#F4F7FB"; }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLDivElement).style.background =
-                        c === selectedCountry ? "#0f2940" : "transparent";
+                        c === selectedCountry ? "#F4F7FB" : "transparent";
                     }}
                   >
                     {c}
@@ -890,13 +890,13 @@ export default function TrapGeneratorPanel() {
         {selectedCountry && (
           <>
             {citiesLoading && (
-              <div style={{ color: "#64748b", fontSize: "0.88rem", padding: "10px 0" }}>
+              <div style={{ color: "#5F7491", fontSize: "0.88rem", padding: "10px 0" }}>
                 ⏳ Loading cities in {selectedCountry}…
               </div>
             )}
 
             {citiesError && (
-              <div style={{ color: "#fca5a5", fontSize: "0.85rem", padding: "8px 0" }}>
+              <div style={{ color: "#C8283B", fontSize: "0.85rem", padding: "8px 0" }}>
                 ❌ {citiesError}
               </div>
             )}
@@ -906,7 +906,7 @@ export default function TrapGeneratorPanel() {
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
                   <span style={lbl}>
                     Cities in {selectedCountry}
-                    <span style={{ color: "#475569", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>
+                    <span style={{ color: "#5F7491", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>
                       {" "}— {selectedCities.size} / {cities.length} selected
                     </span>
                   </span>
@@ -934,8 +934,8 @@ export default function TrapGeneratorPanel() {
                 <div
                   style={{
                     maxHeight: 280, overflowY: "auto",
-                    background: "#060d1a",
-                    borderRadius: 8, border: "1px solid #1e3a5f",
+                    background: "#F4F7FB",
+                    borderRadius: 8, border: "1px solid #DCE4EE",
                   }}
                 >
                   {filteredCities.map((city) => {
@@ -947,15 +947,15 @@ export default function TrapGeneratorPanel() {
                         style={{
                           display: "flex", alignItems: "center", gap: 12,
                           padding: "9px 14px", cursor: "pointer",
-                          borderBottom: "1px solid #0d1e30",
-                          background: checked ? "rgba(29,78,216,0.08)" : "transparent",
+                          borderBottom: "1px solid #F4F7FB",
+                          background: checked ? "rgba(11,108,134,0.08)" : "transparent",
                         }}
                       >
                         <div
                           style={{
                             width: 16, height: 16, borderRadius: 4,
-                            border: `2px solid ${checked ? "#1d4ed8" : "#1e3a5f"}`,
-                            background: checked ? "#1d4ed8" : "transparent",
+                            border: `2px solid ${checked ? "#0B6C86" : "#DCE4EE"}`,
+                            background: checked ? "#0B6C86" : "transparent",
                             flexShrink: 0,
                             display: "flex", alignItems: "center", justifyContent: "center",
                           }}
@@ -966,9 +966,9 @@ export default function TrapGeneratorPanel() {
                             </svg>
                           )}
                         </div>
-                        <span style={{ flex: 1, color: "#e2e8f0", fontSize: "0.88rem" }}>{city.name}</span>
+                        <span style={{ flex: 1, color: "#0D1F33", fontSize: "0.88rem" }}>{city.name}</span>
                         {city.population > 0 && (
-                          <span style={{ color: "#475569", fontSize: "0.75rem", fontFamily: "monospace" }}>
+                          <span style={{ color: "#5F7491", fontSize: "0.75rem", fontFamily: "monospace" }}>
                             {city.population >= 1_000_000
                               ? `${(city.population / 1_000_000).toFixed(1)}M`
                               : city.population >= 1_000
@@ -976,7 +976,7 @@ export default function TrapGeneratorPanel() {
                               : String(city.population)}
                           </span>
                         )}
-                        <span style={{ color: "#334155", fontSize: "0.72rem", fontFamily: "monospace" }}>
+                        <span style={{ color: "#DCE4EE", fontSize: "0.72rem", fontFamily: "monospace" }}>
                           {city.lat.toFixed(2)}, {city.lng.toFixed(2)}
                         </span>
                       </div>
@@ -988,7 +988,7 @@ export default function TrapGeneratorPanel() {
 
             {!citiesLoading && !citiesError && cities.length === 0 && (
               <div>
-                <p style={{ color: "#64748b", fontSize: "0.85rem", margin: "0 0 10px" }}>
+                <p style={{ color: "#5F7491", fontSize: "0.85rem", margin: "0 0 10px" }}>
                   No cities found via OpenStreetMap for {selectedCountry}. Type a city name
                   below to place traps there directly.
                 </p>
@@ -1015,7 +1015,7 @@ export default function TrapGeneratorPanel() {
                 setMinSpacingMeters(Math.max(10, Math.min(5000, parseInt(e.target.value) || 100)))
               }
             />
-            <p style={{ color: "#64748b", fontSize: "0.78rem", margin: "6px 0 0" }}>
+            <p style={{ color: "#5F7491", fontSize: "0.78rem", margin: "6px 0 0" }}>
               Also respects spacing vs. all existing active traps.
             </p>
           </div>
@@ -1039,7 +1039,7 @@ export default function TrapGeneratorPanel() {
           onChange={(e) => setTrapTypeIds(e.target.value)}
           placeholder="e.g. freeze_trap, slowdown_trap  (comma-separated)"
         />
-        <p style={{ color: "#64748b", fontSize: "0.78rem", margin: "6px 0 0" }}>
+        <p style={{ color: "#5F7491", fontSize: "0.78rem", margin: "6px 0 0" }}>
           Types assigned round-robin. Leave empty to use all enabled types.
         </p>
       </div>
@@ -1059,7 +1059,7 @@ export default function TrapGeneratorPanel() {
               onClick={() => set((v) => !v)}
               style={{
                 ...btnSecondary,
-                ...(state ? { background: "#1d4ed8", color: "#fff", border: "1px solid #2563eb" } : {}),
+                ...(state ? { background: "#0B6C86", color: "#fff", border: "1px solid #0B6C86" } : {}),
                 minWidth: 130,
               }}
             >
@@ -1068,7 +1068,7 @@ export default function TrapGeneratorPanel() {
           ))}
         </div>
         {!allowMinors && !allowAdults && (
-          <p style={{ color: "#f87171", fontSize: "0.8rem", margin: "8px 0 0" }}>
+          <p style={{ color: "#C8283B", fontSize: "0.8rem", margin: "8px 0 0" }}>
             ⚠️ At least one age group must be selected. Defaulting to both.
           </p>
         )}
@@ -1080,7 +1080,7 @@ export default function TrapGeneratorPanel() {
           onClick={() => setDryRun((v) => !v)}
           style={{
             width: 44, height: 24, borderRadius: 12,
-            background: dryRun ? "#1d4ed8" : "#374151",
+            background: dryRun ? "#0B6C86" : "#DCE4EE",
             position: "relative", cursor: "pointer", transition: "background 0.2s",
             flexShrink: 0,
           }}
@@ -1095,7 +1095,7 @@ export default function TrapGeneratorPanel() {
           />
         </div>
         <span
-          style={{ color: "#e2e8f0", fontWeight: 600, cursor: "pointer" }}
+          style={{ color: "#0D1F33", fontWeight: 600, cursor: "pointer" }}
           onClick={() => setDryRun((v) => !v)}
         >
           {dryRun
@@ -1123,7 +1123,7 @@ export default function TrapGeneratorPanel() {
         <div
           style={{
             background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.4)",
-            borderRadius: 8, padding: "12px 16px", color: "#fca5a5", marginBottom: 20,
+            borderRadius: 8, padding: "12px 16px", color: "#C8283B", marginBottom: 20,
           }}
         >
           ❌ {error}
@@ -1141,22 +1141,22 @@ export default function TrapGeneratorPanel() {
               {job.status === "failed"    && "❌ Failed"}
             </h3>
             {jobId && (
-              <span style={{ color: "#475569", fontSize: "0.72rem", fontFamily: "monospace" }}>{jobId}</span>
+              <span style={{ color: "#5F7491", fontSize: "0.72rem", fontFamily: "monospace" }}>{jobId}</span>
             )}
           </div>
 
-          <div style={{ height: 8, background: "#0a1628", borderRadius: 4, marginBottom: 8, overflow: "hidden" }}>
+          <div style={{ height: 8, background: "#F4F7FB", borderRadius: 4, marginBottom: 8, overflow: "hidden" }}>
             <div
               style={{
                 height: "100%", width: `${pct}%`, borderRadius: 4, transition: "width 0.4s ease",
-                background: job.status === "failed" ? "#dc2626" : job.status === "completed" ? "#22c55e" : "#1d4ed8",
+                background: job.status === "failed" ? "#C8283B" : job.status === "completed" ? "#178A55" : "#0B6C86",
               }}
             />
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-            <span style={{ color: "#94a3b8", fontSize: "0.85rem" }}>{job.progress.message}</span>
-            <span style={{ color: "#475569", fontSize: "0.78rem" }}>
+            <span style={{ color: "#3C516C", fontSize: "0.85rem" }}>{job.progress.message}</span>
+            <span style={{ color: "#5F7491", fontSize: "0.78rem" }}>
               {pct}%
               {job.progress.estimatedSecondsRemaining != null && job.status === "running" &&
                 ` · ~${formatSeconds(job.progress.estimatedSecondsRemaining)} left`}
@@ -1168,7 +1168,7 @@ export default function TrapGeneratorPanel() {
               style={{
                 marginTop: 12, padding: "10px 14px",
                 background: "rgba(220,38,38,0.1)", borderRadius: 8,
-                color: "#fca5a5", fontSize: "0.85rem",
+                color: "#C8283B", fontSize: "0.85rem",
               }}
             >
               {job.error}
@@ -1185,7 +1185,7 @@ export default function TrapGeneratorPanel() {
 
               {previewMap && (
                 <div style={{ marginBottom: 12 }}>
-                  <div style={{ color: "#64748b", fontSize: "0.75rem", marginBottom: 6 }}>TYPE DISTRIBUTION</div>
+                  <div style={{ color: "#5F7491", fontSize: "0.75rem", marginBottom: 6 }}>TYPE DISTRIBUTION</div>
                   {Object.entries(previewMap).map(([typeId, pts]) => (
                     <span key={typeId} style={tag}>{typeId}: {pts.length}</span>
                   ))}
@@ -1194,32 +1194,32 @@ export default function TrapGeneratorPanel() {
 
               {job.result.cityBreakdown && job.result.cityBreakdown.length > 0 && (
                 <div style={{ marginBottom: 12 }}>
-                  <div style={{ color: "#64748b", fontSize: "0.75rem", marginBottom: 6 }}>CITIES</div>
+                  <div style={{ color: "#5F7491", fontSize: "0.75rem", marginBottom: 6 }}>CITIES</div>
                   {job.result.cityBreakdown.map((c) => (
-                    <span key={c.city} style={{ ...tag, background: "#0f2940" }}>{c.city}: {c.count}</span>
+                    <span key={c.city} style={{ ...tag, background: "#F4F7FB" }}>{c.city}: {c.count}</span>
                   ))}
                 </div>
               )}
 
-              <div style={{ color: "#64748b", fontSize: "0.75rem", marginBottom: 6 }}>
+              <div style={{ color: "#5F7491", fontSize: "0.75rem", marginBottom: 6 }}>
                 PLACEMENT PREVIEW (first 50 of {job.result.placed})
               </div>
-              <div style={{ maxHeight: 280, overflowY: "auto", background: "#060d1a", borderRadius: 8, border: "1px solid #1e3a5f" }}>
+              <div style={{ maxHeight: 280, overflowY: "auto", background: "#F4F7FB", borderRadius: 8, border: "1px solid #DCE4EE" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
                   <thead>
-                    <tr style={{ borderBottom: "1px solid #1e3a5f" }}>
+                    <tr style={{ borderBottom: "1px solid #DCE4EE" }}>
                       {["#", "Lat", "Lng", "Type"].map((h) => (
-                        <th key={h} style={{ padding: "8px 12px", color: "#64748b", textAlign: "left", fontWeight: 600 }}>{h}</th>
+                        <th key={h} style={{ padding: "8px 12px", color: "#5F7491", textAlign: "left", fontWeight: 600 }}>{h}</th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
                     {job.result.preview.slice(0, 50).map((p, i) => (
-                      <tr key={i} style={{ borderBottom: "1px solid #0d1e30", background: i % 2 === 0 ? "transparent" : "#07111e" }}>
-                        <td style={{ padding: "7px 12px", color: "#475569" }}>{i + 1}</td>
-                        <td style={{ padding: "7px 12px", color: "#e2e8f0", fontFamily: "monospace" }}>{p.lat.toFixed(6)}</td>
-                        <td style={{ padding: "7px 12px", color: "#e2e8f0", fontFamily: "monospace" }}>{p.lng.toFixed(6)}</td>
-                        <td style={{ padding: "7px 12px", color: "#93c5fd" }}>{p.trapTypeId}</td>
+                      <tr key={i} style={{ borderBottom: "1px solid #F4F7FB", background: i % 2 === 0 ? "transparent" : "#F4F7FB" }}>
+                        <td style={{ padding: "7px 12px", color: "#5F7491" }}>{i + 1}</td>
+                        <td style={{ padding: "7px 12px", color: "#0D1F33", fontFamily: "monospace" }}>{p.lat.toFixed(6)}</td>
+                        <td style={{ padding: "7px 12px", color: "#0D1F33", fontFamily: "monospace" }}>{p.lng.toFixed(6)}</td>
+                        <td style={{ padding: "7px 12px", color: "#0B6C86" }}>{p.trapTypeId}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1231,7 +1231,7 @@ export default function TrapGeneratorPanel() {
                   style={{
                     marginTop: 14, padding: "10px 14px",
                     background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)",
-                    borderRadius: 8, color: "#86efac", fontSize: "0.85rem",
+                    borderRadius: 8, color: "#178A55", fontSize: "0.85rem",
                   }}
                 >
                   ✅ {job.result.placed} traps are now active in Firestore and visible to players in {job.locationName}.
@@ -1242,11 +1242,11 @@ export default function TrapGeneratorPanel() {
         </div>
       )}
       {/* ── Place Traps Near Users ────────────────────────────────────────── */}
-      <div style={{ ...card, marginTop: 32, border: "1px solid #1e3a5f" }}>
+      <div style={{ ...card, marginTop: 32, border: "1px solid #DCE4EE" }}>
         <h3 style={{ margin: "0 0 6px", fontSize: "1rem", fontWeight: 700 }}>
           Place Traps Near Users' Last Known Locations
         </h3>
-        <p style={{ color: "#64748b", margin: "0 0 16px", fontSize: "0.82rem" }}>
+        <p style={{ color: "#5F7491", margin: "0 0 16px", fontSize: "0.82rem" }}>
           Load players with a known location, select individuals or all of them, configure the
           placement parameters, then fire one job per user. All jobs run in parallel — each shows
           live progress below.
@@ -1279,7 +1279,7 @@ export default function TrapGeneratorPanel() {
         </div>
 
         {playersError && (
-          <div style={{ color: "#fca5a5", fontSize: "0.85rem", marginBottom: 12 }}>❌ {playersError}</div>
+          <div style={{ color: "#C8283B", fontSize: "0.85rem", marginBottom: 12 }}>❌ {playersError}</div>
         )}
 
         {players.length > 0 && (
@@ -1292,7 +1292,7 @@ export default function TrapGeneratorPanel() {
             />
             <div style={{
               maxHeight: 260, overflowY: "auto",
-              background: "#060d1a", borderRadius: 8, border: "1px solid #1e3a5f",
+              background: "#F4F7FB", borderRadius: 8, border: "1px solid #DCE4EE",
               marginBottom: 20,
             }}>
               {players
@@ -1309,14 +1309,14 @@ export default function TrapGeneratorPanel() {
                       style={{
                         display: "flex", alignItems: "center", gap: 12,
                         padding: "9px 14px", cursor: "pointer",
-                        borderBottom: "1px solid #0d1e30",
-                        background: checked ? "rgba(29,78,216,0.08)" : "transparent",
+                        borderBottom: "1px solid #F4F7FB",
+                        background: checked ? "rgba(11,108,134,0.08)" : "transparent",
                       }}
                     >
                       <div style={{
                         width: 16, height: 16, borderRadius: 4, flexShrink: 0,
-                        border: `2px solid ${checked ? "#1d4ed8" : "#1e3a5f"}`,
-                        background: checked ? "#1d4ed8" : "transparent",
+                        border: `2px solid ${checked ? "#0B6C86" : "#DCE4EE"}`,
+                        background: checked ? "#0B6C86" : "transparent",
                         display: "flex", alignItems: "center", justifyContent: "center",
                       }}>
                         {checked && (
@@ -1325,14 +1325,14 @@ export default function TrapGeneratorPanel() {
                           </svg>
                         )}
                       </div>
-                      <span style={{ flex: 1, color: "#e2e8f0", fontSize: "0.88rem", fontWeight: 600 }}>
+                      <span style={{ flex: 1, color: "#0D1F33", fontSize: "0.88rem", fontWeight: 600 }}>
                         {p.username}
                       </span>
-                      <span style={{ color: "#475569", fontSize: "0.75rem", fontFamily: "monospace" }}>
+                      <span style={{ color: "#5F7491", fontSize: "0.75rem", fontFamily: "monospace" }}>
                         {p.lat.toFixed(4)}, {p.lng.toFixed(4)}
                       </span>
                       {updatedAgo !== null && (
-                        <span style={{ color: "#334155", fontSize: "0.72rem" }}>
+                        <span style={{ color: "#DCE4EE", fontSize: "0.72rem" }}>
                           {updatedAgo < 60 ? `${updatedAgo}m ago` : `${Math.round(updatedAgo / 60)}h ago`}
                         </span>
                       )}
@@ -1375,7 +1375,7 @@ export default function TrapGeneratorPanel() {
                 onClick={() => setUserJobDryRun((v) => !v)}
                 style={{
                   width: 44, height: 24, borderRadius: 12,
-                  background: userJobDryRun ? "#1d4ed8" : "#374151",
+                  background: userJobDryRun ? "#0B6C86" : "#DCE4EE",
                   position: "relative", cursor: "pointer", transition: "background 0.2s",
                 }}
               >
@@ -1387,7 +1387,7 @@ export default function TrapGeneratorPanel() {
                 }} />
               </div>
               <span
-                style={{ color: "#e2e8f0", fontWeight: 600, cursor: "pointer", fontSize: "0.9rem" }}
+                style={{ color: "#0D1F33", fontWeight: 600, cursor: "pointer", fontSize: "0.9rem" }}
                 onClick={() => setUserJobDryRun((v) => !v)}
               >
                 {userJobDryRun ? "🔍 Dry run — preview only" : "⚡ Live run — will write traps"}
@@ -1397,7 +1397,7 @@ export default function TrapGeneratorPanel() {
             {userJobsError && (
               <div style={{
                 background: "rgba(220,38,38,0.12)", border: "1px solid rgba(220,38,38,0.4)",
-                borderRadius: 8, padding: "10px 14px", color: "#fca5a5", fontSize: "0.85rem",
+                borderRadius: 8, padding: "10px 14px", color: "#C8283B", fontSize: "0.85rem",
                 marginBottom: 12,
               }}>
                 ❌ {userJobsError}
@@ -1408,7 +1408,7 @@ export default function TrapGeneratorPanel() {
               style={{
                 ...btnPrimary,
                 opacity: userJobsRunning || selectedUids.size === 0 ? 0.6 : 1,
-                background: userJobDryRun ? "#1d4ed8" : "#16a34a",
+                background: userJobDryRun ? "#0B6C86" : "#178A55",
               }}
               onClick={handlePlaceNearUsers}
               disabled={userJobsRunning || selectedUids.size === 0}
@@ -1425,18 +1425,18 @@ export default function TrapGeneratorPanel() {
         {/* Per-user job progress list */}
         {userJobs.length > 0 && (
           <div style={{ marginTop: 20 }}>
-            <div style={{ color: "#64748b", fontSize: "0.75rem", marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            <div style={{ color: "#5F7491", fontSize: "0.75rem", marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.05em" }}>
               Job Status ({userJobs.length} jobs)
             </div>
             {userJobs.map((j) => (
               <div key={j.jobId} style={{
-                background: "#07111e", borderRadius: 8, border: "1px solid #1e3a5f",
+                background: "#F4F7FB", borderRadius: 8, border: "1px solid #DCE4EE",
                 padding: "12px 14px", marginBottom: 8,
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
                   <div>
-                    <span style={{ fontWeight: 600, color: "#e2e8f0", fontSize: "0.88rem" }}>{j.username}</span>
-                    <span style={{ color: "#475569", fontSize: "0.75rem", marginLeft: 10, fontFamily: "monospace" }}>
+                    <span style={{ fontWeight: 600, color: "#0D1F33", fontSize: "0.88rem" }}>{j.username}</span>
+                    <span style={{ color: "#5F7491", fontSize: "0.75rem", marginLeft: 10, fontFamily: "monospace" }}>
                       {j.lat.toFixed(4)}, {j.lng.toFixed(4)}
                     </span>
                   </div>
@@ -1444,12 +1444,12 @@ export default function TrapGeneratorPanel() {
                     fontSize: "0.72rem", padding: "2px 8px", borderRadius: 4, fontWeight: 600,
                     background: j.status === "completed" ? "rgba(34,197,94,0.15)"
                       : j.status === "failed" ? "rgba(220,38,38,0.15)"
-                      : j.status === "running" ? "rgba(29,78,216,0.15)"
+                      : j.status === "running" ? "rgba(11,108,134,0.15)"
                       : "rgba(71,85,105,0.3)",
-                    color: j.status === "completed" ? "#86efac"
-                      : j.status === "failed" ? "#fca5a5"
-                      : j.status === "running" ? "#93c5fd"
-                      : "#94a3b8",
+                    color: j.status === "completed" ? "#178A55"
+                      : j.status === "failed" ? "#C8283B"
+                      : j.status === "running" ? "#0B6C86"
+                      : "#3C516C",
                   }}>
                     {j.status === "completed" ? "✅ Done"
                       : j.status === "failed" ? "❌ Failed"
@@ -1457,15 +1457,15 @@ export default function TrapGeneratorPanel() {
                       : "⏳ Queued"}
                   </span>
                 </div>
-                <div style={{ height: 5, background: "#0a1628", borderRadius: 4, overflow: "hidden" }}>
+                <div style={{ height: 5, background: "#F4F7FB", borderRadius: 4, overflow: "hidden" }}>
                   <div style={{
                     height: "100%", width: `${j.pct ?? 0}%`, borderRadius: 4, transition: "width 0.4s ease",
-                    background: j.status === "failed" ? "#dc2626"
-                      : j.status === "completed" ? "#22c55e" : "#1d4ed8",
+                    background: j.status === "failed" ? "#C8283B"
+                      : j.status === "completed" ? "#178A55" : "#0B6C86",
                   }} />
                 </div>
                 {j.message && (
-                  <div style={{ color: "#475569", fontSize: "0.75rem", marginTop: 4 }}>{j.message}</div>
+                  <div style={{ color: "#5F7491", fontSize: "0.75rem", marginTop: 4 }}>{j.message}</div>
                 )}
               </div>
             ))}
@@ -1481,9 +1481,9 @@ export default function TrapGeneratorPanel() {
 
 function Stat({ label: l, value }: { label: string; value: string | number }) {
   return (
-    <div style={{ background: "#07111e", borderRadius: 8, padding: "12px 14px", border: "1px solid #1e3a5f" }}>
-      <div style={{ color: "#64748b", fontSize: "0.72rem", fontWeight: 600, marginBottom: 4, textTransform: "uppercase" }}>{l}</div>
-      <div style={{ color: "#f8fafc", fontSize: "1.4rem", fontWeight: 700 }}>{value}</div>
+    <div style={{ background: "#F4F7FB", borderRadius: 8, padding: "12px 14px", border: "1px solid #DCE4EE" }}>
+      <div style={{ color: "#5F7491", fontSize: "0.72rem", fontWeight: 600, marginBottom: 4, textTransform: "uppercase" }}>{l}</div>
+      <div style={{ color: "#0D1F33", fontSize: "1.4rem", fontWeight: 700 }}>{value}</div>
     </div>
   );
 }

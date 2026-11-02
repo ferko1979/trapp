@@ -130,10 +130,10 @@ export default function AdminSupportTicketsPanel() {
     <div style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 20 }}>
       <section
         style={{
-          background: "#1e293b",
+          background: "#EEF2F7",
           borderRadius: 12,
           padding: 16,
-          border: "1px solid #334155",
+          border: "1px solid #DCE4EE",
           maxHeight: "80vh",
           overflow: "auto",
         }}
@@ -147,11 +147,11 @@ export default function AdminSupportTicketsPanel() {
               onClick={() => void openTicket(ticket.id)}
               style={{
                 textAlign: "left",
-                background: selectedTicketId === ticket.id ? "#1d4ed8" : "#0f172a",
-                border: "1px solid #334155",
+                background: selectedTicketId === ticket.id ? "#E6F6FB" : "#FFFFFF",
+                border: "1px solid #DCE4EE",
                 borderRadius: 10,
                 padding: 12,
-                color: "#fff",
+                color: "#0D1F33",
                 cursor: "pointer",
               }}
             >
@@ -161,7 +161,7 @@ export default function AdminSupportTicketsPanel() {
                 {ticket.createdByName} • {ticket.category} • {ticket.status}
               </div>
               {ticket.hasUnreadAdmin ? (
-                <div style={{ marginTop: 6, color: "#fca5a5", fontSize: 12 }}>
+                <div style={{ marginTop: 6, color: "#C8283B", fontSize: 12 }}>
                   Awaiting response
                 </div>
               ) : null}
@@ -172,10 +172,10 @@ export default function AdminSupportTicketsPanel() {
 
       <section
         style={{
-          background: "#1e293b",
+          background: "#EEF2F7",
           borderRadius: 12,
           padding: 16,
-          border: "1px solid #334155",
+          border: "1px solid #DCE4EE",
           minHeight: 500,
         }}
       >
@@ -204,8 +204,8 @@ export default function AdminSupportTicketsPanel() {
                 <div
                   key={message.id}
                   style={{
-                    background: message.senderType === "admin" ? "#1e3a8a" : "#0f172a",
-                    border: "1px solid #334155",
+                    background: message.senderType === "admin" ? "#E6F6FB" : "#F4F7FB",
+                    border: "1px solid #DCE4EE",
                     borderRadius: 10,
                     padding: 12,
                   }}
@@ -238,7 +238,7 @@ export default function AdminSupportTicketsPanel() {
                           href={attachment.downloadURL}
                           target="_blank"
                           rel="noreferrer"
-                          style={{ color: "#93c5fd" }}
+                          style={{ color: "#0B6C86" }}
                         >
                           {attachment.fileName}
                         </a>
@@ -258,10 +258,10 @@ export default function AdminSupportTicketsPanel() {
                 style={{
                   width: "100%",
                   borderRadius: 10,
-                  border: "1px solid #475569",
+                  border: "1px solid #5F7491",
                   padding: 12,
-                  background: "#0f172a",
-                  color: "#fff",
+                  background: "#F4F7FB",
+                  color: "#0D1F33",
                 }}
               />
 
@@ -270,10 +270,10 @@ export default function AdminSupportTicketsPanel() {
                 onChange={(e) => setReplyStatus(e.target.value)}
                 style={{
                   borderRadius: 10,
-                  border: "1px solid #475569",
+                  border: "1px solid #5F7491",
                   padding: 12,
-                  background: "#0f172a",
-                  color: "#fff",
+                  background: "#F4F7FB",
+                  color: "#0D1F33",
                 }}
               >
                 <option value="answered">Answered</option>
@@ -288,8 +288,8 @@ export default function AdminSupportTicketsPanel() {
                 style={{
                   padding: "12px 16px",
                   borderRadius: 10,
-                  border: "1px solid #1d4ed8",
-                  background: "#2563eb",
+                  border: "1px solid #0B6C86",
+                  background: "#0B6C86",
                   color: "#fff",
                   cursor: "pointer",
                 }}
@@ -297,7 +297,7 @@ export default function AdminSupportTicketsPanel() {
                 {loading ? "Sending..." : "Send reply"}
               </button>
 
-              {error ? <div style={{ color: "#fca5a5" }}>{error}</div> : null}
+              {error ? <div style={{ color: "#C8283B" }}>{error}</div> : null}
             </div>
           </div>
         )}
