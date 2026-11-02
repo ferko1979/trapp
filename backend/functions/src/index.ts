@@ -14,6 +14,7 @@ export {
 } from "./auth";
 
 export { updateProfile, setRelationship } from "./profile";
+export { deleteMyAccount } from "./accountDeletion";
 
 export {
   listTrapDefinitions,
@@ -154,6 +155,7 @@ export {
 } from "./revolut/payments";
 
 export { revolutWebhook } from "./revolut/webhook";
+export { verifyPlayPurchase, playBillingRtdn } from "./playBilling";
 
 export {
   createDonation,

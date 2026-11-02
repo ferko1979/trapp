@@ -26,6 +26,7 @@ service cloud.firestore {
         && optString(data, 'locale', 16)
         && optString(data, 'acceptedTermsVersion', 32)
         && optString(data, 'photoUrl', 500)
+        && (!('hideFromNearby' in data) || data.hideFromNearby is bool)
         && (!('photoUrl' in data) || data.photoUrl == null
             || data.photoUrl.matches('https://firebasestorage[.]googleapis[.]com/.*/o/profile_images%2F' + uid + '%2F.*'));
     }
@@ -46,7 +47,7 @@ service cloud.firestore {
       // through Cloud Functions such as bootstrapProfile and updateProfile.
       allow update: if isSelf(uid)
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(
-             ['fcmToken', 'timeZone', 'locale', 'acceptedTermsVersion', 'photoUrl'])
+             ['fcmToken', 'timeZone', 'locale', 'acceptedTermsVersion', 'photoUrl', 'hideFromNearby'])
         && validSelfFields(uid, request.resource.data);
 
       allow delete: if false;

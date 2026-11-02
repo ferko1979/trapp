@@ -617,4 +617,14 @@
     <string name="action_update_now">Update Now</string>
     <string name="action_later">Later</string>
 
+    <string name="label_hide_from_nearby">Hide me from nearby players</string>
+    <string name="hint_hide_from_nearby">Strangers won\'t see you on the nearby list. Friends still can.</string>
+    <string name="action_delete_account">Delete account</string>
+    <string name="delete_account_title">Delete your account?</string>
+    <string name="delete_account_message">Your profile, traps, friends, messages and progress will be permanently deleted. Payment records are kept anonymised as required by law. This cannot be undone.</string>
+    <string name="delete_account_confirm">Delete permanently</string>
+    <string name="delete_account_in_progress">Deleting account…</string>
+    <string name="delete_account_done">Your account has been deleted.</string>
+    <string name="delete_account_failed">Account deletion failed. Please try again or contact support.</string>
+    <string name="error_generic_retry">Something went wrong. Please try again.</string>
 </resources>

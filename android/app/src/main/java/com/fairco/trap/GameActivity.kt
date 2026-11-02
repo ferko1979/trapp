@@ -88,8 +88,15 @@ data class ProgressionLevel(
 
 class GameActivity : BaseActivity(), OnMapReadyCallback {
 
+    // The map is full-bleed; insets are handled per-control in finishSetup().
+    override val padForSystemBars = false
+
     companion object {
         const val MAX_PLACEMENT_DISTANCE = 50f
+        private const val TEST_BANNER_UNIT_ID = "ca-app-pub-3940256099942544/6300978111"
+
+        /** True while the map screen is visible; the background service then stays quiet. */
+        @Volatile var isInForeground = false
     }
 
     private lateinit var binding: ActivityGameBinding
@@ -174,7 +181,11 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
             } else {
                 toast(getString(R.string.error_location_denied))
             }
+            requestNotificationPermissionIfNeeded()
         }
+
+    private val notificationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { /* trap alerts just stay silent if denied */ }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val prefs = getSharedPreferences("Settings", MODE_PRIVATE)
@@ -217,6 +228,25 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         finishSetup()
     }
 
+    private val baseTopMargins = HashMap<android.view.View, Int>()
+
+    /** Shifts every top-aligned direct child of the map screen down by [inset] px. */
+    private fun applyTopInset(inset: Int) {
+        val root = binding.root
+        for (i in 0 until root.childCount) {
+            val child = root.getChildAt(i)
+            val lp = child.layoutParams as? androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams ?: continue
+            if (lp.height == android.view.ViewGroup.LayoutParams.MATCH_PARENT || lp.anchorId != android.view.View.NO_ID) continue
+            val vertical = lp.gravity and android.view.Gravity.VERTICAL_GRAVITY_MASK
+            if (lp.gravity != android.view.Gravity.NO_GRAVITY && vertical != android.view.Gravity.TOP) continue
+            val base = baseTopMargins.getOrPut(child) { lp.topMargin }
+            if (lp.topMargin != base + inset) {
+                lp.topMargin = base + inset
+                child.layoutParams = lp
+            }
+        }
+    }
+
     private fun finishSetup() {
         // Record email verification timestamp the first time the verified user opens the app.
         functions.getHttpsCallable("syncMyEmailVerification").call()
@@ -229,6 +259,12 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, windowInsets ->
             val navInsets = windowInsets.getInsets(androidx.core.view.WindowInsetsCompat.Type.navigationBars())
             navBarBottomInset = navInsets.bottom
+            // Edge-to-edge (Android 15+): keep the top-aligned overlays below the status bar / cutout.
+            val topInset = windowInsets.getInsets(
+                androidx.core.view.WindowInsetsCompat.Type.statusBars() or
+                    androidx.core.view.WindowInsetsCompat.Type.displayCutout()
+            ).top
+            applyTopInset(topInset)
             val dp8 = (8 * resources.displayMetrics.density).toInt()
             binding.bagCard.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
                 bottomMargin = navBarBottomInset + dp8
@@ -260,7 +296,8 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         requestLocationPermissionsIfNeeded()
         checkMapsApiKey()
         observeDisarmState()
-        observeTheme()
+        handleOpenDisarm(intent)
+observeTheme()
         observeBagLoading()
         observePlacementPhase()
         observePlacementProgress()
@@ -556,9 +593,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
             val bundle = ai.metaData
             val key = bundle.getString("com.google.android.geo.API_KEY")
             
-            Log.d("GameActivity", "MAPS_API_KEY from manifest: ${key?.take(8)}...")
-
-            if (key.isNullOrEmpty() || key.contains("\${MAPS_API_KEY}") || key == "MISSING_MAPS_API_KEY") {
+if (key.isNullOrEmpty() || key.contains("\${MAPS_API_KEY}") || key == "MISSING_MAPS_API_KEY") {
                 Log.e("GameActivity", "CRITICAL: Google Maps API Key is missing!")
                 AlertDialog.Builder(this)
                     .setTitle("Map Error: No API Key")
@@ -582,9 +617,26 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         badgeVm.stopPolling()
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        if (::binding.isInitialized) handleOpenDisarm(intent)
+    }
+
+    /** Proximity-notification tap / "Disarm" action: open the disarm sheet. */
+    private fun handleOpenDisarm(intent: Intent?) {
+        if (intent?.getStringExtra(TrapProximityNotifier.EXTRA_OPEN_DISARM) == null) return
+        intent.removeExtra(TrapProximityNotifier.EXTRA_OPEN_DISARM)
+        // When idle the sheet opens by itself on the first NearbyDetected after the next fix.
+        if (disarmVm.disarmState.value !is DisarmState.Idle) {
+            TrapAlertBottomSheet.show(supportFragmentManager)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
-        if (isTrackingServiceRunning()) {
+        isInForeground = true
+if (isTrackingServiceRunning()) {
             binding.btnToggleRadar.setImageResource(android.R.drawable.ic_media_pause)
         }
         consecutiveFailures = 0
@@ -648,7 +700,8 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
 
     override fun onPause() {
         super.onPause()
-        stopHeartbeat()
+        isInForeground = false
+stopHeartbeat()
         stopGpsUpdates()
         stopCompassSensor()
     }
@@ -1454,6 +1507,20 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         dialogBinding.switchSound.isChecked = prefs.getBoolean("Sound_Enabled", true)
         dialogBinding.switchNotifications.isChecked = prefs.getBoolean("Notifications_Enabled", true)
 
+        val uid = auth.currentUser?.uid
+        var hideFromNearbyLoaded: Boolean? = null
+        if (uid != null) {
+            Firebase.firestore.collection("users").document(uid).get().addOnSuccessListener { doc ->
+                val hidden = doc.getBoolean("hideFromNearby") == true
+                hideFromNearbyLoaded = hidden
+                dialogBinding.switchHideFromNearby.isChecked = hidden
+            }
+        }
+        dialogBinding.btnDeleteAccount.setOnClickListener {
+            dialog.dismiss()
+            confirmDeleteAccount()
+        }
+
         // Load Theme Preference
         val currentThemeMode = ThemePreferences.load(this)
         when (currentThemeMode) {
@@ -1516,6 +1583,12 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
 
             isSoundEnabled = soundEnabled
 
+            val hide = dialogBinding.switchHideFromNearby.isChecked
+            if (uid != null && hideFromNearbyLoaded != null && hide != hideFromNearbyLoaded) {
+                Firebase.firestore.collection("users").document(uid).update("hideFromNearby", hide)
+                    .addOnFailureListener { toast(getString(R.string.error_generic_retry)) }
+            }
+
             if (selectedLang != currentLang) {
                 setAppLocale(selectedLang) // saves preference + recreates
             }
@@ -1523,6 +1596,29 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         }
 
         dialog.show()
+    }
+
+    private fun confirmDeleteAccount() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.delete_account_title)
+            .setMessage(R.string.delete_account_message)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(R.string.delete_account_confirm) { _, _ ->
+                toast(getString(R.string.delete_account_in_progress))
+                functions.getHttpsCallable("deleteMyAccount")
+                    .apply { setTimeout(300, java.util.concurrent.TimeUnit.SECONDS) }
+                    .call(hashMapOf("confirm" to "DELETE"))
+                    .addOnSuccessListener {
+                        stopTrackingService()
+                        auth.signOut()
+                        Toast.makeText(this, R.string.delete_account_done, Toast.LENGTH_LONG).show()
+                        startActivity(Intent(this, LandingActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+                        finish()
+                    }
+                    .addOnFailureListener { toast(getString(R.string.delete_account_failed)) }
+            }
+            .show()
     }
 
     private fun showEmailChangeTicketDialog() {
@@ -1893,12 +1989,27 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         }
     }
 
-    private fun hasLocationPermission() = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-    
-    private fun requestLocationPermissionsIfNeeded() { 
+    // Approximate (coarse-only) location is a valid grant on Android 12+.
+    private fun hasLocationPermission() =
+        ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+        ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+    private fun requestNotificationPermissionIfNeeded() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
+
+    private fun requestLocationPermissionsIfNeeded() {
         if (!hasLocationPermission()) {
-            locationPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)) 
+            locationPermissionLauncher.launch(arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+            ))
         } else {
+            requestNotificationPermissionIfNeeded()
             enableMyLocationOnMap()
             fetchLastKnownLocation()
             startGpsUpdates()
@@ -2273,6 +2384,22 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
         else      -> "${ads.rewardedReductionValue} second${if (ads.rewardedReductionValue != 1) "s" else ""}"
     }
 
+    private var bannerAd: com.google.android.gms.ads.AdView? = null
+
+    /** (Re)creates the banner when the unit ID changes; an AdView's unit cannot be swapped. */
+    private fun loadBanner(unitId: String) {
+        if (bannerAd?.adUnitId != unitId) {
+            bannerAd?.destroy()
+            binding.bannerAdView.removeAllViews()
+            bannerAd = com.google.android.gms.ads.AdView(this).apply {
+                setAdSize(com.google.android.gms.ads.AdSize.BANNER)
+                adUnitId = unitId
+            }
+            binding.bannerAdView.addView(bannerAd)
+        }
+        bannerAd?.loadAd(com.google.android.gms.ads.AdRequest.Builder().build())
+    }
+
     private fun observeBannerAd() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -2284,14 +2411,16 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
                         if (!ads.loaded) return@collect
                         val isPaid = membership.membership == "paid" && !membership.isExpired
                         // Show banner only if globally enabled AND not suppressed by the user's package
-                        val showBanner = ads.bannerAdEnabled && !(isPaid && membership.disableBannerAd)
+                        val bannerUnit = if (BuildConfig.DEBUG) TEST_BANNER_UNIT_ID else ads.bannerAdUnitId
+                        val showBanner = ads.bannerAdEnabled && bannerUnit.isNotBlank() &&
+                            !(isPaid && membership.disableBannerAd)
                         if (showBanner) {
                             if (binding.bannerAdContainer.visibility != android.view.View.VISIBLE) {
                                 // Apply theme-correct background before making visible
                                 val isDark = ThemeManager.isDarkMode.value
                                 binding.bannerAdContainer.setBackgroundColor(if (isDark) 0xFF0E1828.toInt() else 0xFFFFFFFF.toInt())
                                 binding.bannerAdTopBorder.setBackgroundColor(if (isDark) 0xFF22385A.toInt() else 0xFFEAF1FA.toInt())
-                                binding.bannerAdView.loadAd(com.google.android.gms.ads.AdRequest.Builder().build())
+                                loadBanner(bannerUnit)
                                 binding.bannerAdContainer.visibility = android.view.View.VISIBLE
                             }
                         } else {
@@ -2394,6 +2523,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
 
     override fun onDestroy() {
         super.onDestroy()
+        bannerAd?.destroy()
         stopGpsUpdates()
         stopTrackingService()
         userListener?.remove()

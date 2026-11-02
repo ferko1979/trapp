@@ -29,6 +29,7 @@ data class CaptureVictoryEvent(
 
 data class AdSettings(
     val bannerAdEnabled: Boolean = true,
+    val bannerAdUnitId: String = "",
     val interstitialAdEnabled: Boolean = true,
     val rewardedAdEnabled: Boolean = true,
     /** "seconds" | "minutes" | "hours" | "percent" */
@@ -278,6 +279,7 @@ class GameViewModel : ViewModel() {
                     ?.get("settings") as? Map<String, Any?> ?: return@launch
                 _adSettings.value = AdSettings(
                     bannerAdEnabled = settings["bannerAdEnabled"] as? Boolean ?: true,
+                    bannerAdUnitId = settings["admobBannerAdUnitId"] as? String ?: "",
                     interstitialAdEnabled = settings["interstitialAdEnabled"] as? Boolean ?: true,
                     rewardedAdEnabled = settings["rewardedAdEnabled"] as? Boolean ?: true,
                     rewardedReductionType =

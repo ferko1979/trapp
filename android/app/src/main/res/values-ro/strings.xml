@@ -556,4 +556,14 @@
     <string name="action_accept_continue">Acceptă &amp; Continuă</string>
     <string name="action_decline_logout">Refuză &amp; Deconectează-te</string>
 
+    <string name="label_hide_from_nearby">Ascunde-mă de jucătorii din apropiere</string>
+    <string name="hint_hide_from_nearby">Străinii nu te vor vedea în lista din apropiere. Prietenii da.</string>
+    <string name="action_delete_account">Șterge contul</string>
+    <string name="delete_account_title">Ștergi contul?</string>
+    <string name="delete_account_message">Profilul, capcanele, prietenii, mesajele și progresul tău vor fi șterse definitiv. Înregistrările de plată sunt păstrate anonimizat conform legii. Acțiunea nu poate fi anulată.</string>
+    <string name="delete_account_confirm">Șterge definitiv</string>
+    <string name="delete_account_in_progress">Se șterge contul…</string>
+    <string name="delete_account_done">Contul tău a fost șters.</string>
+    <string name="delete_account_failed">Ștergerea a eșuat. Încearcă din nou sau contactează asistența.</string>
+    <string name="error_generic_retry">Ceva n-a mers. Încearcă din nou.</string>
 </resources>

@@ -307,4 +307,14 @@
     <string name="error_user_not_found">משתמש לא נמצא</string>
     <string name="error_search_failed">החיפוש נכשל</string>
 
+    <string name="label_hide_from_nearby">הסתר אותי משחקנים בקרבת מקום</string>
+    <string name="hint_hide_from_nearby">זרים לא יראו אותך ברשימת הקרובים. חברים כן.</string>
+    <string name="action_delete_account">מחיקת חשבון</string>
+    <string name="delete_account_title">למחוק את החשבון?</string>
+    <string name="delete_account_message">הפרופיל, המלכודות, החברים, ההודעות וההתקדמות שלך יימחקו לצמיתות. רשומות תשלום נשמרות באופן אנונימי כנדרש בחוק. לא ניתן לבטל פעולה זו.</string>
+    <string name="delete_account_confirm">מחק לצמיתות</string>
+    <string name="delete_account_in_progress">מוחק חשבון…</string>
+    <string name="delete_account_done">החשבון שלך נמחק.</string>
+    <string name="delete_account_failed">המחיקה נכשלה. נסה שוב או פנה לתמיכה.</string>
+    <string name="error_generic_retry">משהו השתבש. נסה שוב.</string>
 </resources>

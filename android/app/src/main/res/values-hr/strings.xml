@@ -556,4 +556,14 @@
     <string name="action_accept_continue">Prihvati &amp; Nastavi</string>
     <string name="action_decline_logout">Odbij &amp; Odjavi se</string>
 
+    <string name="label_hide_from_nearby">Sakrij me od igrača u blizini</string>
+    <string name="hint_hide_from_nearby">Nepoznati te neće vidjeti na popisu u blizini. Prijatelji hoće.</string>
+    <string name="action_delete_account">Izbriši račun</string>
+    <string name="delete_account_title">Izbrisati račun?</string>
+    <string name="delete_account_message">Tvoj profil, zamke, prijatelji, poruke i napredak bit će trajno izbrisani. Zapisi o plaćanju čuvaju se anonimizirano prema zakonu. Ovo se ne može poništiti.</string>
+    <string name="delete_account_confirm">Trajno izbriši</string>
+    <string name="delete_account_in_progress">Brisanje računa…</string>
+    <string name="delete_account_done">Tvoj račun je izbrisan.</string>
+    <string name="delete_account_failed">Brisanje nije uspjelo. Pokušaj ponovno ili kontaktiraj podršku.</string>
+    <string name="error_generic_retry">Nešto je pošlo po zlu. Pokušaj ponovno.</string>
 </resources>

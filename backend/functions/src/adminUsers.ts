@@ -9,6 +9,7 @@ import { getDatePartsForTimezone } from "./shared/dates";
 import { logger } from "firebase-functions";
 import { getAuth } from "firebase-admin/auth";
 import { writeAuditLog } from "./adminAuditLog";
+import { deleteAuthUser, purgeUserData } from "./shared/userDataCleanup";
 
 
 type UserStatus = "active" | "inactive" | "suspended";
@@ -1155,14 +1156,35 @@ export const adminSetUserLevel = onCall(async (request) => {
   };
 });
 
-export const adminDeleteUser = onCall(async (request) => {
-  requireAdmin(request);
+export const adminDeleteUser = onCall({ timeoutSeconds: 300 }, async (request) => {
+  const adminUid = requireAdmin(request);
 
   const data = (request.data ?? {}) as Record<string, unknown>;
   const uid = getTrimmedString(data.uid);
 
   if (!uid) {
     throw new HttpsError("invalid-argument", "uid is required.");
+  }
+
+  // Hard delete = full GDPR erasure (same logic as the in-app deleteMyAccount),
+  // used to fulfil deletion requests received by e-mail.
+  if (data.hard === true) {
+    if (uid === adminUid) {
+      throw new HttpsError("failed-precondition", "Use the in-app deletion for your own account.");
+    }
+    const summary = await purgeUserData(uid);
+    await writeAuditLog({
+      adminUid,
+      adminEmail: (request.auth?.token?.email as string | undefined) ?? null,
+      adminName: null,
+      category: "users",
+      action: "HARD_DELETE_USER",
+      targetId: uid,
+      summary: `Admin permanently erased user ${uid} (deletion request)`,
+      details: summary,
+    });
+    const authDeleted = await deleteAuthUser(uid);
+    return { ok: true, uid, hardDeleted: true, authDeleted, summary };
   }
 
   await getDb()

@@ -556,4 +556,14 @@
     <string name="action_accept_continue">Prijať &amp; Pokračovať</string>
     <string name="action_decline_logout">Odmietnuť &amp; Odhlásiť sa</string>
 
+    <string name="label_hide_from_nearby">Skryť ma pred hráčmi v okolí</string>
+    <string name="hint_hide_from_nearby">Cudzí ťa neuvidia v zozname okolia. Priatelia áno.</string>
+    <string name="action_delete_account">Odstrániť účet</string>
+    <string name="delete_account_title">Odstrániť účet?</string>
+    <string name="delete_account_message">Tvoj profil, pasce, priatelia, správy a postup budú natrvalo odstránené. Platobné záznamy uchovávame anonymizované podľa zákona. Túto akciu nemožno vrátiť.</string>
+    <string name="delete_account_confirm">Natrvalo odstrániť</string>
+    <string name="delete_account_in_progress">Účet sa odstraňuje…</string>
+    <string name="delete_account_done">Tvoj účet bol odstránený.</string>
+    <string name="delete_account_failed">Odstránenie zlyhalo. Skús to znova alebo kontaktuj podporu.</string>
+    <string name="error_generic_retry">Niečo sa pokazilo. Skús to znova.</string>
 </resources>

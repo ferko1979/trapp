@@ -42,6 +42,8 @@ const ACTION_VERB: Record<string, string> = {
   SET_USER_LEVEL: "Changed user level",
   SET_USER_PASSWORD: "Reset password",
   DELETE_USER: "Deleted user",
+  HARD_DELETE_USER: "Permanently erased user (deletion request)",
+  SELF_DELETE_ACCOUNT: "Deleted own account (self-service)",
   GRANT_ADMIN: "Granted admin",
   REVOKE_ADMIN: "Revoked admin",
   UPDATE_ADMIN_PROFILE: "Updated admin profile",

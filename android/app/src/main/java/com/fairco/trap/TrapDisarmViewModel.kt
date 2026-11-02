@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class TrapDisarmViewModel : ViewModel() {
-    private val functions = Firebase.functions
+    private val functions = Firebase.functions("europe-west1")
 
     val disarmState = MutableStateFlow<DisarmState>(DisarmState.Idle)
 
@@ -30,25 +30,7 @@ class TrapDisarmViewModel : ViewModel() {
     fun onLocationUpdateResponse(data: Map<String, Any>, context: Context) {
         @Suppress("UNCHECKED_CAST")
         val nearbyRaw = data["nearbyTraps"] as? List<Map<String, Any>> ?: emptyList()
-        val nearbyTraps = nearbyRaw.map {
-            NearbyTrap(
-                trapId             = it["trapId"] as? String ?: "",
-                trapTypeId         = it["trapTypeId"] as? String ?: "",
-                iconKey            = it["iconKey"] as? String ?: "",
-                distanceMeters     = (it["distanceMeters"] as? Number)?.toInt() ?: 999,
-                radiusMeters       = (it["radiusMeters"] as? Number)?.toInt() ?: 25,
-                disarmRadiusMeters = (it["disarmRadiusMeters"] as? Number)?.toInt()
-                    ?.let { v -> if (v > ((it["radiusMeters"] as? Number)?.toInt() ?: 25)) v
-                                 else ((it["radiusMeters"] as? Number)?.toInt() ?: 25) + 1 }
-                    ?: (((it["radiusMeters"] as? Number)?.toInt() ?: 25) + 1),
-                disarmLeaveSeconds = (it["disarmLeaveSeconds"] as? Number)?.toInt()
-                    ?.coerceAtLeast(1) ?: 15,
-                placementLeaveSeconds = (it["placementLeaveSeconds"] as? Number)?.toInt()
-                    ?.coerceAtLeast(1) ?: 15,
-                lat                = (it["lat"] as? Number)?.toDouble() ?: 0.0,
-                lng                = (it["lng"] as? Number)?.toDouble() ?: 0.0
-            )
-        }.filter { it.trapId.isNotBlank() }
+        val nearbyTraps = nearbyRaw.mapNotNull { NearbyTrap.fromServer(it) }
 
         val activeTrapId = when (val s = disarmState.value) {
             is DisarmState.NearbyDetected -> s.trap.trapId

@@ -165,7 +165,7 @@ class SplashActivity : BaseActivity() {
     private suspend fun checkTncVersion(uid: String): Long? {
         return try {
             val locale = LocaleManager.getLocale(this)
-            val result = Firebase.functions
+            val result = Firebase.functions("europe-west1")
                 .getHttpsCallable("getTermsAndConditions")
                 .call(hashMapOf("locale" to locale))
                 .await()

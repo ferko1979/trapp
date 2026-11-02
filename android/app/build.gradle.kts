@@ -17,7 +17,7 @@ val localProps = Properties().apply {
 @Suppress("DEPRECATION_ERROR")
 android {
     namespace = "com.fairco.trap"
-    compileSdk = 35
+    compileSdk = 36
 
     signingConfigs {
         create("release") {
@@ -31,7 +31,7 @@ android {
     defaultConfig {
         applicationId = "com.fairco.trap"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 26
         versionName = "0.3.11"
 
@@ -96,6 +96,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.3")
     implementation("androidx.fragment:fragment-ktx:1.8.5")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0")
+    implementation("com.android.billingclient:billing-ktx:8.0.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -107,7 +108,7 @@ dependencies {
     implementation("com.google.firebase:firebase-storage")
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-appcheck-playintegrity")
-    implementation("com.google.firebase:firebase-appcheck-debug")
+    debugImplementation("com.google.firebase:firebase-appcheck-debug")
 
     implementation(libs.play.services.base)
     implementation(libs.play.services.maps)

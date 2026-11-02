@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete your account — TrApp</title>
+  <meta name="description" content="How to delete your TrApp (Trap by Fairco) account and data, what is deleted, what is kept in anonymised form, and how to request deletion without the app." />
+  <link rel="icon" href="/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070E1A;
+      --surface: #0E1828;
+      --surface-2: #13213A;
+      --line: #1E3150;
+      --text: #DCE7F5;
+      --muted: #8DA2BF;
+      --accent: #38D3F2;
+      --on-accent: #04121C;
+      --danger: #FF6B6B;
+      --ok: #4ADE80;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Rajdhani", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      background-image:
+        radial-gradient(circle at 50% -10%, rgba(56, 211, 242, 0.10), transparent 55%),
+        repeating-radial-gradient(circle at 50% -10%, rgba(56, 211, 242, 0.035) 0 1px, transparent 1px 90px);
+      min-height: 100vh;
+    }
+    a { color: var(--accent); }
+    a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+
+    header { border-bottom: 1px solid var(--line); background: rgba(14, 24, 40, 0.85); }
+    header .wrap { display: flex; align-items: center; gap: 14px; padding-top: 18px; padding-bottom: 18px; }
+    header img { width: 44px; height: 44px; border-radius: 10px; }
+    .brand { font-family: "Exo 2", sans-serif; font-weight: 800; font-size: 1.35rem; letter-spacing: 2px; text-transform: uppercase; }
+    .brand small { display: block; font-family: "Share Tech Mono", monospace; font-weight: 400; font-size: 0.75rem; letter-spacing: 1px; color: var(--muted); text-transform: none; }
+
+    main { padding: 36px 0 72px; }
+    .eyebrow { font-family: "Share Tech Mono", monospace; color: var(--accent); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
+    h1 { font-family: "Exo 2", sans-serif; font-weight: 800; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; margin: 6px 0 14px; }
+    .lead { color: var(--muted); font-size: 1.12rem; max-width: 680px; }
+
+    section { margin-top: 30px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px 22px; }
+    h2 { font-family: "Exo 2", sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    h2 .num { font-family: "Share Tech Mono", monospace; font-size: 0.85rem; color: var(--on-accent); background: var(--accent); border-radius: 6px; padding: 1px 8px; font-weight: 400; }
+    p { margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+    ul, ol { margin: 0 0 12px 22px; }
+    li { margin-bottom: 6px; }
+    li:last-child { margin-bottom: 0; }
+    strong { color: #fff; font-weight: 700; }
+    .mono { font-family: "Share Tech Mono", monospace; font-size: 0.95em; }
+    .path { font-family: "Share Tech Mono", monospace; background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 7px; white-space: nowrap; }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
+    .card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+    .card h3 { font-family: "Exo 2", sans-serif; font-size: 1.05rem; margin-bottom: 10px; }
+    .card.del h3 { color: var(--danger); }
+    .card.keep h3 { color: var(--ok); }
+    .card ul { margin-left: 18px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+    th, td { text-align: left; padding: 10px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-family: "Share Tech Mono", monospace; font-weight: 400; color: var(--muted); font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: none; }
+    .table-scroll { overflow-x: auto; }
+
+    .btn {
+      display: inline-block; margin-top: 8px;
+      background: var(--accent); color: var(--on-accent);
+      font-family: "Exo 2", sans-serif; font-weight: 700; letter-spacing: 0.5px;
+      text-decoration: none; border-radius: 10px; padding: 12px 20px;
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .note { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; color: var(--muted); }
+
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.95rem; padding: 22px 0 36px; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; }
+
+    @media (max-width: 640px) {
+      body { font-size: 17px; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 20px 16px; }
+      .path { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <img src="/logo.png" alt="TrApp logo" />
+    <div class="brand">TrApp<small>“Trap” by Fairco</small></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">Account &amp; data deletion</div>
+  <h1>Delete your TrApp account</h1>
+  <p class="lead">This page explains how to delete your account in <strong>TrApp</strong> (listed on Google Play as <strong>“Trap”</strong>, developed by <strong>Fairco</strong>), which data is deleted, which records we must keep in anonymised form, and how to ask for deletion if you no longer have the app.</p>
+
+  <section id="in-app">
+    <h2><span class="num">01</span> Delete your account in the app</h2>
+    <ol>
+      <li>Open TrApp and sign in.</li>
+      <li>Go to <span class="path">Profile</span> → <span class="path">Settings</span>.</li>
+      <li>Tap <strong>“Delete account”</strong>.</li>
+      <li>Read the summary and confirm the deletion.</li>
+    </ol>
+    <p>Your account and data are erased <strong>immediately</strong> and you are signed out. This cannot be undone: your username, progress, traps, rankings and purchases tied to the account cannot be restored.</p>
+    <p class="note">If you have an active subscription, it is cancelled at the moment of deletion and will not renew. Subscriptions bought through Google Play are managed by Google: please also cancel them in Google Play → Payments &amp; subscriptions.</p>
+  </section>
+
+  <section id="what">
+    <h2><span class="num">02</span> What is deleted and what is kept</h2>
+    <div class="grid">
+      <div class="card del">
+        <h3>Deleted permanently</h3>
+        <ul>
+          <li>Your account and sign-in credentials (e-mail address, password)</li>
+          <li>Profile: username, display name, profile picture, birth date, settings, language</li>
+          <li>Your traps, trap inventory, items and awards</li>
+          <li>Your location data and last known position</li>
+          <li>Scores, statistics and leaderboard entries</li>
+          <li>Friends, friend requests, invitations and ally group memberships</li>
+          <li>Chat conversations and messages</li>
+          <li>Support tickets and their attachments</li>
+          <li>Notifications and push notification tokens</li>
+        </ul>
+      </div>
+      <div class="card keep">
+        <h3>Kept in anonymised form</h3>
+        <ul>
+          <li><strong>Payment, donation, subscription and invoice records</strong> — kept for <strong>8 years</strong>, as required by Hungarian accounting law. Your name, e-mail address and user ID are removed; only the amount, date, currency and payment provider reference remain.</li>
+          <li><strong>Game events shared with other players</strong> (e.g. a capture between you and another player) — kept without your user ID, username or location so the other player’s history stays consistent.</li>
+          <li><strong>A security log entry</strong> that an account was deleted (date and internal ID only, no name or e-mail).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="timing">
+    <h2><span class="num">03</span> How long it takes</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Data</th><th>When</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Account, profile, game and social data</td><td>Immediately when you delete in the app; within 30 days of an e-mail request</td></tr>
+          <tr><td>Anonymised payment / donation / invoice records</td><td>Kept for 8 years, then deleted</td></tr>
+          <tr><td>Anonymised shared game events</td><td>Kept while the other player’s account exists</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="request">
+    <h2><span class="num">04</span> Request deletion without the app</h2>
+    <p>If you uninstalled the app or cannot sign in, send us an e-mail from the address registered to your TrApp account. Please include your username if you remember it.</p>
+    <a class="btn" href="mailto:privacy@playtrapnow.com?subject=TrApp%20account%20deletion%20request&amp;body=Please%20delete%20my%20TrApp%20account%20and%20associated%20data.%0D%0A%0D%0AUsername%20(if%20known)%3A%20%0D%0A">E-mail privacy@playtrapnow.com</a>
+    <p style="margin-top:14px">We verify that the request comes from the account owner, delete the account within <strong>30 days</strong> and confirm by e-mail. If we cannot verify ownership from the registered address, we may ask for additional confirmation.</p>
+  </section>
+
+  <section id="more">
+    <h2><span class="num">05</span> More information</h2>
+    <p>Data controller: <strong>Fairco</strong>. For all data protection questions and other GDPR rights (access, rectification, portability, objection), see our <a href="/privacy/">Privacy Policy</a> or write to <a href="mailto:privacy@playtrapnow.com">privacy@playtrapnow.com</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Fairco · TrApp</span>
+    <span><a href="/privacy/">Privacy Policy</a> · <a href="/download/">Download</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

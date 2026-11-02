@@ -38,6 +38,7 @@ export const adminListPaymentPackages = onCall(async (request) => {
       trialDays: d.trialDays ?? 0,
       isActive: d.isActive ?? false,
       isRecurring: d.isRecurring ?? false,
+      playProductId: typeof d.playProductId === "string" ? d.playProductId : "",
       sortOrder: d.sortOrder ?? 99,
       discounts: Array.isArray(d.discounts) ? d.discounts : [],
         // Which user_levels doc is granted when this package is purchased
@@ -84,6 +85,7 @@ export const adminCreatePaymentPackage = onCall(async (request) => {
     trialDays: Math.max(0, asNum(data.trialDays, 0)),
     isActive: asBool(data.isActive, false),
     isRecurring: asBool(data.isRecurring, false),
+    playProductId: asStr(data.playProductId, "").trim(),
     sortOrder: asNum(data.sortOrder, 99),
     levelId: asStr(data.levelId, "").trim(),
     disableBannerAd: asBool(data.disableBannerAd, false),
@@ -129,6 +131,7 @@ export const adminUpdatePaymentPackage = onCall(async (request) => {
   if ("isActive" in data)    update.isActive    = asBool(data.isActive, false);
   if ("isRecurring" in data) update.isRecurring = asBool(data.isRecurring, false);
   if ("sortOrder" in data)   update.sortOrder   = asNum(data.sortOrder, 99);
+  if ("playProductId" in data) update.playProductId = asStr(data.playProductId, "").trim();
 
   if ("duration" in data) {
     const dur = asStr(data.duration, "1m");

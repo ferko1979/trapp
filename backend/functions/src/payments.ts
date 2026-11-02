@@ -6,6 +6,7 @@ import { HttpsError, onCall, onRequest } from "firebase-functions/v2/https";
 import { getDb } from "./shared/firebase";
 import { writeAuditLog } from "./adminAuditLog";
 import { sendPurchaseEmailInternal } from "./adminEmailAutomation";
+import { durationDays } from "./revolut/payments";
 
 // ─── Shared helpers ───────────────────────────────────────────────────────────
 
@@ -18,7 +19,7 @@ type StripeSettings = {
   enabled: boolean;
 };
 
-async function loadStripeSettings(): Promise<StripeSettings> {
+export async function loadStripeSettings(): Promise<StripeSettings> {
   const snap = await getDb().collection("payment_settings").doc("stripe").get();
   const d = snap.data() ?? {};
   return {
@@ -32,7 +33,7 @@ async function loadStripeSettings(): Promise<StripeSettings> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-async function makeStripe(secretKey: string): Promise<any> {
+export async function makeStripe(secretKey: string): Promise<any> {
   const { default: Stripe } = await import("stripe");
   return new Stripe(secretKey);
 }
@@ -106,6 +107,19 @@ function safeReturnUrl(candidate: string, configuredSuccessUrl?: string): string
   }
 }
 
+/** Stripe recurring price interval for a package duration code. */
+function stripeRecurring(duration: string): { interval: "day" | "week" | "month" | "year"; interval_count: number } {
+  switch (duration) {
+    case "1d":  return { interval: "day",   interval_count: 1 };
+    case "7d":  return { interval: "week",  interval_count: 1 };
+    case "30d": return { interval: "day",   interval_count: 30 };
+    case "3m":  return { interval: "month", interval_count: 3 };
+    case "6m":  return { interval: "month", interval_count: 6 };
+    case "1y":  return { interval: "year",  interval_count: 1 };
+    default:    return { interval: "month", interval_count: 1 };
+  }
+}
+
 // ─── createCheckoutSession ────────────────────────────────────────────────────
 
 export const createCheckoutSession = onCall(async (request) => {
@@ -113,16 +127,33 @@ export const createCheckoutSession = onCall(async (request) => {
   if (!uid) throw new HttpsError("unauthenticated", "Authentication required.");
 
   const data = (request.data ?? {}) as Record<string, unknown>;
-  const levelId      = typeof data.levelId      === "string" ? data.levelId.trim()      : "";
-  const paymentType  = data.paymentType === "recurring" ? "recurring" : "one_time";
+  const packageId    = typeof data.packageId    === "string" ? data.packageId.trim()    : "";
+  const discountCode = typeof data.discountCode === "string" ? data.discountCode.trim() : "";
+  let levelId        = typeof data.levelId      === "string" ? data.levelId.trim()      : "";
+  let paymentType: "recurring" | "one_time" = data.paymentType === "recurring" ? "recurring" : "one_time";
   const returnUrl    = typeof data.returnUrl    === "string" ? data.returnUrl.trim()    : "";
   // billingInterval: "month" (default) or "year" — only meaningful for recurring
-  const billingInterval: "month" | "year" =
+  let billingInterval: "month" | "year" =
     data.billingInterval === "year" ? "year" : "month";
 
-  if (!levelId) throw new HttpsError("invalid-argument", "levelId is required.");
-
   const db = getDb();
+
+  // The mobile app buys a payment package (price, duration and level come
+  // from the package); the legacy web flow passes a levelId directly.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let pkg: Record<string, any> | null = null;
+  if (packageId) {
+    const pkgSnap = await db.collection("payment_packages").doc(packageId).get();
+    if (!pkgSnap.exists || pkgSnap.data()?.isActive !== true) {
+      throw new HttpsError("not-found", "Package not found.");
+    }
+    pkg = pkgSnap.data()!;
+    levelId = typeof pkg.levelId === "string" ? pkg.levelId.trim() : "";
+    paymentType = pkg.isRecurring === true ? "recurring" : "one_time";
+    billingInterval = pkg.duration === "1y" ? "year" : "month";
+  }
+
+  if (!levelId) throw new HttpsError("invalid-argument", "levelId is required.");
 
   // Fetch level data
   const levelSnap = await db.collection("user_levels").doc(levelId).get();
@@ -131,7 +162,27 @@ export const createCheckoutSession = onCall(async (request) => {
 
   if (!level.active) throw new HttpsError("failed-precondition", "This level is not available.");
 
-  const priceAmount = typeof level.priceAmount === "number" ? level.priceAmount : 0;
+  let priceAmount = typeof level.priceAmount === "number" ? level.priceAmount : 0;
+  let appliedDiscount: string | null = null;
+  if (pkg) {
+    // Package prices are stored in minor units.
+    let minor: number = typeof pkg.price === "number" ? pkg.price : 0;
+    if (discountCode && Array.isArray(pkg.discounts)) {
+      const disc = pkg.discounts.find(
+        (d: Record<string, unknown>) =>
+          d.isActive &&
+          String(d.code ?? "").toUpperCase() === discountCode.toUpperCase() &&
+          (!(d.validUntil instanceof Timestamp) || d.validUntil.toMillis() > Date.now()) &&
+          (typeof d.maxUses !== "number" || Number(d.usedCount ?? 0) < (d.maxUses as number))
+      );
+      if (disc) {
+        const pct = typeof disc.discountPercent === "number" ? disc.discountPercent : 0;
+        minor = Math.round(minor * (1 - pct / 100));
+        appliedDiscount = String(disc.code);
+      }
+    }
+    priceAmount = minor / 100;
+  }
   if (priceAmount <= 0) {
     throw new HttpsError(
       "invalid-argument",
@@ -155,7 +206,8 @@ export const createCheckoutSession = onCall(async (request) => {
 
   const stripe = await makeStripe(settings.secretKey);
   const currency = (
-    typeof level.priceCurrency === "string" ? level.priceCurrency : settings.currency
+    pkg && typeof pkg.currency === "string" ? pkg.currency
+      : typeof level.priceCurrency === "string" ? level.priceCurrency : settings.currency
   ).toLowerCase();
 
   const isRecurring = paymentType === "recurring";
@@ -167,13 +219,16 @@ export const createCheckoutSession = onCall(async (request) => {
     typeof level.membershipLengthValue === "number" ? level.membershipLengthValue : 1;
 
   // Pre-calculate membershipExpiresAt so we can store it alongside the payment record
-  const membershipExpiresAt = calcMembershipExpiresAt(
-    new Date(),
-    paymentType,
-    billingInterval,
-    levelLengthType,
-    levelLengthValue
-  );
+  const membershipExpiresAt = pkg
+    ? new Date(Date.now() + (durationDays(pkg.duration ?? "1m") + (isRecurring ? 3 : 0)) * 86400000)
+    : calcMembershipExpiresAt(
+        new Date(),
+        paymentType,
+        billingInterval,
+        levelLengthType,
+        levelLengthValue
+      );
+  const recurring = pkg ? stripeRecurring(pkg.duration ?? "1m") : { interval: billingInterval, interval_count: 1 };
 
   // Create pending payment record first
   const paymentRef = db.collection("payments").doc();
@@ -182,6 +237,8 @@ export const createCheckoutSession = onCall(async (request) => {
     email: userEmail ?? null,
     levelId,
     levelName: typeof level.name === "string" ? level.name : levelId,
+    packageId: packageId || null,
+    discountCode: appliedDiscount,
     amount: priceAmount,
     currency,
     paymentType,
@@ -222,10 +279,7 @@ export const createCheckoutSession = onCall(async (request) => {
                   : `Auto-renews every 30 days. Cancel any time.`,
               },
               unit_amount: Math.round(priceAmount * 100),
-              recurring: {
-                interval: billingInterval,
-                interval_count: 1,
-              },
+              recurring,
             }
           : {
               currency,
@@ -247,6 +301,7 @@ export const createCheckoutSession = onCall(async (request) => {
       paymentType,
       billingInterval,
       paymentRecordId: paymentRef.id,
+      packageId,
       // Store pre-calculated expiry so webhook can use it without re-computing
       membershipExpiresAtMs: String(membershipExpiresAt.getTime()),
     },
@@ -580,7 +635,12 @@ async function handleInvoiceSucceeded(
   const currency = typeof invoice.currency    === "string" ? invoice.currency.toUpperCase() : "EUR";
 
   // Recalculate expiry from now
-  const newExpiresAt = calcMembershipExpiresAt(new Date(), "recurring", billingInterval, "months", 1);
+  // Prefer the billed period's end (packages may renew every 3/6 months);
+  // the same 3-day grace as at checkout.
+  const periodEnd = Number(invoice.lines?.data?.[0]?.period?.end ?? 0);
+  const newExpiresAt = periodEnd > 0
+    ? new Date((periodEnd + 3 * 86400) * 1000)
+    : calcMembershipExpiresAt(new Date(), "recurring", billingInterval, "months", 1);
 
   // Create renewal payment record
   await db.collection("payments").add({

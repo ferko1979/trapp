@@ -109,6 +109,21 @@
             android:paddingVertical="8dp"
             android:textColor="@color/text_primary" />
 
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchHideFromNearby"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_hide_from_nearby"
+            android:paddingVertical="8dp"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_hide_from_nearby"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -150,6 +165,15 @@
             android:textColor="#FF1A1204"
             android:textStyle="bold"
             android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnDeleteAccount"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/action_delete_account"
+            android:textColor="#FFFF4F62" />
 
         <!-- ABOUT SECTION -->
         <View

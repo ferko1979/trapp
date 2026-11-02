@@ -27,7 +27,9 @@ class LocationTrackingService : Service() {
 
     private lateinit var functions: FirebaseFunctions
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val toneGenerator = ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100)
+    // Created lazily: the constructor throws on some devices when the audio
+    // stack is busy, and a field initializer would crash the whole service.
+    private var toneGenerator: ToneGenerator? = null
     private var lastSentLatLng: LatLng? = null
 
     // ---------------------------------------------------------------------------
@@ -37,15 +39,19 @@ class LocationTrackingService : Service() {
     // battery during long play sessions. The high-accuracy GPS chip is expensive;
     // backing off when the battery is low keeps the game playable for longer.
     //
-    // Normal  : 5 s interval / 3 s minimum  (GPS always-on, highest accuracy)
-    // Low bat : 15 s interval / 10 s minimum (balanced power / network-based)
+    // Normal  : 10 s interval / 5 s minimum / 8 m distance (GPS, capture accuracy)
+    // Low bat : 30 s interval / 20 s minimum / 15 m distance (balanced power)
+    // While GameActivity is visible it runs its own GPS loop, so the service
+    // skips the server call to avoid sending every position twice.
     // ---------------------------------------------------------------------------
     companion object {
-        private const val INTERVAL_NORMAL_MS     = 5_000L
-        private const val MIN_INTERVAL_NORMAL_MS = 3_000L
+        private const val INTERVAL_NORMAL_MS     = 10_000L
+        private const val MIN_INTERVAL_NORMAL_MS = 5_000L
+        private const val MIN_DISTANCE_NORMAL_M  = 8f
 
-        private const val INTERVAL_LOW_BAT_MS     = 15_000L
-        private const val MIN_INTERVAL_LOW_BAT_MS = 10_000L
+        private const val INTERVAL_LOW_BAT_MS     = 30_000L
+        private const val MIN_INTERVAL_LOW_BAT_MS = 20_000L
+        private const val MIN_DISTANCE_LOW_BAT_M  = 15f
 
         /** Battery percentage below which we switch to the power-saving profile. */
         private const val LOW_BATTERY_THRESHOLD = 20
@@ -58,25 +64,31 @@ class LocationTrackingService : Service() {
         override fun onLocationResult(result: LocationResult) {
             val location = result.lastLocation ?: return
             val latLng = LatLng(location.latitude, location.longitude)
+            if (GameActivity.isInForeground) return
             sendLocationIfChanged(latLng)
 
-            // Show a generic tracking message in the notification — never expose
+            // Swap "starting…" for the generic active text once — never expose
             // the user's raw coordinates in the notification shade.
-            val notif = NotificationHelper.buildTrackingNotification(
-                this@LocationTrackingService,
-                getString(R.string.notif_tracking_active),
-            )
-
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-                startForeground(
-                    NotificationHelper.NOTIF_ID_TRACKING,
-                    notif,
-                    android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
-                )
-            } else {
-                startForeground(NotificationHelper.NOTIF_ID_TRACKING, notif)
+            if (!trackingNotifUpdated) {
+                trackingNotifUpdated = true
+                postTrackingNotification(getString(R.string.notif_tracking_active))
             }
         }
+    }
+
+    private var trackingNotifUpdated = false
+
+    private fun postTrackingNotification(text: String) {
+        if (android.os.Build.VERSION.SDK_INT >= 33 &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+        ) return
+        try {
+            androidx.core.app.NotificationManagerCompat.from(this).notify(
+                NotificationHelper.NOTIF_ID_TRACKING,
+                NotificationHelper.buildTrackingNotification(this, text),
+            )
+        } catch (_: SecurityException) { }
     }
 
     override fun onCreate() {
@@ -97,16 +109,26 @@ class LocationTrackingService : Service() {
             this,
             getString(R.string.notif_tracking_starting)
         )
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            startForeground(
-                NotificationHelper.NOTIF_ID_TRACKING,
-                notification,
-                android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
-            )
-        } else {
-            startForeground(NotificationHelper.NOTIF_ID_TRACKING, notification)
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                startForeground(
+                    NotificationHelper.NOTIF_ID_TRACKING,
+                    notification,
+                    android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
+                )
+            } else {
+                startForeground(NotificationHelper.NOTIF_ID_TRACKING, notification)
+            }
+        } catch (e: Exception) {
+            // Android 12+/14+: a location FGS cannot start from the background
+            // (e.g. a sticky restart after the process was killed). The player
+            // restarts tracking by opening the app.
+            isRunning = false
+            stopSelf()
+            return START_NOT_STICKY
         }
 
+        trackingNotifUpdated = false
         startLocationUpdates()
         return START_STICKY
     }
@@ -115,10 +137,21 @@ class LocationTrackingService : Service() {
         super.onDestroy()
         isRunning = false
         fusedLocationClient.removeLocationUpdates(locationCallback)
-        toneGenerator.release()
+        toneGenerator?.release()
+        toneGenerator = null
     }
 
     override fun onBind(intent: Intent?): IBinder? = null
+
+    private fun playAlertTone() {
+        try {
+            val tg = toneGenerator ?: ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100)
+                .also { toneGenerator = it }
+            tg.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 800)
+        } catch (e: RuntimeException) {
+            Log.w("LocationTrackingService", "Alert tone unavailable: ${e.message}")
+        }
+    }
 
     private fun hasLocationPermission(): Boolean {
         val fine = ContextCompat.checkSelfPermission(
@@ -144,10 +177,12 @@ class LocationTrackingService : Service() {
         return if (isLowBattery) {
             LocationRequest.Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, INTERVAL_LOW_BAT_MS)
                 .setMinUpdateIntervalMillis(MIN_INTERVAL_LOW_BAT_MS)
+                .setMinUpdateDistanceMeters(MIN_DISTANCE_LOW_BAT_M)
                 .build()
         } else {
             LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, INTERVAL_NORMAL_MS)
                 .setMinUpdateIntervalMillis(MIN_INTERVAL_NORMAL_MS)
+                .setMinUpdateDistanceMeters(MIN_DISTANCE_NORMAL_M)
                 .build()
         }
     }
@@ -267,9 +302,14 @@ class LocationTrackingService : Service() {
                     )
 
                     // Alert tone for immediate physical feedback.
-                    if (isSoundEnabled) {
-                        toneGenerator.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 800)
-                    }
+                    if (isSoundEnabled) playAlertTone()
+                }
+
+                // Proximity alerts while the game screen is closed; the notifier
+                // de-duplicates against alerts already shown by GameActivity.
+                @Suppress("UNCHECKED_CAST")
+                (response?.get("nearbyTraps") as? List<Map<String, Any>>)?.forEach { raw ->
+                    NearbyTrap.fromServer(raw)?.let { TrapProximityNotifier.notify(this, it) }
                 }
                 lastSentLatLng = latLng
             }

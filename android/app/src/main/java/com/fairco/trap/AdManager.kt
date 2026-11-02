@@ -20,7 +20,9 @@ import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoa
 object AdManager {
 
     private const val TAG = "AdManager"
-    private const val DEFAULT_UNIT_ID = "ca-app-pub-6648859971587001/5582567533"
+    // Debug builds always use Google's test unit so we never click our own live ads.
+    private val DEFAULT_UNIT_ID =
+        if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/5354046379" else "ca-app-pub-6648859971587001/5582567533"
 
     @Volatile private var unitId = DEFAULT_UNIT_ID
     private var ad: RewardedInterstitialAd? = null
@@ -28,7 +30,7 @@ object AdManager {
 
     /** Called on startup once backend settings are loaded. Clears cached ad if the ID changed. */
     fun configure(newUnitId: String) {
-        if (newUnitId.isBlank() || newUnitId == unitId) return
+        if (BuildConfig.DEBUG || newUnitId.isBlank() || newUnitId == unitId) return
         unitId = newUnitId
         ad = null
         isLoading = false
@@ -86,7 +88,9 @@ object AdManager {
 object RewardedAdManager {
 
     private const val TAG = "RewardedAdManager"
-    private const val DEFAULT_UNIT_ID = "ca-app-pub-6648859971587001/8212356456"
+    // Debug builds always use Google's test unit so we never click our own live ads.
+    private val DEFAULT_UNIT_ID =
+        if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/5224354917" else "ca-app-pub-6648859971587001/8212356456"
 
     @Volatile private var unitId = DEFAULT_UNIT_ID
     private var ad: RewardedAd? = null
@@ -94,7 +98,7 @@ object RewardedAdManager {
 
     /** Called on startup once backend settings are loaded. Clears cached ad if the ID changed. */
     fun configure(newUnitId: String) {
-        if (newUnitId.isBlank() || newUnitId == unitId) return
+        if (BuildConfig.DEBUG || newUnitId.isBlank() || newUnitId == unitId) return
         unitId = newUnitId
         ad = null
         isLoading = false

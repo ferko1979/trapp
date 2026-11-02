@@ -556,4 +556,14 @@
     <string name="action_accept_continue">Akzeptieren &amp; Fortfahren</string>
     <string name="action_decline_logout">Ablehnen &amp; Abmelden</string>
 
+    <string name="label_hide_from_nearby">Vor Spielern in der Nähe verbergen</string>
+    <string name="hint_hide_from_nearby">Fremde sehen dich nicht in der Nähe-Liste. Freunde schon.</string>
+    <string name="action_delete_account">Konto löschen</string>
+    <string name="delete_account_title">Konto löschen?</string>
+    <string name="delete_account_message">Dein Profil, deine Fallen, Freunde, Nachrichten und dein Fortschritt werden dauerhaft gelöscht. Zahlungsdaten werden gesetzlich vorgeschrieben anonymisiert aufbewahrt. Dies kann nicht rückgängig gemacht werden.</string>
+    <string name="delete_account_confirm">Endgültig löschen</string>
+    <string name="delete_account_in_progress">Konto wird gelöscht…</string>
+    <string name="delete_account_done">Dein Konto wurde gelöscht.</string>
+    <string name="delete_account_failed">Löschen fehlgeschlagen. Bitte erneut versuchen oder den Support kontaktieren.</string>
+    <string name="error_generic_retry">Etwas ist schiefgelaufen. Bitte erneut versuchen.</string>
 </resources>

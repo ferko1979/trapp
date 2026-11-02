@@ -568,4 +568,14 @@
     <string name="action_accept_continue">Elfogadás &amp; Folytatás</string>
     <string name="action_decline_logout">Elutasítás &amp; Kijelentkezés</string>
 
+    <string name="label_hide_from_nearby">Elrejtés a közeli játékosok elől</string>
+    <string name="hint_hide_from_nearby">Idegenek nem látnak a közeli listán. A barátaid igen.</string>
+    <string name="action_delete_account">Fiók törlése</string>
+    <string name="delete_account_title">Törlöd a fiókodat?</string>
+    <string name="delete_account_message">A profilod, csapdáid, barátaid, üzeneteid és eredményeid véglegesen törlődnek. A fizetési adatokat a törvény szerint névtelenítve megőrizzük. Ez nem vonható vissza.</string>
+    <string name="delete_account_confirm">Végleges törlés</string>
+    <string name="delete_account_in_progress">Fiók törlése folyamatban…</string>
+    <string name="delete_account_done">A fiókod törölve.</string>
+    <string name="delete_account_failed">A fiók törlése nem sikerült. Próbáld újra, vagy írj a támogatásnak.</string>
+    <string name="error_generic_retry">Hiba történt. Próbáld újra.</string>
 </resources>

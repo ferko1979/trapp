@@ -108,15 +108,12 @@ object NotificationHelper {
     ) {
         if (!hasNotificationPermission(context)) return
 
-        val openIntent = context.packageManager
-            .getLaunchIntentForPackage(context.packageName)
-            ?.apply {
-                putExtra("showTrappedOverlay", true)
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            }
+        // GameActivity shows the overlay from the pending_trapped_event stored by the caller.
+        val openIntent = Intent(context, GameActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        }
         val pending = PendingIntent.getActivity(
-            context, NOTIF_ID_CAPTURED,
-            openIntent ?: Intent(),
+            context, NOTIF_ID_CAPTURED, openIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
@@ -141,7 +138,7 @@ object NotificationHelper {
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setAutoCancel(true)
             .setContentIntent(pending)
-            .setFullScreenIntent(pending, true) // shows as heads-up / lock-screen alert
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .build()
 
         try {

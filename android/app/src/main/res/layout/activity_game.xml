@@ -359,13 +359,12 @@
             android:layout_gravity="top"
             android:background="@color/border_default" />
 
-        <com.google.android.gms.ads.AdView
+        <!-- AdView is created in code: unit ID comes from admin settings (test unit in debug) -->
+        <FrameLayout
             android:id="@+id/bannerAdView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+            android:layout_gravity="center" />
 
     </FrameLayout>
 

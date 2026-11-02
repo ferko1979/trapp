@@ -23,6 +23,8 @@ type Package = {
   trialDays: number;
   isActive: boolean;
   isRecurring: boolean;
+  // Play Console product ID — required to sell this package in the Play Store build.
+  playProductId: string;
   sortOrder: number;
   discounts: Discount[];
   // The user_levels doc ID granted to the user when this package is purchased.
@@ -82,7 +84,7 @@ const SUB_STATUS_COLOR: Record<string, string> = {
 
 const EMPTY_PKG = (): Omit<Package, "id" | "createdAtMs" | "updatedAtMs"> => ({
   name: "", description: "", duration: "1m", price: 0, currency: "EUR",
-  trialDays: 0, isActive: false, isRecurring: false, sortOrder: 99, discounts: [],
+  trialDays: 0, isActive: false, isRecurring: false, playProductId: "", sortOrder: 99, discounts: [],
   levelId: "",
   disableBannerAd: false, disableInterstitialAd: false, disableRewardedAd: false,
 });
@@ -215,6 +217,14 @@ function PackagesSection() {
           <label>
             <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Description</span>
             <input value={e?.description ?? ""} onChange={(ev) => setE("description", ev.target.value)} placeholder="Unlimited access for 1 month" />
+          </label>
+          <label>
+            <span style={{ display: "block", marginBottom: 5, fontSize: "0.82rem", color: "#3C516C" }}>Google Play product ID</span>
+            <input value={e?.playProductId ?? ""} onChange={(ev) => setE("playProductId", ev.target.value)} placeholder="premium_monthly" />
+            <div style={{ fontSize: "0.75rem", color: "#5A6B80", marginTop: 4 }}>
+              Apps installed from Google Play can only pay through Play Billing. Create the product in Play Console
+              (subscription for recurring packages, in-app product otherwise) and paste its ID here. Empty = not sold in the Play build.
+            </div>
           </label>
 
           {/* Membership level (controls map zoom, trap capacity, etc.) */}

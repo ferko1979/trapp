@@ -19,6 +19,11 @@ object TrapProximityNotifier {
 
     private const val CHANNEL_ID = "trap_proximity"
     private const val NOTIF_ID   = 7001
+    const val EXTRA_OPEN_DISARM  = "openDisarm"
+
+    /** Same trap re-alerts only after this long, whoever (service or game screen) saw it first. */
+    private const val REALERT_AFTER_MS = 15 * 60_000L
+    private val lastAlertAt = mutableMapOf<String, Long>()
 
     fun createChannel(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -44,20 +49,25 @@ object TrapProximityNotifier {
     }
 
     fun notify(context: Context, trap: NearbyTrap) {
+        val now = System.currentTimeMillis()
+        synchronized(lastAlertAt) {
+            val last = lastAlertAt[trap.trapId]
+            if (last != null && now - last < REALERT_AFTER_MS) return
+            lastAlertAt[trap.trapId] = now
+            lastAlertAt.entries.removeAll { now - it.value > REALERT_AFTER_MS }
+        }
         if (Build.VERSION.SDK_INT >= 33 &&
             ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED
         ) return
 
-        // Tap notification → open app
-        val openAppIntent = context.packageManager
-            .getLaunchIntentForPackage(context.packageName)
-            ?.apply {
-                putExtra("openDisarm", trap.trapId)
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            }
+        // Tap / "Disarm" → game screen, which opens the disarm sheet for this trap
+        val openAppIntent = Intent(context, GameActivity::class.java).apply {
+            putExtra(EXTRA_OPEN_DISARM, trap.trapId)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        }
         val openAppPending = PendingIntent.getActivity(
-            context, 0, openAppIntent ?: Intent(),
+            context, 0, openAppIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 

@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.android.billingclient.api.Purchase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.functions
@@ -56,6 +57,8 @@ data class PaymentPackage(
     val levelDisableBanner: Boolean = false,
     val levelDisableInterstitial: Boolean = false,
     val levelDisableRewarded: Boolean = false,
+    // Google Play product ID — packages without one are not sold in Play installs
+    val playProductId: String = "",
 )
 
 data class SubscriptionInfo(
@@ -67,6 +70,8 @@ data class SubscriptionInfo(
     val cancelAtPeriodEnd: Boolean,
     val amount: Int,
     val currency: String,
+    val gateway: String = "",
+    val playProductId: String? = null,
 )
 
 class SubscriptionActivity : BaseActivity() {
@@ -104,6 +109,18 @@ private fun SubscriptionScreen(uid: String) {
     // If both gateways are enabled, show a picker before checkout
     var gatewayPickerPkg by remember { mutableStateOf<PaymentPackage?>(null) }
 
+    // Play Store installs must sell through Google Play Billing (Play policy);
+    // direct-APK installs keep Revolut / Stripe.
+    val playInstall = remember { PlayBilling.isPlayInstall(context) }
+    val billing = remember { if (playInstall) PlayBilling.Session(context) else null }
+    DisposableEffect(billing) { onDispose { billing?.end() } }
+
+    suspend fun verifyPlay(pkg: PaymentPackage, purchaseToken: String) {
+        fns.getHttpsCallable("verifyPlayPurchase")
+            .call(mapOf("packageId" to pkg.id, "purchaseToken" to purchaseToken))
+            .await()
+    }
+
     // Load packages, subscription, and payment settings in parallel
     LaunchedEffect(uid) {
         loading = true
@@ -133,6 +150,7 @@ private fun SubscriptionScreen(uid: String) {
                     levelDisableBanner    = m["levelDisableBanner"] as? Boolean ?: false,
                     levelDisableInterstitial = m["levelDisableInterstitial"] as? Boolean ?: false,
                     levelDisableRewarded  = m["levelDisableRewarded"] as? Boolean ?: false,
+                    playProductId         = (m["playProductId"] as? String)?.trim() ?: "",
                 )
             }
 
@@ -149,6 +167,8 @@ private fun SubscriptionScreen(uid: String) {
                     cancelAtPeriodEnd= s["cancelAtPeriodEnd"] as? Boolean ?: false,
                     amount           = (s["amount"] as? Number)?.toInt() ?: 0,
                     currency         = s["currency"] as? String ?: "EUR",
+                    gateway          = s["gateway"] as? String ?: "",
+                    playProductId    = s["playProductId"] as? String,
                 )
             }
 
@@ -161,6 +181,25 @@ private fun SubscriptionScreen(uid: String) {
                 revolutEnabled = settingsData?.get("revolutPaymentEnabled") as? Boolean ?: true
                 stripeEnabled  = settingsData?.get("stripePaymentEnabled")  as? Boolean ?: false
             } catch (_: Exception) { /* use defaults */ }
+
+            // Finish Play purchases that were pending or whose verification
+            // was interrupted (app killed, no network) on a previous visit.
+            if (billing != null) {
+                try {
+                    var granted = false
+                    for (purchase in billing.ownedPurchases()) {
+                        if (purchase.purchaseState != Purchase.PurchaseState.PURCHASED || purchase.isAcknowledged) continue
+                        val pkg = packages.firstOrNull { it.playProductId.isNotBlank() && it.playProductId in purchase.products }
+                            ?: continue
+                        verifyPlay(pkg, purchase.purchaseToken)
+                        granted = true
+                    }
+                    if (granted) {
+                        Toast.makeText(context, "✅ Your Google Play purchase is now active.", Toast.LENGTH_LONG).show()
+                        activity?.finish()
+                    }
+                } catch (_: Exception) { /* retried on next visit */ }
+            }
         } catch (e: Exception) {
             Toast.makeText(context, "Failed to load: ${e.message}", Toast.LENGTH_SHORT).show()
         } finally {
@@ -219,8 +258,37 @@ private fun SubscriptionScreen(uid: String) {
         }
     }
 
+    // Helper: Google Play purchase → server-side verification + grant
+    suspend fun doPlayCheckout(pkg: PaymentPackage) {
+        val act = activity ?: return
+        val session = billing ?: return
+        checkoutLoading = true
+        try {
+            val purchase = session.purchase(act, pkg.playProductId, pkg.isRecurring, uid) ?: return
+            if (purchase.purchaseState == Purchase.PurchaseState.PENDING) {
+                Toast.makeText(context, "Payment pending — your membership starts once Google Play confirms it.", Toast.LENGTH_LONG).show()
+                return
+            }
+            verifyPlay(pkg, purchase.purchaseToken)
+            Toast.makeText(context, "🎉 ${pkg.levelName.ifBlank { pkg.name }} is now active!", Toast.LENGTH_LONG).show()
+            act.finish()
+        } catch (e: Exception) {
+            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+        } finally {
+            checkoutLoading = false
+        }
+    }
+
     // Helper: trigger checkout — picks gateway or shows picker
     fun startCheckout(pkg: PaymentPackage) {
+        if (playInstall) {
+            if (pkg.playProductId.isBlank()) {
+                Toast.makeText(context, "This package is not available in the Google Play version yet.", Toast.LENGTH_LONG).show()
+            } else {
+                scope.launch { doPlayCheckout(pkg) }
+            }
+            return
+        }
         val bothEnabled = revolutEnabled && stripeEnabled
         if (bothEnabled) {
             gatewayPickerPkg = pkg
@@ -279,6 +347,14 @@ private fun SubscriptionScreen(uid: String) {
                             sub = sub,
                             cancelLoading = cancelLoading,
                             onCancel = {
+                                if (sub.gateway == "google_play") {
+                                    // Play subscriptions can only be cancelled in Google Play.
+                                    val sku = sub.playProductId?.let { "sku=${Uri.encode(it)}&" } ?: ""
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
+                                        "https://play.google.com/store/account/subscriptions?${sku}package=${context.packageName}"
+                                    )))
+                                    return@ActiveSubscriptionCard
+                                }
                                 scope.launch {
                                     cancelLoading = true
                                     try {
@@ -373,8 +449,8 @@ private fun SubscriptionScreen(uid: String) {
                 }
             }
 
-            // ── Discount code field ─────────────────────────────────────────
-            item {
+            // ── Discount code field (not applicable to Google Play prices) ──
+            if (!playInstall) item {
                 OutlinedTextField(
                     value = discountCode,
                     onValueChange = { discountCode = it.uppercase() },
@@ -392,7 +468,7 @@ private fun SubscriptionScreen(uid: String) {
             }
 
             // ── Payment unavailable notice ─────────────────────────────────
-            if (!loading && !revolutEnabled && !stripeEnabled) {
+            if (!loading && !playInstall && !revolutEnabled && !stripeEnabled) {
                 item {
                     androidx.compose.foundation.layout.Box(
                         modifier = Modifier
@@ -430,6 +506,7 @@ private fun SubscriptionScreen(uid: String) {
                         loading = checkoutLoading,
                         revolutEnabled = revolutEnabled,
                         stripeEnabled = stripeEnabled,
+                        playInstall = playInstall,
                         onSelect = {
                             if (pkg.isRecurring) {
                                 recurringConsentPkg = pkg
@@ -471,7 +548,10 @@ private fun SubscriptionScreen(uid: String) {
                             color = Radar.TextSec, fontSize = 13.sp
                         )
                         Text(
-                            "✅ You can cancel at any time from the app (Profile → Subscription → Cancel). Cancellation takes effect at the end of the current period — you keep access until then.",
+                            if (playInstall)
+                                "✅ You can cancel at any time in Google Play (Payments & subscriptions → Subscriptions). Cancellation takes effect at the end of the current period — you keep access until then."
+                            else
+                                "✅ You can cancel at any time from the app (Profile → Subscription → Cancel). Cancellation takes effect at the end of the current period — you keep access until then.",
                             color = Radar.Safe, fontSize = 13.sp, lineHeight = 19.sp
                         )
                         if (pkg.trialDays > 0) {
@@ -600,6 +680,7 @@ private fun ActiveSubscriptionCard(
         Spacer(Modifier.height(16.dp))
 
         if (sub.status in listOf("active", "trialing") && !sub.cancelAtPeriodEnd) {
+            val viaPlay = sub.gateway == "google_play"
             Button(
                 onClick = onCancel,
                 enabled = !cancelLoading,
@@ -607,7 +688,14 @@ private fun ActiveSubscriptionCard(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(10.dp)
             ) {
-                Text(if (cancelLoading) "Cancelling…" else "Cancel Subscription", color = Radar.TrapSoft)
+                Text(
+                    when {
+                        cancelLoading -> "Cancelling…"
+                        viaPlay -> "Manage in Google Play"
+                        else -> "Cancel Subscription"
+                    },
+                    color = Radar.TrapSoft
+                )
             }
             Spacer(Modifier.height(6.dp))
             Text(
@@ -653,8 +741,10 @@ private fun PackageCard(
     loading: Boolean,
     revolutEnabled: Boolean = true,
     stripeEnabled: Boolean = false,
+    playInstall: Boolean = false,
     onSelect: () -> Unit,
 ) {
+    val playUnavailable = playInstall && pkg.playProductId.isBlank()
     val priceDisplay = formatPrice(pkg.price, pkg.currency)
     val durationLabel = formatDuration(pkg.duration)
     val accent = tierAccentColor(pkg.levelId)
@@ -672,7 +762,7 @@ private fun PackageCard(
                 color = if (isPopular) accent else accent.copy(alpha = 0.35f),
                 shape = RoundedCornerShape(16.dp)
             )
-            .clickable(enabled = !loading) { onSelect() }
+            .clickable(enabled = !loading && !playUnavailable) { onSelect() }
             .padding(18.dp)
     ) {
         // ── "Most popular" badge ────────────────────────────────────────────
@@ -754,7 +844,7 @@ private fun PackageCard(
         // ── CTA button ──────────────────────────────────────────────────────
         Button(
             onClick = onSelect,
-            enabled = !loading,
+            enabled = !loading && !playUnavailable,
             colors = ButtonDefaults.buttonColors(containerColor = accent),
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(10.dp)
@@ -764,11 +854,14 @@ private fun PackageCard(
                 Spacer(Modifier.width(8.dp))
             }
             val gatewayLabel = when {
+                playInstall -> ""
                 revolutEnabled && stripeEnabled -> " · Revolut or Card"
                 stripeEnabled -> " · Pay by Card"
                 else -> ""
             }
-            val label = if (pkg.trialDays > 0)
+            val label = if (playUnavailable)
+                "Coming soon on Google Play"
+            else if (pkg.trialDays > 0)
                 "Start ${pkg.trialDays}-Day Free Trial"
             else {
                 val n = pkg.levelName.takeIf { it.isNotBlank() } ?: pkg.name

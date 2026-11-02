@@ -14,7 +14,7 @@ function asStr(v: unknown, fallback = ""): string {
   return typeof v === "string" ? v : fallback;
 }
 
-function durationDays(d: string): number {
+export function durationDays(d: string): number {
   switch (d) {
     case "1d":  return 1;
     case "7d":  return 7;
@@ -91,6 +91,7 @@ export const getAvailablePackages = onCall(async (request) => {
         currency: d.currency ?? "EUR",
         trialDays: d.trialDays ?? 0,
         isRecurring: d.isRecurring ?? false,
+        playProductId: typeof d.playProductId === "string" ? d.playProductId : "",
         discounts,
         sortOrder: d.sortOrder ?? 99,
         // Level benefit details
@@ -174,6 +175,7 @@ export const getMySubscription = onCall(async (request) => {
       amount: d.amount ?? 0,
       currency: d.currency ?? "EUR",
       gateway: d.gateway ?? "revolut",
+      playProductId: d.playProductId ?? null,
       // Per-package ad settings for this subscriber
       disableBannerAd,
       disableInterstitialAd,
@@ -388,6 +390,11 @@ export const cancelMySubscription = onCall(async (request) => {
   if (!subSnap.exists) throw new HttpsError("not-found", "Subscription not found.");
   const sub = subSnap.data()!;
   if (sub.uid !== uid) throw new HttpsError("permission-denied", "Access denied.");
+
+  if (sub.gateway === "google_play") {
+    // Play subscriptions can only be cancelled in the Play Store app.
+    throw new HttpsError("failed-precondition", "Cancel this subscription in Google Play.");
+  }
 
   const validStatuses = ["active", "trialing", "pending_payment"];
   if (!validStatuses.includes(sub.status)) {

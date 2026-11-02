@@ -12,9 +12,6 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapsSdkInitializedCallback
 import com.google.firebase.FirebaseApp
-import com.google.firebase.appcheck.FirebaseAppCheck
-import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
-import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
 
 class TrapApplication : Application(), OnMapsSdkInitializedCallback {
 
@@ -82,15 +79,8 @@ class TrapApplication : Application(), OnMapsSdkInitializedCallback {
                 return
             }
 
-            if (BuildConfig.DEBUG) {
-                val factory = DebugAppCheckProviderFactory.getInstance()
-                FirebaseAppCheck.getInstance().installAppCheckProviderFactory(factory)
-                Log.d("TrapApplication", "App Check initialized with Debug provider.")
-            } else {
-                val factory = PlayIntegrityAppCheckProviderFactory.getInstance()
-                FirebaseAppCheck.getInstance().installAppCheckProviderFactory(factory)
-                Log.d("TrapApplication", "App Check initialized with Play Integrity provider.")
-            }
+            AppCheckInit.install()
+            Log.d("TrapApplication", "App Check initialized.")
         } catch (e: Exception) {
             Log.e("TrapApplication", "Failed to initialize App Check: ${e.message}")
         }

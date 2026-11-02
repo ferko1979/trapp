@@ -14,111 +14,68 @@
         android:layout_height="?attr/actionBarSize"
         app:title="Invite Friends"
         app:navigationIcon="@drawable/ic_back"
-        app:titleTextColor="@color/white"
-        android:background="@color/accent_cyan" />
+        app:titleTextColor="@color/text_primary"
+        android:background="@color/bg_deep" />
 
-    <!-- Invite banner / illustration -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:background="@color/bg_deep"
-        android:paddingVertical="20dp"
-        android:paddingHorizontal="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🪤"
-            android:textSize="40sp"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set traps. Catch friends."
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Invite your contacts to join TRAPP"
-            android:textColor="@color/text_muted"
-            android:textSize="13sp"
-            android:layout_marginTop="4dp"/>
-    </LinearLayout>
-
-    <!-- Search bar -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="4dp"
-        app:startIconDrawable="@drawable/ic_search"
-        app:hintTextColor="@color/text_muted"
-        android:hint="Search contacts…">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:imeOptions="actionSearch"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Select all / count row -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp">
-
-        <TextView
-            android:id="@+id/tvSelectedCount"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_muted"
-            android:textSize="12sp"
-            tools:text="0 selected"/>
-
-        <Button
-            android:id="@+id/btnSelectAll"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select All"
-            android:textColor="@color/accent_cyan"
-            android:textSize="12sp"/>
-
-        <Button
-            android:id="@+id/btnClearAll"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clear"
-            android:textColor="@color/text_muted"
-            android:textSize="12sp"/>
-    </LinearLayout>
-
-    <!-- Contacts list -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvContacts"
+    <!-- Invite banner + message preview (no contact access needed) -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:clipToPadding="false"
-        android:paddingBottom="88dp"/>
+        android:layout_weight="1">
 
-    <!-- Bottom send bar (elevated above list) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🪤"
+                android:textSize="40sp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set traps. Catch friends."
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Invite your friends to join TRAPP"
+                android:textColor="@color/text_muted"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="@color/bg_surface">
+
+                <TextView
+                    android:id="@+id/tvMessagePreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:textIsSelectable="true"
+                    tools:text="Hey! I'm playing TRAPP — come join me! https://play.google.com/..."/>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom send bar -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/sendBar"
         android:layout_width="match_parent"
@@ -132,18 +89,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <!-- Preview of the invite message -->
-            <TextView
-                android:id="@+id/tvMessagePreview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:layout_marginBottom="12dp"
-                tools:text="Hey! I'm playing TRAPP — come join me! https://play.google.com/..."/>
 
             <!-- Row 1: SMS + Generic Share -->
             <LinearLayout
@@ -162,7 +107,6 @@
                     android:backgroundTint="@color/accent_deep"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
-                    android:enabled="false"
                     android:layout_marginEnd="4dp" />
 
                 <Button
@@ -174,7 +118,6 @@
                     android:backgroundTint="#065F46"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
-                    android:enabled="false"
                     android:layout_marginStart="4dp" />
             </LinearLayout>
 
@@ -194,7 +137,6 @@
                     android:backgroundTint="#128C7E"
                     android:textColor="#FFFFFF"
                     android:textSize="11sp"
-                    android:enabled="false"
                     android:layout_marginEnd="3dp" />
 
                 <Button
@@ -206,7 +148,6 @@
                     android:backgroundTint="#7360F2"
                     android:textColor="#FFFFFF"
                     android:textSize="11sp"
-                    android:enabled="false"
                     android:layout_marginHorizontal="3dp" />
 
                 <Button
@@ -218,7 +159,6 @@
                     android:backgroundTint="#FF3C516C"
                     android:textColor="#FFFFFF"
                     android:textSize="11sp"
-                    android:enabled="false"
                     android:layout_marginStart="3dp" />
             </LinearLayout>
         </LinearLayout>
