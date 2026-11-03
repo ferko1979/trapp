@@ -20,6 +20,8 @@ import kotlinx.coroutines.launch
 
 class ProfileEditActivity : BaseActivity() {
 
+    override val radarBars = true
+
     private val viewModel: ProfileViewModel by viewModels()
 
     private val pickImageLauncher = registerForActivityResult(
@@ -52,10 +54,10 @@ class ProfileEditActivity : BaseActivity() {
                 launch {
                     viewModel.saveState.collect { state ->
                         if (state is SaveState.Saved) {
-                            Snackbar.make(findViewById(android.R.id.content), "Profile updated", Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(findViewById(android.R.id.content), R.string.msg_profile_updated, Snackbar.LENGTH_SHORT).show()
                             viewModel.resetSaveState()
                         } else if (state is SaveState.Error) {
-                            Toast.makeText(this@ProfileEditActivity, state.msg, Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@ProfileEditActivity, state.detail ?: getString(state.msgRes), Toast.LENGTH_LONG).show()
                             viewModel.resetSaveState()
                         }
                     }

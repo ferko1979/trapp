@@ -1,5 +1,9 @@
 package com.fairco.trap
 
+import com.fairco.trap.util.LocaleManager
+import androidx.lifecycle.AndroidViewModel
+import androidx.annotation.StringRes
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.functions.functions
@@ -45,7 +49,9 @@ sealed class IdentifierSearchState {
     data class Error(val message: String)   : IdentifierSearchState()
 }
 
-class FriendsViewModel : ViewModel() {
+class FriendsViewModel(application: Application) : AndroidViewModel(application) {
+    private fun str(@StringRes id: Int, vararg args: Any): String =
+        LocaleManager.applyLocale(getApplication()).getString(id, *args)
     private val functions = Firebase.functions("europe-west1")
 
     val friends = MutableStateFlow<List<Friend>>(emptyList())
@@ -136,13 +142,13 @@ class FriendsViewModel : ViewModel() {
             try {
                 functions.getHttpsCallable("sendFriendRequestByUsername")
                     .call(mapOf("username" to username)).await()
-                onDone(true, "Friend request sent!")
+                onDone(true, str(R.string.msg_friend_request_sent))
                 loadFriendRequests()
             } catch (e: Exception) {
                 val msg = when {
-                    e.message?.contains("already-exists") == true -> "Already friends."
-                    e.message?.contains("not-found") == true -> "Username not found."
-                    else -> e.message ?: "Failed to send request."
+                    e.message?.contains("already-exists") == true -> str(R.string.msg_already_friends)
+                    e.message?.contains("not-found") == true -> str(R.string.friends_username_not_found)
+                    else -> e.message ?: str(R.string.error_request_failed)
                 }
                 onDone(false, msg)
             }
@@ -198,12 +204,12 @@ class FriendsViewModel : ViewModel() {
                 _identifierResult.value = IdentifierSearchState.Found(
                     uid              = user["uid"] as String,
                     username         = user["username"] as? String ?: "",
-                    name             = user["name"] as? String ?: "User",
+                    name             = user["name"] as? String ?: str(R.string.default_display_name),
                     friendshipStatus = friendshipStatus
                 )
             } catch (e: Exception) {
                 _identifierResult.value = IdentifierSearchState.Error(
-                    e.message ?: "Search failed"
+                    e.message ?: str(R.string.error_search_failed)
                 )
             }
         }
@@ -226,7 +232,7 @@ class FriendsViewModel : ViewModel() {
             
             loadFriendRequests()
         } catch (e: Exception) {
-            error.value = e.message ?: "Failed to send request"
+            error.value = e.message ?: str(R.string.error_request_failed)
         }
     }
 

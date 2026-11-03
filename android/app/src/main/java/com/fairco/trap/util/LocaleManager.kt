@@ -18,9 +18,12 @@ object LocaleManager {
             .edit().putString(KEY_LANG, locale).apply()
     }
 
+    /** Language code for the backend: regional variants ("en-US") collapse to the base language. */
+    fun apiLang(context: Context): String = getLocale(context).substringBefore('-')
+
     fun applyLocale(context: Context): Context {
         val lang = getLocale(context)
-        val locale = Locale(lang)
+        val locale = Locale.forLanguageTag(lang)
         Locale.setDefault(locale)
         val config = Configuration(context.resources.configuration)
         config.setLocale(locale)

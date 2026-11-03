@@ -1,5 +1,6 @@
 ﻿package com.fairco.trap
 
+import androidx.compose.ui.res.stringResource
 import android.content.Intent
 import com.fairco.trap.ui.theme.TrappTheme
 import com.fairco.trap.ui.theme.Radar
@@ -32,6 +33,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class DonationActivity : BaseActivity() {
+
+    override val radarBars = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
@@ -69,7 +72,7 @@ private fun DonationScreen(uid: String) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                "Support the App",
+                stringResource(R.string.don_title),
                 color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.ExtraBold,
                 letterSpacing = 2.sp, modifier = Modifier.weight(1f)
             )
@@ -88,10 +91,10 @@ private fun DonationScreen(uid: String) {
                 ) {
                     Text("🎉", fontSize = 64.sp)
                     Spacer(Modifier.height(16.dp))
-                    Text("Thank You!", color = Radar.Safe, fontSize = 28.sp, fontWeight = FontWeight.ExtraBold)
+                    Text(stringResource(R.string.don_thank_you), color = Radar.Safe, fontSize = 28.sp, fontWeight = FontWeight.ExtraBold)
                     Spacer(Modifier.height(10.dp))
                     Text(
-                        "Your donation of ${formatPrice(r.amount, "EUR")} has been received. We truly appreciate your support — it keeps the game alive!",
+                        stringResource(R.string.don_received, formatPrice(r.amount, "EUR")),
                         color = Radar.TextSec, fontSize = 15.sp, textAlign = TextAlign.Center, lineHeight = 22.sp
                     )
                     Spacer(Modifier.height(28.dp))
@@ -100,7 +103,7 @@ private fun DonationScreen(uid: String) {
                         colors = ButtonDefaults.buttonColors(containerColor = Radar.AccentDeep),
                         shape = RoundedCornerShape(12.dp),
                         modifier = Modifier.fillMaxWidth()
-                    ) { Text("Close", fontWeight = FontWeight.Bold, color = Color.White) }
+                    ) { Text(stringResource(R.string.action_close), fontWeight = FontWeight.Bold, color = Color.White) }
                 }
             }
             is DonationResult.Failed -> {
@@ -112,10 +115,10 @@ private fun DonationScreen(uid: String) {
                 ) {
                     Text("😞", fontSize = 64.sp)
                     Spacer(Modifier.height(16.dp))
-                    Text("Payment Failed", color = Radar.Trap, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold)
+                    Text(stringResource(R.string.don_payment_failed), color = Radar.Trap, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold)
                     Spacer(Modifier.height(10.dp))
                     Text(
-                        "Your donation could not be processed. Would you like to try again?",
+                        stringResource(R.string.don_failed_msg),
                         color = Radar.TextSec, fontSize = 15.sp, textAlign = TextAlign.Center
                     )
                     Spacer(Modifier.height(28.dp))
@@ -129,10 +132,10 @@ private fun DonationScreen(uid: String) {
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Radar.AccentDeep),
                         shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth()
-                    ) { Text("🔄 Try Again", fontWeight = FontWeight.Bold, color = Color.White) }
+                    ) { Text("🔄 " + stringResource(R.string.don_try_again), fontWeight = FontWeight.Bold, color = Color.White) }
                     Spacer(Modifier.height(12.dp))
                     TextButton(onClick = { activity?.finish() }) {
-                        Text("Cancel", color = Radar.TextMuted)
+                        Text(stringResource(R.string.action_cancel), color = Radar.TextMuted)
                     }
                 }
             }
@@ -150,16 +153,16 @@ private fun DonationScreen(uid: String) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
                         Text("❤️", fontSize = 40.sp)
                         Spacer(Modifier.height(8.dp))
-                        Text("Help Keep Trap Running", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+                        Text(stringResource(R.string.don_help_keep_running), color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
                         Text(
-                            "Every donation helps us improve the game and add new features. Thank you!",
+                            stringResource(R.string.don_intro),
                             color = Radar.TextMuted, fontSize = 13.sp, textAlign = TextAlign.Center,
                             modifier = Modifier.padding(top = 6.dp)
                         )
                     }
 
                     // Amount selector
-                    Text("Choose Amount", color = Radar.TextSec, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.don_choose_amount), color = Radar.TextSec, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         suggestedAmounts.forEach { amount ->
                             val isSelected = !useCustom && selectedAmount == amount
@@ -190,12 +193,12 @@ private fun DonationScreen(uid: String) {
                             onCheckedChange = { useCustom = it; if (!it) customAmountText = "" },
                             colors = CheckboxDefaults.colors(checkedColor = Radar.Accent)
                         )
-                        Text("Other amount (€)", color = Radar.TextSec, fontSize = 14.sp)
+                        Text(stringResource(R.string.don_other_amount), color = Radar.TextSec, fontSize = 14.sp)
                         if (useCustom) {
                             OutlinedTextField(
                                 value = customAmountText,
                                 onValueChange = { customAmountText = it.filter { c -> c.isDigit() || c == '.' } },
-                                placeholder = { Text("e.g. 7.50", color = Radar.TextMuted) },
+                                placeholder = { Text(stringResource(R.string.don_amount_placeholder), color = Radar.TextMuted) },
                                 colors = OutlinedTextFieldDefaults.colors(
                                     focusedBorderColor = Radar.Accent, unfocusedBorderColor = Radar.Line,
                                     focusedTextColor = Color.White, unfocusedTextColor = Color.White,
@@ -210,7 +213,7 @@ private fun DonationScreen(uid: String) {
                     OutlinedTextField(
                         value = message,
                         onValueChange = { if (it.length <= 200) message = it },
-                        label = { Text("Message (optional, max 200 chars)", color = Radar.TextMuted) },
+                        label = { Text(stringResource(R.string.don_message_hint), color = Radar.TextMuted) },
                         modifier = Modifier.fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = Radar.Accent, unfocusedBorderColor = Radar.Line,
@@ -229,7 +232,7 @@ private fun DonationScreen(uid: String) {
                     Button(
                         onClick = {
                             if (!isValid) {
-                                Toast.makeText(context, "Please enter a valid amount (min €0.50, max €1000)", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.don_invalid_amount), Toast.LENGTH_SHORT).show()
                                 return@Button
                             }
                             scope.launch {
@@ -250,7 +253,7 @@ private fun DonationScreen(uid: String) {
                                         // (In production you'd use a deep link callback; here we optimistically show success)
                                         resultState = DonationResult.Success(finalAmount, donId)
                                     } else {
-                                        Toast.makeText(context, "No checkout URL returned.", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, context.getString(R.string.sub_no_checkout_url), Toast.LENGTH_SHORT).show()
                                     }
                                 } catch (e: Exception) {
                                     val checkoutUrl = ""
@@ -270,13 +273,13 @@ private fun DonationScreen(uid: String) {
                             Spacer(Modifier.width(8.dp))
                         }
                         Text(
-                            if (loading) "Processing…" else "Donate ${formatPrice(finalAmount, "EUR")}",
+                            if (loading) stringResource(R.string.label_processing) else stringResource(R.string.don_donate_amount, formatPrice(finalAmount, "EUR")),
                             fontWeight = FontWeight.Bold, fontSize = 16.sp
                         )
                     }
 
                     Text(
-                        "Donations are one-time payments processed via Revolut. No subscription is created. Thank you for your generosity!",
+                        stringResource(R.string.don_footer),
                         color = Radar.Line, fontSize = 11.sp, textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
                     )

@@ -159,7 +159,7 @@ class RegisterActivity : BaseActivity() {
                         .addOnSuccessListener { result ->
                             val user = result.user
                             // Send locale-aware verification email via backend custom template.
-                            val locale = LocaleManager.getLocale(this)
+                            val locale = LocaleManager.apiLang(this)
                             functions.getHttpsCallable("sendEmailVerificationCustom")
                                 .call(hashMapOf("locale" to locale))
                                 .addOnSuccessListener {
@@ -267,9 +267,9 @@ class RegisterActivity : BaseActivity() {
 
     private fun extractError(throwable: Throwable): String {
         return if (throwable is FirebaseFunctionsException) {
-            throwable.details?.toString() ?: throwable.message ?: "Unknown error"
+            throwable.details?.toString() ?: throwable.message ?: getString(R.string.error_generic_retry)
         } else {
-            throwable.message ?: "Unknown error"
+            throwable.message ?: getString(R.string.error_generic_retry)
         }
     }
 }

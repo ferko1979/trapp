@@ -1,6 +1,8 @@
 package com.fairco.trap
 
 import android.net.Uri
+import android.util.Log
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.Firebase
@@ -8,6 +10,7 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.firestore
 import com.google.firebase.functions.functions
 import com.google.firebase.storage.storage
+import com.google.firebase.storage.storageMetadata
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,11 +36,12 @@ sealed class SaveState {
     object Idle    : SaveState()
     object Saving  : SaveState()
     object Saved   : SaveState()
-    data class Error(val msg: String) : SaveState()
+    /** [detail] (e.g. a server message) wins over [msgRes] when present. */
+    data class Error(@StringRes val msgRes: Int, val detail: String? = null) : SaveState()
 }
 
 sealed class ProfileEvent {
-    data class ShowMessage(val msg: String) : ProfileEvent()
+    data class ShowMessage(@StringRes val msg: Int) : ProfileEvent()
 }
 
 data class UserData(
@@ -119,7 +123,8 @@ class ProfileViewModel : ViewModel() {
             _uploadingPhoto.value = true
             try {
                 val ref = Firebase.storage.reference.child("profile_images/$userUid/profile.jpg")
-                ref.putFile(uri).await()
+                // Explicit image type: storage.rules only accept image/* uploads, and file:// camera URIs carry none.
+                ref.putFile(uri, storageMetadata { contentType = "image/jpeg" }).await()
                 val downloadUrl = ref.downloadUrl.await().toString()
 
                 Firebase.firestore.collection("users").document(userUid)
@@ -127,9 +132,10 @@ class ProfileViewModel : ViewModel() {
                     .await()
 
                 _photoUrl.value = downloadUrl
-                _event.emit(ProfileEvent.ShowMessage("Profile photo updated!"))
+                _event.emit(ProfileEvent.ShowMessage(R.string.prof_photo_ok))
             } catch (e: Exception) {
-                _event.emit(ProfileEvent.ShowMessage("Failed to update photo: ${e.message}"))
+                Log.w("ProfileViewModel", "Photo upload failed", e)
+                _event.emit(ProfileEvent.ShowMessage(R.string.prof_photo_failed))
             } finally {
                 _uploadingPhoto.value = false
             }
@@ -178,16 +184,16 @@ class ProfileViewModel : ViewModel() {
         val username = _username.value.trim()
 
         if (name.length < 2) {
-            _saveState.value = SaveState.Error("Name must be at least 2 characters")
+            _saveState.value = SaveState.Error(R.string.profile_name_too_short)
             return
         }
         val checkState = _usernameCheckState.value
         if (checkState == UsernameCheckState.Taken) {
-            _saveState.value = SaveState.Error("Username is already taken")
+            _saveState.value = SaveState.Error(R.string.msg_username_taken)
             return
         }
         if (checkState == UsernameCheckState.Checking) {
-            _saveState.value = SaveState.Error("Checking username availability…")
+            _saveState.value = SaveState.Error(R.string.msg_checking_availability)
             return
         }
 
@@ -203,11 +209,14 @@ class ProfileViewModel : ViewModel() {
                     val usernameFn = Firebase.functions("europe-west1")
                         .getHttpsCallable("setMyUsername")
                     usernameFn.call(mapOf("username" to username.lowercase())).await()
+                    currentUsername = username.lowercase()
+                    _usernameCheckState.value = UsernameCheckState.Unchanged
                 }
 
+                _userData.value = _userData.value?.copy(displayName = name, username = currentUsername)
                 _saveState.value = SaveState.Saved
             } catch (e: Exception) {
-                _saveState.value = SaveState.Error(e.message ?: "Save failed")
+                _saveState.value = SaveState.Error(R.string.profile_save_failed, e.message)
             }
         }
     }
@@ -227,7 +236,7 @@ class ProfileViewModel : ViewModel() {
                     ticket["status"] !in listOf("closed", "answered")
                 }
                 if (hasPending) {
-                    _event.emit(ProfileEvent.ShowMessage("A change request is already pending. Please wait for it to be resolved."))
+                    _event.emit(ProfileEvent.ShowMessage(R.string.msg_email_change_already_pending))
                     return@launch
                 }
                 fn.getHttpsCallable("createSupportTicket").call(mapOf(
@@ -235,9 +244,10 @@ class ProfileViewModel : ViewModel() {
                     "message"  to "I would like to change the email address on my account.\n\nUID: $userUid\nCurrent email: $userEmail\nRequested new email: $newEmail",
                     "category" to "email_change"
                 )).await()
-                _event.emit(ProfileEvent.ShowMessage("Request submitted. Our team will contact you."))
+                _event.emit(ProfileEvent.ShowMessage(R.string.msg_email_change_request_sent))
             } catch (e: Exception) {
-                _event.emit(ProfileEvent.ShowMessage("Failed to submit request: ${e.message}"))
+                Log.w("ProfileViewModel", "Email change request failed", e)
+                _event.emit(ProfileEvent.ShowMessage(R.string.error_generic_retry))
             } finally {
                 _emailChangeLoading.value = false
             }

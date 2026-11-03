@@ -1,5 +1,6 @@
 package com.fairco.trap
 
+import androidx.compose.ui.res.stringResource
 import androidx.compose.animation.core.*
 import com.fairco.trap.ui.theme.Radar
 import androidx.compose.foundation.background
@@ -87,7 +88,7 @@ fun CaptureVictoryOverlay(
             )
 
             Text(
-                text = "YOUR TRAP FIRED!",
+                text = stringResource(R.string.capture_your_trap_fired),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.ExtraBold,
                 color = Radar.Gold,
@@ -99,7 +100,7 @@ fun CaptureVictoryOverlay(
 
             // Victim name
             Text(
-                text = "caught",
+                text = stringResource(R.string.capture_caught),
                 fontSize = 13.sp,
                 color = Radar.TextSec
             )
@@ -118,7 +119,7 @@ fun CaptureVictoryOverlay(
 
             // Tap to dismiss hint
             Text(
-                text = "Tap anywhere to dismiss",
+                text = stringResource(R.string.capture_tap_to_dismiss),
                 fontSize = 11.sp,
                 color = Radar.TextMuted
             )
@@ -160,10 +161,10 @@ private fun TrapImageOrEmoji(event: CaptureVictoryEvent) {
 @Composable
 private fun EffectTag(effectKind: String) {
     val (bg, label) = when (effectKind) {
-        "timeout"  -> Radar.AccentDeep to "⏳ Timeout penalty"
-        "laughter" -> Color(0xFF7C3AED) to "😂 Prank zone"
-        "score"    -> Color(0xFF065F46) to "⚡ XP deducted"
-        else       -> Radar.Line to "🪤 Trap sprung"
+        "timeout"  -> Radar.AccentDeep to stringResource(R.string.capture_tag_timeout)
+        "laughter" -> Color(0xFF7C3AED) to stringResource(R.string.capture_tag_prank)
+        "score"    -> Color(0xFF065F46) to stringResource(R.string.capture_tag_xp)
+        else       -> Radar.Line to stringResource(R.string.capture_tag_sprung)
     }
     Box(
         modifier = Modifier

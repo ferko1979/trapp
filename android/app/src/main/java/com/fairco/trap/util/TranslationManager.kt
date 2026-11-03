@@ -111,13 +111,12 @@ object TranslationManager {
 
     /**
      * Returns the backend string for [key] in [locale], or null if not cached.
-     * Falls back to "en" if the locale-specific entry is missing.
+     * No cross-language fallback: the caller falls back to the bundled res/values-<locale> string,
+     * which is correct for every app language (an "en" override would hide e.g. the French XML).
      * Applies [formatArgs] via String.format when provided.
      */
     fun get(locale: String, key: String, vararg formatArgs: Any?): String? {
-        val raw = cache[locale]?.get(key)
-            ?: if (locale != "en") cache["en"]?.get(key) else null
-        val value = raw ?: return null
+        val value = cache[locale]?.get(key) ?: return null
         if (formatArgs.isEmpty()) return value
         @Suppress("UNCHECKED_CAST")
         return try { String.format(value, *(formatArgs as Array<out Any>)) } catch (_: Exception) { value }

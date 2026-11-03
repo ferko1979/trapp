@@ -1,5 +1,6 @@
 package com.fairco.trap
 
+import com.fairco.trap.util.LocaleManager
 import android.app.Activity
 import android.content.Context
 import android.os.Build
@@ -48,6 +49,9 @@ object PlayBilling {
 
     class Session(context: Context) : PurchasesUpdatedListener {
 
+        // Error texts reach the UI via exception messages — resolve them in the app language.
+        private val res: Context = LocaleManager.applyLocale(context.applicationContext)
+
         private val client: BillingClient = BillingClient.newBuilder(context.applicationContext)
             .setListener(this)
             .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
@@ -71,7 +75,7 @@ object PlayBilling {
                 })
             }
             if (result.responseCode != BillingClient.BillingResponseCode.OK) {
-                throw BillingException("Google Play Billing unavailable (${result.debugMessage}).")
+                throw BillingException(res.getString(R.string.billing_unavailable, result.debugMessage))
             }
         }
 
@@ -113,7 +117,7 @@ object PlayBilling {
         suspend fun purchase(activity: Activity, productId: String, subscription: Boolean, uid: String): Purchase? {
             connect()
             val details = productDetails(productId, subscription)
-                ?: throw BillingException("This package is not available on Google Play yet.")
+                ?: throw BillingException(res.getString(R.string.sub_not_on_play))
 
             val productParams = BillingFlowParams.ProductDetailsParams.newBuilder()
                 .setProductDetails(details)
@@ -123,7 +127,7 @@ object PlayBilling {
                         // developer offer (e.g. free trial) wins over the base plan.
                         val offers = details.subscriptionOfferDetails.orEmpty()
                         val offer = offers.firstOrNull { it.offerId != null } ?: offers.firstOrNull()
-                            ?: throw BillingException("No subscription offer configured on Google Play.")
+                            ?: throw BillingException(res.getString(R.string.billing_no_offer))
                         setOfferToken(offer.offerToken)
                     }
                 }
@@ -141,7 +145,7 @@ object PlayBilling {
                 if (launch.responseCode == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED) {
                     return ownedPurchases().firstOrNull { productId in it.products }
                 }
-                throw BillingException("Could not open Google Play (${launch.debugMessage}).")
+                throw BillingException(res.getString(R.string.billing_open_failed, launch.debugMessage))
             }
 
             val (result, purchases) = deferred.await()
@@ -151,7 +155,7 @@ object PlayBilling {
                 BillingClient.BillingResponseCode.USER_CANCELED -> null
                 BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED ->
                     ownedPurchases().firstOrNull { productId in it.products }
-                else -> throw BillingException("Google Play purchase failed (${result.debugMessage}).")
+                else -> throw BillingException(res.getString(R.string.billing_purchase_failed, result.debugMessage))
             }
         }
 

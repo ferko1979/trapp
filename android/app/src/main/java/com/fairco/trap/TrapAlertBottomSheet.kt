@@ -89,8 +89,8 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
                 val dist = state.trap.distanceMeters
                 val danger = state.trap.radiusMeters
 
-                binding.tvAlertTitle.text = "⚠️ TRAP DETECTED"
-                binding.tvTrapDistance.text = "${dist}m away · danger zone: ${danger}m radius"
+                binding.tvAlertTitle.text = getString(R.string.alert_trap_detected)
+                binding.tvTrapDistance.text = getString(R.string.alert_distance_danger, dist, danger)
                 binding.pbProximity.max = 200
                 binding.pbProximity.progress = (200 - dist).coerceAtLeast(0)
                 binding.pbProximity.progressTintList =
@@ -100,30 +100,30 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
                 val disarmRange = state.trap.disarmRadiusMeters
                 val leaveLimit = state.trap.disarmLeaveSeconds
                 binding.tvDisassembleOption.text =
-                    "Get within ${disarmRange}m → hold to reveal → hold to disassemble.\nLeave range for >${leaveLimit}s = cancelled. Disassembly time shown after reveal."
+                    getString(R.string.alert_option_disassemble, disarmRange, leaveLimit)
                 binding.tvAvoidOption.text =
-                    "Stay beyond ${danger}m from the trap center and navigate around it. Tap Dismiss to continue walking."
+                    getString(R.string.alert_option_avoid, danger)
                 binding.layoutOptions.visibility = View.VISIBLE
 
                 if (dist <= disarmRange) {
-                    binding.tvInstructions.text = "You're close enough — HOLD the button to reveal the trap!"
-                    binding.btnAction.text = "HOLD TO REVEAL"
+                    binding.tvInstructions.text = getString(R.string.alert_close_enough_hold)
+                    binding.btnAction.text = getString(R.string.alert_hold_to_reveal)
                     binding.btnAction.isEnabled = true
                 } else {
-                    binding.tvInstructions.text = "Walk to within ${disarmRange}m to reveal the trap type."
-                    binding.btnAction.text = "WATCHING…"
+                    binding.tvInstructions.text = getString(R.string.alert_walk_within, disarmRange)
+                    binding.btnAction.text = getString(R.string.alert_watching)
                     binding.btnAction.isEnabled = false
                 }
 
-                binding.btnIgnore.text = "Dismiss — I'll avoid it"
+                binding.btnIgnore.text = getString(R.string.alert_dismiss_avoid)
                 binding.btnIgnore.visibility = View.VISIBLE
             }
 
             is DisarmState.Revealing -> {
                 val dist = state.trap.distanceMeters
                 val disarmRange = state.trap.disarmRadiusMeters
-                binding.tvAlertTitle.text = "🔍 Revealing Trap…"
-                binding.tvTrapDistance.text = "${dist}m away"
+                binding.tvAlertTitle.text = getString(R.string.alert_revealing_title)
+                binding.tvTrapDistance.text = getString(R.string.alert_distance_away, dist)
                 binding.pbProximity.max = state.requiredSeconds.toInt().coerceAtLeast(1)
                 binding.pbProximity.progress = state.progressSeconds.toInt()
                 if (state.tooFar) {
@@ -132,8 +132,8 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
                     binding.pbProximity.progressTintList =
                         ColorStateList.valueOf(android.graphics.Color.parseColor("#FFB648"))
                     binding.tvInstructions.text =
-                        "⚠️ You left the zone! Return within ${disarmRange}m — move ${needed}m closer"
-                    binding.tvDisarmCountdown.text = "⏳ Cancelling in ${countdown}s…"
+                        getString(R.string.alert_left_zone, disarmRange, needed)
+                    binding.tvDisarmCountdown.text = getString(R.string.alert_cancelling_in, countdown)
                     binding.tvDisarmCountdown.visibility = View.VISIBLE
                 } else {
                     binding.pbProximity.progressTintList =
@@ -141,11 +141,11 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
                             ContextCompat.getColor(requireContext(), R.color.accent_cyan)
                         )
                     binding.tvInstructions.text =
-                        "Stay still — revealing trap type…\n${state.progressSeconds.toInt()}s / ${state.requiredSeconds.toInt()}s"
+                        getString(R.string.alert_stay_still_revealing, state.progressSeconds.toInt(), state.requiredSeconds.toInt())
                 }
-                binding.btnAction.text = "Revealing…"
+                binding.btnAction.text = getString(R.string.alert_revealing)
                 binding.btnAction.isEnabled = false
-                binding.btnIgnore.text = "Cancel"
+                binding.btnIgnore.text = getString(R.string.action_cancel)
                 binding.btnIgnore.visibility = View.VISIBLE
             }
 
@@ -158,40 +158,40 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
 
                 if (state.tooFar) {
                     val countdown = state.outOfRangeCountdown ?: 5
-                    binding.tvAlertTitle.text = "⚠️ Move Closer!"
-                    binding.tvTrapDistance.text = "Disassembly paused — ${state.trap.distanceMeters}m away"
+                    binding.tvAlertTitle.text = getString(R.string.alert_move_closer_title)
+                    binding.tvTrapDistance.text = getString(R.string.alert_disassembly_paused, state.trap.distanceMeters)
                     binding.pbProximity.progressTintList =
                         ColorStateList.valueOf(android.graphics.Color.parseColor("#FFB648"))
                     binding.tvInstructions.text =
-                        "⚠️ Move ${state.metersToClose}m closer! Return within ${disarmRange}m"
-                    binding.tvDisarmCountdown.text = "⏳ Cancelling in ${countdown}s…"
+                        getString(R.string.alert_move_closer_msg, state.metersToClose, disarmRange)
+                    binding.tvDisarmCountdown.text = getString(R.string.alert_cancelling_in, countdown)
                     binding.tvDisarmCountdown.visibility = View.VISIBLE
-                    binding.btnAction.text = "PAUSED…"
+                    binding.btnAction.text = getString(R.string.alert_paused)
                     binding.btnAction.isEnabled = false
                 } else {
-                    binding.tvAlertTitle.text = "🛠 Disassembling…"
-                    binding.tvTrapDistance.text = "Stay in position!"
+                    binding.tvAlertTitle.text = getString(R.string.alert_disassembling_title)
+                    binding.tvTrapDistance.text = getString(R.string.alert_stay_in_position)
                     binding.pbProximity.progressTintList =
                         ColorStateList.valueOf(
                             ContextCompat.getColor(requireContext(), R.color.accent_green)
                         )
-                    binding.tvInstructions.text = "HOLD position — do not move!"
-                    binding.tvDisarmCountdown.text = "⏱ ${remaining}s remaining"
+                    binding.tvInstructions.text = getString(R.string.alert_hold_position)
+                    binding.tvDisarmCountdown.text = getString(R.string.alert_seconds_remaining, remaining)
                     binding.tvDisarmCountdown.visibility = View.VISIBLE
-                    binding.btnAction.text = "HOLDING…"
+                    binding.btnAction.text = getString(R.string.alert_holding)
                     binding.btnAction.isEnabled = true
                 }
             }
 
             is DisarmState.CapturedWhileDisarming -> {
-                binding.tvAlertTitle.text = "🪤 You've Been Trapped!"
-                binding.tvTrapDistance.text = "You stepped into the trap zone"
+                binding.tvAlertTitle.text = getString(R.string.alert_trapped_title)
+                binding.tvTrapDistance.text = getString(R.string.alert_stepped_in_zone)
                 binding.pbProximity.progress = binding.pbProximity.max
                 binding.pbProximity.progressTintList =
                     ColorStateList.valueOf(android.graphics.Color.parseColor("#FF4F62"))
                 binding.tvInstructions.text =
-                    "You entered the danger zone (${state.trap.radiusMeters}m) during disassembly — the trap fired!"
-                binding.btnAction.text = "Dismiss"
+                    getString(R.string.alert_entered_danger_zone, state.trap.radiusMeters)
+                binding.btnAction.text = getString(R.string.action_dismiss)
                 binding.btnAction.isEnabled = true
                 binding.btnAction.setOnClickListener {
                     disarmVm.dismissSuccess()
@@ -205,11 +205,12 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
             }
 
             is DisarmState.Error -> {
-                binding.tvAlertTitle.text = "⚠️ Error"
-                binding.tvInstructions.text = state.message
-                binding.btnAction.text = "RETRY"
+                binding.tvAlertTitle.text = getString(R.string.alert_error_title)
+                binding.tvInstructions.text =
+                    if (state.resId != 0) getString(state.resId, *state.args.toTypedArray()) else state.message
+                binding.btnAction.text = getString(R.string.alert_retry)
                 binding.btnAction.isEnabled = true
-                binding.btnIgnore.text = "Dismiss"
+                binding.btnIgnore.text = getString(R.string.action_dismiss)
                 binding.btnIgnore.visibility = View.VISIBLE
                 binding.btnAction.setOnTouchListener(null)
                 binding.btnAction.setOnClickListener {
@@ -221,15 +222,15 @@ class TrapAlertBottomSheet : BottomSheetDialogFragment() {
 
     private fun showSuccessAndDismiss(state: DisarmState.DisarmComplete) {
         // Replace bottom sheet content with success card
-        binding.tvTrapDistance.text = "✅ Trap Disassembled!"
+        binding.tvTrapDistance.text = getString(R.string.alert_disassembled_title)
         binding.tvInstructions.text =
-            "You collected: ${state.trapName}\nIt's now in your bag — go set a trap!"
+            getString(R.string.alert_collected_msg, state.trapName)
         binding.pbProximity.progress = binding.pbProximity.max
         binding.pbProximity.progressTintList =
             ColorStateList.valueOf(
                 ContextCompat.getColor(requireContext(), R.color.accent_green)
             )
-        binding.btnAction.text = "Great!"
+        binding.btnAction.text = getString(R.string.alert_great)
         binding.btnAction.isEnabled = true
         binding.btnAction.setOnClickListener {
             disarmVm.dismissSuccess()

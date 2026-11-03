@@ -4,10 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import com.fairco.trap.util.BackendContextWrapper
+import com.fairco.trap.ui.theme.Radar
 import com.fairco.trap.util.LocaleManager
+import androidx.compose.ui.graphics.toArgb
 
 /**
  * Base class for all activities.
@@ -23,13 +27,23 @@ import com.fairco.trap.util.LocaleManager
  * Android 15+ (targetSdk 35+) always draws edge-to-edge, so the content view is
  * padded by the system bar / cutout / keyboard insets here. Screens that lay out
  * under the bars themselves (the full-bleed map) override [padForSystemBars].
+ * Dark Radar screens set [radarBars] so the bar areas match the page instead of
+ * showing the light window background with dark icons.
  */
 abstract class BaseActivity : AppCompatActivity() {
 
     protected open val padForSystemBars: Boolean = true
+    protected open val radarBars: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (radarBars) {
+            window.setBackgroundDrawable(Radar.Bg.toArgb().toDrawable())
+            WindowCompat.getInsetsController(window, window.decorView).apply {
+                isAppearanceLightStatusBars = false
+                isAppearanceLightNavigationBars = false
+            }
+        }
         if (!padForSystemBars) return
         ViewCompat.setOnApplyWindowInsetsListener(findViewById<View>(android.R.id.content)) { v, insets ->
             val bars = insets.getInsets(

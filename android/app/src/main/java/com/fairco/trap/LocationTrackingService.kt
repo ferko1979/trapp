@@ -1,5 +1,7 @@
 package com.fairco.trap
 
+import com.fairco.trap.util.LocaleManager
+import android.content.Context
 import android.Manifest
 import android.app.Service
 import android.content.Intent
@@ -24,6 +26,11 @@ import com.google.firebase.functions.functions
 import kotlin.math.abs
 
 class LocationTrackingService : Service() {
+
+    // Resolve getString() in the app-selected language, not the system one.
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleManager.applyLocale(newBase))
+    }
 
     private lateinit var functions: FirebaseFunctions
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -285,10 +292,10 @@ class LocationTrackingService : Service() {
 
                     // Human-readable effect description for the notification body.
                     val effectDesc = when (effectKind) {
-                        "timeout"  -> "Frozen for ${effectValue.toInt()}s"
-                        "laughter" -> "Laughter trap — 5s stun"
-                        "slowdown" -> "Slowed by ${effectValue.toInt()}%"
-                        "penalty"  -> "Score penalty: ${effectValue.toInt()} pts"
+                        "timeout"  -> getString(R.string.svc_effect_frozen, effectValue.toInt())
+                        "laughter" -> getString(R.string.svc_effect_laughter)
+                        "slowdown" -> getString(R.string.svc_effect_slowed, effectValue.toInt())
+                        "penalty"  -> getString(R.string.svc_effect_penalty, effectValue.toInt())
                         else       -> ""
                     }
 

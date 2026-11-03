@@ -105,7 +105,7 @@ class SupportTicketsFragment : Fragment() {
             holder.binding.tvStatus.text = item.status.uppercase()
             holder.binding.unreadIndicator.isVisible = item.hasUnreadUser
 
-            val categoryLabel = TicketCategory.entries.find { it.value == item.category }?.label ?: item.category
+            val categoryLabel = TicketCategory.entries.find { it.value == item.category }?.let { getString(it.labelRes) } ?: item.category
             holder.binding.tvCategory.text = categoryLabel
 
             val statusColor = when (item.status) {

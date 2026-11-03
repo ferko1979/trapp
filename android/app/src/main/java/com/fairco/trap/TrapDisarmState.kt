@@ -1,5 +1,7 @@
 package com.fairco.trap
 
+import androidx.annotation.StringRes
+
 sealed class DisarmState {
     object Idle : DisarmState()
     data class NearbyDetected(val trap: NearbyTrap) : DisarmState()
@@ -28,5 +30,10 @@ sealed class DisarmState {
         val trapName: String,
         val iconKey: String
     ) : DisarmState()
-    data class Error(val message: String) : DisarmState()
+    /** [message] = raw server text; when [resId] != 0 the UI shows getString(resId, *args) instead. */
+    data class Error(
+        val message: String = "",
+        @StringRes val resId: Int = 0,
+        val args: List<Any> = emptyList()
+    ) : DisarmState()
 }

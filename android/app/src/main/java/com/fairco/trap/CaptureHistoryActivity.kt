@@ -50,6 +50,8 @@ data class CaptureRecord(
 )
 
 class CaptureHistoryActivity : BaseActivity() {
+
+    override val radarBars = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent { TrappTheme {
@@ -237,9 +239,9 @@ private fun CaptureRow(record: CaptureRecord, isMyCapture: Boolean) {
             // Tappable enemy chip
             if (enemyUsername.isNotBlank()) {
                 val label = if (isMyCapture)
-                    "✅ caught @$enemyUsername"
+                    stringResource(R.string.capture_caught_user, enemyUsername)
                 else
-                    "⚔️ caught by @$enemyUsername"
+                    stringResource(R.string.capture_caught_by_user, enemyUsername)
                 val chipColor = if (isMyCapture) Color(0xFF14532D) else Color(0xFF450A0A)
                 val textColor = if (isMyCapture) Radar.Safe else Radar.TrapSoft
                 Box(
@@ -319,10 +321,10 @@ private fun CaptureRow(record: CaptureRecord, isMyCapture: Boolean) {
                             }
                         }
                         if (action == EnemyAction.ADD_FRIEND) {
-                            Toast.makeText(context, "Friend request sent to @$enemyUsername", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.capture_friend_request_sent_to, enemyUsername), Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception) {
-                        Toast.makeText(context, "Action failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.error_action_failed, e.message ?: ""), Toast.LENGTH_SHORT).show()
                     }
                 }
             },

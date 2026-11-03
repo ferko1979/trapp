@@ -29,6 +29,8 @@ import kotlinx.coroutines.tasks.await
 
 class RankingActivity : BaseActivity() {
 
+    override val radarBars = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val myUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
@@ -42,6 +44,7 @@ class RankingActivity : BaseActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun RankingScreen(myUid: String) {
+    val ctx = LocalContext.current
     val tabs = listOf(
         stringResource(R.string.tab_global),
         stringResource(R.string.tab_friends_rank),
@@ -60,14 +63,14 @@ private fun RankingScreen(myUid: String) {
     // Load rank summary
     LaunchedEffect(myUid) {
         if (myUid.isEmpty()) {
-            allianceState.value = LeaderboardState.Empty("Sign in to see alliance ranking")
+            allianceState.value = LeaderboardState.Empty(ctx.getString(R.string.rank_sign_in_alliance))
             return@LaunchedEffect
         }
         try {
             val result = functions.getHttpsCallable("getMyRankSummary").call().await()
             @Suppress("UNCHECKED_CAST")
             val data = result.getData() as? Map<String, Any?> ?: run {
-                allianceState.value = LeaderboardState.Empty("Not a member of any alliance")
+                allianceState.value = LeaderboardState.Empty(ctx.getString(R.string.rank_no_alliance))
                 return@LaunchedEffect
             }
             rankSummary.value = RankSummary(
@@ -83,7 +86,7 @@ private fun RankingScreen(myUid: String) {
                 captureCount = (data["captureCount"] as? Number)?.toInt() ?: 0
             )
         } catch (e: Exception) {
-            allianceState.value = LeaderboardState.Error(e.message ?: "Failed to load ranking")
+            allianceState.value = LeaderboardState.Error(e.message ?: ctx.getString(R.string.rank_load_failed))
         }
     }
 
@@ -105,24 +108,24 @@ private fun RankingScreen(myUid: String) {
                 )
             }
             globalState.value = if (entries.isEmpty())
-                LeaderboardState.Empty("No global rankings yet")
+                LeaderboardState.Empty(ctx.getString(R.string.rank_no_global))
             else
                 LeaderboardState.Loaded(entries)
         } catch (e: Exception) {
-            globalState.value = LeaderboardState.Error(e.message ?: "Failed to load")
+            globalState.value = LeaderboardState.Error(e.message ?: ctx.getString(R.string.rank_load_failed))
         }
     }
 
     // Load friends leaderboard
     LaunchedEffect(Unit) {
-        if (myUid.isEmpty()) { friendsState.value = LeaderboardState.Empty("Sign in to see friends ranking"); return@LaunchedEffect }
+        if (myUid.isEmpty()) { friendsState.value = LeaderboardState.Empty(ctx.getString(R.string.rank_sign_in_friends)); return@LaunchedEffect }
         try {
             val result = functions.getHttpsCallable("getFriendsLeaderboard").call().await()
             @Suppress("UNCHECKED_CAST")
             val data = result.getData() as? Map<String, Any?> ?: return@LaunchedEffect
             val hasFriends = data["hasFriends"] as? Boolean ?: false
             if (!hasFriends) {
-                friendsState.value = LeaderboardState.Empty("No friends yet\n\nAdd friends to see how you compare!")
+                friendsState.value = LeaderboardState.Empty(ctx.getString(R.string.rank_no_friends_hint))
                 return@LaunchedEffect
             }
             @Suppress("UNCHECKED_CAST")
@@ -137,10 +140,10 @@ private fun RankingScreen(myUid: String) {
                     isMe = item["isMe"] as? Boolean ?: false
                 )
             }
-            friendsState.value = if (entries.isEmpty()) LeaderboardState.Empty("No friends yet")
+            friendsState.value = if (entries.isEmpty()) LeaderboardState.Empty(ctx.getString(R.string.rank_no_friends))
             else LeaderboardState.Loaded(entries)
         } catch (e: Exception) {
-            friendsState.value = LeaderboardState.Error(e.message ?: "Failed to load")
+            friendsState.value = LeaderboardState.Error(e.message ?: ctx.getString(R.string.rank_load_failed))
         }
     }
 
@@ -148,7 +151,7 @@ private fun RankingScreen(myUid: String) {
     LaunchedEffect(rankSummary.value) {
         val summary = rankSummary.value ?: return@LaunchedEffect
         if (summary.allyGroupName == null) {
-            allianceState.value = LeaderboardState.Empty("Not a member of any alliance")
+            allianceState.value = LeaderboardState.Empty(ctx.getString(R.string.rank_no_alliance))
             return@LaunchedEffect
         }
         // We don't have groupId here directly; it's embedded in the context.
@@ -156,10 +159,10 @@ private fun RankingScreen(myUid: String) {
         if (summary.allyRank != null && summary.allyTotal != null) {
             allianceState.value = LeaderboardState.Loaded(
                 entries = emptyList(), // full list requires groupId — show summary instead
-                subtitle = "${summary.allyGroupName}: You are #${summary.allyRank} of ${summary.allyTotal}"
+                subtitle = ctx.getString(R.string.rank_alliance_position, summary.allyGroupName, summary.allyRank, summary.allyTotal)
             )
         } else {
-            allianceState.value = LeaderboardState.Empty("Not enough members for ranking")
+            allianceState.value = LeaderboardState.Empty(ctx.getString(R.string.rank_not_enough_members))
         }
     }
 

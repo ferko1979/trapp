@@ -136,7 +136,7 @@ fun TrappedOverlay(
                 var showEnemyMenu by remember { mutableStateOf(false) }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "Set by",
+                        text = stringResource(R.string.trap_set_by),
                         color = Radar.TextSec,
                         fontSize = 12.sp
                     )
@@ -221,17 +221,17 @@ fun EnemyActionsDialog(username: String, onAction: (EnemyAction) -> Unit, onDism
                     onClick = { onAction(EnemyAction.ADD_FRIEND) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(containerColor = Radar.Line)
-                ) { Text("👥 Add Friend", color = Color.White) }
+                ) { Text("👥 " + stringResource(R.string.action_add_friend_short), color = Color.White) }
                 Button(
                     onClick = { onAction(EnemyAction.MESSAGE) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(containerColor = Radar.Line)
-                ) { Text("💬 Send Message", color = Color.White) }
+                ) { Text("💬 " + stringResource(R.string.trap_send_message), color = Color.White) }
             }
         },
         confirmButton = {},
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel", color = Radar.TextMuted) }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel), color = Radar.TextMuted) }
         }
     )
 }
@@ -256,11 +256,12 @@ fun EnemyUsernameChip(username: String, enabled: Boolean = true, onClick: () -> 
 }
 
 /** Human-readable effect label for TRAPPED overlay. */
+@Composable
 private fun effectLabel(effectKind: String, effectValue: Double): String = when (effectKind) {
-    "timeout"  -> "⏱ Timeout: ${effectValue.toInt()}s"
-    "laughter" -> "😂 Laughter trap — 5s stun"
-    "slowdown" -> "🐌 Slowdown: ${effectValue.toInt()}%"
-    "penalty"  -> "⚡ Score penalty: ${effectValue.toInt()} pts"
+    "timeout"  -> stringResource(R.string.trap_effect_timeout, effectValue.toInt())
+    "laughter" -> stringResource(R.string.trap_effect_laughter)
+    "slowdown" -> stringResource(R.string.trap_effect_slowdown, effectValue.toInt())
+    "penalty"  -> stringResource(R.string.trap_effect_penalty, effectValue.toInt())
     else       -> ""
 }
 

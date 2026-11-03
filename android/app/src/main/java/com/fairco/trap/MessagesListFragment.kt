@@ -147,7 +147,7 @@ class MessagesListFragment : Fragment() {
                 if (item.kind == "support") {
                     tvAvatarInitial.text = "🛡"
                     avatarBg.backgroundTintList = android.content.res.ColorStateList.valueOf(requireContext().getColor(R.color.adminBlue))
-                    tvOtherUsername.text = "Support · ${item.supportTicketNo}"
+                    tvOtherUsername.text = getString(R.string.inbox_support_conv, item.supportTicketNo)
                 } else {
                     tvAvatarInitial.text = item.otherUsername.take(1).uppercase()
                     avatarBg.backgroundTintList = android.content.res.ColorStateList.valueOf(getAvatarColor(item.otherUid))

@@ -33,16 +33,16 @@ class TrapSelectionAdapter(
         val def = trapDefinitions[item.trapTypeId]
 
         val status = when {
-            item.blockedBySlots -> " [FULL]"
-            item.blockedByWeight -> " [WEIGHT]"
+            item.blockedBySlots -> " " + context.getString(R.string.label_blocked_slots)
+            item.blockedByWeight -> " " + context.getString(R.string.label_blocked_weight)
             else -> ""
         }
 
-        binding.trapName.text = "${def?.name ?: "Unknown"} (${item.bagCount})$status"
+        binding.trapName.text = context.getString(R.string.trap_selection_title_format, def?.name ?: context.getString(R.string.trap_unknown), item.bagCount, status)
         
         val placeTime = def?.effectivePlacementHoldSeconds ?: 3
         val damage = def?.damage ?: 0
-        binding.trapDetails.text = "Place: ${placeTime}s | Damage: $damage"
+        binding.trapDetails.text = context.getString(R.string.trap_selection_detail_format, placeTime, damage, "")
 
         return view
     }

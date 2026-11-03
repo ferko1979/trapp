@@ -1,5 +1,6 @@
 ﻿package com.fairco.trap
 
+import androidx.compose.ui.res.stringResource
 import android.content.Intent
 import com.fairco.trap.ui.theme.TrappTheme
 import com.fairco.trap.ui.theme.Radar
@@ -75,6 +76,8 @@ data class SubscriptionInfo(
 )
 
 class SubscriptionActivity : BaseActivity() {
+
+    override val radarBars = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -195,13 +198,13 @@ private fun SubscriptionScreen(uid: String) {
                         granted = true
                     }
                     if (granted) {
-                        Toast.makeText(context, "✅ Your Google Play purchase is now active.", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, context.getString(R.string.sub_play_purchase_active), Toast.LENGTH_LONG).show()
                         activity?.finish()
                     }
                 } catch (_: Exception) { /* retried on next visit */ }
             }
         } catch (e: Exception) {
-            Toast.makeText(context, "Failed to load: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.sub_load_failed, e.message ?: ""), Toast.LENGTH_SHORT).show()
         } finally {
             loading = false
         }
@@ -224,7 +227,7 @@ private fun SubscriptionScreen(uid: String) {
                     val checkoutUrl = data["checkoutUrl"] as? String
                     if (isTrial) {
                         val trialDays = (data["trialDays"] as? Number)?.toInt() ?: 0
-                        Toast.makeText(context, "🎉 Your $trialDays-day free trial has started!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, context.getString(R.string.sub_trial_started, trialDays), Toast.LENGTH_LONG).show()
                         activity?.finish()
                     } else if (!checkoutUrl.isNullOrBlank()) {
                         // Open in Chrome Custom Tabs so Google Pay is available on the checkout page
@@ -236,7 +239,7 @@ private fun SubscriptionScreen(uid: String) {
                             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(checkoutUrl)))
                         }
                     } else {
-                        Toast.makeText(context, "No checkout URL returned.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.sub_no_checkout_url), Toast.LENGTH_SHORT).show()
                     }
                 }
                 PaymentGateway.STRIPE -> {
@@ -247,12 +250,12 @@ private fun SubscriptionScreen(uid: String) {
                     if (!url.isNullOrBlank()) {
                         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                     } else {
-                        Toast.makeText(context, "No Stripe checkout URL returned.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.sub_no_checkout_url), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         } catch (e: Exception) {
-            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context.getString(R.string.sub_error, e.message ?: ""), Toast.LENGTH_LONG).show()
         } finally {
             checkoutLoading = false
         }
@@ -266,14 +269,14 @@ private fun SubscriptionScreen(uid: String) {
         try {
             val purchase = session.purchase(act, pkg.playProductId, pkg.isRecurring, uid) ?: return
             if (purchase.purchaseState == Purchase.PurchaseState.PENDING) {
-                Toast.makeText(context, "Payment pending — your membership starts once Google Play confirms it.", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, context.getString(R.string.sub_payment_pending), Toast.LENGTH_LONG).show()
                 return
             }
             verifyPlay(pkg, purchase.purchaseToken)
-            Toast.makeText(context, "🎉 ${pkg.levelName.ifBlank { pkg.name }} is now active!", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context.getString(R.string.sub_now_active, pkg.levelName.ifBlank { pkg.name }), Toast.LENGTH_LONG).show()
             act.finish()
         } catch (e: Exception) {
-            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context.getString(R.string.sub_error, e.message ?: ""), Toast.LENGTH_LONG).show()
         } finally {
             checkoutLoading = false
         }
@@ -283,7 +286,7 @@ private fun SubscriptionScreen(uid: String) {
     fun startCheckout(pkg: PaymentPackage) {
         if (playInstall) {
             if (pkg.playProductId.isBlank()) {
-                Toast.makeText(context, "This package is not available in the Google Play version yet.", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, context.getString(R.string.sub_not_on_play), Toast.LENGTH_LONG).show()
             } else {
                 scope.launch { doPlayCheckout(pkg) }
             }
@@ -314,7 +317,7 @@ private fun SubscriptionScreen(uid: String) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                "Premium",
+                stringResource(R.string.sub_title_premium),
                 color = Color.White,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.ExtraBold,
@@ -361,10 +364,10 @@ private fun SubscriptionScreen(uid: String) {
                                         fns.getHttpsCallable("cancelMySubscription")
                                             .call(mapOf("subscriptionId" to sub.id))
                                             .await()
-                                        Toast.makeText(context, "Subscription cancelled. Access continues until period end.", Toast.LENGTH_LONG).show()
+                                        Toast.makeText(context, context.getString(R.string.sub_cancelled_toast), Toast.LENGTH_LONG).show()
                                         activity?.finish()
                                     } catch (e: Exception) {
-                                        Toast.makeText(context, "Cancel failed: ${e.message}", Toast.LENGTH_LONG).show()
+                                        Toast.makeText(context, context.getString(R.string.sub_cancel_failed, e.message ?: ""), Toast.LENGTH_LONG).show()
                                     } finally {
                                         cancelLoading = false
                                     }
@@ -385,14 +388,14 @@ private fun SubscriptionScreen(uid: String) {
                     Text("💎", fontSize = 44.sp)
                     Spacer(Modifier.height(8.dp))
                     Text(
-                        "Choose Your Level",
+                        stringResource(R.string.sub_choose_level),
                         color = Color.White,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.ExtraBold,
                         textAlign = TextAlign.Center
                     )
                     Text(
-                        "Bigger bag · Faster actions · No ads",
+                        stringResource(R.string.sub_header_tagline),
                         color = Radar.TextMuted,
                         fontSize = 13.sp,
                         textAlign = TextAlign.Center,
@@ -417,8 +420,8 @@ private fun SubscriptionScreen(uid: String) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Column {
-                            Text("FREE", color = Radar.TextMuted, fontWeight = FontWeight.ExtraBold, fontSize = 16.sp, letterSpacing = 1.sp)
-                            Text("Your current plan", color = Radar.Line, fontSize = 12.sp, modifier = Modifier.padding(top = 2.dp))
+                            Text(stringResource(R.string.sub_free_tier), color = Radar.TextMuted, fontWeight = FontWeight.ExtraBold, fontSize = 16.sp, letterSpacing = 1.sp)
+                            Text(stringResource(R.string.sub_current_plan), color = Radar.Line, fontSize = 12.sp, modifier = Modifier.padding(top = 2.dp))
                         }
                         Text("€0", color = Radar.TextMuted, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                     }
@@ -427,10 +430,10 @@ private fun SubscriptionScreen(uid: String) {
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        BenefitChip("Bag", "4 kg", Radar.TextMuted, Modifier.weight(1f))
-                        BenefitChip("Traps/day", "2", Radar.TextMuted, Modifier.weight(1f))
-                        BenefitChip("Radius", "200 m", Radar.TextMuted, Modifier.weight(1f))
-                        BenefitChip("Speed", "+0%", Radar.TextMuted, Modifier.weight(1f))
+                        BenefitChip(stringResource(R.string.sub_benefit_bag), "4 kg", Radar.TextMuted, Modifier.weight(1f))
+                        BenefitChip(stringResource(R.string.sub_benefit_traps_day), "2", Radar.TextMuted, Modifier.weight(1f))
+                        BenefitChip(stringResource(R.string.sub_benefit_radius), "200 m", Radar.TextMuted, Modifier.weight(1f))
+                        BenefitChip(stringResource(R.string.sub_benefit_speed), "+0%", Radar.TextMuted, Modifier.weight(1f))
                     }
                     Spacer(Modifier.height(6.dp))
                     Row(
@@ -442,8 +445,8 @@ private fun SubscriptionScreen(uid: String) {
                         horizontalArrangement = Arrangement.spacedBy(6.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Ads:", color = Radar.TextMuted, fontSize = 11.sp)
-                        Text("Banner · Interstitial · Rewarded", color = Radar.TrapSoft, fontSize = 10.sp, fontWeight = FontWeight.SemiBold,
+                        Text(stringResource(R.string.sub_ads_label), color = Radar.TextMuted, fontSize = 11.sp)
+                        Text(stringResource(R.string.sub_ads_all), color = Radar.TrapSoft, fontSize = 10.sp, fontWeight = FontWeight.SemiBold,
                             modifier = Modifier.background(Color(0xFF1C0A0A), RoundedCornerShape(999.dp)).padding(horizontal = 7.dp, vertical = 3.dp))
                     }
                 }
@@ -454,7 +457,7 @@ private fun SubscriptionScreen(uid: String) {
                 OutlinedTextField(
                     value = discountCode,
                     onValueChange = { discountCode = it.uppercase() },
-                    label = { Text("Discount code (optional)", color = Radar.TextMuted) },
+                    label = { Text(stringResource(R.string.sub_discount_code), color = Radar.TextMuted) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = Radar.Accent,
@@ -480,8 +483,8 @@ private fun SubscriptionScreen(uid: String) {
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             Text("🔧", fontSize = 28.sp)
-                            Text("Payment Temporarily Unavailable", color = Radar.Text, fontWeight = FontWeight.Bold, fontSize = 15.sp, textAlign = TextAlign.Center)
-                            Text("Please check back shortly.", color = Radar.TextMuted, fontSize = 13.sp, textAlign = TextAlign.Center)
+                            Text(stringResource(R.string.sub_payment_unavailable_title), color = Radar.Text, fontWeight = FontWeight.Bold, fontSize = 15.sp, textAlign = TextAlign.Center)
+                            Text(stringResource(R.string.sub_payment_unavailable_msg), color = Radar.TextMuted, fontSize = 13.sp, textAlign = TextAlign.Center)
                         }
                     }
                 }
@@ -492,7 +495,7 @@ private fun SubscriptionScreen(uid: String) {
             if (packages.isEmpty()) {
                 item {
                     Text(
-                        "No premium packages available yet.",
+                        stringResource(R.string.sub_no_packages),
                         color = Radar.TextMuted,
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
@@ -520,7 +523,7 @@ private fun SubscriptionScreen(uid: String) {
 
             item {
                 Text(
-                    "Cancel at any time. No charge if cancelled before the billing date. Prices shown in package currency.",
+                    stringResource(R.string.sub_footer_note),
                     color = Radar.Line,
                     fontSize = 11.sp,
                     textAlign = TextAlign.Center,
@@ -535,28 +538,28 @@ private fun SubscriptionScreen(uid: String) {
                 onDismissRequest = { recurringConsentPkg = null },
                 containerColor = Radar.Bg,
                 title = {
-                    Text("🔄 Recurring Subscription", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Text(stringResource(R.string.sub_recurring_title), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                 },
                 text = {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text(
-                            "${pkg.name} is a recurring subscription that automatically renews every ${formatDuration(pkg.duration).removePrefix("per ")}.",
+                            stringResource(R.string.sub_recurring_renews, pkg.name, formatEvery(pkg.duration)),
                             color = Radar.Text, fontSize = 14.sp, lineHeight = 20.sp
                         )
                         Text(
-                            "You will be charged ${formatPrice(pkg.price, pkg.currency)} at the start of each period.",
+                            stringResource(R.string.sub_recurring_charge, formatPrice(pkg.price, pkg.currency)),
                             color = Radar.TextSec, fontSize = 13.sp
                         )
                         Text(
                             if (playInstall)
-                                "✅ You can cancel at any time in Google Play (Payments & subscriptions → Subscriptions). Cancellation takes effect at the end of the current period — you keep access until then."
+                                stringResource(R.string.sub_recurring_cancel_play)
                             else
-                                "✅ You can cancel at any time from the app (Profile → Subscription → Cancel). Cancellation takes effect at the end of the current period — you keep access until then.",
+                                stringResource(R.string.sub_recurring_cancel_app),
                             color = Radar.Safe, fontSize = 13.sp, lineHeight = 19.sp
                         )
                         if (pkg.trialDays > 0) {
                             Text(
-                                "🔬 Your first ${pkg.trialDays} days are FREE. No charge if you cancel before the trial ends.",
+                                stringResource(R.string.sub_recurring_trial, pkg.trialDays),
                                 color = Radar.Accent, fontSize = 13.sp
                             )
                         }
@@ -571,12 +574,12 @@ private fun SubscriptionScreen(uid: String) {
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Radar.AccentDeep)
                     ) {
-                        Text("I Understand — Continue", color = Color.White, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.sub_understand_continue), color = Color.White, fontWeight = FontWeight.Bold)
                     }
                 },
                 dismissButton = {
                     TextButton(onClick = { recurringConsentPkg = null }) {
-                        Text("Cancel", color = Radar.TextMuted)
+                        Text(stringResource(R.string.action_cancel), color = Radar.TextMuted)
                     }
                 }
             )
@@ -588,7 +591,7 @@ private fun SubscriptionScreen(uid: String) {
                 onDismissRequest = { gatewayPickerPkg = null },
                 containerColor = Radar.Bg,
                 title = {
-                    Text("Choose Payment Method", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Text(stringResource(R.string.sub_choose_payment), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                 },
                 text = {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -603,7 +606,7 @@ private fun SubscriptionScreen(uid: String) {
                                 modifier = Modifier.fillMaxWidth(),
                                 shape = RoundedCornerShape(10.dp)
                             ) {
-                                Text("🏦  Pay with Revolut", color = Color.White, fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.sub_pay_revolut), color = Color.White, fontWeight = FontWeight.Bold)
                             }
                         }
                         if (stripeEnabled) {
@@ -617,7 +620,7 @@ private fun SubscriptionScreen(uid: String) {
                                 modifier = Modifier.fillMaxWidth(),
                                 shape = RoundedCornerShape(10.dp)
                             ) {
-                                Text("💳  Pay with Card (Stripe)", color = Color.White, fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.sub_pay_stripe), color = Color.White, fontWeight = FontWeight.Bold)
                             }
                         }
                     }
@@ -625,7 +628,7 @@ private fun SubscriptionScreen(uid: String) {
                 confirmButton = {},
                 dismissButton = {
                     TextButton(onClick = { gatewayPickerPkg = null }) {
-                        Text("Cancel", color = Radar.TextMuted)
+                        Text(stringResource(R.string.action_cancel), color = Radar.TextMuted)
                     }
                 }
             )
@@ -640,9 +643,9 @@ private fun ActiveSubscriptionCard(
     onCancel: () -> Unit
 ) {
     val statusLabel = when (sub.status) {
-        "trialing" -> "🔬 Free Trial"
-        "active"   -> "✅ Active"
-        "cancelled" -> "⏸ Cancelled"
+        "trialing" -> stringResource(R.string.sub_status_trial)
+        "active"   -> stringResource(R.string.sub_status_active)
+        "cancelled" -> stringResource(R.string.sub_status_cancelled)
         else       -> sub.status
     }
     val statusColor = when (sub.status) {
@@ -664,17 +667,17 @@ private fun ActiveSubscriptionCard(
             Text("🏆", fontSize = 28.sp)
             Spacer(Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(sub.packageName ?: "Premium", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                Text(sub.packageName ?: stringResource(R.string.sub_title_premium), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
                 Text(statusLabel, color = statusColor, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
             }
         }
         Spacer(Modifier.height(16.dp))
 
         if (sub.status == "trialing" && sub.trialEnd != null) {
-            InfoRow("Trial ends", fmt.format(Date(sub.trialEnd)))
+            InfoRow(stringResource(R.string.sub_trial_ends), fmt.format(Date(sub.trialEnd)))
         }
         sub.currentPeriodEnd?.let {
-            InfoRow(if (sub.cancelAtPeriodEnd) "Access until" else "Renews", fmt.format(Date(it)))
+            InfoRow(if (sub.cancelAtPeriodEnd) stringResource(R.string.sub_access_until) else stringResource(R.string.sub_renews), fmt.format(Date(it)))
         }
 
         Spacer(Modifier.height(16.dp))
@@ -690,16 +693,16 @@ private fun ActiveSubscriptionCard(
             ) {
                 Text(
                     when {
-                        cancelLoading -> "Cancelling…"
-                        viaPlay -> "Manage in Google Play"
-                        else -> "Cancel Subscription"
+                        cancelLoading -> stringResource(R.string.sub_cancelling)
+                        viaPlay -> stringResource(R.string.sub_manage_play)
+                        else -> stringResource(R.string.sub_cancel_subscription)
                     },
                     color = Radar.TrapSoft
                 )
             }
             Spacer(Modifier.height(6.dp))
             Text(
-                "Your access continues until the end of the current period.",
+                stringResource(R.string.sub_access_continues),
                 color = Radar.TextMuted,
                 fontSize = 11.sp,
                 textAlign = TextAlign.Center,
@@ -707,7 +710,7 @@ private fun ActiveSubscriptionCard(
             )
         } else if (sub.cancelAtPeriodEnd) {
             Text(
-                "Subscription cancelled — access continues until ${sub.currentPeriodEnd?.let { fmt.format(Date(it)) } ?: "period end"}.",
+                stringResource(R.string.sub_cancelled_until, sub.currentPeriodEnd?.let { fmt.format(Date(it)) } ?: stringResource(R.string.sub_period_end)),
                 color = Radar.TextSec,
                 fontSize = 13.sp,
                 textAlign = TextAlign.Center,
@@ -768,7 +771,7 @@ private fun PackageCard(
         // ── "Most popular" badge ────────────────────────────────────────────
         if (isPopular) {
             Text(
-                "★  Most popular",
+                stringResource(R.string.sub_most_popular),
                 color = accent,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
@@ -791,7 +794,7 @@ private fun PackageCard(
                 ) {
                     if (pkg.trialDays > 0) {
                         Text(
-                            "${pkg.trialDays}d free trial",
+                            stringResource(R.string.sub_trial_badge, pkg.trialDays),
                             color = Radar.Accent,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,
@@ -802,7 +805,7 @@ private fun PackageCard(
                     }
                     if (pkg.isRecurring) {
                         Text(
-                            "Auto-renews",
+                            stringResource(R.string.sub_auto_renews),
                             color = Radar.TextMuted,
                             fontSize = 11.sp,
                             modifier = Modifier
@@ -825,10 +828,10 @@ private fun PackageCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                BenefitChip(label = "Bag", value = "${pkg.levelBagKg.toInt()} kg", accent = accent, modifier = Modifier.weight(1f))
-                BenefitChip(label = "Traps/day", value = "${pkg.levelDailyTraps}", accent = accent, modifier = Modifier.weight(1f))
-                BenefitChip(label = "Radius", value = formatRadius(pkg.levelRadiusMeters), accent = accent, modifier = Modifier.weight(1f))
-                BenefitChip(label = "Speed", value = "+${pkg.levelSpeedPercent}%", accent = accent, modifier = Modifier.weight(1f))
+                BenefitChip(label = stringResource(R.string.sub_benefit_bag), value = "${pkg.levelBagKg.toInt()} kg", accent = accent, modifier = Modifier.weight(1f))
+                BenefitChip(label = stringResource(R.string.sub_benefit_traps_day), value = "${pkg.levelDailyTraps}", accent = accent, modifier = Modifier.weight(1f))
+                BenefitChip(label = stringResource(R.string.sub_benefit_radius), value = formatRadius(pkg.levelRadiusMeters), accent = accent, modifier = Modifier.weight(1f))
+                BenefitChip(label = stringResource(R.string.sub_benefit_speed), value = "+${pkg.levelSpeedPercent}%", accent = accent, modifier = Modifier.weight(1f))
             }
 
             Spacer(Modifier.height(8.dp))
@@ -855,17 +858,17 @@ private fun PackageCard(
             }
             val gatewayLabel = when {
                 playInstall -> ""
-                revolutEnabled && stripeEnabled -> " · Revolut or Card"
-                stripeEnabled -> " · Pay by Card"
+                revolutEnabled && stripeEnabled -> " · " + stringResource(R.string.sub_gateway_revolut_or_card)
+                stripeEnabled -> " · " + stringResource(R.string.sub_gateway_card)
                 else -> ""
             }
             val label = if (playUnavailable)
-                "Coming soon on Google Play"
+                stringResource(R.string.sub_coming_soon_play)
             else if (pkg.trialDays > 0)
-                "Start ${pkg.trialDays}-Day Free Trial"
+                stringResource(R.string.sub_start_trial, pkg.trialDays)
             else {
                 val n = pkg.levelName.takeIf { it.isNotBlank() } ?: pkg.name
-                "Get $n$gatewayLabel"
+                stringResource(R.string.sub_get_package, n) + gatewayLabel
             }
             Text(label, fontWeight = FontWeight.Bold, color = Radar.contentOn(accent))
         }
@@ -904,19 +907,19 @@ private fun AdStatusRow(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text("Ads:", color = Radar.TextMuted, fontSize = 11.sp)
-        AdChip("Banner", !disableBanner)
-        AdChip("Interstitial", !disableInterstitial)
-        AdChip("Rewarded", !disableRewarded, optional = disableInterstitial)
+        Text(stringResource(R.string.sub_ads_label), color = Radar.TextMuted, fontSize = 11.sp)
+        AdChip(stringResource(R.string.sub_ad_banner), !disableBanner)
+        AdChip(stringResource(R.string.sub_ad_interstitial), !disableInterstitial)
+        AdChip(stringResource(R.string.sub_ad_rewarded), !disableRewarded, optional = disableInterstitial)
     }
 }
 
 @Composable
 private fun AdChip(label: String, shown: Boolean, optional: Boolean = false) {
     val (bg, fg, prefix) = when {
-        !shown && optional -> Triple(Color(0xFF0A1A0A), Radar.Safe, "opt")
+        !shown && optional -> Triple(Color(0xFF0A1A0A), Radar.Safe, stringResource(R.string.sub_ad_optional))
         shown              -> Triple(Color(0xFF1C0A0A), Radar.TrapSoft, "✕")
-        else               -> Triple(Color(0xFF0A1A0A), Radar.Safe, "✓ off")
+        else               -> Triple(Color(0xFF0A1A0A), Radar.Safe, "✓ " + stringResource(R.string.sub_ad_off))
     }
     Text(
         "$prefix $label",
@@ -962,14 +965,27 @@ private fun formatPrice(amount: Int, currency: String): String {
     }
 }
 
+@Composable
 private fun formatDuration(d: String): String = when (d) {
-    "1d"  -> "per day"
-    "7d"  -> "per week"
-    "30d" -> "per month"
-    "1m"  -> "per month"
-    "3m"  -> "per 3 months"
-    "6m"  -> "per 6 months"
-    "1y"  -> "per year"
+    "1d"  -> stringResource(R.string.sub_per_day)
+    "7d"  -> stringResource(R.string.sub_per_week)
+    "30d" -> stringResource(R.string.sub_per_month)
+    "1m"  -> stringResource(R.string.sub_per_month)
+    "3m"  -> stringResource(R.string.sub_per_3_months)
+    "6m"  -> stringResource(R.string.sub_per_6_months)
+    "1y"  -> stringResource(R.string.sub_per_year)
+    else  -> d
+}
+
+@Composable
+private fun formatEvery(d: String): String = when (d) {
+    "1d"  -> stringResource(R.string.sub_every_day)
+    "7d"  -> stringResource(R.string.sub_every_week)
+    "30d" -> stringResource(R.string.sub_every_month)
+    "1m"  -> stringResource(R.string.sub_every_month)
+    "3m"  -> stringResource(R.string.sub_every_3_months)
+    "6m"  -> stringResource(R.string.sub_every_6_months)
+    "1y"  -> stringResource(R.string.sub_every_year)
     else  -> d
 }
 

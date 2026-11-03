@@ -1,5 +1,6 @@
 package com.fairco.trap
 
+import com.fairco.trap.util.LocaleManager
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -27,12 +28,13 @@ object TrapProximityNotifier {
 
     fun createChannel(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val res = LocaleManager.applyLocale(context)
             val channel = NotificationChannel(
                 CHANNEL_ID,
-                "Nearby Traps",
+                res.getString(R.string.notif_channel_nearby),
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
-                description = "Alert when a trap is within 250m"
+                description = res.getString(R.string.notif_channel_nearby_desc)
                 enableVibration(true)
                 vibrationPattern = longArrayOf(0, 300, 150, 300, 150, 300)
                 setSound(
@@ -82,14 +84,15 @@ object TrapProximityNotifier {
             )
         } else null
 
+        val res = LocaleManager.applyLocale(context)
         val notif = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_trap_warning)
-            .setContentTitle("⚠️ DANGER — Trap ${trap.distanceMeters}m Away!")
+            .setContentTitle(res.getString(R.string.notif_danger_title, trap.distanceMeters))
             .setContentText(
-                "A trap is ${trap.distanceMeters}m away (capture radius ${trap.radiusMeters}m). Move away or disarm it!"
+                res.getString(R.string.notif_danger_text, trap.distanceMeters, trap.radiusMeters)
             )
             .setStyle(NotificationCompat.BigTextStyle()
-                .bigText("A trap is ${trap.distanceMeters}m ahead — you'll be captured at ${trap.radiusMeters}m!\n\nTap to open the disarm screen, or use 'Show on Map' to see exactly where it is.")
+                .bigText(res.getString(R.string.notif_danger_big, trap.distanceMeters, trap.radiusMeters))
             )
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
@@ -97,9 +100,9 @@ object TrapProximityNotifier {
             .setContentIntent(openAppPending)
             .apply {
                 if (mapPending != null) {
-                    addAction(0, "🗺 Show on Map", mapPending)
+                    addAction(0, res.getString(R.string.notif_action_show_map), mapPending)
                 }
-                addAction(0, "🛠 Disarm", openAppPending)
+                addAction(0, res.getString(R.string.notif_action_disarm), openAppPending)
             }
             .build()
 

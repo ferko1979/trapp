@@ -129,7 +129,7 @@ class SplashActivity : BaseActivity() {
 
     private suspend fun navigate() {
         val user = FirebaseAuth.getInstance().currentUser
-        val locale = LocaleManager.getLocale(this)
+        val locale = LocaleManager.apiLang(this)
 
         // Persist locale to Firestore so backend always knows the user's language
         if (user != null) {
@@ -164,7 +164,7 @@ class SplashActivity : BaseActivity() {
      */
     private suspend fun checkTncVersion(uid: String): Long? {
         return try {
-            val locale = LocaleManager.getLocale(this)
+            val locale = LocaleManager.apiLang(this)
             val result = Firebase.functions("europe-west1")
                 .getHttpsCallable("getTermsAndConditions")
                 .call(hashMapOf("locale" to locale))
@@ -199,7 +199,7 @@ class SplashActivity : BaseActivity() {
                     if (saved == null) {
                         android.widget.Toast.makeText(
                             this@SplashActivity,
-                            "Could not save acceptance — try again later.",
+                            getString(R.string.auth_tnc_save_failed),
                             android.widget.Toast.LENGTH_SHORT
                         ).show()
                     }

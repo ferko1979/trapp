@@ -33,15 +33,7 @@ class LoginActivity : BaseActivity() {
         val forgotBtn = findViewById<Button>(R.id.btnForgotPassword)
         val spinnerLang = findViewById<Spinner>(R.id.spinnerLanguage)
 
-        val languages = listOf(
-            "en" to getString(R.string.lang_en),
-            "hu" to getString(R.string.lang_hu),
-            "sk" to getString(R.string.lang_sk),
-            "ro" to getString(R.string.lang_ro),
-            "de" to getString(R.string.lang_de),
-            "hr" to getString(R.string.lang_hr),
-            "he" to getString(R.string.lang_he)
-        )
+        val languages = APP_LANGUAGES
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages.map { it.second })
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -141,7 +133,7 @@ class LoginActivity : BaseActivity() {
                                     resendBtn.visibility = android.view.View.GONE
                                 }
                                 ?.addOnFailureListener { ex ->
-                                    error.text = ex.message ?: "Failed to send verification email."
+                                    error.text = ex.message ?: getString(R.string.auth_verification_send_failed)
                                     auth.signOut()
                                 }
                         }

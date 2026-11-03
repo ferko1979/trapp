@@ -106,7 +106,7 @@ class SupportTicketsActivity : BaseActivity() {
             holder.binding.tvStatus.text = item.status.uppercase()
             holder.binding.unreadIndicator.isVisible = item.hasUnreadUser
 
-            val categoryLabel = TicketCategory.entries.find { it.value == item.category }?.label ?: item.category
+            val categoryLabel = TicketCategory.entries.find { it.value == item.category }?.let { getString(it.labelRes) } ?: item.category
             holder.binding.tvCategory.text = categoryLabel
 
             val statusColor = when (item.status) {
@@ -119,10 +119,10 @@ class SupportTicketsActivity : BaseActivity() {
             holder.binding.tvStatus.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@SupportTicketsActivity, statusColor))
 
             item.lastMessageAtEpochMs?.let {
-                holder.binding.tvLastMessageAt.text = "Last update: ${dateFormat.format(Date(it))}"
+                holder.binding.tvLastMessageAt.text = getString(R.string.support_last_update, dateFormat.format(Date(it)))
             } ?: run {
                 item.createdAtEpochMs?.let {
-                    holder.binding.tvLastMessageAt.text = "Created: ${dateFormat.format(Date(it))}"
+                    holder.binding.tvLastMessageAt.text = getString(R.string.support_created, dateFormat.format(Date(it)))
                 }
             }
 

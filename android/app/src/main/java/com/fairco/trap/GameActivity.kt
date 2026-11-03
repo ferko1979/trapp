@@ -2,6 +2,7 @@ package com.fairco.trap
 
 import android.Manifest
 import com.fairco.trap.ui.theme.TrappTheme
+import com.fairco.trap.util.LocaleManager
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -46,7 +47,6 @@ import com.google.firebase.Firebase
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import com.fairco.trap.databinding.DialogSettingsBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -103,6 +103,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     private val badgeVm: InboxBadgeViewModel by viewModels()
     private val gameVm: GameViewModel by viewModels()
     private val hud = MapHudState()
+    private val settingsUi = SettingsUiState()
     private lateinit var auth: FirebaseAuth
     private lateinit var map: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -129,7 +130,7 @@ class GameActivity : BaseActivity(), OnMapReadyCallback {
     private var sonarTone: ToneGenerator? = null
     private var isReloadingMap = false
 
-    private var currentDisplayName: String = "Player"
+    private var currentDisplayName: String = ""
     private var currentUsername: String? = null
 
     private var lastCapturedUsername: String? = null
@@ -313,6 +314,11 @@ observeTheme()
     }
 
     private fun setupBagBottomSheet() {
+        val settingsPrefs = getSharedPreferences("Settings", MODE_PRIVATE)
+        if (settingsPrefs.getBoolean("reopen_settings", false)) {
+            settingsPrefs.edit().remove("reopen_settings").apply()
+            showSettingsDialog()
+        }
         binding.composeTopHud.setContent { TrappTheme {
             val unread by badgeVm.unreadCount.collectAsState()
             MapTopHud(
@@ -354,7 +360,7 @@ observeTheme()
                         MapTab.BAG -> hud.pickerOpen = true
                         MapTab.RANK -> startActivity(Intent(this@GameActivity, RankingActivity::class.java))
                         MapTab.SOCIAL -> startActivity(Intent(this@GameActivity, FriendsActivity::class.java))
-                        MapTab.ME -> showHudMenu(binding.composeBottomDock)
+                        MapTab.ME -> hud.meOpen = true
                     }
                 },
             )
@@ -368,12 +374,54 @@ observeTheme()
                     },
                     onWatchRefillAd = { trapTypeId ->
                         showRefillRewardedAd(trapTypeId) {
-                            val lang = getSharedPreferences("Settings", MODE_PRIVATE)
-                                .getString("App_Lang", "en") ?: "en"
+                            val lang = LocaleManager.apiLang(this@GameActivity)
                             gameVm.loadBag(lang = lang)
                         }
                     },
                     onOpenAwards = { startActivity(Intent(this@GameActivity, AwardsActivity::class.java)) },
+                )
+            }
+            if (hud.meOpen) {
+                val unread by badgeVm.unreadCount.collectAsState()
+                MeSheet(hud = hud, unreadCount = unread, onAction = ::onMeAction, onDismiss = { hud.meOpen = false })
+            }
+            if (hud.layersOpen) {
+                val dark by ThemeManager.isDarkMode.collectAsState()
+                LayersSheet(
+                    heatmapOn = settingsUi.heatmap,
+                    darkMap = dark,
+                    onToggleHeatmap = { toggleHeatmap(); settingsUi.heatmap = heatmapVisible },
+                    onToggleDark = { ThemeManager.toggleManualOverride() },
+                    onReload = { hud.layersOpen = false; reloadMapTraps(showFeedback = true) },
+                    onDismiss = { hud.layersOpen = false },
+                )
+            }
+            if (hud.settingsOpen) {
+                val membership by gameVm.membershipState.collectAsState()
+                SettingsSheet(
+                    lang = settingsUi.lang,
+                    theme = settingsUi.theme,
+                    sound = settingsUi.sound,
+                    notifications = settingsUi.notifications,
+                    hideFromNearby = settingsUi.hideFromNearby,
+                    showUpgrade = !(membership.membership == "paid" && !membership.isExpired),
+                    versionName = packageManager.getPackageInfo(packageName, 0).versionName ?: "",
+                    onLang = ::applyLanguageSetting,
+                    onTheme = { mode -> settingsUi.theme = mode; ThemeManager.setMode(mode) },
+                    onSound = ::applySoundSetting,
+                    onNotifications = ::applyNotificationsSetting,
+                    onHideFromNearby = ::applyHideFromNearby,
+                    onUpgrade = {
+                        hud.settingsOpen = false
+                        startActivity(Intent(this@GameActivity, SubscriptionActivity::class.java))
+                    },
+                    onChangeEmail = { hud.settingsOpen = false; showEmailChangeTicketDialog() },
+                    onSupport = {
+                        hud.settingsOpen = false
+                        startActivity(Intent(this@GameActivity, SupportTicketsActivity::class.java))
+                    },
+                    onDeleteAccount = { hud.settingsOpen = false; confirmDeleteAccount() },
+                    onDismiss = { hud.settingsOpen = false },
                 )
             }
         } }
@@ -382,8 +430,7 @@ observeTheme()
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 while (true) {
                     kotlinx.coroutines.delay(1000)
-                    val currentLang = getSharedPreferences("Settings", MODE_PRIVATE)
-                        .getString("App_Lang", "en") ?: "en"
+                    val currentLang = LocaleManager.apiLang(this@GameActivity)
                     gameVm.tickRefillCountdowns(lang = currentLang)
                 }
             }
@@ -563,7 +610,7 @@ observeTheme()
                         if (ads.interstitialAdEnabled && !(isPaid && membership.disableInterstitialAd)) {
                             AdManager.showIfReady(this@GameActivity)
                         }
-                        gameVm.loadBag(lang = getSharedPreferences("Settings", MODE_PRIVATE).getString("App_Lang", "en") ?: "en")
+                        gameVm.loadBag(lang = LocaleManager.apiLang(this@GameActivity))
                         reloadMapTraps()
                         gameVm.dismissPlacementProgress()
                     }
@@ -733,7 +780,7 @@ if (isTrackingServiceRunning()) {
             startGpsUpdates()
         }
         startCompassSensor()
-        val lang = getSharedPreferences("Settings", MODE_PRIVATE).getString("App_Lang", "en") ?: "en"
+        val lang = LocaleManager.apiLang(this@GameActivity)
         gameVm.loadBag(lang = lang)
         gameVm.fetchCardInventory()
         // Re-check membership every time the app comes to the foreground so that
@@ -827,8 +874,8 @@ stopHeartbeat()
         binding.btnDisarmNearby.setOnClickListener {
             TrapAlertBottomSheet.show(supportFragmentManager)
         }
-        binding.btnHudMenu.setOnClickListener { anchor -> showHudMenu(anchor) }
-        binding.btnLayers.setOnClickListener { anchor -> showLayersMenu(anchor) }
+        binding.btnHudMenu.setOnClickListener { hud.meOpen = true }
+        binding.btnLayers.setOnClickListener { hud.layersOpen = true }
         // Keep legacy button listeners for any external callers (views are gone)
         binding.logoutButton.setOnClickListener {
             auth.signOut()
@@ -851,80 +898,21 @@ stopHeartbeat()
         binding.btnCancelPlacementX.setOnClickListener { gameVm.cancelPlacement() }
     }
 
-    /** "Me" tab menu — everything account-related that has no tab of its own. */
-    private fun showHudMenu(anchor: android.view.View) {
-            val popup = android.widget.PopupMenu(this, anchor, android.view.Gravity.END)
-            popup.menu.apply {
-                add(0, 5, 0, getString(R.string.action_edit_profile))
-                    .setIcon(R.drawable.ic_person)
-                add(0, 9, 1, getString(R.string.action_awards_cards))
-                    .setIcon(R.drawable.ic_settings_menu)
-                add(0, 8, 2, getString(R.string.action_capture_history))
-                    .setIcon(R.drawable.ic_settings_menu)
-                add(0, 2, 3, getString(R.string.action_inbox))
-                    .setIcon(R.drawable.ic_inbox)
-                add(0, 4, 4, getString(R.string.action_settings))
-                    .setIcon(R.drawable.ic_settings_menu)
-                add(0, 6, 5, getString(R.string.action_logout))
-                    .setIcon(R.drawable.ic_logout)
-            }
-            // Force icons visible on all API levels
-            try {
-                val field = popup.javaClass.getDeclaredField("mPopup")
-                field.isAccessible = true
-                val helper = field.get(popup)
-                helper.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java)
-                    .invoke(helper, true)
-            } catch (_: Exception) {}
-            // Tint icons white in night mode so they're visible on the dark popup background
-            val nightMode = resources.configuration.uiMode and
-                android.content.res.Configuration.UI_MODE_NIGHT_MASK ==
-                android.content.res.Configuration.UI_MODE_NIGHT_YES
-            val iconTint = if (nightMode) android.graphics.Color.WHITE else android.graphics.Color.parseColor("#22385A")
-            for (i in 0 until popup.menu.size()) {
-                popup.menu.getItem(i).icon?.let { d ->
-                    val wrapped = DrawableCompat.wrap(d).mutate()
-                    DrawableCompat.setTint(wrapped, iconTint)
-                    popup.menu.getItem(i).icon = wrapped
-                }
-            }
-            popup.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    2 -> { startActivity(Intent(this, InboxActivity::class.java)); true }
-                    4 -> { showSettingsDialog(); true }
-                    5 -> { showProfileEditDialog(); true }
-                    8 -> { startActivity(Intent(this, CaptureHistoryActivity::class.java)); true }
-                    9 -> { startActivity(Intent(this, AwardsActivity::class.java)); true }
-                    6 -> {
-                        auth.signOut()
-                        startActivity(Intent(this, LandingActivity::class.java))
-                        finish()
-                        true
-                    }
-                    else -> false
-                }
-            }
-            popup.show()
-    }
-
-    /** Map layers button: heatmap, reload, light/dark map. */
-    private fun showLayersMenu(anchor: android.view.View) {
-        val popup = android.widget.PopupMenu(this, anchor, android.view.Gravity.END)
-        val themeLabel = if (ThemeManager.isDarkMode.value) getString(R.string.action_theme_light) else getString(R.string.action_theme_dark)
-        popup.menu.apply {
-            add(0, 1, 0, if (heatmapVisible) "Hide heatmap" else "Show heatmap")
-            add(0, 2, 1, "Reload traps")
-            add(0, 3, 2, themeLabel)
-        }
-        popup.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                1 -> { toggleHeatmap(); true }
-                2 -> { reloadMapTraps(showFeedback = true); true }
-                3 -> { ThemeManager.toggleManualOverride(); true }
-                else -> false
+    /** "Me" sheet actions — everything account-related that has no tab of its own. */
+    private fun onMeAction(action: MeAction) {
+        hud.meOpen = false
+        when (action) {
+            MeAction.PROFILE -> showProfileEditDialog()
+            MeAction.AWARDS -> startActivity(Intent(this, AwardsActivity::class.java))
+            MeAction.HISTORY -> startActivity(Intent(this, CaptureHistoryActivity::class.java))
+            MeAction.INBOX -> startActivity(Intent(this, InboxActivity::class.java))
+            MeAction.SETTINGS -> showSettingsDialog()
+            MeAction.LOGOUT -> {
+                auth.signOut()
+                startActivity(Intent(this, LandingActivity::class.java))
+                finish()
             }
         }
-        popup.show()
     }
 
     private fun sendFriendRequest(userId: String) {
@@ -951,7 +939,7 @@ stopHeartbeat()
 
 
     private fun loadGameData() {
-        val lang = getSharedPreferences("Settings", MODE_PRIVATE).getString("App_Lang", "en") ?: "en"
+        val lang = LocaleManager.apiLang(this@GameActivity)
         observeCurrentUser()
         loadProgressionLevels()
         observePlacedTraps()
@@ -991,6 +979,8 @@ stopHeartbeat()
             else            -> "${state.levelDisplayName} ${getString(R.string.label_member)}"
         }
         binding.tvMembershipBadge.text = label
+        hud.membershipLabel = if (state.loading) null else label
+        hud.membershipPaid = state.membership == "paid" && !state.isExpired
 
         // Tint the background shape (preserves rounded corners from bg_rounded_dark)
         val bgColor = when {
@@ -1019,8 +1009,11 @@ stopHeartbeat()
             .addSnapshotListener { snapshot, e ->
                 if (e != null || snapshot == null) return@addSnapshotListener
 
-                currentDisplayName = snapshot.getString("displayName") ?: "Player"
+                currentDisplayName = snapshot.getString("displayName") ?: getString(R.string.default_display_name)
                 currentUsername = snapshot.getString("username")
+                hud.displayName = currentDisplayName
+                hud.username = currentUsername
+                hud.photoUrl = snapshot.getString("photoUrl")
 
                 currentUserXP = snapshot.getLong("xp")?.toInt() ?: 0
                 currentUserScore = currentUserXP
@@ -1051,8 +1044,7 @@ stopHeartbeat()
                 // Detect membership change (e.g. payment lapse revoked by backend guard).
                 val membership = snapshot.getString("membership") ?: "free"
                 if (previousMembership != null && previousMembership != membership) {
-                    val lang = getSharedPreferences("Settings", MODE_PRIVATE)
-                        .getString("App_Lang", "en") ?: "en"
+                    val lang = LocaleManager.apiLang(this@GameActivity)
                     // Force bag reload so mapMinZoom is updated immediately.
                     gameVm.loadBag(lang = lang)
                     if (membership == "free") {
@@ -1245,7 +1237,7 @@ stopHeartbeat()
             !currentUsername.isNullOrBlank() -> "@$currentUsername"
             !auth.currentUser?.email.isNullOrBlank() -> auth.currentUser?.email
             !currentDisplayName.isNullOrBlank() -> currentDisplayName
-            else -> "Player"
+            else -> getString(R.string.default_display_name)
         }
         binding.tvIdentity.text = identity
         
@@ -1341,7 +1333,7 @@ stopHeartbeat()
                     serverMsg.contains("No trap of this type available") -> getString(R.string.error_no_traps)
                     serverMsg.contains("Space your traps out", ignoreCase = true) ||
                     serverMsg.contains("trap(s) within", ignoreCase = true) -> serverMsg
-                    else -> getString(R.string.error_placement_failed, serverMsg.ifBlank { "unknown" })
+                    else -> getString(R.string.error_placement_failed, serverMsg.ifBlank { getString(R.string.error_unknown_reason) })
                 }
                 // Show error inside the overlay (keeps it visible so user can read it and tap Close)
                 gameVm.notifyPlacementStartFailed(toastMsg)
@@ -1448,7 +1440,6 @@ stopHeartbeat()
             heatmapOverlay?.remove()
             heatmapOverlay = null
         }
-        toast(if (heatmapVisible) "🔥 Heatmap ON" else "Heatmap OFF")
     }
 
     private fun refreshHeatmap() {
@@ -1489,10 +1480,10 @@ stopHeartbeat()
                 functions.getHttpsCallable("setHomeBase")
                     .call(mapOf("lat" to lat, "lng" to lng))
                     .await()
-                toast("🏠 Home base set! You're immune to traps within 100m of this spot.")
+                toast(getString(R.string.home_base_set_toast))
                 // Circle will redraw automatically when the Firestore snapshot fires.
             } catch (e: Exception) {
-                toast("Could not set home base: ${e.message}")
+                toast(getString(R.string.home_base_set_failed, e.message ?: ""))
             }
         }
     }
@@ -1508,9 +1499,9 @@ stopHeartbeat()
                 homeBaseLat = null
                 homeBaseLng = null
                 wasInSafeZone = false
-                toast("Home base removed.")
+                toast(getString(R.string.home_base_removed))
             } catch (e: Exception) {
-                toast("Could not remove home base: ${e.message}")
+                toast(getString(R.string.home_base_remove_failed, e.message ?: ""))
             }
         }
     }
@@ -1540,7 +1531,7 @@ stopHeartbeat()
 
     private fun showFreedFeedback(evt: TrappedEvent) {
         playSound("freed")
-        toast("🎉 You're free! Back in the game.")
+        toast(getString(R.string.msg_freed_toast))
         // If a timeout penalty was applied, show a local notification when it expires
         // so the player knows they can run again even if they minimised the app.
         if (evt.effectKind == "timeout" && evt.effectValue > 10) {
@@ -1548,8 +1539,8 @@ stopHeartbeat()
             Handler(Looper.getMainLooper()).postDelayed({
                 NotificationHelper.showAlert(
                     applicationContext,
-                    "🎉 You're FREE!",
-                    "Your timeout penalty has expired. Get back in the game!"
+                    getString(R.string.notif_freed_title),
+                    getString(R.string.notif_freed_body)
                 )
             }, delayMs)
         }
@@ -1591,10 +1582,10 @@ stopHeartbeat()
 
     private fun showUpdateRequiredDialog() {
         AlertDialog.Builder(this)
-            .setTitle("Update Available")
-            .setMessage("A new version of the app is available. Update now to get the latest features and fixes.")
+            .setTitle(getString(R.string.title_update_available))
+            .setMessage(getString(R.string.msg_update_available))
             .setCancelable(false)
-            .setPositiveButton("Update Now") { _, _ ->
+            .setPositiveButton(getString(R.string.action_update_now)) { _, _ ->
                 try {
                     startActivity(Intent(Intent.ACTION_VIEW,
                         android.net.Uri.parse("market://details?id=$packageName")))
@@ -1603,7 +1594,7 @@ stopHeartbeat()
                         android.net.Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
                 }
             }
-            .setNegativeButton("Later", null)
+            .setNegativeButton(getString(R.string.action_later), null)
             .show()
     }
 
@@ -1611,105 +1602,48 @@ stopHeartbeat()
         startActivity(Intent(this, ProfileEditActivity::class.java))
     }
 
+    /** Opens the settings sheet; every control there applies immediately (no save step). */
     private fun showSettingsDialog() {
-        val dialogBinding = DialogSettingsBinding.inflate(layoutInflater)
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogBinding.root)
-            .create()
-
         val prefs = getSharedPreferences("Settings", MODE_PRIVATE)
-        dialogBinding.switchSound.isChecked = prefs.getBoolean("Sound_Enabled", true)
-        dialogBinding.switchNotifications.isChecked = prefs.getBoolean("Notifications_Enabled", true)
+        settingsUi.lang = LocaleManager.getLocale(this)
+        settingsUi.theme = ThemePreferences.load(this)
+        settingsUi.sound = prefs.getBoolean("Sound_Enabled", true)
+        settingsUi.notifications = prefs.getBoolean("Notifications_Enabled", true)
+        settingsUi.hideFromNearby = null
+        auth.currentUser?.uid?.let { uid ->
+            Firebase.firestore.collection("users").document(uid).get()
+                .addOnSuccessListener { doc -> settingsUi.hideFromNearby = doc.getBoolean("hideFromNearby") == true }
+                .addOnFailureListener { toast(getString(R.string.error_generic_retry)) }
+        }
+        hud.settingsOpen = true
+    }
 
-        val uid = auth.currentUser?.uid
-        var hideFromNearbyLoaded: Boolean? = null
-        if (uid != null) {
-            Firebase.firestore.collection("users").document(uid).get().addOnSuccessListener { doc ->
-                val hidden = doc.getBoolean("hideFromNearby") == true
-                hideFromNearbyLoaded = hidden
-                dialogBinding.switchHideFromNearby.isChecked = hidden
+    private fun applySoundSetting(on: Boolean) {
+        settingsUi.sound = on
+        isSoundEnabled = on
+        getSharedPreferences("Settings", MODE_PRIVATE).edit().putBoolean("Sound_Enabled", on).apply()
+    }
+
+    private fun applyNotificationsSetting(on: Boolean) {
+        settingsUi.notifications = on
+        getSharedPreferences("Settings", MODE_PRIVATE).edit().putBoolean("Notifications_Enabled", on).apply()
+    }
+
+    private fun applyHideFromNearby(on: Boolean) {
+        val uid = auth.currentUser?.uid ?: return
+        val previous = settingsUi.hideFromNearby
+        settingsUi.hideFromNearby = on
+        Firebase.firestore.collection("users").document(uid).update("hideFromNearby", on)
+            .addOnFailureListener {
+                settingsUi.hideFromNearby = previous
+                toast(getString(R.string.error_generic_retry))
             }
-        }
-        dialogBinding.btnDeleteAccount.setOnClickListener {
-            dialog.dismiss()
-            confirmDeleteAccount()
-        }
+    }
 
-        // Load Theme Preference
-        val currentThemeMode = ThemePreferences.load(this)
-        when (currentThemeMode) {
-            ThemePreferences.ThemeMode.AUTOMATIC -> dialogBinding.rbAuto.isChecked = true
-            ThemePreferences.ThemeMode.ALWAYS_LIGHT -> dialogBinding.rbLight.isChecked = true
-            ThemePreferences.ThemeMode.ALWAYS_DARK -> dialogBinding.rbDark.isChecked = true
-        }
-
-        val languages = arrayOf("English", "Hungarian", "German", "Slovak", "Romanian", "Croatian")
-        val langCodes = arrayOf("en", "hu", "de", "sk", "ro", "hr")
-        val currentLang = prefs.getString("App_Lang", "en") ?: "en"
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        dialogBinding.spinnerLanguage.adapter = adapter
-        dialogBinding.spinnerLanguage.setSelection(langCodes.indexOf(currentLang))
-
-        dialogBinding.btnChangePassword.setOnClickListener {
-            showEmailChangeTicketDialog()
-            dialog.dismiss()
-        }
-
-        dialogBinding.btnSupportTickets.setOnClickListener {
-            startActivity(Intent(this, SupportTicketsActivity::class.java))
-            dialog.dismiss()
-        }
-
-        val membershipState = gameVm.membershipState.value
-        val hasPaidMembership = membershipState.membership == "paid" && !membershipState.isExpired
-        dialogBinding.btnUpgradePremium.isVisible = !hasPaidMembership
-        dialogBinding.btnUpgradePremium.setOnClickListener {
-            startActivity(Intent(this, SubscriptionActivity::class.java))
-            dialog.dismiss()
-        }
-
-        val versionName = packageManager.getPackageInfo(packageName, 0).versionName
-        dialogBinding.tvAppVersion.text = "Version: $versionName"
-
-        dialogBinding.btnCancel.setOnClickListener { dialog.dismiss() }
-
-        dialogBinding.btnSave.setOnClickListener {
-            val selectedLang = langCodes[dialogBinding.spinnerLanguage.selectedItemPosition]
-            val soundEnabled = dialogBinding.switchSound.isChecked
-            val notificationsEnabled = dialogBinding.switchNotifications.isChecked
-
-            // Save Theme
-            val selectedThemeMode = when (dialogBinding.rgTheme.checkedRadioButtonId) {
-                R.id.rbAuto -> ThemePreferences.ThemeMode.AUTOMATIC
-                R.id.rbLight -> ThemePreferences.ThemeMode.ALWAYS_LIGHT
-                R.id.rbDark -> ThemePreferences.ThemeMode.ALWAYS_DARK
-                else -> ThemePreferences.ThemeMode.AUTOMATIC
-            }
-            ThemeManager.setMode(selectedThemeMode)
-
-            prefs.edit().apply {
-                putString("App_Lang", selectedLang)
-                putBoolean("Sound_Enabled", soundEnabled)
-                putBoolean("Notifications_Enabled", notificationsEnabled)
-                apply()
-            }
-
-            isSoundEnabled = soundEnabled
-
-            val hide = dialogBinding.switchHideFromNearby.isChecked
-            if (uid != null && hideFromNearbyLoaded != null && hide != hideFromNearbyLoaded) {
-                Firebase.firestore.collection("users").document(uid).update("hideFromNearby", hide)
-                    .addOnFailureListener { toast(getString(R.string.error_generic_retry)) }
-            }
-
-            if (selectedLang != currentLang) {
-                setAppLocale(selectedLang) // saves preference + recreates
-            }
-            dialog.dismiss()
-        }
-
-        dialog.show()
+    /** Switching language recreates the activity; the sheet reopens itself afterwards. */
+    private fun applyLanguageSetting(code: String) {
+        getSharedPreferences("Settings", MODE_PRIVATE).edit().putBoolean("reopen_settings", true).apply()
+        setAppLocale(code)
     }
 
     private fun confirmDeleteAccount() {
@@ -2098,7 +2032,7 @@ stopHeartbeat()
                 // Safe zone indicator
                 val inSafeZone = data["inSafeZone"] as? Boolean == true
                 if (inSafeZone && !wasInSafeZone) {
-                    toast("🏠 You're in your safe zone. Traps can't reach you here.")
+                    toast(getString(R.string.msg_in_safe_zone))
                 }
                 wasInSafeZone = inSafeZone
                 if (inSafeZone) return@launch
@@ -2326,7 +2260,7 @@ stopHeartbeat()
      * Reloads the bag (bag refills may have been applied) and flashes any XP gained.
      */
     private fun onRewardCollected(reward: RewardEvent?) {
-        val lang = getSharedPreferences("Settings", MODE_PRIVATE).getString("App_Lang", "en") ?: "en"
+        val lang = LocaleManager.apiLang(this@GameActivity)
         gameVm.loadBag(lang = lang)
         gameVm.fetchCardInventory()
 
@@ -2383,7 +2317,7 @@ stopHeartbeat()
                         pendingDisassembleTrapId = null
                         gameVm.dismissDisassemble()
                         gameVm.dismissDisassemblyProgress()
-                        gameVm.loadBag(lang = getSharedPreferences("Settings", MODE_PRIVATE).getString("App_Lang", "en") ?: "en")
+                        gameVm.loadBag(lang = LocaleManager.apiLang(this@GameActivity))
                         reloadMapTraps()
                     }
                     // Error is displayed inside the DisassembleOverlay — cleared when user taps dismiss
@@ -2455,14 +2389,10 @@ stopHeartbeat()
     private fun showRewardedAdPreRoll(isPlacement: Boolean) {
         val ads = gameVm.adSettings.value
         val label = formatReductionLabel(ads)
-        val actionName = if (isPlacement) "placement" else "disassembly"
         AlertDialog.Builder(this)
-            .setTitle("Speed up your $actionName")
-            .setMessage(
-                "Watch a short ad to reduce your $actionName time by $label.\n\n" +
-                "You must watch the full video to receive the reward."
-            )
-            .setPositiveButton("Watch ad") { _, _ ->
+            .setTitle(getString(if (isPlacement) R.string.ad_speedup_placement_title else R.string.ad_speedup_disassembly_title))
+            .setMessage(getString(if (isPlacement) R.string.ad_speedup_placement_msg else R.string.ad_speedup_disassembly_msg, label))
+            .setPositiveButton(getString(R.string.action_watch_ad)) { _, _ ->
                 RewardedAdManager.show(
                     activity = this,
                     onRewarded = {
@@ -2477,19 +2407,19 @@ stopHeartbeat()
                         showRewardCongrat(label)
                     },
                     onNotAvailable = {
-                        Toast.makeText(this, "Ad not available yet, please try again shortly.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.ad_not_available), Toast.LENGTH_SHORT).show()
                     }
                 )
             }
-            .setNegativeButton("No thanks", null)
+            .setNegativeButton(getString(R.string.action_no_thanks), null)
             .show()
     }
 
     private fun showRewardCongrat(label: String) {
         AlertDialog.Builder(this)
-            .setTitle("Time reduced!")
-            .setMessage("$label has been removed from your timer. Keep going!")
-            .setPositiveButton("Continue") { dialog, _ -> dialog.dismiss() }
+            .setTitle(getString(R.string.ad_time_reduced_title))
+            .setMessage(getString(R.string.ad_time_reduced_msg, label))
+            .setPositiveButton(getString(R.string.action_continue)) { dialog, _ -> dialog.dismiss() }
             .show()
     }
 
@@ -2509,9 +2439,9 @@ stopHeartbeat()
 
     private fun formatReductionLabel(ads: AdSettings): String = when (ads.rewardedReductionType) {
         "percent" -> "${ads.rewardedReductionValue}%"
-        "minutes" -> "${ads.rewardedReductionValue} minute${if (ads.rewardedReductionValue != 1) "s" else ""}"
-        "hours"   -> "${ads.rewardedReductionValue} hour${if (ads.rewardedReductionValue != 1) "s" else ""}"
-        else      -> "${ads.rewardedReductionValue} second${if (ads.rewardedReductionValue != 1) "s" else ""}"
+        "minutes" -> resources.getQuantityString(R.plurals.duration_minutes, ads.rewardedReductionValue, ads.rewardedReductionValue)
+        "hours"   -> resources.getQuantityString(R.plurals.duration_hours, ads.rewardedReductionValue, ads.rewardedReductionValue)
+        else      -> resources.getQuantityString(R.plurals.duration_seconds, ads.rewardedReductionValue, ads.rewardedReductionValue)
     }
 
     private var bannerAd: com.google.android.gms.ads.AdView? = null
@@ -2567,14 +2497,14 @@ stopHeartbeat()
         val ads = gameVm.adSettings.value
         val uses = gameVm.refillAdUses.value
         if (uses >= ads.rewardedRefillAdMaxUsesPerSession) {
-            Toast.makeText(this, "You've used all ad rewards for this session.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.ad_rewards_exhausted), Toast.LENGTH_SHORT).show()
             return
         }
         val label = formatRefillRewardLabel(ads)
         AlertDialog.Builder(this)
-            .setTitle("Speed up trap refill")
-            .setMessage("Watch a short ad to reduce the refill time by $label.")
-            .setPositiveButton("Watch ad") { _, _ ->
+            .setTitle(getString(R.string.ad_refill_title))
+            .setMessage(getString(R.string.ad_refill_msg, label))
+            .setPositiveButton(getString(R.string.action_watch_ad)) { _, _ ->
                 RewardedAdManager.show(
                     activity = this,
                     onRewarded = {
@@ -2583,14 +2513,14 @@ stopHeartbeat()
                             onNewCountdown(remaining)
                         }
                         gameVm.recordRefillAdUse()
-                        Toast.makeText(this, "$label removed from refill timer!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.ad_refill_reduced_toast, label), Toast.LENGTH_SHORT).show()
                     },
                     onNotAvailable = {
-                        Toast.makeText(this, "Ad not available yet, please try again shortly.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.ad_not_available), Toast.LENGTH_SHORT).show()
                     }
                 )
             }
-            .setNegativeButton("No thanks", null)
+            .setNegativeButton(getString(R.string.action_no_thanks), null)
             .show()
     }
 
@@ -2602,9 +2532,9 @@ stopHeartbeat()
     }
 
     private fun formatRefillRewardLabel(ads: AdSettings): String = when (ads.rewardedRefillAdReductionType) {
-        "minutes" -> "${ads.rewardedRefillAdReductionValue} minute${if (ads.rewardedRefillAdReductionValue != 1) "s" else ""}"
-        "hours"   -> "${ads.rewardedRefillAdReductionValue} hour${if (ads.rewardedRefillAdReductionValue != 1) "s" else ""}"
-        else      -> "${ads.rewardedRefillAdReductionValue} second${if (ads.rewardedRefillAdReductionValue != 1) "s" else ""}"
+        "minutes" -> resources.getQuantityString(R.plurals.duration_minutes, ads.rewardedRefillAdReductionValue, ads.rewardedRefillAdReductionValue)
+        "hours"   -> resources.getQuantityString(R.plurals.duration_hours, ads.rewardedRefillAdReductionValue, ads.rewardedRefillAdReductionValue)
+        else      -> resources.getQuantityString(R.plurals.duration_seconds, ads.rewardedRefillAdReductionValue, ads.rewardedRefillAdReductionValue)
     }
 
     private fun startDisassembleBackground(info: TrapMarkerInfo) {

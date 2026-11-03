@@ -1,5 +1,6 @@
 package com.fairco.trap
 
+import com.fairco.trap.util.LocaleManager
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -25,30 +26,31 @@ object NotificationHelper {
 
     fun createChannels(context: Context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
+        val res = LocaleManager.applyLocale(context)
 
         val trackingChannel = NotificationChannel(
             CHANNEL_TRACKING,
-            "Trap tracking",
+            res.getString(R.string.notif_channel_tracking),
             NotificationManager.IMPORTANCE_LOW,
         ).apply {
-            description = "Foreground GPS tracking for Trap"
+            description = res.getString(R.string.notif_channel_tracking_desc)
         }
 
         val alertChannel = NotificationChannel(
             CHANNEL_ALERTS,
-            "Trap alerts",
+            res.getString(R.string.notif_channel_alerts),
             NotificationManager.IMPORTANCE_HIGH
         ).apply {
-            description = "Warnings and trap hit alerts"
+            description = res.getString(R.string.notif_channel_alerts_desc)
         }
 
         // High-urgency channel for capture events — uses alarm ringtone + vibration.
         val capturedChannel = NotificationChannel(
             CHANNEL_CAPTURED,
-            "Trap capture",
+            res.getString(R.string.notif_channel_capture),
             NotificationManager.IMPORTANCE_HIGH
         ).apply {
-            description = "Fired when you walk into an opponent's trap"
+            description = res.getString(R.string.notif_channel_capture_desc)
             enableVibration(true)
             vibrationPattern = longArrayOf(0, 500, 200, 500, 200, 500)
             setSound(
@@ -72,7 +74,7 @@ object NotificationHelper {
     fun buildTrackingNotification(context: Context, text: String): android.app.Notification {
         return NotificationCompat.Builder(context, CHANNEL_TRACKING)
             .setSmallIcon(android.R.drawable.ic_menu_mylocation)
-            .setContentTitle("Trap tracking active")
+            .setContentTitle(LocaleManager.applyLocale(context).getString(R.string.notif_tracking_title))
             .setContentText(text)
             .setOngoing(true)
             .setOnlyAlertOnce(true)
@@ -126,13 +128,18 @@ object NotificationHelper {
             else       -> "🪤"
         }
 
-        val byLine = if (ownerUsername.isNotBlank()) " by $ownerUsername" else ""
+        val res = LocaleManager.applyLocale(context)
+        val hasOwner = ownerUsername.isNotBlank()
+        val title = if (hasOwner) res.getString(R.string.notif_trapped_title_by, effectEmoji, ownerUsername)
+                    else res.getString(R.string.notif_trapped_title, effectEmoji)
+        val body = if (hasOwner) res.getString(R.string.notif_trapped_body_by, ownerUsername)
+                   else res.getString(R.string.notif_trapped_body)
         val notif = NotificationCompat.Builder(context, CHANNEL_CAPTURED)
             .setSmallIcon(android.R.drawable.ic_dialog_alert)
-            .setContentTitle("$effectEmoji YOU'VE BEEN TRAPPED$byLine!")
+            .setContentTitle(title)
             .setContentText(effectDesc.ifBlank { trapName })
             .setStyle(NotificationCompat.BigTextStyle()
-                .bigText("$effectDesc\n\nTrap set$byLine. Open the app to see the full effect.")
+                .bigText(if (effectDesc.isBlank()) body else "$effectDesc\n\n$body")
             )
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setCategory(NotificationCompat.CATEGORY_ALARM)

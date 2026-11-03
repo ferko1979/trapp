@@ -61,7 +61,7 @@ class CreateSupportTicketActivity : BaseActivity() {
 
     private fun setupCategorySpinner() {
         val categories = TicketCategory.entries
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories.map { it.label })
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories.map { getString(it.labelRes) })
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         categorySpinner.adapter = adapter
         

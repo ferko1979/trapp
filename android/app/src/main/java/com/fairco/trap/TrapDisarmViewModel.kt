@@ -1,5 +1,6 @@
 package com.fairco.trap
 
+import androidx.annotation.StringRes
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,6 +14,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class TrapDisarmViewModel : ViewModel() {
+
+    /** Server text when present, otherwise a localized fallback resource. */
+    private fun errorOr(msg: String?, @StringRes fallback: Int): DisarmState.Error =
+        if (msg.isNullOrBlank()) DisarmState.Error(resId = fallback) else DisarmState.Error(msg)
     private val functions = Firebase.functions("europe-west1")
 
     val disarmState = MutableStateFlow<DisarmState>(DisarmState.Idle)
@@ -128,12 +133,12 @@ class TrapDisarmViewModel : ViewModel() {
                             }
                         }
                         else -> {
-                            disarmState.value = DisarmState.Error(msg.ifBlank { "Reveal failed." })
+                            disarmState.value = errorOr(msg, R.string.disarm_reveal_failed)
                             break
                         }
                     }
                 } catch (e: Exception) {
-                    disarmState.value = DisarmState.Error(e.message ?: "Reveal failed.")
+                    disarmState.value = errorOr(e.message, R.string.disarm_reveal_failed)
                     break
                 }
                 delay(1000)
@@ -171,9 +176,9 @@ class TrapDisarmViewModel : ViewModel() {
                         val dist   = parts.getOrNull(2)?.toIntOrNull()
                             ?: liveDistanceM.takeIf { it > 0 } ?: trap.distanceMeters
                         val range  = parts.getOrNull(3)?.toIntOrNull() ?: trap.disarmRadiusMeters
-                        DisarmState.Error("Move ${needed}m closer — you are ${dist}m away, need ≤ ${range}m")
+                        DisarmState.Error(resId = R.string.disarm_move_closer_detail, args = listOf(needed, dist, range))
                     }
-                    else -> DisarmState.Error(msg.ifBlank { "Could not start disarm." })
+                    else -> errorOr(msg, R.string.disarm_start_failed)
                 }
             }
         }
@@ -243,12 +248,12 @@ class TrapDisarmViewModel : ViewModel() {
                             }
                         }
                         else -> {
-                            disarmState.value = DisarmState.Error(msg.ifBlank { "Disarm failed." })
+                            disarmState.value = errorOr(msg, R.string.disarm_failed)
                             break
                         }
                     }
                 } catch (e: Exception) {
-                    disarmState.value = DisarmState.Error(e.message ?: "Disarm failed.")
+                    disarmState.value = errorOr(e.message, R.string.disarm_failed)
                     break
                 }
                 delay(1000)

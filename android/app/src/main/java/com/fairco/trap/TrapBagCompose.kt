@@ -226,7 +226,7 @@ private fun BagHeader(
             ) {
                 Text("⏱️", fontSize = 12.sp)
                 Text(
-                    "$cardCount card${if (cardCount > 1) "s" else ""} available · tap to view",
+                    LocalContext.current.resources.getQuantityString(R.plurals.bag_cards_available, cardCount, cardCount),
                     color = Radar.Safe,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold
@@ -368,7 +368,7 @@ private fun TrapChip(
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                "📺 Speed up",
+                                "📺 " + stringResource(R.string.bag_speed_up),
                                 color = Radar.Accent,
                                 fontSize = 8.sp,
                                 fontWeight = FontWeight.SemiBold,
@@ -439,7 +439,7 @@ fun TrapDescriptionDialog(item: TrapInventoryItem, onDismiss: () -> Unit) {
                 if (item.effectKind.isNotBlank() && item.effectKind != "none") {
                     Spacer(Modifier.height(4.dp))
                     Text(
-                        text = "✨ ${item.effectKind.replaceFirstChar { it.uppercase() }}",
+                        text = "✨ " + effectKindName(item.effectKind),
                         color = Radar.Accent,
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center
@@ -567,4 +567,15 @@ fun formatCountdown(totalSeconds: Long): String {
         m > 0 -> "${m}m ${s}s"
         else -> "${s}s"
     }
+}
+
+/** Localized name of a trap effect kind; unknown kinds fall back to the capitalized key. */
+@Composable
+private fun effectKindName(kind: String): String = when (kind) {
+    "timeout"  -> stringResource(R.string.trap_kind_timeout)
+    "laughter" -> stringResource(R.string.trap_kind_laughter)
+    "slowdown" -> stringResource(R.string.trap_kind_slowdown)
+    "penalty"  -> stringResource(R.string.trap_kind_penalty)
+    "warning"  -> stringResource(R.string.trap_kind_warning)
+    else       -> kind.replaceFirstChar { it.uppercase() }
 }

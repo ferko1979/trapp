@@ -1,5 +1,7 @@
 package com.fairco.trap
 
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.animation.*
 import com.fairco.trap.ui.theme.Radar
 import androidx.compose.animation.core.*
@@ -86,9 +88,9 @@ fun RewardOverlay(event: RewardEvent, onDismiss: () -> Unit) {
             // Header
             val headerEmoji = if (event.hourIndex != null) "⏰" else "🔥"
             val headerText  = if (event.hourIndex != null)
-                "Hour ${event.hourIndex} Bonus!"
+                stringResource(R.string.reward_hour_bonus, event.hourIndex ?: 0)
             else
-                "Day ${event.streak} Reward!"
+                stringResource(R.string.reward_day_reward, event.streak)
 
             Text(
                 text = headerEmoji,
@@ -117,7 +119,7 @@ fun RewardOverlay(event: RewardEvent, onDismiss: () -> Unit) {
 
             if (event.awards.isEmpty()) {
                 Text(
-                    text = "Keep playing every day to unlock bigger rewards!",
+                    text = stringResource(R.string.reward_keep_playing),
                     fontSize = 13.sp,
                     color = TEXT_DIM,
                     textAlign = TextAlign.Center
@@ -136,7 +138,7 @@ fun RewardOverlay(event: RewardEvent, onDismiss: () -> Unit) {
                 colors = ButtonDefaults.buttonColors(containerColor = ACCENT_GREEN)
             ) {
                 Text(
-                    text = "Collect! 🎉",
+                    text = stringResource(R.string.reward_collect),
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -145,7 +147,7 @@ fun RewardOverlay(event: RewardEvent, onDismiss: () -> Unit) {
 
             if (event.isDay1 && event.hourIndex == null) {
                 Text(
-                    text = "Come back every hour today for bonus rewards!",
+                    text = stringResource(R.string.reward_come_back_hourly),
                     fontSize = 12.sp,
                     color = ACCENT_BLUE,
                     textAlign = TextAlign.Center
@@ -183,14 +185,14 @@ private fun StreakBadge(streak: Int, isDay1: Boolean) {
         ) {
             Text("🔥", fontSize = 18.sp)
             Text(
-                text = "$streak day streak",
+                text = LocalContext.current.resources.getQuantityString(R.plurals.reward_day_streak, streak, streak),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )
             if (isDay1) {
                 Text(
-                    text = "· New!",
+                    text = "· " + stringResource(R.string.reward_new),
                     fontSize = 13.sp,
                     color = ACCENT_GOLD,
                     fontWeight = FontWeight.SemiBold
@@ -229,10 +231,13 @@ private fun AwardRow(award: AwardItem) {
                 fontWeight = FontWeight.SemiBold,
                 color = TEXT_PRIMARY
             )
+            val res = LocalContext.current.resources
+            val cardsText = "🃏 " + res.getQuantityString(R.plurals.reward_cards_count, award.cardsGranted, award.cardsGranted)
+            val bagText = "🎒 " + stringResource(R.string.reward_bag_refill, award.bagRefillGranted)
             val extras = buildList {
-                if (award.cardsGranted  > 0) add("🃏 ${award.cardsGranted} card${if (award.cardsGranted > 1) "s" else ""}")
+                if (award.cardsGranted  > 0) add(cardsText)
                 if (award.xpGranted     > 0) add("⚡ +${award.xpGranted} XP")
-                if (award.bagRefillGranted > 0) add("🎒 +${award.bagRefillGranted} bag")
+                if (award.bagRefillGranted > 0) add(bagText)
             }
             if (extras.isNotEmpty()) {
                 Text(

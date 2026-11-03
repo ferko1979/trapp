@@ -8,6 +8,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Backpack
@@ -63,6 +64,16 @@ class MapHudState {
     var pickerOpen by mutableStateOf(false)
     /** Context line for the hold-to-arm sheet (nearest trap etc.). */
     var placementInfo by mutableStateOf<String?>(null)
+
+    // Player card + sheets hosted in the bottom dock
+    var displayName by mutableStateOf("")
+    var username by mutableStateOf<String?>(null)
+    var photoUrl by mutableStateOf<String?>(null)
+    var membershipLabel by mutableStateOf<String?>(null)
+    var membershipPaid by mutableStateOf(false)
+    var meOpen by mutableStateOf(false)
+    var layersOpen by mutableStateOf(false)
+    var settingsOpen by mutableStateOf(false)
 }
 
 enum class MapTab { MAP, BAG, RANK, SOCIAL, ME }
@@ -129,22 +140,47 @@ fun MapTopHud(
 
             Spacer(Modifier.weight(1f))
 
-            // Inbox bell
-            HudPill(modifier = Modifier.clickable(onClick = onBellClick)) {
-                Icon(
-                    Icons.Outlined.Notifications,
-                    contentDescription = stringResource(R.string.mh_inbox),
-                    tint = if (unreadCount > 0) Radar.Gold else Radar.TextSec,
-                    modifier = Modifier.size(20.dp)
-                )
-                if (unreadCount > 0) {
-                    Spacer(Modifier.width(6.dp))
-                    Text(
-                        if (unreadCount > 99) "99+" else unreadCount.toString(),
-                        color = Radar.Gold,
-                        fontFamily = RadarFonts.Mono,
-                        fontSize = 14.sp
+            // Inbox bell — round button; the count is a corner badge so the bell never moves.
+            Box(Modifier.size(48.dp)) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(44.dp)
+                        .clip(CircleShape)
+                        .background(Radar.Bg.copy(alpha = 0.88f))
+                        .border(1.dp, Radar.Line, CircleShape)
+                        .clickable(onClick = onBellClick)
+                ) {
+                    Icon(
+                        Icons.Outlined.Notifications,
+                        contentDescription = stringResource(R.string.mh_inbox),
+                        tint = if (unreadCount > 0) Radar.Gold else Radar.TextSec,
+                        modifier = Modifier.size(22.dp)
                     )
+                }
+                if (unreadCount > 0) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .height(18.dp)
+                            .widthIn(min = 18.dp)
+                            .clip(RoundedCornerShape(9.dp))
+                            .background(Radar.Trap)
+                            .border(1.5.dp, Radar.Bg, RoundedCornerShape(9.dp))
+                            .padding(horizontal = 4.dp)
+                    ) {
+                        Text(
+                            if (unreadCount > 99) "99+" else unreadCount.toString(),
+                            color = Color.White,
+                            fontFamily = RadarFonts.Label,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 10.sp,
+                            lineHeight = 10.sp,
+                            maxLines = 1
+                        )
+                    }
                 }
             }
         }

@@ -1,5 +1,9 @@
 package com.fairco.trap
 
+import com.fairco.trap.util.LocaleManager
+import androidx.lifecycle.AndroidViewModel
+import androidx.annotation.StringRes
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.auth
@@ -32,7 +36,9 @@ data class ChatMessage(
     val kind: String = "direct"
 )
 
-class MessagingViewModel : ViewModel() {
+class MessagingViewModel(application: Application) : AndroidViewModel(application) {
+    private fun str(@StringRes id: Int, vararg args: Any): String =
+        LocaleManager.applyLocale(getApplication()).getString(id, *args)
     private val functions = Firebase.functions("europe-west1")
     private val auth = Firebase.auth
 
@@ -120,15 +126,15 @@ class MessagingViewModel : ViewModel() {
     private fun formatErrorMessage(e: Exception): String {
         return if (e is FirebaseFunctionsException) {
             when (e.code) {
-                FirebaseFunctionsException.Code.UNAUTHENTICATED -> "Please sign in again."
-                FirebaseFunctionsException.Code.NOT_FOUND -> "Not found."
-                FirebaseFunctionsException.Code.ALREADY_EXISTS -> "Already exists."
-                FirebaseFunctionsException.Code.PERMISSION_DENIED -> "Permission denied."
-                FirebaseFunctionsException.Code.INTERNAL -> "Internal server error. Retrying..."
-                else -> e.message ?: "Something went wrong."
+                FirebaseFunctionsException.Code.UNAUTHENTICATED -> str(R.string.error_sign_in_again)
+                FirebaseFunctionsException.Code.NOT_FOUND -> str(R.string.error_not_found)
+                FirebaseFunctionsException.Code.ALREADY_EXISTS -> str(R.string.error_already_exists)
+                FirebaseFunctionsException.Code.PERMISSION_DENIED -> str(R.string.error_permission_denied)
+                FirebaseFunctionsException.Code.INTERNAL -> str(R.string.error_internal_retrying)
+                else -> e.message ?: str(R.string.error_generic_retry)
             }
         } else {
-            e.message ?: "Something went wrong."
+            e.message ?: str(R.string.error_generic_retry)
         }
     }
 }

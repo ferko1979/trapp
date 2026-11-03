@@ -86,7 +86,7 @@ fun DisassembleProgressOverlay(
                 )
                 Spacer(Modifier.height(16.dp))
                 Text(
-                    text = "Communicating with server…",
+                    text = stringResource(R.string.disarm_communicating),
                     color = Radar.TextSec,
                     fontSize = 15.sp,
                     textAlign = TextAlign.Center
@@ -131,7 +131,7 @@ fun DisassembleProgressOverlay(
                             .padding(vertical = 2.dp)
                     ) {
                         Text(
-                            text = "⏱️  Use Card — Skip 5 min${if (cardCount > 1) "  ($cardCount left)" else ""}",
+                            text = stringResource(R.string.disarm_use_card_skip) + (if (cardCount > 1) "  " + stringResource(R.string.disarm_n_left, cardCount) else ""),
                             color = Radar.Safe,
                             fontSize = 14.sp,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
@@ -149,7 +149,7 @@ fun DisassembleProgressOverlay(
                             .padding(vertical = 2.dp)
                     ) {
                         Text(
-                            text = "📺  Watch Ad — Skip $rewardedLabel${if (adUsesRemaining > 1) "  ($adUsesRemaining left)" else ""}",
+                            text = stringResource(R.string.disarm_watch_ad_skip, rewardedLabel) + (if (adUsesRemaining > 1) "  " + stringResource(R.string.disarm_n_left, adUsesRemaining) else ""),
                             color = Radar.Gold,
                             fontSize = 14.sp,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold

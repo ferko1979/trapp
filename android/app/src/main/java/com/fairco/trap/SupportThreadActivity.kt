@@ -50,7 +50,7 @@ class SupportThreadActivity : BaseActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener { finish() }
-        supportActionBar?.title = "Ticket #$ticketNo"
+        supportActionBar?.title = getString(R.string.support_ticket_title, ticketNo)
 
         setupRecyclerView()
         observeViewModel()
@@ -88,7 +88,7 @@ class SupportThreadActivity : BaseActivity() {
                     viewModel.threadMessages.collectLatest { list ->
                         val newCount = list.size
                         if (newCount > previousCount && previousCount > 0) {
-                            Snackbar.make(binding.root, "🛡 New reply from Support", Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(binding.root, getString(R.string.support_new_reply), Snackbar.LENGTH_SHORT).show()
                             binding.rvMessages.scrollToPosition(newCount - 1)
                         }
                         previousCount = newCount
@@ -128,11 +128,11 @@ class SupportThreadActivity : BaseActivity() {
         binding.ticketHeaderLayout.tvTicketSubject.text = subject
         
         val (label, colorRes) = when (status) {
-            "open"           -> "Open"            to R.color.statusBlue
-            "waiting_admin"  -> "Awaiting reply"  to R.color.statusBlue
-            "waiting_user"   -> "Your turn"       to R.color.statusOrange
-            "answered"       -> "Answered ✓"      to R.color.statusGreen
-            "closed"         -> "Closed"          to R.color.statusGrey
+            "open"           -> getString(R.string.support_status_open)      to R.color.statusBlue
+            "waiting_admin"  -> getString(R.string.support_status_awaiting)  to R.color.statusBlue
+            "waiting_user"   -> getString(R.string.support_status_your_turn) to R.color.statusOrange
+            "answered"       -> getString(R.string.support_status_answered)  to R.color.statusGreen
+            "closed"         -> getString(R.string.support_status_closed)    to R.color.statusGrey
             else             -> status            to R.color.statusGrey
         }
         
@@ -145,7 +145,7 @@ class SupportThreadActivity : BaseActivity() {
 
         if (status == "waiting_user") {
             binding.ticketHeaderLayout.bannerReplyPrompt.visibility = View.VISIBLE
-            binding.ticketHeaderLayout.bannerReplyPrompt.text = "Support is waiting for your reply."
+            binding.ticketHeaderLayout.bannerReplyPrompt.text = getString(R.string.support_waiting_for_you)
         } else {
             binding.ticketHeaderLayout.bannerReplyPrompt.visibility = View.GONE
         }
@@ -199,7 +199,7 @@ class SupportThreadActivity : BaseActivity() {
 
                 bubbleCard.setCardBackgroundColor(ContextCompat.getColor(root.context, if (isMe) R.color.bubbleOutgoing else R.color.bubbleIncoming))
 
-                val senderLabel = if (isAdmin) "🛡 ${msg.senderName} (Support)" else "You"
+                val senderLabel = if (isAdmin) getString(R.string.support_sender_admin, msg.senderName) else getString(R.string.chat_you)
                 tvSender.text = senderLabel
                 tvSender.setTextColor(ContextCompat.getColor(root.context, if (isAdmin) R.color.adminBlue else R.color.text_muted))
                 tvSender.visibility = if (isAdmin) View.VISIBLE else View.GONE

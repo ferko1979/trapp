@@ -36,7 +36,7 @@ class InboxActivity : BaseActivity() {
         }
 
         TabLayoutMediator(binding.inboxTabs, binding.inboxPager) { tab, pos ->
-            tab.text = if (pos == 0) "💬 Messages" else "🎫 Support"
+            tab.text = getString(if (pos == 0) R.string.inbox_tab_messages else R.string.inbox_tab_support)
         }.attach()
 
         setupTabBadges()

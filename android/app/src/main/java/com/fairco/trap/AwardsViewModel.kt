@@ -156,7 +156,7 @@ class AwardsViewModel(private val locale: String) : ViewModel() {
                     cardTypes       = cardTypes,
                 )
             } catch (e: Exception) {
-                _state.value = AwardsUiState(loading = false, error = e.message ?: "Load failed")
+                _state.value = AwardsUiState(loading = false, error = e.message ?: "")
             }
         }
     }
@@ -164,6 +164,6 @@ class AwardsViewModel(private val locale: String) : ViewModel() {
     class Factory(private val context: Context) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T =
-            AwardsViewModel(LocaleManager.getLocale(context)) as T
+            AwardsViewModel(LocaleManager.apiLang(context)) as T
     }
 }

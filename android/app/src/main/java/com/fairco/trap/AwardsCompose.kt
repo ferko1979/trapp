@@ -1,5 +1,7 @@
 package com.fairco.trap
 
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.animation.*
 import com.fairco.trap.ui.theme.Radar
 import androidx.compose.animation.core.*
@@ -63,30 +65,32 @@ private val CONFETTI_COLORS = listOf(
 
 // ── Default card-type copies (used before backend loads) ──────────────────────
 
-private val DEFAULT_TIME_CARD = CardTypeContent(
+@Composable
+private fun defaultTimeCard() = CardTypeContent(
     id           = "card_time_deduction_5min",
     emoji        = "⏱️",
     valueDisplay = "−5",
-    name         = "Time Deduction",
-    unitLabel    = "min",
-    heroTitle    = "Time Deduction Cards",
-    heroSubtitle = "Each card removes 5 min from your wait timer",
-    tipText      = "Cards are applied automatically during trap placement — tap the card icon in the trap bag.",
-    readyLabel   = "READY",
-    usedLabel    = "USED",
+    name         = stringResource(R.string.award_time_card_name),
+    unitLabel    = stringResource(R.string.award_unit_min),
+    heroTitle    = stringResource(R.string.award_time_card_title),
+    heroSubtitle = stringResource(R.string.award_time_card_subtitle),
+    tipText      = stringResource(R.string.award_time_card_tip),
+    readyLabel   = stringResource(R.string.award_label_ready),
+    usedLabel    = stringResource(R.string.award_label_used),
 )
 
-private val DEFAULT_FREEZE_CARD = CardTypeContent(
+@Composable
+private fun defaultFreezeCard() = CardTypeContent(
     id           = "card_streak_freeze",
     emoji        = "🧊",
     valueDisplay = "1",
-    name         = "Streak Freeze",
-    unitLabel    = "day",
-    heroTitle    = "Streak Freeze Cards",
-    heroSubtitle = "Protects your login streak when you miss exactly 1 day",
-    tipText      = "Used automatically the next time you open the app after missing a day — no action needed.",
-    readyLabel   = "READY",
-    usedLabel    = "USED",
+    name         = stringResource(R.string.award_freeze_card_name),
+    unitLabel    = stringResource(R.string.award_unit_day),
+    heroTitle    = stringResource(R.string.award_freeze_card_title),
+    heroSubtitle = stringResource(R.string.award_freeze_card_subtitle),
+    tipText      = stringResource(R.string.award_freeze_card_tip),
+    readyLabel   = stringResource(R.string.award_label_ready),
+    usedLabel    = stringResource(R.string.award_label_used),
 )
 
 private fun isFreeze(ct: CardTypeContent) = ct.id == "card_streak_freeze"
@@ -163,7 +167,7 @@ private fun ConfettiBurst(modifier: Modifier = Modifier) {
 fun AwardsScreen(viewModel: AwardsViewModel, onBack: () -> Unit) {
     val state by viewModel.state.collectAsState()
     var tabIndex by remember { mutableIntStateOf(0) }
-    val tabs = listOf("🃏  Cards", "🔥  Streak")
+    val tabs = listOf("🃏  " + stringResource(R.string.award_tab_cards), "🔥  " + stringResource(R.string.award_tab_streak))
     val haptic = LocalHapticFeedback.current
 
     // Confetti: trigger once when streak matches any milestone day
@@ -186,13 +190,13 @@ fun AwardsScreen(viewModel: AwardsViewModel, onBack: () -> Unit) {
                 TopAppBar(
                     title = {
                         Column {
-                            Text("Awards & Cards", color = TEXT, fontWeight = FontWeight.Bold, fontSize = 17.sp)
-                            Text("Inventory & achievements", color = TEXT_SEC, fontSize = 11.sp)
+                            Text(stringResource(R.string.award_screen_title), color = TEXT, fontWeight = FontWeight.Bold, fontSize = 17.sp)
+                            Text(stringResource(R.string.award_screen_subtitle), color = TEXT_SEC, fontSize = 11.sp)
                         }
                     },
                     navigationIcon = {
                         IconButton(onClick = onBack) {
-                            Icon(Icons.Filled.ArrowBack, contentDescription = "Back", tint = TEXT)
+                            Icon(Icons.Filled.ArrowBack, contentDescription = stringResource(R.string.action_back), tint = TEXT)
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = SURFACE)
@@ -245,7 +249,7 @@ fun AwardsScreen(viewModel: AwardsViewModel, onBack: () -> Unit) {
                         Modifier.fillMaxSize().padding(32.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text("⚠️ ${state.error}", color = Radar.TrapSoft, textAlign = TextAlign.Center)
+                        Text("⚠️ " + (state.error ?: "").ifBlank { stringResource(R.string.error_generic_retry) }, color = Radar.TrapSoft, textAlign = TextAlign.Center)
                     }
                     tabIndex == 0 -> CardsTab(state)
                     else          -> StreakTab(state)
@@ -264,8 +268,13 @@ fun AwardsScreen(viewModel: AwardsViewModel, onBack: () -> Unit) {
 
 @Composable
 private fun CardsTab(state: AwardsUiState) {
-    // Resolve card types from backend or fall back to defaults
-    val cardTypes = state.cardTypes.ifEmpty { listOf(DEFAULT_TIME_CARD, DEFAULT_FREEZE_CARD) }
+    // Resolve card types from backend or fall back to defaults; known types keep the
+    // localized copy (backend text is English-only), unknown types use backend text.
+    val defaultCards = listOf(defaultTimeCard(), defaultFreezeCard())
+    val localById = defaultCards.associateBy { it.id }
+    val cardTypes = state.cardTypes
+        .map { ct -> localById[ct.id]?.copy(emoji = ct.emoji, valueDisplay = ct.valueDisplay) ?: ct }
+        .ifEmpty { defaultCards }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -282,8 +291,8 @@ private fun CardsTab(state: AwardsUiState) {
             item {
                 EmptyState(
                     icon = "🃏",
-                    title = "No cards available",
-                    subtitle = "Play daily and complete hourly missions\non your first day to earn cards"
+                    title = stringResource(R.string.award_no_cards_title),
+                    subtitle = stringResource(R.string.award_no_cards_subtitle)
                 )
             }
         }
@@ -326,7 +335,7 @@ private fun CardTypeSection(ct: CardTypeContent, state: AwardsUiState, sectionIn
                     if (total > 0) {
                         Spacer(Modifier.height(6.dp))
                         Text(
-                            "${unused.size} available · $total total earned",
+                            stringResource(R.string.award_available_total, unused.size, total),
                             color = if (unused.isNotEmpty()) accent else MUTED,
                             fontSize = 11.sp, fontWeight = FontWeight.SemiBold
                         )
@@ -334,7 +343,7 @@ private fun CardTypeSection(ct: CardTypeContent, state: AwardsUiState, sectionIn
                     // Freeze-specific hint
                     if (freeze && unused.isNotEmpty()) {
                         Spacer(Modifier.height(4.dp))
-                        Text("Auto-applied when you miss 1 day", color = ACCENT_ICE.copy(alpha = 0.7f), fontSize = 10.sp)
+                        Text(stringResource(R.string.award_freeze_hint), color = ACCENT_ICE.copy(alpha = 0.7f), fontSize = 10.sp)
                     }
                 }
                 Spacer(Modifier.width(12.dp))
@@ -391,7 +400,7 @@ private fun CardTypeSection(ct: CardTypeContent, state: AwardsUiState, sectionIn
                                 fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, lineHeight = 20.sp
                             )
                             Text(
-                                "left",
+                                stringResource(R.string.award_left),
                                 color = if (unused.isNotEmpty()) accent.copy(alpha = 0.7f) else MUTED,
                                 fontSize = 9.sp
                             )
@@ -403,7 +412,7 @@ private fun CardTypeSection(ct: CardTypeContent, state: AwardsUiState, sectionIn
 
         // Available grid
         if (unused.isNotEmpty()) {
-            SectionLabel("AVAILABLE  ·  ${unused.size}")
+            SectionLabel(stringResource(R.string.award_section_available) + "  ·  ${unused.size}")
             val cols = 4
             val rows = (unused.size + cols - 1) / cols
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -532,12 +541,12 @@ private fun UsedCardRow(card: CardEntry, ct: CardTypeContent) {
         } ?: "—"
     }
     val earnedLabel = when {
-        card.earnedFrom.contains("login")  -> "Day 1 login"
-        card.earnedFrom.contains("hourly") -> "Hourly bonus"
-        card.earnedFrom.contains("streak") -> "Streak reward"
+        card.earnedFrom.contains("login")  -> stringResource(R.string.award_from_login)
+        card.earnedFrom.contains("hourly") -> stringResource(R.string.award_from_hourly)
+        card.earnedFrom.contains("streak") -> stringResource(R.string.award_from_streak)
         else -> card.earnedFrom.replace("_", " ")
     }
-    val actionLabel = if (freeze) "Protected streak $dateStr" else "Used $dateStr"
+    val actionLabel = if (freeze) stringResource(R.string.award_protected_streak_on, dateStr) else stringResource(R.string.award_used_on, dateStr)
 
     Row(
         modifier = Modifier
@@ -632,19 +641,19 @@ private fun StreakTab(state: AwardsUiState) {
                             color = AMBER, fontSize = 42.sp,
                             fontWeight = FontWeight.ExtraBold, lineHeight = 42.sp
                         )
-                        Text("day streak", color = AMBER.copy(alpha = 0.6f), fontSize = 11.sp)
+                        Text(stringResource(R.string.award_day_streak), color = AMBER.copy(alpha = 0.6f), fontSize = 11.sp)
                     }
                     Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            MiniStatChip(Modifier.weight(1f), "📅", "${state.totalDaysPlayed}", "total days")
-                            MiniStatChip(Modifier.weight(1f), "🏆", "${state.longestStreak}", "best streak")
+                            MiniStatChip(Modifier.weight(1f), "📅", "${state.totalDaysPlayed}", stringResource(R.string.award_total_days))
+                            MiniStatChip(Modifier.weight(1f), "🏆", "${state.longestStreak}", stringResource(R.string.award_best_streak))
                         }
                         if (nextMilestone != null) {
                             val daysLeft = nextMilestone.day - state.loginStreak
                             Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
                                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                                    Text("Next: Day ${nextMilestone.day}", color = AMBER.copy(alpha = 0.8f), fontSize = 10.sp)
-                                    Text("$daysLeft day${if (daysLeft > 1) "s" else ""} left", color = TEXT_SEC, fontSize = 10.sp)
+                                    Text(stringResource(R.string.award_next_day, nextMilestone.day), color = AMBER.copy(alpha = 0.8f), fontSize = 10.sp)
+                                    Text(pluralStringResource(R.plurals.award_days_left, daysLeft, daysLeft), color = TEXT_SEC, fontSize = 10.sp)
                                 }
                                 LinearProgressIndicator(
                                     progress = { animatedProgress },
@@ -654,7 +663,7 @@ private fun StreakTab(state: AwardsUiState) {
                                 )
                             }
                         } else {
-                            Text("🎉 All milestones unlocked!", color = ACCENT_GREEN, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.award_all_milestones), color = ACCENT_GREEN, fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -662,7 +671,7 @@ private fun StreakTab(state: AwardsUiState) {
         }
 
         if (milestones.isNotEmpty()) {
-            item { SectionLabel("MILESTONES") }
+            item { SectionLabel(stringResource(R.string.award_section_milestones)) }
             itemsIndexed(milestones) { index, milestone ->
                 MilestoneRow(
                     milestone    = milestone,
@@ -746,18 +755,28 @@ private fun MilestoneRow(
             }
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Text("Day ${milestone.day}", color = accentColor, fontSize = 12.sp, fontWeight = FontWeight.ExtraBold)
+                    Text(stringResource(R.string.award_day_n, milestone.day), color = accentColor, fontSize = 12.sp, fontWeight = FontWeight.ExtraBold)
                     if (isCurrent) {
                         Box(
                             modifier = Modifier
                                 .background(AMBER.copy(alpha = 0.18f), RoundedCornerShape(4.dp))
                                 .padding(horizontal = 4.dp, vertical = 1.dp)
                         ) {
-                            Text("NEXT", color = AMBER, fontSize = 8.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.award_label_next), color = AMBER, fontSize = 8.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
-                Text(milestone.description, color = if (achieved) TEXT else TEXT_SEC, fontSize = 12.sp)
+                // Built from reward counts so it follows the app language (backend text is English-only)
+                val rw = milestone.rewards
+                val rewardParts = buildList {
+                    if (rw.cards > 0) add(pluralStringResource(R.plurals.award_reward_cards, rw.cards, rw.cards))
+                    if (rw.xp > 0) add("${rw.xp} XP")
+                    if (rw.bagRefills > 0) add(pluralStringResource(R.plurals.award_reward_bag, rw.bagRefills, rw.bagRefills))
+                }
+                Text(
+                    rewardParts.joinToString(" + ").ifEmpty { milestone.description },
+                    color = if (achieved) TEXT else TEXT_SEC, fontSize = 12.sp
+                )
                 // Show freeze card count if milestone grants any
                 if (milestone.rewards.freezeCards > 0) {
                     Row(
@@ -766,14 +785,14 @@ private fun MilestoneRow(
                     ) {
                         Text("🧊", fontSize = 10.sp)
                         Text(
-                            "+${milestone.rewards.freezeCards} freeze card${if (milestone.rewards.freezeCards > 1) "s" else ""}",
+                            pluralStringResource(R.plurals.award_freeze_cards_plus, milestone.rewards.freezeCards, milestone.rewards.freezeCards),
                             color = if (achieved) ACCENT_ICE else ACCENT_ICE.copy(alpha = 0.5f),
                             fontSize = 10.sp
                         )
                     }
                 }
                 if (!achieved && daysLeft > 0) {
-                    Text("$daysLeft day${if (daysLeft > 1) "s" else ""} to go", color = MUTED, fontSize = 10.sp)
+                    Text(pluralStringResource(R.plurals.award_days_to_go, daysLeft, daysLeft), color = MUTED, fontSize = 10.sp)
                 }
             }
             if (achieved) {

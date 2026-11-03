@@ -39,7 +39,7 @@ class NewTicketBottomSheet : BottomSheetDialogFragment() {
 
     private fun setupCategorySpinner() {
         val categories = TicketCategory.entries
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories.map { it.label })
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories.map { getString(it.labelRes) })
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCategory.adapter = adapter
         
@@ -65,7 +65,7 @@ class NewTicketBottomSheet : BottomSheetDialogFragment() {
                 dismiss()
                 val parentView = activity?.findViewById<View>(android.R.id.content)
                 if (parentView != null) {
-                    Snackbar.make(parentView, "✓ Ticket #$ticketNo submitted. We'll reply shortly.", Snackbar.LENGTH_LONG)
+                    Snackbar.make(parentView, getString(R.string.support_ticket_submitted_detail, ticketNo ?: ""), Snackbar.LENGTH_LONG)
                         .setBackgroundTint(requireContext().getColor(R.color.accent_green))
                         .setTextColor(requireContext().getColor(R.color.white))
                         .show()

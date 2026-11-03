@@ -1,5 +1,9 @@
 package com.fairco.trap
 
+import com.fairco.trap.util.LocaleManager
+import androidx.lifecycle.AndroidViewModel
+import androidx.annotation.StringRes
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.functions.FirebaseFunctionsException
@@ -10,12 +14,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-enum class TicketCategory(val value: String, val label: String) {
-    BUG_REPORT("bug_report", "🐛 Bug Report"),
-    GENERAL("general", "💬 General Question"),
-    ACCOUNT("account", "👤 Account Issue"),
-    EMAIL_CHANGE("email_change", "✉️ Change Email"),
-    BILLING("billing", "💳 Billing")
+/** [label] is the English fallback; show [labelRes] in the UI. */
+enum class TicketCategory(val value: String, val label: String, @StringRes val labelRes: Int) {
+    BUG_REPORT("bug_report", "🐛 Bug Report", R.string.support_cat_bug),
+    GENERAL("general", "💬 General Question", R.string.support_cat_general),
+    ACCOUNT("account", "👤 Account Issue", R.string.support_cat_account),
+    EMAIL_CHANGE("email_change", "✉️ Change Email", R.string.support_cat_email_change),
+    BILLING("billing", "💳 Billing", R.string.support_cat_billing)
 }
 
 enum class TicketPriority(val value: String) {
@@ -43,7 +48,9 @@ data class TicketMessage(
     val createdAtEpochMs: Long?
 )
 
-class SupportViewModel : ViewModel() {
+class SupportViewModel(application: Application) : AndroidViewModel(application) {
+    private fun str(@StringRes id: Int, vararg args: Any): String =
+        LocaleManager.applyLocale(getApplication()).getString(id, *args)
     private val functions = Firebase.functions("europe-west1")
 
     val tickets = MutableStateFlow<List<TicketSummary>>(emptyList())
@@ -127,7 +134,7 @@ class SupportViewModel : ViewModel() {
         onDone: (Boolean, String, String?) -> Unit  // success, msg, ticketNo
     ) = viewModelScope.launch {
         if (subject.isBlank() || message.isBlank()) {
-            onDone(false, "Subject and message are required.", null)
+            onDone(false, str(R.string.support_subject_message_required), null)
             return@launch
         }
         isLoading.value = true
@@ -142,7 +149,7 @@ class SupportViewModel : ViewModel() {
                 )).await()
             val data = result.getData() as? Map<String, Any>
             val ticketNo = data?.get("ticketNo") as? String
-            onDone(true, "Ticket submitted!", ticketNo)
+            onDone(true, str(R.string.support_ticket_submitted), ticketNo)
             loadTickets()
         } catch (e: Exception) {
             onDone(false, formatErrorMessage(e), null)
@@ -176,15 +183,15 @@ class SupportViewModel : ViewModel() {
     private fun formatErrorMessage(e: Exception): String {
         return if (e is FirebaseFunctionsException) {
             when (e.code) {
-                FirebaseFunctionsException.Code.UNAUTHENTICATED -> "Please sign in again."
-                FirebaseFunctionsException.Code.NOT_FOUND -> "Not found."
-                FirebaseFunctionsException.Code.ALREADY_EXISTS -> "Already exists."
-                FirebaseFunctionsException.Code.PERMISSION_DENIED -> "Permission denied."
-                FirebaseFunctionsException.Code.INTERNAL -> "Internal server error. Retrying..."
-                else -> e.message ?: "Something went wrong."
+                FirebaseFunctionsException.Code.UNAUTHENTICATED -> str(R.string.error_sign_in_again)
+                FirebaseFunctionsException.Code.NOT_FOUND -> str(R.string.error_not_found)
+                FirebaseFunctionsException.Code.ALREADY_EXISTS -> str(R.string.error_already_exists)
+                FirebaseFunctionsException.Code.PERMISSION_DENIED -> str(R.string.error_permission_denied)
+                FirebaseFunctionsException.Code.INTERNAL -> str(R.string.error_internal_retrying)
+                else -> e.message ?: str(R.string.error_generic_retry)
             }
         } else {
-            e.message ?: "Something went wrong."
+            e.message ?: str(R.string.error_generic_retry)
         }
     }
 }

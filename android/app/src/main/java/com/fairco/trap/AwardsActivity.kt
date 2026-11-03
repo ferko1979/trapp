@@ -7,6 +7,8 @@ import androidx.compose.ui.platform.ComposeView
 
 class AwardsActivity : BaseActivity() {
 
+    override val radarBars = true
+
     private val vm: AwardsViewModel by viewModels { AwardsViewModel.Factory(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
