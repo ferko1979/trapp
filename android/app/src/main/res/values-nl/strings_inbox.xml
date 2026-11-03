@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Berichtencentrum</string>
+    <string name="inbox_subtitle">Berichten en support</string>
+    <string name="inbox_search_hint">Berichten zoeken…</string>
+    <string name="inbox_empty_messages">Nog geen berichten</string>
+    <string name="inbox_empty_messages_hint">Begin een gesprek met een van je vrienden.</string>
+    <string name="inbox_no_results">Geen berichten gevonden</string>
+    <string name="inbox_support_sender">Supportteam</string>
+    <string name="inbox_new_ticket_cta">Nieuw supportticket</string>
+    <string name="inbox_new_ticket_cta_hint">Meld een bug of stel een vraag — ons team antwoordt hier.</string>
+    <string name="inbox_new_ticket_title">Stuur ons een bericht</string>
+    <string name="inbox_ticket_category">Categorie</string>
+    <string name="inbox_ticket_message_hint">Beschrijf je probleem…</string>
+    <string name="inbox_ticket_send">Ticket versturen</string>
+    <string name="inbox_support_empty_hint">Werkt er iets niet? Open een ticket en we helpen je.</string>
+    <string name="inbox_your_tickets">Je tickets</string>
+    <string name="inbox_ticket_closed">Dit ticket is gesloten. Open een nieuw ticket als je meer hulp nodig hebt.</string>
+</resources>

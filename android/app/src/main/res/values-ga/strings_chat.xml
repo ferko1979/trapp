@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Cuardaigh comhráite…</string>
+    <string name="chat_empty_hint">Tapáil + chun teachtaireacht a sheoladh chuig duine de do chairde.</string>
+    <string name="chat_no_results">Níl aon chomhrá ag teacht le do chuardach.</string>
+    <string name="chat_today">Inniu</string>
+    <string name="chat_yesterday">Inné</string>
+    <string name="chat_sending">Á sheoladh…</string>
+    <string name="chat_thread_empty">Abair haigh le %1$s!</string>
+    <string name="chat_thread_empty_hint">Beidh do theachtaireachtaí le feiceáil anseo.</string>
+    <string name="chat_direct_subtitle">Teachtaireacht dhíreach</string>
+    <string name="chat_title_fallback">Comhrá</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d chomhrá</item>
+        <item quantity="two">%d chomhrá</item>
+        <item quantity="few">%d chomhrá</item>
+        <item quantity="many">%d gcomhrá</item>
+        <item quantity="other">%d comhrá</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d gan léamh</item>
+        <item quantity="two">%d gan léamh</item>
+        <item quantity="few">%d gan léamh</item>
+        <item quantity="many">%d gan léamh</item>
+        <item quantity="other">%d gan léamh</item>
+    </plurals>
+</resources>

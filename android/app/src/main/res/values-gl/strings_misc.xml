@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">COLOCA · ARMA · ATRAPA</string>
+    <string name="maintenance_title">En mantemento</string>
+    <string name="maintenance_msg">A app está en mantemento. Téntao de novo máis tarde.</string>
+    <string name="action_retry">Tentar de novo</string>
+    <string name="alert_option_disassemble_title">🛠  Desmontar</string>
+    <string name="alert_option_avoid_title">🚶  Esquivar</string>
+</resources>

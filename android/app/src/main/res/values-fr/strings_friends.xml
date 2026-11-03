@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Demandes</string>
+    <string name="friends_tab_search">Recherche</string>
+    <string name="friends_mode_username">Par pseudo</string>
+    <string name="friends_mode_id">Par ID / e-mail</string>
+    <string name="friends_hint_search_username">Rechercher par pseudo…</string>
+    <string name="friends_hint_search_id">ID joueur ou adresse e-mail</string>
+    <string name="friends_action_find">Trouver</string>
+    <string name="friends_invite_title">Invite tes contacts</string>
+    <string name="friends_invite_hint">Plus d\'amis = plus de pièges à poser !</string>
+    <string name="friends_empty_hint">Invite tes amis ou trouve-les par pseudo.</string>
+    <string name="friends_requests_empty_hint">Les demandes d\'ami envoyées ou reçues apparaîtront ici.</string>
+    <string name="friends_search_title">Trouver des joueurs</string>
+    <string name="friends_search_hint">Tape au moins 2 caractères d\'un pseudo.</string>
+    <string name="friends_id_search_hint">Saisis un ID joueur ou une adresse e-mail, puis touche Trouver.</string>
+    <string name="friends_action_message">Message</string>
+    <string name="friends_request_incoming">Veut être ton ami</string>
+    <string name="friends_since">Amis depuis %1$s</string>
+    <string name="friends_id_label">ID : %1$s</string>
+    <string name="friends_sheet_title">Démarrer une conversation</string>
+    <string name="friends_sheet_hint">Rechercher des amis…</string>
+    <string name="friends_sheet_empty_hint">Ajoute des amis pour commencer à discuter.</string>
+    <string name="invite_title">Inviter des amis</string>
+    <string name="invite_hero_title">Pose des pièges. Capture tes amis.</string>
+    <string name="invite_hero_sub">Invite tes amis à rejoindre TRAPP</string>
+    <string name="invite_code_label">Ton code d\'invitation</string>
+    <string name="invite_code_copied">Code d\'invitation copié</string>
+    <string name="invite_preview_label">Aperçu du message</string>
+    <string name="invite_share_cta">Partager l\'invitation</string>
+    <string name="invite_send_via">Envoyer via</string>
+    <string name="invite_privacy_note">TRAPP ne lit jamais tes contacts — c\'est toi qui choisis le destinataire dans l\'app de partage.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d ami</item>
+        <item quantity="many">%d amis</item>
+        <item quantity="other">%d amis</item>
+    </plurals>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Eskaerak</string>
+    <string name="friends_tab_search">Bilatu</string>
+    <string name="friends_mode_username">Erabiltzaile-izenez</string>
+    <string name="friends_mode_id">IDz / postaz</string>
+    <string name="friends_hint_search_username">Bilatu erabiltzaile-izenez…</string>
+    <string name="friends_hint_search_id">Erabiltzaile IDa edo helbide elektronikoa</string>
+    <string name="friends_action_find">Aurkitu</string>
+    <string name="friends_invite_title">Gonbidatu zure kontaktuak</string>
+    <string name="friends_invite_hint">Lagun gehiago = tranpa gehiago jartzeko!</string>
+    <string name="friends_empty_hint">Gonbidatu zure lagunak edo aurkitu erabiltzaile-izenez.</string>
+    <string name="friends_requests_empty_hint">Bidaltzen edo jasotzen dituzun lagun-eskaerak hemen agertuko dira.</string>
+    <string name="friends_search_title">Aurkitu jokalariak</string>
+    <string name="friends_search_hint">Idatzi erabiltzaile-izen baten gutxienez 2 karaktere.</string>
+    <string name="friends_id_search_hint">Idatzi jokalari-ID bat edo helbide elektroniko bat, eta sakatu Aurkitu.</string>
+    <string name="friends_action_message">Mezua</string>
+    <string name="friends_request_incoming">Zure laguna izan nahi du</string>
+    <string name="friends_since">Lagunak %1$s(e)tik</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Hasi elkarrizketa bat</string>
+    <string name="friends_sheet_hint">Bilatu lagunak…</string>
+    <string name="friends_sheet_empty_hint">Gehitu lagunak txateatzen hasteko.</string>
+    <string name="invite_title">Gonbidatu lagunak</string>
+    <string name="invite_hero_title">Jarri tranpak. Harrapatu lagunak.</string>
+    <string name="invite_hero_sub">Gonbidatu zure lagunak TRAPPera</string>
+    <string name="invite_code_label">Zure gonbidapen-kodea</string>
+    <string name="invite_code_copied">Gonbidapen-kodea kopiatuta</string>
+    <string name="invite_preview_label">Mezuaren aurrebista</string>
+    <string name="invite_share_cta">Partekatu gonbidapena</string>
+    <string name="invite_send_via">Bidali honen bidez</string>
+    <string name="invite_privacy_note">TRAPPek ez ditu inoiz zure kontaktuak irakurtzen — zuk aukeratzen duzu hartzailea partekatzeko erabiltzen duzun aplikazioan.</string>
+    <string name="invite_ch_email">Posta</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d lagun</item>
+        <item quantity="other">%d lagun</item>
+    </plurals>
+</resources>

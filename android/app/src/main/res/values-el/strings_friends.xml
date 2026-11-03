@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Αιτήματα</string>
+    <string name="friends_tab_search">Αναζήτηση</string>
+    <string name="friends_mode_username">Με όνομα χρήστη</string>
+    <string name="friends_mode_id">Με ID / e-mail</string>
+    <string name="friends_hint_search_username">Αναζήτηση με όνομα χρήστη…</string>
+    <string name="friends_hint_search_id">ID χρήστη ή διεύθυνση e-mail</string>
+    <string name="friends_action_find">Εύρεση</string>
+    <string name="friends_invite_title">Προσκάλεσε τις επαφές σου</string>
+    <string name="friends_invite_hint">Περισσότεροι φίλοι = περισσότερες παγίδες!</string>
+    <string name="friends_empty_hint">Προσκάλεσε φίλους ή βρες τους με το όνομα χρήστη.</string>
+    <string name="friends_requests_empty_hint">Τα αιτήματα φιλίας που στέλνεις ή λαμβάνεις θα εμφανίζονται εδώ.</string>
+    <string name="friends_search_title">Εύρεση παικτών</string>
+    <string name="friends_search_hint">Γράψε τουλάχιστον 2 χαρακτήρες από ένα όνομα χρήστη.</string>
+    <string name="friends_id_search_hint">Γράψε ID παίκτη ή e-mail και πάτα Εύρεση.</string>
+    <string name="friends_action_message">Μήνυμα</string>
+    <string name="friends_request_incoming">Θέλει να γίνει φίλος σου</string>
+    <string name="friends_since">Φίλοι από %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Ξεκίνα συνομιλία</string>
+    <string name="friends_sheet_hint">Αναζήτηση φίλων…</string>
+    <string name="friends_sheet_empty_hint">Πρόσθεσε φίλους για να συνομιλήσεις.</string>
+    <string name="invite_title">Πρόσκληση φίλων</string>
+    <string name="invite_hero_title">Στήσε παγίδες. Πιάσε φίλους.</string>
+    <string name="invite_hero_sub">Προσκάλεσε τους φίλους σου στο TRAPP</string>
+    <string name="invite_code_label">Ο κωδικός πρόσκλησής σου</string>
+    <string name="invite_code_copied">Ο κωδικός πρόσκλησης αντιγράφηκε</string>
+    <string name="invite_preview_label">Προεπισκόπηση μηνύματος</string>
+    <string name="invite_share_cta">Κοινοποίηση πρόσκλησης</string>
+    <string name="invite_send_via">Αποστολή μέσω</string>
+    <string name="invite_privacy_note">Το TRAPP δεν διαβάζει ποτέ τις επαφές σου — επιλέγεις τον παραλήπτη στην εφαρμογή κοινοποίησης.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d φίλος</item>
+        <item quantity="other">%d φίλοι</item>
+    </plurals>
+</resources>

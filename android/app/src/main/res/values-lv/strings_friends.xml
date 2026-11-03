@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Pieprasījumi</string>
+    <string name="friends_tab_search">Meklēt</string>
+    <string name="friends_mode_username">Pēc lietotājvārda</string>
+    <string name="friends_mode_id">Pēc ID / e-pasta</string>
+    <string name="friends_hint_search_username">Meklēt pēc lietotājvārda…</string>
+    <string name="friends_hint_search_id">Lietotāja ID vai e-pasta adrese</string>
+    <string name="friends_action_find">Atrast</string>
+    <string name="friends_invite_title">Uzaicini savus kontaktus</string>
+    <string name="friends_invite_hint">Vairāk draugu = vairāk slazdu!</string>
+    <string name="friends_empty_hint">Uzaicini draugus vai atrodi tos pēc lietotājvārda.</string>
+    <string name="friends_requests_empty_hint">Šeit parādīsies nosūtītie un saņemtie drauga pieprasījumi.</string>
+    <string name="friends_search_title">Atrast spēlētājus</string>
+    <string name="friends_search_hint">Ieraksti vismaz 2 lietotājvārda rakstzīmes.</string>
+    <string name="friends_id_search_hint">Ievadi spēlētāja ID vai e-pasta adresi un pieskaries „Atrast”.</string>
+    <string name="friends_action_message">Ziņa</string>
+    <string name="friends_request_incoming">Vēlas būt tavs draugs</string>
+    <string name="friends_since">Draugi kopš %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Sākt sarunu</string>
+    <string name="friends_sheet_hint">Meklēt draugus…</string>
+    <string name="friends_sheet_empty_hint">Pievieno draugus, lai sāktu tērzēt.</string>
+    <string name="invite_title">Uzaicināt draugus</string>
+    <string name="invite_hero_title">Liec slazdus. Ķer draugus.</string>
+    <string name="invite_hero_sub">Uzaicini draugus pievienoties TRAPP</string>
+    <string name="invite_code_label">Tavs uzaicinājuma kods</string>
+    <string name="invite_code_copied">Uzaicinājuma kods nokopēts</string>
+    <string name="invite_preview_label">Ziņas priekšskatījums</string>
+    <string name="invite_share_cta">Kopīgot uzaicinājumu</string>
+    <string name="invite_send_via">Sūtīt ar</string>
+    <string name="invite_privacy_note">TRAPP nekad nelasa tavus kontaktus — saņēmēju tu izvēlies lietotnē, ar kuru kopīgo.</string>
+    <string name="invite_ch_email">E-pasts</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="zero">%d draugi</item>
+        <item quantity="one">%d draugs</item>
+        <item quantity="other">%d draugi</item>
+    </plurals>
+</resources>

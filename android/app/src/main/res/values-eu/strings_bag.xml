@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Tranpa-poltsa</string>
+    <string name="bag_weight">Pisua</string>
+    <string name="bag_selected">Hautatuta</string>
+    <string name="bag_hint_select">Sakatu tranpa bat hautatzeko — JARRI sakatuta armatzen da</string>
+    <string name="bag_section_traps">Zure tranpak</string>
+    <string name="bag_refill_in">+1 %1$s barru</string>
+    <string name="bag_status_full">Beteta</string>
+    <string name="bag_about_weight">Poltsaren pisuari buruz</string>
+    <string name="bag_trap_details">Tranparen xehetasunak</string>
+    <string name="bag_in_bag">Poltsan</string>
+    <string name="bag_refill">Birkarga</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d tranpa prest</item>
+        <item quantity="other">%d tranpa prest</item>
+    </plurals>
+</resources>

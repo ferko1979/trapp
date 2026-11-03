@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Rechercher des conversations…</string>
+    <string name="chat_empty_hint">Touche + pour envoyer un message à un de tes amis.</string>
+    <string name="chat_no_results">Aucune conversation ne correspond à ta recherche.</string>
+    <string name="chat_today">Aujourd\'hui</string>
+    <string name="chat_yesterday">Hier</string>
+    <string name="chat_sending">Envoi…</string>
+    <string name="chat_thread_empty">Dis bonjour à %1$s !</string>
+    <string name="chat_thread_empty_hint">Tes messages apparaîtront ici.</string>
+    <string name="chat_direct_subtitle">Message privé</string>
+    <string name="chat_title_fallback">Chat</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d conversation</item>
+        <item quantity="many">%d conversations</item>
+        <item quantity="other">%d conversations</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d non lu</item>
+        <item quantity="many">%d non lus</item>
+        <item quantity="other">%d non lus</item>
+    </plurals>
+</resources>

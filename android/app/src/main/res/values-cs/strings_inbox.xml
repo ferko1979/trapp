@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Centrum zpráv</string>
+    <string name="inbox_subtitle">Zprávy a podpora</string>
+    <string name="inbox_search_hint">Hledat ve zprávách…</string>
+    <string name="inbox_empty_messages">Zatím žádné zprávy</string>
+    <string name="inbox_empty_messages_hint">Začni konverzaci s některým z přátel.</string>
+    <string name="inbox_no_results">Žádné odpovídající zprávy</string>
+    <string name="inbox_support_sender">Tým podpory</string>
+    <string name="inbox_new_ticket_cta">Nový tiket podpory</string>
+    <string name="inbox_new_ticket_cta_hint">Nahlas chybu nebo se zeptej — náš tým odpoví tady.</string>
+    <string name="inbox_new_ticket_title">Napiš nám</string>
+    <string name="inbox_ticket_category">Kategorie</string>
+    <string name="inbox_ticket_message_hint">Popiš svůj problém…</string>
+    <string name="inbox_ticket_send">Odeslat tiket</string>
+    <string name="inbox_support_empty_hint">Když něco nefunguje, otevři tiket a pomůžeme ti.</string>
+    <string name="inbox_your_tickets">Tvoje tikety</string>
+    <string name="inbox_ticket_closed">Tento tiket je uzavřený. Pokud potřebuješ další pomoc, otevři nový.</string>
+</resources>

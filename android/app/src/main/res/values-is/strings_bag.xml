@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Gildrupoki</string>
+    <string name="bag_weight">Þyngd</string>
+    <string name="bag_selected">Valið</string>
+    <string name="bag_hint_select">Ýttu á gildru til að velja hana — SETJA virkjar hana</string>
+    <string name="bag_section_traps">Gildrurnar þínar</string>
+    <string name="bag_refill_in">+1 eftir %1$s</string>
+    <string name="bag_status_full">Fullur</string>
+    <string name="bag_about_weight">Um þyngd pokans</string>
+    <string name="bag_trap_details">Upplýsingar um gildru</string>
+    <string name="bag_in_bag">Í poka</string>
+    <string name="bag_refill">Fylla á</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d gildra tilbúin</item>
+        <item quantity="other">%d gildrur tilbúnar</item>
+    </plurals>
+</resources>

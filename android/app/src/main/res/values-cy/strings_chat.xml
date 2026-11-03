@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Chwilio sgyrsiau…</string>
+    <string name="chat_empty_hint">Tapia + i anfon neges at un o dy ffrindiau.</string>
+    <string name="chat_no_results">Does dim sgyrsiau’n cyfateb i’r chwiliad.</string>
+    <string name="chat_today">Heddiw</string>
+    <string name="chat_yesterday">Ddoe</string>
+    <string name="chat_sending">Yn anfon…</string>
+    <string name="chat_thread_empty">Dweud helô wrth %1$s!</string>
+    <string name="chat_thread_empty_hint">Bydd dy negeseuon yn ymddangos yma.</string>
+    <string name="chat_direct_subtitle">Neges uniongyrchol</string>
+    <string name="chat_title_fallback">Sgwrs</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="zero">%d sgwrs</item>
+        <item quantity="one">%d sgwrs</item>
+        <item quantity="two">%d sgwrs</item>
+        <item quantity="few">%d sgwrs</item>
+        <item quantity="many">%d sgwrs</item>
+        <item quantity="other">%d sgwrs</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="zero">%d heb eu darllen</item>
+        <item quantity="one">%d heb ei darllen</item>
+        <item quantity="two">%d heb eu darllen</item>
+        <item quantity="few">%d heb eu darllen</item>
+        <item quantity="many">%d heb eu darllen</item>
+        <item quantity="other">%d heb eu darllen</item>
+    </plurals>
+</resources>

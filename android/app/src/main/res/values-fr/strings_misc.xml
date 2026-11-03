@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">POSER · PIÉGER · CAPTURER</string>
+    <string name="maintenance_title">En maintenance</string>
+    <string name="maintenance_msg">L\'app est en cours de maintenance. Réessaie plus tard.</string>
+    <string name="action_retry">Réessayer</string>
+    <string name="alert_option_disassemble_title">🛠  Démonter</string>
+    <string name="alert_option_avoid_title">🚶  Éviter</string>
+</resources>

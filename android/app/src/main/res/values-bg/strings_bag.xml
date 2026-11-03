@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Торба с капани</string>
+    <string name="bag_weight">Тегло</string>
+    <string name="bag_selected">Избран</string>
+    <string name="bag_hint_select">Докосни капан, за да го избереш — ПОСТАВИ го активира</string>
+    <string name="bag_section_traps">Твоите капани</string>
+    <string name="bag_refill_in">+1 след %1$s</string>
+    <string name="bag_status_full">Пълна</string>
+    <string name="bag_about_weight">За теглото на торбата</string>
+    <string name="bag_trap_details">Детайли за капана</string>
+    <string name="bag_in_bag">В торбата</string>
+    <string name="bag_refill">Зареждане</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d капан готов</item>
+        <item quantity="other">%d капана готови</item>
+    </plurals>
+</resources>

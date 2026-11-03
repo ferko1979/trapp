@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Ufroen</string>
+    <string name="friends_tab_search">Sichen</string>
+    <string name="friends_mode_username">No Benotzernumm</string>
+    <string name="friends_mode_id">No ID / E-Mail</string>
+    <string name="friends_hint_search_username">No Benotzernumm sichen…</string>
+    <string name="friends_hint_search_id">Benotzer-ID oder E-Mail-Adress</string>
+    <string name="friends_action_find">Fannen</string>
+    <string name="friends_invite_title">Lued deng Kontakter an</string>
+    <string name="friends_invite_hint">Méi Frënn = méi Fallen ze setzen!</string>
+    <string name="friends_empty_hint">Lued deng Frënn an oder fann se iwwer de Benotzernumm.</string>
+    <string name="friends_requests_empty_hint">Frëndschaftsufroen, déi s du schécks oder kriss, erschéngen hei.</string>
+    <string name="friends_search_title">Spiller fannen</string>
+    <string name="friends_search_hint">Tipp mindestens 2 Zeeche vun engem Benotzernumm.</string>
+    <string name="friends_id_search_hint">Gëff eng Spiller-ID oder E-Mail-Adress an, dann tipp op Fannen.</string>
+    <string name="friends_action_message">Message</string>
+    <string name="friends_request_incoming">Wëll däi Frënd sinn</string>
+    <string name="friends_since">Frënn zënter %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Gespréich ufänken</string>
+    <string name="friends_sheet_hint">Frënn sichen…</string>
+    <string name="friends_sheet_empty_hint">Setz Frënn derbäi, fir ze chatten.</string>
+    <string name="invite_title">Frënn alueden</string>
+    <string name="invite_hero_title">Fallen setzen. Frënn fänken.</string>
+    <string name="invite_hero_sub">Lued deng Frënn an, bei TRAPP matzemaachen</string>
+    <string name="invite_code_label">Däin Invitatiounscode</string>
+    <string name="invite_code_copied">Invitatiounscode kopéiert</string>
+    <string name="invite_preview_label">Virschau vum Message</string>
+    <string name="invite_share_cta">Invitatioun deelen</string>
+    <string name="invite_send_via">Schécken iwwer</string>
+    <string name="invite_privacy_note">TRAPP liest ni deng Kontakter — du wiels den Empfänger an der App, mat där s du deels.</string>
+    <string name="invite_ch_email">E-Mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d Frënd</item>
+        <item quantity="other">%d Frënn</item>
+    </plurals>
+</resources>

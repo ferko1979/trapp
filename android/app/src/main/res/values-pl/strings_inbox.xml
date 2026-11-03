@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Centrum wiadomości</string>
+    <string name="inbox_subtitle">Wiadomości i wsparcie</string>
+    <string name="inbox_search_hint">Szukaj wiadomości…</string>
+    <string name="inbox_empty_messages">Brak wiadomości</string>
+    <string name="inbox_empty_messages_hint">Zacznij rozmowę z którymś ze znajomych.</string>
+    <string name="inbox_no_results">Brak pasujących wiadomości</string>
+    <string name="inbox_support_sender">Zespół wsparcia</string>
+    <string name="inbox_new_ticket_cta">Nowe zgłoszenie do wsparcia</string>
+    <string name="inbox_new_ticket_cta_hint">Zgłoś błąd lub zadaj pytanie — nasz zespół odpowie tutaj.</string>
+    <string name="inbox_new_ticket_title">Napisz do nas</string>
+    <string name="inbox_ticket_category">Kategoria</string>
+    <string name="inbox_ticket_message_hint">Opisz swój problem…</string>
+    <string name="inbox_ticket_send">Wyślij zgłoszenie</string>
+    <string name="inbox_support_empty_hint">Jeśli coś nie działa, otwórz zgłoszenie, a pomożemy.</string>
+    <string name="inbox_your_tickets">Twoje zgłoszenia</string>
+    <string name="inbox_ticket_closed">To zgłoszenie jest zamknięte. Otwórz nowe, jeśli potrzebujesz dalszej pomocy.</string>
+</resources>

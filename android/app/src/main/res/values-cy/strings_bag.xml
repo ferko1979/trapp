@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Bag trapiau</string>
+    <string name="bag_weight">Pwysau</string>
+    <string name="bag_selected">Wedi’i ddewis</string>
+    <string name="bag_hint_select">Tapia drap i’w ddewis — mae GOSOD yn ei arfogi</string>
+    <string name="bag_section_traps">Dy drapiau</string>
+    <string name="bag_refill_in">+1 mewn %1$s</string>
+    <string name="bag_status_full">Llawn</string>
+    <string name="bag_about_weight">Am bwysau’r bag</string>
+    <string name="bag_trap_details">Manylion y trap</string>
+    <string name="bag_in_bag">Yn y bag</string>
+    <string name="bag_refill">Ail-lenwi</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="zero">%d trap yn barod</item>
+        <item quantity="one">%d trap yn barod</item>
+        <item quantity="two">%d drap yn barod</item>
+        <item quantity="few">%d thrap yn barod</item>
+        <item quantity="many">%d trap yn barod</item>
+        <item quantity="other">%d trap yn barod</item>
+    </plurals>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Meldingssenter</string>
+    <string name="inbox_subtitle">Meldinger og støtte</string>
+    <string name="inbox_search_hint">Søk i meldinger…</string>
+    <string name="inbox_empty_messages">Ingen meldinger ennå</string>
+    <string name="inbox_empty_messages_hint">Start en samtale med en av vennene dine.</string>
+    <string name="inbox_no_results">Ingen samsvarende meldinger</string>
+    <string name="inbox_support_sender">Støtteteamet</string>
+    <string name="inbox_new_ticket_cta">Ny støttesak</string>
+    <string name="inbox_new_ticket_cta_hint">Rapporter en feil eller still et spørsmål – teamet vårt svarer her.</string>
+    <string name="inbox_new_ticket_title">Send oss en melding</string>
+    <string name="inbox_ticket_category">Kategori</string>
+    <string name="inbox_ticket_message_hint">Beskriv problemet ditt…</string>
+    <string name="inbox_ticket_send">Send sak</string>
+    <string name="inbox_support_empty_hint">Hvis noe ikke fungerer, opprett en sak, så hjelper vi deg.</string>
+    <string name="inbox_your_tickets">Sakene dine</string>
+    <string name="inbox_ticket_closed">Denne saken er lukket. Opprett en ny sak hvis du trenger mer hjelp.</string>
+</resources>

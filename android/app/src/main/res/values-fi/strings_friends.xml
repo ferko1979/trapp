@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Pyynnöt</string>
+    <string name="friends_tab_search">Haku</string>
+    <string name="friends_mode_username">Käyttäjänimellä</string>
+    <string name="friends_mode_id">ID:llä / sähköpostilla</string>
+    <string name="friends_hint_search_username">Hae käyttäjänimellä…</string>
+    <string name="friends_hint_search_id">Käyttäjä-ID tai sähköpostiosoite</string>
+    <string name="friends_action_find">Etsi</string>
+    <string name="friends_invite_title">Kutsu yhteystietosi</string>
+    <string name="friends_invite_hint">Lisää kavereita = lisää ansoja viritettäväksi!</string>
+    <string name="friends_empty_hint">Kutsu kaverisi tai etsi heidät käyttäjänimellä.</string>
+    <string name="friends_requests_empty_hint">Lähettämäsi ja saamasi kaveripyynnöt näkyvät tässä.</string>
+    <string name="friends_search_title">Etsi pelaajia</string>
+    <string name="friends_search_hint">Kirjoita vähintään 2 merkkiä käyttäjänimestä.</string>
+    <string name="friends_id_search_hint">Anna pelaajan ID tai sähköpostiosoite ja napauta Etsi.</string>
+    <string name="friends_action_message">Viesti</string>
+    <string name="friends_request_incoming">Haluaa kaveriksesi</string>
+    <string name="friends_since">Kavereita %1$s alkaen</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Aloita keskustelu</string>
+    <string name="friends_sheet_hint">Hae kavereita…</string>
+    <string name="friends_sheet_empty_hint">Lisää kavereita aloittaaksesi chatin.</string>
+    <string name="invite_title">Kutsu kavereita</string>
+    <string name="invite_hero_title">Viritä ansoja. Nappaa kavereita.</string>
+    <string name="invite_hero_sub">Kutsu kaverisi mukaan TRAPPiin</string>
+    <string name="invite_code_label">Kutsukoodisi</string>
+    <string name="invite_code_copied">Kutsukoodi kopioitu</string>
+    <string name="invite_preview_label">Viestin esikatselu</string>
+    <string name="invite_share_cta">Jaa kutsu</string>
+    <string name="invite_send_via">Lähetä kautta</string>
+    <string name="invite_privacy_note">TRAPP ei koskaan lue yhteystietojasi — valitset vastaanottajan sovelluksessa, johon jaat.</string>
+    <string name="invite_ch_email">Sähköposti</string>
+    <string name="invite_ch_sms">Tekstiviesti</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d kaveri</item>
+        <item quantity="other">%d kaveria</item>
+    </plurals>
+</resources>

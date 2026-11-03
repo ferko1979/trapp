@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Centar za poruke</string>
+    <string name="inbox_subtitle">Poruke i podrška</string>
+    <string name="inbox_search_hint">Pretraži poruke…</string>
+    <string name="inbox_empty_messages">Još nema poruka</string>
+    <string name="inbox_empty_messages_hint">Započni razgovor s nekim od prijatelja.</string>
+    <string name="inbox_no_results">Nema odgovarajućih poruka</string>
+    <string name="inbox_support_sender">Tim podrške</string>
+    <string name="inbox_new_ticket_cta">Novi zahtjev za podršku</string>
+    <string name="inbox_new_ticket_cta_hint">Prijavi grešku ili postavi pitanje — naš tim će odgovoriti ovdje.</string>
+    <string name="inbox_new_ticket_title">Pošalji nam poruku</string>
+    <string name="inbox_ticket_category">Kategorija</string>
+    <string name="inbox_ticket_message_hint">Opiši svoj problem…</string>
+    <string name="inbox_ticket_send">Pošalji zahtjev</string>
+    <string name="inbox_support_empty_hint">Ako nešto ne radi, otvori zahtjev i pomoći ćemo.</string>
+    <string name="inbox_your_tickets">Tvoji zahtjevi</string>
+    <string name="inbox_ticket_closed">Ovaj zahtjev je zatvoren. Otvori novi ako ti treba dodatna pomoć.</string>
+</resources>

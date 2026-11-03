@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Beiðnir</string>
+    <string name="friends_tab_search">Leit</string>
+    <string name="friends_mode_username">Eftir notandanafni</string>
+    <string name="friends_mode_id">Eftir auðkenni / netfangi</string>
+    <string name="friends_hint_search_username">Leita eftir notandanafni…</string>
+    <string name="friends_hint_search_id">Auðkenni notanda eða netfang</string>
+    <string name="friends_action_find">Finna</string>
+    <string name="friends_invite_title">Bjóddu tengiliðunum þínum</string>
+    <string name="friends_invite_hint">Fleiri vinir = fleiri gildrur að setja!</string>
+    <string name="friends_empty_hint">Bjóddu vinum þínum eða finndu þá eftir notandanafni.</string>
+    <string name="friends_requests_empty_hint">Vinabeiðnir sem þú sendir eða færð birtast hér.</string>
+    <string name="friends_search_title">Finna spilara</string>
+    <string name="friends_search_hint">Sláðu inn a.m.k. 2 stafi úr notandanafni.</string>
+    <string name="friends_id_search_hint">Sláðu inn auðkenni spilara eða netfang og ýttu á Finna.</string>
+    <string name="friends_action_message">Skilaboð</string>
+    <string name="friends_request_incoming">Vill vera vinur þinn</string>
+    <string name="friends_since">Vinir síðan %1$s</string>
+    <string name="friends_id_label">Auðkenni: %1$s</string>
+    <string name="friends_sheet_title">Hefja samtal</string>
+    <string name="friends_sheet_hint">Leita að vinum…</string>
+    <string name="friends_sheet_empty_hint">Bættu við vinum til að byrja að spjalla.</string>
+    <string name="invite_title">Bjóða vinum</string>
+    <string name="invite_hero_title">Settu gildrur. Gríptu vini.</string>
+    <string name="invite_hero_sub">Bjóddu vinum þínum að ganga í TRAPP</string>
+    <string name="invite_code_label">Boðskóðinn þinn</string>
+    <string name="invite_code_copied">Boðskóði afritaður</string>
+    <string name="invite_preview_label">Forskoðun skilaboða</string>
+    <string name="invite_share_cta">Deila boði</string>
+    <string name="invite_send_via">Senda með</string>
+    <string name="invite_privacy_note">TRAPP les aldrei tengiliðina þína — þú velur viðtakanda í forritinu sem þú deilir með.</string>
+    <string name="invite_ch_email">Tölvupóstur</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d vinur</item>
+        <item quantity="other">%d vinir</item>
+    </plurals>
+</resources>

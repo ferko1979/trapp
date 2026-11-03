@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Slazdu soma</string>
+    <string name="bag_weight">Svars</string>
+    <string name="bag_selected">Izvēlēts</string>
+    <string name="bag_hint_select">Pieskaries slazdam, lai to izvēlētos — IZVIETOT to aktivizē</string>
+    <string name="bag_section_traps">Tavi slazdi</string>
+    <string name="bag_refill_in">+1 pēc %1$s</string>
+    <string name="bag_status_full">Pilna</string>
+    <string name="bag_about_weight">Par somas svaru</string>
+    <string name="bag_trap_details">Slazda informācija</string>
+    <string name="bag_in_bag">Somā</string>
+    <string name="bag_refill">Papildināt</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="zero">%d slazdi gatavi</item>
+        <item quantity="one">%d slazds gatavs</item>
+        <item quantity="other">%d slazdi gatavi</item>
+    </plurals>
+</resources>

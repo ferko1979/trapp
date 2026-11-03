@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Žinučių centras</string>
+    <string name="inbox_subtitle">Žinutės ir pagalba</string>
+    <string name="inbox_search_hint">Ieškoti žinučių…</string>
+    <string name="inbox_empty_messages">Kol kas žinučių nėra</string>
+    <string name="inbox_empty_messages_hint">Pradėk pokalbį su kuriuo nors draugu.</string>
+    <string name="inbox_no_results">Atitinkančių žinučių nėra</string>
+    <string name="inbox_support_sender">Pagalbos komanda</string>
+    <string name="inbox_new_ticket_cta">Nauja pagalbos užklausa</string>
+    <string name="inbox_new_ticket_cta_hint">Pranešk apie klaidą ar užduok klausimą — mūsų komanda atsakys čia.</string>
+    <string name="inbox_new_ticket_title">Parašyk mums</string>
+    <string name="inbox_ticket_category">Kategorija</string>
+    <string name="inbox_ticket_message_hint">Aprašyk savo problemą…</string>
+    <string name="inbox_ticket_send">Siųsti užklausą</string>
+    <string name="inbox_support_empty_hint">Jei kažkas neveikia, sukurk užklausą ir mes padėsime.</string>
+    <string name="inbox_your_tickets">Tavo užklausos</string>
+    <string name="inbox_ticket_closed">Ši užklausa uždaryta. Jei reikia daugiau pagalbos, sukurk naują.</string>
+</resources>

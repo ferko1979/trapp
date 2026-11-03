@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">PIAZZA · INTRAPPOLA · CATTURA</string>
+    <string name="maintenance_title">In manutenzione</string>
+    <string name="maintenance_msg">L\'app è in manutenzione. Riprova più tardi.</string>
+    <string name="action_retry">Riprova</string>
+    <string name="alert_option_disassemble_title">🛠  Smonta</string>
+    <string name="alert_option_avoid_title">🚶  Evita</string>
+</resources>

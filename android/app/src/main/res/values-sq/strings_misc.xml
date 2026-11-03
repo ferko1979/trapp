@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">VENDOS · KURTH · KAP</string>
+    <string name="maintenance_title">Në mirëmbajtje</string>
+    <string name="maintenance_msg">Aplikacioni është aktualisht në mirëmbajtje. Provo sërish më vonë.</string>
+    <string name="action_retry">Provo sërish</string>
+    <string name="alert_option_disassemble_title">🛠  Çmonto</string>
+    <string name="alert_option_avoid_title">🚶  Shmang</string>
+</resources>

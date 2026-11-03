@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Запыты</string>
+    <string name="friends_tab_search">Пошук</string>
+    <string name="friends_mode_username">Па імені карыстальніка</string>
+    <string name="friends_mode_id">Па ID / e-mail</string>
+    <string name="friends_hint_search_username">Пошук па імені карыстальніка…</string>
+    <string name="friends_hint_search_id">ID карыстальніка або адрас e-mail</string>
+    <string name="friends_action_find">Знайсці</string>
+    <string name="friends_invite_title">Запрасі свае кантакты</string>
+    <string name="friends_invite_hint">Больш сяброў = больш пастак для ўстаноўкі!</string>
+    <string name="friends_empty_hint">Запрасі сяброў або знайдзі іх па імені карыстальніка.</string>
+    <string name="friends_requests_empty_hint">Тут з\'явяцца запыты ў сябры, якія ты адпраўляеш або атрымліваеш.</string>
+    <string name="friends_search_title">Знайсці гульцоў</string>
+    <string name="friends_search_hint">Увядзі не менш за 2 сімвалы імені карыстальніка.</string>
+    <string name="friends_id_search_hint">Увядзі ID гульца або адрас e-mail і націсні «Знайсці».</string>
+    <string name="friends_action_message">Напісаць</string>
+    <string name="friends_request_incoming">Хоча стаць тваім сябрам</string>
+    <string name="friends_since">Сябры з %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Пачаць размову</string>
+    <string name="friends_sheet_hint">Пошук сяброў…</string>
+    <string name="friends_sheet_empty_hint">Дадай сяброў, каб пачаць перапіску.</string>
+    <string name="invite_title">Запрасіць сяброў</string>
+    <string name="invite_hero_title">Стаў пасткі. Лаві сяброў.</string>
+    <string name="invite_hero_sub">Запрасі сяброў у TRAPP</string>
+    <string name="invite_code_label">Твой код запрашэння</string>
+    <string name="invite_code_copied">Код запрашэння скапіяваны</string>
+    <string name="invite_preview_label">Перадпрагляд паведамлення</string>
+    <string name="invite_share_cta">Падзяліцца запрашэннем</string>
+    <string name="invite_send_via">Адправіць праз</string>
+    <string name="invite_privacy_note">TRAPP ніколі не чытае твае кантакты — атрымальніка ты абіраеш у праграме, праз якую дзелішся.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d сябар</item>
+        <item quantity="few">%d сябры</item>
+        <item quantity="many">%d сяброў</item>
+        <item quantity="other">%d сябра</item>
+    </plurals>
+</resources>

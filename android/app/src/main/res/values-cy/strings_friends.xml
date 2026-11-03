@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Ceisiadau</string>
+    <string name="friends_tab_search">Chwilio</string>
+    <string name="friends_mode_username">Yn ôl enw defnyddiwr</string>
+    <string name="friends_mode_id">Yn ôl ID / e-bost</string>
+    <string name="friends_hint_search_username">Chwilio yn ôl enw defnyddiwr…</string>
+    <string name="friends_hint_search_id">ID defnyddiwr neu gyfeiriad e-bost</string>
+    <string name="friends_action_find">Canfod</string>
+    <string name="friends_invite_title">Gwahodd dy gysylltiadau</string>
+    <string name="friends_invite_hint">Mwy o ffrindiau = mwy o drapiau i’w gosod!</string>
+    <string name="friends_empty_hint">Gwahodda dy ffrindiau neu chwilia amdanyn nhw yn ôl enw defnyddiwr.</string>
+    <string name="friends_requests_empty_hint">Bydd ceisiadau ffrind rwyt ti’n eu hanfon neu’n eu derbyn yn ymddangos yma.</string>
+    <string name="friends_search_title">Canfod chwaraewyr</string>
+    <string name="friends_search_hint">Teipia o leiaf 2 nod o enw defnyddiwr.</string>
+    <string name="friends_id_search_hint">Rho ID chwaraewr neu gyfeiriad e-bost, yna tapia Canfod.</string>
+    <string name="friends_action_message">Neges</string>
+    <string name="friends_request_incoming">Eisiau bod yn ffrind i ti</string>
+    <string name="friends_since">Ffrindiau ers %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Dechrau sgwrs</string>
+    <string name="friends_sheet_hint">Chwilio ffrindiau…</string>
+    <string name="friends_sheet_empty_hint">Ychwanega ffrindiau i ddechrau sgwrsio.</string>
+    <string name="invite_title">Gwahodd ffrindiau</string>
+    <string name="invite_hero_title">Gosod trapiau. Dal ffrindiau.</string>
+    <string name="invite_hero_sub">Gwahodda dy ffrindiau i ymuno â TRAPP</string>
+    <string name="invite_code_label">Dy god gwahodd</string>
+    <string name="invite_code_copied">Cod gwahodd wedi’i gopïo</string>
+    <string name="invite_preview_label">Rhagolwg o’r neges</string>
+    <string name="invite_share_cta">Rhannu gwahoddiad</string>
+    <string name="invite_send_via">Anfon drwy</string>
+    <string name="invite_privacy_note">Dydy TRAPP byth yn darllen dy gysylltiadau — ti sy’n dewis y derbynnydd yn yr ap rwyt ti’n rhannu iddo.</string>
+    <string name="invite_ch_email">E-bost</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="zero">%d ffrind</item>
+        <item quantity="one">%d ffrind</item>
+        <item quantity="two">%d ffrind</item>
+        <item quantity="few">%d ffrind</item>
+        <item quantity="many">%d ffrind</item>
+        <item quantity="other">%d ffrind</item>
+    </plurals>
+</resources>

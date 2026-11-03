@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">搜索对话…</string>
+    <string name="chat_empty_hint">点击 + 给好友发消息。</string>
+    <string name="chat_no_results">没有匹配的对话。</string>
+    <string name="chat_today">今天</string>
+    <string name="chat_yesterday">昨天</string>
+    <string name="chat_sending">发送中…</string>
+    <string name="chat_thread_empty">跟 %1$s 打个招呼吧！</string>
+    <string name="chat_thread_empty_hint">你的消息会显示在这里。</string>
+    <string name="chat_direct_subtitle">私信</string>
+    <string name="chat_title_fallback">聊天</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="other">%d 个对话</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="other">%d 条未读</item>
+    </plurals>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">POSTAVI · PAST · ULOVI</string>
+    <string name="maintenance_title">V vzdrževanju</string>
+    <string name="maintenance_msg">Aplikacija je trenutno v vzdrževanju. Poskusi znova pozneje.</string>
+    <string name="action_retry">Znova</string>
+    <string name="alert_option_disassemble_title">🛠  Razstavi</string>
+    <string name="alert_option_avoid_title">🚶  Izogni se</string>
+</resources>

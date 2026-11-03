@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Torba s pastmi</string>
+    <string name="bag_weight">Teža</string>
+    <string name="bag_selected">Izbrano</string>
+    <string name="bag_hint_select">Tapni past, da jo izbereš — POSTAVI jo aktivira</string>
+    <string name="bag_section_traps">Tvoje pasti</string>
+    <string name="bag_refill_in">+1 čez %1$s</string>
+    <string name="bag_status_full">Polna</string>
+    <string name="bag_about_weight">O teži torbe</string>
+    <string name="bag_trap_details">Podrobnosti pasti</string>
+    <string name="bag_in_bag">V torbi</string>
+    <string name="bag_refill">Polnjenje</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d past pripravljena</item>
+        <item quantity="two">%d pasti pripravljeni</item>
+        <item quantity="few">%d pasti pripravljene</item>
+        <item quantity="other">%d pasti pripravljenih</item>
+    </plurals>
+</resources>

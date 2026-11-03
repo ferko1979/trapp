@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Sac à pièges</string>
+    <string name="bag_weight">Poids</string>
+    <string name="bag_selected">Sélectionné</string>
+    <string name="bag_hint_select">Touche un piège pour le choisir — POSER l\'arme</string>
+    <string name="bag_section_traps">Tes pièges</string>
+    <string name="bag_refill_in">+1 dans %1$s</string>
+    <string name="bag_status_full">Plein</string>
+    <string name="bag_about_weight">À propos du poids du sac</string>
+    <string name="bag_trap_details">Détails du piège</string>
+    <string name="bag_in_bag">Dans le sac</string>
+    <string name="bag_refill">Recharge</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d piège prêt</item>
+        <item quantity="many">%d pièges prêts</item>
+        <item quantity="other">%d pièges prêts</item>
+    </plurals>
+</resources>

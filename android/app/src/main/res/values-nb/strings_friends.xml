@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Forespørsler</string>
+    <string name="friends_tab_search">Søk</string>
+    <string name="friends_mode_username">Med brukernavn</string>
+    <string name="friends_mode_id">Med ID / e-post</string>
+    <string name="friends_hint_search_username">Søk etter brukernavn…</string>
+    <string name="friends_hint_search_id">Bruker-ID eller e-postadresse</string>
+    <string name="friends_action_find">Finn</string>
+    <string name="friends_invite_title">Inviter kontaktene dine</string>
+    <string name="friends_invite_hint">Flere venner = flere feller å sette!</string>
+    <string name="friends_empty_hint">Inviter vennene dine eller finn dem via brukernavn.</string>
+    <string name="friends_requests_empty_hint">Venneforespørsler du sender eller mottar vises her.</string>
+    <string name="friends_search_title">Finn spillere</string>
+    <string name="friends_search_hint">Skriv minst 2 tegn av et brukernavn.</string>
+    <string name="friends_id_search_hint">Skriv inn en spiller-ID eller e-postadresse, og trykk på Finn.</string>
+    <string name="friends_action_message">Melding</string>
+    <string name="friends_request_incoming">Vil bli vennen din</string>
+    <string name="friends_since">Venner siden %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Start en samtale</string>
+    <string name="friends_sheet_hint">Søk etter venner…</string>
+    <string name="friends_sheet_empty_hint">Legg til venner for å begynne å chatte.</string>
+    <string name="invite_title">Inviter venner</string>
+    <string name="invite_hero_title">Sett feller. Fang venner.</string>
+    <string name="invite_hero_sub">Inviter vennene dine til TRAPP</string>
+    <string name="invite_code_label">Invitasjonskoden din</string>
+    <string name="invite_code_copied">Invitasjonskode kopiert</string>
+    <string name="invite_preview_label">Forhåndsvisning av melding</string>
+    <string name="invite_share_cta">Del invitasjon</string>
+    <string name="invite_send_via">Send via</string>
+    <string name="invite_privacy_note">TRAPP leser aldri kontaktene dine – du velger mottakeren i appen du deler til.</string>
+    <string name="invite_ch_email">E-post</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d venn</item>
+        <item quantity="other">%d venner</item>
+    </plurals>
+</resources>

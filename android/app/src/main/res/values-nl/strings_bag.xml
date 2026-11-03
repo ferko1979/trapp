@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Vallentas</string>
+    <string name="bag_weight">Gewicht</string>
+    <string name="bag_selected">Gekozen</string>
+    <string name="bag_hint_select">Tik op een val om hem te kiezen — PLAATSEN activeert hem</string>
+    <string name="bag_section_traps">Je vallen</string>
+    <string name="bag_refill_in">+1 over %1$s</string>
+    <string name="bag_status_full">Vol</string>
+    <string name="bag_about_weight">Over het tasgewicht</string>
+    <string name="bag_trap_details">Valdetails</string>
+    <string name="bag_in_bag">In tas</string>
+    <string name="bag_refill">Aanvullen</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d val klaar</item>
+        <item quantity="other">%d vallen klaar</item>
+    </plurals>
+</resources>

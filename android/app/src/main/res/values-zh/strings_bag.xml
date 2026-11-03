@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">陷阱背包</string>
+    <string name="bag_weight">重量</string>
+    <string name="bag_selected">已选</string>
+    <string name="bag_hint_select">点击陷阱选中 — “放置”即可布设</string>
+    <string name="bag_section_traps">你的陷阱</string>
+    <string name="bag_refill_in">%1$s 后 +1</string>
+    <string name="bag_status_full">已满</string>
+    <string name="bag_about_weight">关于背包重量</string>
+    <string name="bag_trap_details">陷阱详情</string>
+    <string name="bag_in_bag">背包中</string>
+    <string name="bag_refill">补充</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="other">%d 个陷阱就绪</item>
+    </plurals>
+</resources>

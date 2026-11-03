@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">消息中心</string>
+    <string name="inbox_subtitle">消息与客服</string>
+    <string name="inbox_search_hint">搜索消息…</string>
+    <string name="inbox_empty_messages">还没有消息</string>
+    <string name="inbox_empty_messages_hint">和好友开始聊天吧。</string>
+    <string name="inbox_no_results">没有匹配的消息</string>
+    <string name="inbox_support_sender">客服团队</string>
+    <string name="inbox_new_ticket_cta">新建客服工单</string>
+    <string name="inbox_new_ticket_cta_hint">报告问题或提问 — 我们的团队会在这里回复。</string>
+    <string name="inbox_new_ticket_title">给我们发消息</string>
+    <string name="inbox_ticket_category">类别</string>
+    <string name="inbox_ticket_message_hint">描述你的问题…</string>
+    <string name="inbox_ticket_send">发送工单</string>
+    <string name="inbox_support_empty_hint">如果有东西不正常，提交工单，我们来帮你。</string>
+    <string name="inbox_your_tickets">你的工单</string>
+    <string name="inbox_ticket_closed">此工单已关闭。如需更多帮助，请新建工单。</string>
+</resources>

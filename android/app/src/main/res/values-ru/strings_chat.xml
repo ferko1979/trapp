@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Поиск чатов…</string>
+    <string name="chat_empty_hint">Нажми +, чтобы написать кому-нибудь из друзей.</string>
+    <string name="chat_no_results">Нет чатов по этому запросу.</string>
+    <string name="chat_today">Сегодня</string>
+    <string name="chat_yesterday">Вчера</string>
+    <string name="chat_sending">Отправка…</string>
+    <string name="chat_thread_empty">Поздоровайся с %1$s!</string>
+    <string name="chat_thread_empty_hint">Здесь появятся твои сообщения.</string>
+    <string name="chat_direct_subtitle">Личное сообщение</string>
+    <string name="chat_title_fallback">Чат</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d чат</item>
+        <item quantity="few">%d чата</item>
+        <item quantity="many">%d чатов</item>
+        <item quantity="other">%d чата</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d непрочитанное</item>
+        <item quantity="few">%d непрочитанных</item>
+        <item quantity="many">%d непрочитанных</item>
+        <item quantity="other">%d непрочитанного</item>
+    </plurals>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Canolfan negeseuon</string>
+    <string name="inbox_subtitle">Negeseuon a chymorth</string>
+    <string name="inbox_search_hint">Chwilio negeseuon…</string>
+    <string name="inbox_empty_messages">Dim negeseuon eto</string>
+    <string name="inbox_empty_messages_hint">Dechreua sgwrs gydag un o dy ffrindiau.</string>
+    <string name="inbox_no_results">Dim negeseuon sy’n cyfateb</string>
+    <string name="inbox_support_sender">Tîm cymorth</string>
+    <string name="inbox_new_ticket_cta">Tocyn cymorth newydd</string>
+    <string name="inbox_new_ticket_cta_hint">Rho wybod am nam neu gofyn gwestiwn — bydd ein tîm yn ateb yma.</string>
+    <string name="inbox_new_ticket_title">Anfon neges aton ni</string>
+    <string name="inbox_ticket_category">Categori</string>
+    <string name="inbox_ticket_message_hint">Disgrifia dy broblem…</string>
+    <string name="inbox_ticket_send">Anfon tocyn</string>
+    <string name="inbox_support_empty_hint">Os nad yw rhywbeth yn gweithio, agor docyn a byddwn ni’n helpu.</string>
+    <string name="inbox_your_tickets">Dy docynnau</string>
+    <string name="inbox_ticket_closed">Mae’r tocyn hwn ar gau. Agor docyn newydd os oes angen rhagor o help.</string>
+</resources>

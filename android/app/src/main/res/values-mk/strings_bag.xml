@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Торба со стапици</string>
+    <string name="bag_weight">Тежина</string>
+    <string name="bag_selected">Избрано</string>
+    <string name="bag_hint_select">Допри стапица за да ја избереш — ПОСТАВИ ја активира</string>
+    <string name="bag_section_traps">Твои стапици</string>
+    <string name="bag_refill_in">+1 за %1$s</string>
+    <string name="bag_status_full">Полна</string>
+    <string name="bag_about_weight">За тежината на торбата</string>
+    <string name="bag_trap_details">Детали за стапицата</string>
+    <string name="bag_in_bag">Во торбата</string>
+    <string name="bag_refill">Полнење</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d стапица подготвена</item>
+        <item quantity="other">%d стапици подготвени</item>
+    </plurals>
+</resources>

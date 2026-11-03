@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Барања</string>
+    <string name="friends_tab_search">Пребарување</string>
+    <string name="friends_mode_username">По корисничко име</string>
+    <string name="friends_mode_id">По ID / е-пошта</string>
+    <string name="friends_hint_search_username">Пребарај по корисничко име…</string>
+    <string name="friends_hint_search_id">ID на корисник или е-пошта</string>
+    <string name="friends_action_find">Најди</string>
+    <string name="friends_invite_title">Покани ги своите контакти</string>
+    <string name="friends_invite_hint">Повеќе пријатели = повеќе стапици за поставување!</string>
+    <string name="friends_empty_hint">Покани ги пријателите или најди ги по корисничко име.</string>
+    <string name="friends_requests_empty_hint">Барањата за пријателство што ги праќаш или примаш ќе се појават тука.</string>
+    <string name="friends_search_title">Најди играчи</string>
+    <string name="friends_search_hint">Внеси најмалку 2 знаци од корисничкото име.</string>
+    <string name="friends_id_search_hint">Внеси ID на играч или е-пошта, па допри Најди.</string>
+    <string name="friends_action_message">Порака</string>
+    <string name="friends_request_incoming">Сака да ти биде пријател</string>
+    <string name="friends_since">Пријатели од %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Започни разговор</string>
+    <string name="friends_sheet_hint">Пребарај пријатели…</string>
+    <string name="friends_sheet_empty_hint">Додај пријатели за да почнеш разговор.</string>
+    <string name="invite_title">Покани пријатели</string>
+    <string name="invite_hero_title">Постави стапици. Фати пријатели.</string>
+    <string name="invite_hero_sub">Покани ги пријателите во TRAPP</string>
+    <string name="invite_code_label">Твој код за покана</string>
+    <string name="invite_code_copied">Кодот за покана е копиран</string>
+    <string name="invite_preview_label">Преглед на пораката</string>
+    <string name="invite_share_cta">Сподели покана</string>
+    <string name="invite_send_via">Испрати преку</string>
+    <string name="invite_privacy_note">TRAPP никогаш не ги чита твоите контакти — примачот го избираш во апликацијата преку која споделуваш.</string>
+    <string name="invite_ch_email">Е-пошта</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d пријател</item>
+        <item quantity="other">%d пријатели</item>
+    </plurals>
+</resources>

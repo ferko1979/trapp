@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Sol·licituds</string>
+    <string name="friends_tab_search">Cerca</string>
+    <string name="friends_mode_username">Per nom d\'usuari</string>
+    <string name="friends_mode_id">Per ID / correu</string>
+    <string name="friends_hint_search_username">Cerca per nom d\'usuari…</string>
+    <string name="friends_hint_search_id">ID d\'usuari o adreça electrònica</string>
+    <string name="friends_action_find">Cerca</string>
+    <string name="friends_invite_title">Convida els teus contactes</string>
+    <string name="friends_invite_hint">Més amics = més paranys per posar!</string>
+    <string name="friends_empty_hint">Convida els teus amics o troba\'ls pel nom d\'usuari.</string>
+    <string name="friends_requests_empty_hint">Les sol·licituds d\'amistat que enviïs o rebis apareixeran aquí.</string>
+    <string name="friends_search_title">Troba jugadors</string>
+    <string name="friends_search_hint">Escriu almenys 2 caràcters d\'un nom d\'usuari.</string>
+    <string name="friends_id_search_hint">Escriu un ID de jugador o una adreça electrònica i toca Cerca.</string>
+    <string name="friends_action_message">Missatge</string>
+    <string name="friends_request_incoming">Vol ser amic teu</string>
+    <string name="friends_since">Amics des de %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Comença una conversa</string>
+    <string name="friends_sheet_hint">Cerca amics…</string>
+    <string name="friends_sheet_empty_hint">Afegeix amics per començar a xatejar.</string>
+    <string name="invite_title">Convida amics</string>
+    <string name="invite_hero_title">Posa paranys. Atrapa amics.</string>
+    <string name="invite_hero_sub">Convida els teus amics a TRAPP</string>
+    <string name="invite_code_label">El teu codi d\'invitació</string>
+    <string name="invite_code_copied">Codi d\'invitació copiat</string>
+    <string name="invite_preview_label">Previsualització del missatge</string>
+    <string name="invite_share_cta">Comparteix la invitació</string>
+    <string name="invite_send_via">Envia amb</string>
+    <string name="invite_privacy_note">TRAPP mai llegeix els teus contactes — tries el destinatari a l\'app amb què comparteixes.</string>
+    <string name="invite_ch_email">Correu</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d amic</item>
+        <item quantity="other">%d amics</item>
+    </plurals>
+</resources>

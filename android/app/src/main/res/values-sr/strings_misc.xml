@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">ПОСТАВИ · ЗАМКА · УЛОВИ</string>
+    <string name="maintenance_title">Одржавање у току</string>
+    <string name="maintenance_msg">Апликација је тренутно на одржавању. Покушај касније.</string>
+    <string name="action_retry">Поново</string>
+    <string name="alert_option_disassemble_title">🛠  Растави</string>
+    <string name="alert_option_avoid_title">🚶  Избегни</string>
+</resources>

@@ -64,7 +64,7 @@
     <string name="msg_choose_handle">Odaberite svoju jedinstvenu oznaku</string>
     <string name="action_set">Postavi</string>
     <string name="msg_username_set">Korisničko ime postavljeno na @%1$s</string>
-    <string name="handle_format">@%1$s</string>
+    <string name="handle_format">\@%1$s</string>
     <string name="set_username">Postavi korisničko ime</string>
     <string name="error_location_denied">Dozvola za lokaciju odbijena</string>
     <string name="error_game_inactive">Igra trenutno nije dostupna</string>
@@ -988,4 +988,15 @@
         <item quantity="few">%d punjenja torbe</item>
         <item quantity="other">%d punjenja torbe</item>
     </plurals>
+    <string name="error_too_many_traps_nearby">Ovdje već imaš zamke preblizu jedna drugoj. Razmakni ih više!</string>
+    <string name="error_too_far_to_disassemble_detail">Priđi %1$dm bliže za rastavljanje.</string>
+    <string name="lang_he">עברית (Hebrejski)</string>
+    <string name="action_awards_cards">NAGRADE I KARTICE</string>
+    <string name="warning_return_to_placement">Priđi %1$dm bliže! Još %2$ds</string>
+    <string name="title_update_required">Potrebno ažuriranje</string>
+    <string name="msg_update_required">Za nastavak igre potrebna je nova verzija Trapa. Ažuriraj aplikaciju putem Play Storea.</string>
+    <string name="title_update_available">Dostupno ažuriranje</string>
+    <string name="msg_update_available">Dostupna je novija verzija Trapa. Ažuriraj sada za najnovije značajke i poboljšanja.</string>
+    <string name="action_update_now">Ažuriraj sada</string>
+    <string name="action_later">Kasnije</string>
 </resources>

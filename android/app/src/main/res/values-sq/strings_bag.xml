@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Çanta e kurtheve</string>
+    <string name="bag_weight">Pesha</string>
+    <string name="bag_selected">I zgjedhur</string>
+    <string name="bag_hint_select">Prek një kurth për ta zgjedhur — VENDOS e armatos</string>
+    <string name="bag_section_traps">Kurthet e tua</string>
+    <string name="bag_refill_in">+1 pas %1$s</string>
+    <string name="bag_status_full">Plot</string>
+    <string name="bag_about_weight">Rreth peshës së çantës</string>
+    <string name="bag_trap_details">Detajet e kurthit</string>
+    <string name="bag_in_bag">Në çantë</string>
+    <string name="bag_refill">Rimbushje</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d kurth gati</item>
+        <item quantity="other">%d kurthe gati</item>
+    </plurals>
+</resources>

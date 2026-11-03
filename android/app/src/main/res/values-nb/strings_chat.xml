@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Søk i samtaler…</string>
+    <string name="chat_empty_hint">Trykk + for å sende en melding til en av vennene dine.</string>
+    <string name="chat_no_results">Ingen samtaler samsvarer med søket ditt.</string>
+    <string name="chat_today">I dag</string>
+    <string name="chat_yesterday">I går</string>
+    <string name="chat_sending">Sender…</string>
+    <string name="chat_thread_empty">Si hei til %1$s!</string>
+    <string name="chat_thread_empty_hint">Meldingene dine vises her.</string>
+    <string name="chat_direct_subtitle">Direktemelding</string>
+    <string name="chat_title_fallback">Chat</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d samtale</item>
+        <item quantity="other">%d samtaler</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d ulest</item>
+        <item quantity="other">%d uleste</item>
+    </plurals>
+</resources>

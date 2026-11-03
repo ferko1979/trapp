@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Fældetaske</string>
+    <string name="bag_weight">Vægt</string>
+    <string name="bag_selected">Valgt</string>
+    <string name="bag_hint_select">Tryk på en fælde for at vælge den — PLACÉR aktiverer den</string>
+    <string name="bag_section_traps">Dine fælder</string>
+    <string name="bag_refill_in">+1 om %1$s</string>
+    <string name="bag_status_full">Fuld</string>
+    <string name="bag_about_weight">Om taskens vægt</string>
+    <string name="bag_trap_details">Fældedetaljer</string>
+    <string name="bag_in_bag">I tasken</string>
+    <string name="bag_refill">Genopfyld</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d fælde klar</item>
+        <item quantity="other">%d fælder klar</item>
+    </plurals>
+</resources>

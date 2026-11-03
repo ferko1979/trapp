@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">PLACERA · GILLRA · FÅNGA</string>
+    <string name="maintenance_title">Underhåll pågår</string>
+    <string name="maintenance_msg">Appen genomgår för närvarande underhåll. Försök igen senare.</string>
+    <string name="action_retry">Försök igen</string>
+    <string name="alert_option_disassemble_title">🛠  Demontera</string>
+    <string name="alert_option_avoid_title">🚶  Undvik</string>
+</resources>

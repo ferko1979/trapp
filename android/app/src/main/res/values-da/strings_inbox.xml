@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Beskedcenter</string>
+    <string name="inbox_subtitle">Beskeder og support</string>
+    <string name="inbox_search_hint">Søg i beskeder…</string>
+    <string name="inbox_empty_messages">Ingen beskeder endnu</string>
+    <string name="inbox_empty_messages_hint">Start en samtale med en af dine venner.</string>
+    <string name="inbox_no_results">Ingen matchende beskeder</string>
+    <string name="inbox_support_sender">Supportteam</string>
+    <string name="inbox_new_ticket_cta">Ny supportsag</string>
+    <string name="inbox_new_ticket_cta_hint">Rapportér en fejl eller stil et spørgsmål — vores team svarer her.</string>
+    <string name="inbox_new_ticket_title">Send os en besked</string>
+    <string name="inbox_ticket_category">Kategori</string>
+    <string name="inbox_ticket_message_hint">Beskriv dit problem…</string>
+    <string name="inbox_ticket_send">Send sag</string>
+    <string name="inbox_support_empty_hint">Hvis noget ikke virker, så opret en sag, og vi hjælper dig.</string>
+    <string name="inbox_your_tickets">Dine sager</string>
+    <string name="inbox_ticket_closed">Denne sag er lukket. Opret en ny sag, hvis du har brug for mere hjælp.</string>
+</resources>

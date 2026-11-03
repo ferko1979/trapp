@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">JARRI · ARMATU · HARRAPATU</string>
+    <string name="maintenance_title">Mantentze-lanetan</string>
+    <string name="maintenance_msg">Aplikazioa mantentze-lanetan dago. Saiatu berriro geroago.</string>
+    <string name="action_retry">Saiatu berriro</string>
+    <string name="alert_option_disassemble_title">🛠  Desmuntatu</string>
+    <string name="alert_option_avoid_title">🚶  Saihestu</string>
+</resources>

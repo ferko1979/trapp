@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Viestikeskus</string>
+    <string name="inbox_subtitle">Viestit ja tuki</string>
+    <string name="inbox_search_hint">Hae viestejä…</string>
+    <string name="inbox_empty_messages">Ei vielä viestejä</string>
+    <string name="inbox_empty_messages_hint">Aloita keskustelu jonkun kaverisi kanssa.</string>
+    <string name="inbox_no_results">Ei vastaavia viestejä</string>
+    <string name="inbox_support_sender">Tukitiimi</string>
+    <string name="inbox_new_ticket_cta">Uusi tukipyyntö</string>
+    <string name="inbox_new_ticket_cta_hint">Ilmoita virheestä tai kysy jotain — tiimimme vastaa tässä.</string>
+    <string name="inbox_new_ticket_title">Lähetä meille viesti</string>
+    <string name="inbox_ticket_category">Kategoria</string>
+    <string name="inbox_ticket_message_hint">Kuvaile ongelmasi…</string>
+    <string name="inbox_ticket_send">Lähetä tukipyyntö</string>
+    <string name="inbox_support_empty_hint">Jos jokin ei toimi, avaa tukipyyntö, niin autamme.</string>
+    <string name="inbox_your_tickets">Tukipyyntösi</string>
+    <string name="inbox_ticket_closed">Tämä tukipyyntö on suljettu. Avaa uusi, jos tarvitset lisää apua.</string>
+</resources>

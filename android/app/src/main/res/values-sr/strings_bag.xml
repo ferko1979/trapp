@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Торба са замкама</string>
+    <string name="bag_weight">Тежина</string>
+    <string name="bag_selected">Изабрано</string>
+    <string name="bag_hint_select">Додирни замку да је изабереш — ПОСТАВИ је активира</string>
+    <string name="bag_section_traps">Твоје замке</string>
+    <string name="bag_refill_in">+1 за %1$s</string>
+    <string name="bag_status_full">Пуна</string>
+    <string name="bag_about_weight">О тежини торбе</string>
+    <string name="bag_trap_details">Детаљи замке</string>
+    <string name="bag_in_bag">У торби</string>
+    <string name="bag_refill">Допуна</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d замка спремна</item>
+        <item quantity="few">%d замке спремне</item>
+        <item quantity="other">%d замки спремно</item>
+    </plurals>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Fellesekk</string>
+    <string name="bag_weight">Vekt</string>
+    <string name="bag_selected">Valgt</string>
+    <string name="bag_hint_select">Trykk på en felle for å velge den – PLASSER aktiverer den</string>
+    <string name="bag_section_traps">Fellene dine</string>
+    <string name="bag_refill_in">+1 om %1$s</string>
+    <string name="bag_status_full">Full</string>
+    <string name="bag_about_weight">Om sekkvekt</string>
+    <string name="bag_trap_details">Felledetaljer</string>
+    <string name="bag_in_bag">I sekken</string>
+    <string name="bag_refill">Påfyll</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d felle klar</item>
+        <item quantity="other">%d feller klare</item>
+    </plurals>
+</resources>

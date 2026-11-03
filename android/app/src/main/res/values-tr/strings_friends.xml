@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">İstekler</string>
+    <string name="friends_tab_search">Ara</string>
+    <string name="friends_mode_username">Kullanıcı adıyla</string>
+    <string name="friends_mode_id">Kimlik / e-postayla</string>
+    <string name="friends_hint_search_username">Kullanıcı adıyla ara…</string>
+    <string name="friends_hint_search_id">Kullanıcı kimliği veya e-posta adresi</string>
+    <string name="friends_action_find">Bul</string>
+    <string name="friends_invite_title">Kişilerini davet et</string>
+    <string name="friends_invite_hint">Daha çok arkadaş = kurulacak daha çok tuzak!</string>
+    <string name="friends_empty_hint">Arkadaşlarını davet et ya da kullanıcı adıyla bul.</string>
+    <string name="friends_requests_empty_hint">Gönderdiğin veya aldığın arkadaşlık istekleri burada görünür.</string>
+    <string name="friends_search_title">Oyuncu bul</string>
+    <string name="friends_search_hint">Bir kullanıcı adının en az 2 karakterini yaz.</string>
+    <string name="friends_id_search_hint">Bir oyuncu kimliği veya e-posta adresi gir, sonra Bul\'a dokun.</string>
+    <string name="friends_action_message">Mesaj</string>
+    <string name="friends_request_incoming">Arkadaşın olmak istiyor</string>
+    <string name="friends_since">Arkadaşlık başlangıcı: %1$s</string>
+    <string name="friends_id_label">Kimlik: %1$s</string>
+    <string name="friends_sheet_title">Sohbet başlat</string>
+    <string name="friends_sheet_hint">Arkadaş ara…</string>
+    <string name="friends_sheet_empty_hint">Sohbet etmeye başlamak için arkadaş ekle.</string>
+    <string name="invite_title">Arkadaş davet et</string>
+    <string name="invite_hero_title">Tuzak kur. Arkadaşlarını yakala.</string>
+    <string name="invite_hero_sub">Arkadaşlarını TRAPP\'e katılmaya davet et</string>
+    <string name="invite_code_label">Davet kodun</string>
+    <string name="invite_code_copied">Davet kodu kopyalandı</string>
+    <string name="invite_preview_label">Mesaj önizlemesi</string>
+    <string name="invite_share_cta">Daveti paylaş</string>
+    <string name="invite_send_via">Şununla gönder</string>
+    <string name="invite_privacy_note">TRAPP kişilerini asla okumaz — alıcıyı paylaştığın uygulamada sen seçersin.</string>
+    <string name="invite_ch_email">E-posta</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d arkadaş</item>
+        <item quantity="other">%d arkadaş</item>
+    </plurals>
+</resources>

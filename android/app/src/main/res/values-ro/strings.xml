@@ -64,7 +64,7 @@
     <string name="msg_choose_handle">Alege un identificator unic</string>
     <string name="action_set">Setează</string>
     <string name="msg_username_set">Nume de utilizator setat la @%1$s</string>
-    <string name="handle_format">@%1$s</string>
+    <string name="handle_format">\@%1$s</string>
     <string name="set_username">Setează nume utilizator</string>
     <string name="error_location_denied">Permisiunea de locație a fost refuzată</string>
     <string name="error_game_inactive">Jocul nu este disponibil momentan</string>
@@ -988,4 +988,15 @@
         <item quantity="few">%d reumpleri ale genții</item>
         <item quantity="other">%d de reumpleri ale genții</item>
     </plurals>
+    <string name="error_too_many_traps_nearby">Ai deja capcane prea apropiate una de alta aici. Distanțează-le mai mult!</string>
+    <string name="error_too_far_to_disassemble_detail">Apropie-te cu %1$dm pentru dezasamblare.</string>
+    <string name="lang_he">עברית (Ebraică)</string>
+    <string name="action_awards_cards">PREMII ȘI CĂRȚI</string>
+    <string name="warning_return_to_placement">Apropie-te cu %1$dm! Mai ai %2$ds</string>
+    <string name="title_update_required">Actualizare necesară</string>
+    <string name="msg_update_required">Pentru a continua jocul, ai nevoie de o versiune nouă a Trap. Actualizează aplicația din Play Store.</string>
+    <string name="title_update_available">Actualizare disponibilă</string>
+    <string name="msg_update_available">Este disponibilă o versiune mai nouă a Trap. Actualizează acum pentru cele mai noi funcții și îmbunătățiri.</string>
+    <string name="action_update_now">Actualizează acum</string>
+    <string name="action_later">Mai târziu</string>
 </resources>

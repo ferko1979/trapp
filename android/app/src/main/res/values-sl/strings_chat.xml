@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Išči pogovore…</string>
+    <string name="chat_empty_hint">Tapni +, da pošlješ sporočilo prijatelju.</string>
+    <string name="chat_no_results">Noben pogovor ne ustreza iskanju.</string>
+    <string name="chat_today">Danes</string>
+    <string name="chat_yesterday">Včeraj</string>
+    <string name="chat_sending">Pošiljam…</string>
+    <string name="chat_thread_empty">Pozdravi %1$s!</string>
+    <string name="chat_thread_empty_hint">Tvoja sporočila bodo prikazana tukaj.</string>
+    <string name="chat_direct_subtitle">Neposredno sporočilo</string>
+    <string name="chat_title_fallback">Klepet</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d pogovor</item>
+        <item quantity="two">%d pogovora</item>
+        <item quantity="few">%d pogovori</item>
+        <item quantity="other">%d pogovorov</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d neprebrano</item>
+        <item quantity="two">%d neprebrani</item>
+        <item quantity="few">%d neprebrana</item>
+        <item quantity="other">%d neprebranih</item>
+    </plurals>
+</resources>

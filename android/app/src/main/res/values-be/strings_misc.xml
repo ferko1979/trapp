@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">СТАЎ · ЛАВІ · ПЕРАМАГАЙ</string>
+    <string name="maintenance_title">Тэхнічнае абслугоўванне</string>
+    <string name="maintenance_msg">Зараз праграма на тэхнічным абслугоўванні. Паспрабуй пазней.</string>
+    <string name="action_retry">Яшчэ раз</string>
+    <string name="alert_option_disassemble_title">🛠  Разабраць</string>
+    <string name="alert_option_avoid_title">🚶  Абысці</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Bilatu elkarrizketak…</string>
+    <string name="chat_empty_hint">Sakatu + zure lagun bati mezu bat bidaltzeko.</string>
+    <string name="chat_no_results">Ez dago bilaketarekin bat datorren elkarrizketarik.</string>
+    <string name="chat_today">Gaur</string>
+    <string name="chat_yesterday">Atzo</string>
+    <string name="chat_sending">Bidaltzen…</string>
+    <string name="chat_thread_empty">Agurtu %1$s!</string>
+    <string name="chat_thread_empty_hint">Zure mezuak hemen agertuko dira.</string>
+    <string name="chat_direct_subtitle">Mezu zuzena</string>
+    <string name="chat_title_fallback">Txata</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d elkarrizketa</item>
+        <item quantity="other">%d elkarrizketa</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d irakurri gabe</item>
+        <item quantity="other">%d irakurri gabe</item>
+    </plurals>
+</resources>

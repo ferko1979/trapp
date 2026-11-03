@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Ċentru tal-messaġġi</string>
+    <string name="inbox_subtitle">Messaġġi u appoġġ</string>
+    <string name="inbox_search_hint">Fittex messaġġi…</string>
+    <string name="inbox_empty_messages">Għad m’hemm l-ebda messaġġ</string>
+    <string name="inbox_empty_messages_hint">Ibda konversazzjoni ma’ wieħed minn sħabek.</string>
+    <string name="inbox_no_results">L-ebda messaġġ ma jaqbel</string>
+    <string name="inbox_support_sender">Tim tal-appoġġ</string>
+    <string name="inbox_new_ticket_cta">Biljett ġdid ta’ appoġġ</string>
+    <string name="inbox_new_ticket_cta_hint">Irrapporta bug jew staqsi mistoqsija — it-tim tagħna jwieġeb hawn.</string>
+    <string name="inbox_new_ticket_title">Ibgħatilna messaġġ</string>
+    <string name="inbox_ticket_category">Kategorija</string>
+    <string name="inbox_ticket_message_hint">Iddeskrivi l-problema tiegħek…</string>
+    <string name="inbox_ticket_send">Ibgħat biljett</string>
+    <string name="inbox_support_empty_hint">Jekk xi ħaġa ma taħdimx, iftaħ biljett u ngħinuk.</string>
+    <string name="inbox_your_tickets">Il-biljetti tiegħek</string>
+    <string name="inbox_ticket_closed">Dan il-biljett huwa magħluq. Iftaħ biljett ġdid jekk għandek bżonn aktar għajnuna.</string>
+</resources>

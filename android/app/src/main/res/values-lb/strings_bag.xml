@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Fallentasch</string>
+    <string name="bag_weight">Gewiicht</string>
+    <string name="bag_selected">Ausgewielt</string>
+    <string name="bag_hint_select">Tipp eng Fal un fir se auszewielen — SETZEN armt se</string>
+    <string name="bag_section_traps">Deng Fallen</string>
+    <string name="bag_refill_in">+1 an %1$s</string>
+    <string name="bag_status_full">Voll</string>
+    <string name="bag_about_weight">Iwwer d’Gewiicht vun der Tasch</string>
+    <string name="bag_trap_details">Detailer vun der Fal</string>
+    <string name="bag_in_bag">An der Tasch</string>
+    <string name="bag_refill">Opfëllen</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d Fal prett</item>
+        <item quantity="other">%d Fallen prett</item>
+    </plurals>
+</resources>

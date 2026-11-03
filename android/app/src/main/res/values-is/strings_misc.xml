@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">SETTU · GILDRU · GRÍPTU</string>
+    <string name="maintenance_title">Í viðhaldi</string>
+    <string name="maintenance_msg">Forritið er í viðhaldi eins og er. Reyndu aftur síðar.</string>
+    <string name="action_retry">Reyna aftur</string>
+    <string name="alert_option_disassemble_title">🛠  Taka í sundur</string>
+    <string name="alert_option_avoid_title">🚶  Forðast</string>
+</resources>

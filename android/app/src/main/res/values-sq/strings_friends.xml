@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Kërkesat</string>
+    <string name="friends_tab_search">Kërko</string>
+    <string name="friends_mode_username">Sipas emrit të përdoruesit</string>
+    <string name="friends_mode_id">Sipas ID / email</string>
+    <string name="friends_hint_search_username">Kërko sipas emrit të përdoruesit…</string>
+    <string name="friends_hint_search_id">ID e përdoruesit ose adresa e email-it</string>
+    <string name="friends_action_find">Gjej</string>
+    <string name="friends_invite_title">Fto kontaktet e tua</string>
+    <string name="friends_invite_hint">Më shumë miq = më shumë kurthe për të vendosur!</string>
+    <string name="friends_empty_hint">Fto miqtë ose gjeji sipas emrit të përdoruesit.</string>
+    <string name="friends_requests_empty_hint">Kërkesat për miqësi që dërgon ose merr do të shfaqen këtu.</string>
+    <string name="friends_search_title">Gjej lojtarë</string>
+    <string name="friends_search_hint">Shkruaj të paktën 2 karaktere të emrit të përdoruesit.</string>
+    <string name="friends_id_search_hint">Shkruaj një ID lojtari ose adresë email-i, pastaj prek Gjej.</string>
+    <string name="friends_action_message">Mesazh</string>
+    <string name="friends_request_incoming">Dëshiron të jetë miku yt</string>
+    <string name="friends_since">Miq që prej %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Nis një bisedë</string>
+    <string name="friends_sheet_hint">Kërko miq…</string>
+    <string name="friends_sheet_empty_hint">Shto miq për të nisur bisedën.</string>
+    <string name="invite_title">Fto miq</string>
+    <string name="invite_hero_title">Vendos kurthe. Kap miqtë.</string>
+    <string name="invite_hero_sub">Fto miqtë të bashkohen në TRAPP</string>
+    <string name="invite_code_label">Kodi yt i ftesës</string>
+    <string name="invite_code_copied">Kodi i ftesës u kopjua</string>
+    <string name="invite_preview_label">Pamja paraprake e mesazhit</string>
+    <string name="invite_share_cta">Ndaj ftesën</string>
+    <string name="invite_send_via">Dërgo përmes</string>
+    <string name="invite_privacy_note">TRAPP nuk i lexon kurrë kontaktet e tua — marrësin e zgjedh ti në aplikacionin ku e ndan.</string>
+    <string name="invite_ch_email">Email</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d mik</item>
+        <item quantity="other">%d miq</item>
+    </plurals>
+</resources>

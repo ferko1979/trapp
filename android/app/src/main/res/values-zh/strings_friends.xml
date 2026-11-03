@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">请求</string>
+    <string name="friends_tab_search">搜索</string>
+    <string name="friends_mode_username">按用户名</string>
+    <string name="friends_mode_id">按 ID / 邮箱</string>
+    <string name="friends_hint_search_username">按用户名搜索…</string>
+    <string name="friends_hint_search_id">用户 ID 或邮箱地址</string>
+    <string name="friends_action_find">查找</string>
+    <string name="friends_invite_title">邀请你的联系人</string>
+    <string name="friends_invite_hint">好友越多 = 能设的陷阱越多！</string>
+    <string name="friends_empty_hint">邀请好友，或按用户名找到他们。</string>
+    <string name="friends_requests_empty_hint">你发出或收到的好友请求会显示在这里。</string>
+    <string name="friends_search_title">查找玩家</string>
+    <string name="friends_search_hint">输入用户名的至少 2 个字符。</string>
+    <string name="friends_id_search_hint">输入玩家 ID 或邮箱地址，然后点击“查找”。</string>
+    <string name="friends_action_message">发消息</string>
+    <string name="friends_request_incoming">想加你为好友</string>
+    <string name="friends_since">%1$s 成为好友</string>
+    <string name="friends_id_label">ID：%1$s</string>
+    <string name="friends_sheet_title">开始对话</string>
+    <string name="friends_sheet_hint">搜索好友…</string>
+    <string name="friends_sheet_empty_hint">添加好友就能开始聊天。</string>
+    <string name="invite_title">邀请好友</string>
+    <string name="invite_hero_title">设下陷阱，抓住好友。</string>
+    <string name="invite_hero_sub">邀请好友加入 TRAPP</string>
+    <string name="invite_code_label">你的邀请码</string>
+    <string name="invite_code_copied">邀请码已复制</string>
+    <string name="invite_preview_label">消息预览</string>
+    <string name="invite_share_cta">分享邀请</string>
+    <string name="invite_send_via">发送方式</string>
+    <string name="invite_privacy_note">TRAPP 从不读取你的通讯录 — 收件人由你在分享的应用中选择。</string>
+    <string name="invite_ch_email">邮件</string>
+    <string name="invite_ch_sms">短信</string>
+    <plurals name="friends_count">
+        <item quantity="other">%d 位好友</item>
+    </plurals>
+</resources>

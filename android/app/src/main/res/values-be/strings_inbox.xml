@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Цэнтр паведамленняў</string>
+    <string name="inbox_subtitle">Паведамленні і падтрымка</string>
+    <string name="inbox_search_hint">Пошук паведамленняў…</string>
+    <string name="inbox_empty_messages">Паведамленняў пакуль няма</string>
+    <string name="inbox_empty_messages_hint">Пачні размову з адным з сяброў.</string>
+    <string name="inbox_no_results">Няма адпаведных паведамленняў</string>
+    <string name="inbox_support_sender">Каманда падтрымкі</string>
+    <string name="inbox_new_ticket_cta">Новы зварот у падтрымку</string>
+    <string name="inbox_new_ticket_cta_hint">Паведамі пра памылку або задай пытанне — наша каманда адкажа тут.</string>
+    <string name="inbox_new_ticket_title">Напішы нам</string>
+    <string name="inbox_ticket_category">Катэгорыя</string>
+    <string name="inbox_ticket_message_hint">Апішы сваю праблему…</string>
+    <string name="inbox_ticket_send">Адправіць зварот</string>
+    <string name="inbox_support_empty_hint">Калі нешта не працуе, ствары зварот — і мы дапаможам.</string>
+    <string name="inbox_your_tickets">Твае звароты</string>
+    <string name="inbox_ticket_closed">Гэты зварот закрыты. Калі патрэбна дапамога, ствары новы.</string>
+</resources>

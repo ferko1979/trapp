@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Borża tan-nases</string>
+    <string name="bag_weight">Piż</string>
+    <string name="bag_selected">Magħżula</string>
+    <string name="bag_hint_select">Agħfas fuq nassa biex tagħżilha — POĠĠI jattivaha</string>
+    <string name="bag_section_traps">In-nases tiegħek</string>
+    <string name="bag_refill_in">+1 fi %1$s</string>
+    <string name="bag_status_full">Mimlija</string>
+    <string name="bag_about_weight">Dwar il-piż tal-borża</string>
+    <string name="bag_trap_details">Dettalji tan-nassa</string>
+    <string name="bag_in_bag">Fil-borża</string>
+    <string name="bag_refill">Imla</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d nassa lesta</item>
+        <item quantity="two">%d nases lesti</item>
+        <item quantity="few">%d nases lesti</item>
+        <item quantity="many">%d nassa lesta</item>
+        <item quantity="other">%d nassa lesta</item>
+    </plurals>
+</resources>

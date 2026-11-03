@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Meddelandecenter</string>
+    <string name="inbox_subtitle">Meddelanden och support</string>
+    <string name="inbox_search_hint">Sök meddelanden…</string>
+    <string name="inbox_empty_messages">Inga meddelanden än</string>
+    <string name="inbox_empty_messages_hint">Starta en konversation med en av dina vänner.</string>
+    <string name="inbox_no_results">Inga matchande meddelanden</string>
+    <string name="inbox_support_sender">Supportteamet</string>
+    <string name="inbox_new_ticket_cta">Nytt supportärende</string>
+    <string name="inbox_new_ticket_cta_hint">Rapportera en bugg eller ställ en fråga – vårt team svarar här.</string>
+    <string name="inbox_new_ticket_title">Skicka ett meddelande till oss</string>
+    <string name="inbox_ticket_category">Kategori</string>
+    <string name="inbox_ticket_message_hint">Beskriv ditt problem…</string>
+    <string name="inbox_ticket_send">Skicka ärende</string>
+    <string name="inbox_support_empty_hint">Om något inte fungerar, öppna ett ärende så hjälper vi dig.</string>
+    <string name="inbox_your_tickets">Dina ärenden</string>
+    <string name="inbox_ticket_closed">Det här ärendet är stängt. Öppna ett nytt ärende om du behöver mer hjälp.</string>
+</resources>

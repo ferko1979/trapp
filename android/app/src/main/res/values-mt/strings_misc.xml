@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">POĠĠI · INSABA · AQBAD</string>
+    <string name="maintenance_title">Taħt manutenzjoni</string>
+    <string name="maintenance_msg">L-app bħalissa qed issirilha manutenzjoni. Erġa’ pprova aktar tard.</string>
+    <string name="action_retry">Erġa’ pprova</string>
+    <string name="alert_option_disassemble_title">🛠  Żarma</string>
+    <string name="alert_option_avoid_title">🚶  Evita</string>
+</resources>

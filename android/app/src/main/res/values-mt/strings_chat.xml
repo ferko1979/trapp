@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Fittex konversazzjonijiet…</string>
+    <string name="chat_empty_hint">Agħfas + biex tibgħat messaġġ lil wieħed minn sħabek.</string>
+    <string name="chat_no_results">L-ebda konversazzjoni ma taqbel mat-tfittxija.</string>
+    <string name="chat_today">Illum</string>
+    <string name="chat_yesterday">Ilbieraħ</string>
+    <string name="chat_sending">Qed jintbagħat…</string>
+    <string name="chat_thread_empty">Sellem lil %1$s!</string>
+    <string name="chat_thread_empty_hint">Il-messaġġi tiegħek se jidhru hawn.</string>
+    <string name="chat_direct_subtitle">Messaġġ dirett</string>
+    <string name="chat_title_fallback">Chat</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d konversazzjoni</item>
+        <item quantity="two">%d konversazzjonijiet</item>
+        <item quantity="few">%d konversazzjonijiet</item>
+        <item quantity="many">%d-il konversazzjoni</item>
+        <item quantity="other">%d konversazzjoni</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d mhux moqri</item>
+        <item quantity="two">%d mhux moqrija</item>
+        <item quantity="few">%d mhux moqrija</item>
+        <item quantity="many">%d mhux moqrija</item>
+        <item quantity="other">%d mhux moqrija</item>
+    </plurals>
+</resources>

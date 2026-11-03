@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Iarratais</string>
+    <string name="friends_tab_search">Cuardach</string>
+    <string name="friends_mode_username">De réir ainm úsáideora</string>
+    <string name="friends_mode_id">De réir ID / ríomhphoist</string>
+    <string name="friends_hint_search_username">Cuardaigh de réir ainm úsáideora…</string>
+    <string name="friends_hint_search_id">ID úsáideora nó seoladh ríomhphoist</string>
+    <string name="friends_action_find">Aimsigh</string>
+    <string name="friends_invite_title">Tabhair cuireadh do do theagmhálaithe</string>
+    <string name="friends_invite_hint">Níos mó cairde = níos mó gaistí le cur!</string>
+    <string name="friends_empty_hint">Tabhair cuireadh do do chairde nó aimsigh iad de réir ainm úsáideora.</string>
+    <string name="friends_requests_empty_hint">Beidh iarratais cairdis a sheolann nó a fhaigheann tú le feiceáil anseo.</string>
+    <string name="friends_search_title">Aimsigh imreoirí</string>
+    <string name="friends_search_hint">Clóscríobh 2 charachtar ar a laghad d\'ainm úsáideora.</string>
+    <string name="friends_id_search_hint">Cuir isteach ID imreora nó seoladh ríomhphoist, ansin tapáil Aimsigh.</string>
+    <string name="friends_action_message">Teachtaireacht</string>
+    <string name="friends_request_incoming">Ba mhaith leis/léi a bheith i do chara</string>
+    <string name="friends_since">Cairde ó %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Tosaigh comhrá</string>
+    <string name="friends_sheet_hint">Cuardaigh cairde…</string>
+    <string name="friends_sheet_empty_hint">Cuir cairde leis chun tosú ag comhrá.</string>
+    <string name="invite_title">Tabhair cuireadh do chairde</string>
+    <string name="invite_hero_title">Cuir gaistí. Gabh cairde.</string>
+    <string name="invite_hero_sub">Tabhair cuireadh do do chairde teacht isteach in TRAPP</string>
+    <string name="invite_code_label">Do chód cuiridh</string>
+    <string name="invite_code_copied">Cód cuiridh cóipeáilte</string>
+    <string name="invite_preview_label">Réamhamharc teachtaireachta</string>
+    <string name="invite_share_cta">Comhroinn cuireadh</string>
+    <string name="invite_send_via">Seol trí</string>
+    <string name="invite_privacy_note">Ní léann TRAPP do theagmhálaithe riamh — roghnaíonn tú an faighteoir san aip a gcomhroinneann tú léi.</string>
+    <string name="invite_ch_email">Ríomhphost</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d chara</item>
+        <item quantity="two">%d chara</item>
+        <item quantity="few">%d chara</item>
+        <item quantity="many">%d gcara</item>
+        <item quantity="other">%d cara</item>
+    </plurals>
+</resources>

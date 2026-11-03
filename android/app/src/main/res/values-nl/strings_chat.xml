@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Gesprekken zoeken…</string>
+    <string name="chat_empty_hint">Tik op + om een bericht naar een van je vrienden te sturen.</string>
+    <string name="chat_no_results">Geen gesprekken gevonden.</string>
+    <string name="chat_today">Vandaag</string>
+    <string name="chat_yesterday">Gisteren</string>
+    <string name="chat_sending">Versturen…</string>
+    <string name="chat_thread_empty">Zeg hoi tegen %1$s!</string>
+    <string name="chat_thread_empty_hint">Je berichten verschijnen hier.</string>
+    <string name="chat_direct_subtitle">Privébericht</string>
+    <string name="chat_title_fallback">Chat</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d gesprek</item>
+        <item quantity="other">%d gesprekken</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d ongelezen</item>
+        <item quantity="other">%d ongelezen</item>
+    </plurals>
+</resources>

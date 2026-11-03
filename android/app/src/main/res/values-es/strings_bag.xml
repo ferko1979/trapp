@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Bolsa de trampas</string>
+    <string name="bag_weight">Peso</string>
+    <string name="bag_selected">Seleccionada</string>
+    <string name="bag_hint_select">Toca una trampa para elegirla — COLOCAR la arma</string>
+    <string name="bag_section_traps">Tus trampas</string>
+    <string name="bag_refill_in">+1 en %1$s</string>
+    <string name="bag_status_full">Llena</string>
+    <string name="bag_about_weight">Sobre el peso de la bolsa</string>
+    <string name="bag_trap_details">Detalles de la trampa</string>
+    <string name="bag_in_bag">En la bolsa</string>
+    <string name="bag_refill">Recarga</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d trampa lista</item>
+        <item quantity="many">%d trampas listas</item>
+        <item quantity="other">%d trampas listas</item>
+    </plurals>
+</resources>

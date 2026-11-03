@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Prošnje</string>
+    <string name="friends_tab_search">Iskanje</string>
+    <string name="friends_mode_username">Po uporabniškem imenu</string>
+    <string name="friends_mode_id">Po ID / e-pošti</string>
+    <string name="friends_hint_search_username">Išči po uporabniškem imenu…</string>
+    <string name="friends_hint_search_id">ID uporabnika ali e-poštni naslov</string>
+    <string name="friends_action_find">Najdi</string>
+    <string name="friends_invite_title">Povabi svoje stike</string>
+    <string name="friends_invite_hint">Več prijateljev = več pasti za postavljanje!</string>
+    <string name="friends_empty_hint">Povabi prijatelje ali jih poišči po uporabniškem imenu.</string>
+    <string name="friends_requests_empty_hint">Prošnje za prijateljstvo, ki jih pošlješ ali prejmeš, bodo prikazane tukaj.</string>
+    <string name="friends_search_title">Najdi igralce</string>
+    <string name="friends_search_hint">Vpiši vsaj 2 znaka uporabniškega imena.</string>
+    <string name="friends_id_search_hint">Vnesi ID igralca ali e-poštni naslov in tapni Najdi.</string>
+    <string name="friends_action_message">Sporočilo</string>
+    <string name="friends_request_incoming">Želi biti tvoj prijatelj</string>
+    <string name="friends_since">Prijatelja od %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Začni pogovor</string>
+    <string name="friends_sheet_hint">Išči prijatelje…</string>
+    <string name="friends_sheet_empty_hint">Dodaj prijatelje, da začneš klepetati.</string>
+    <string name="invite_title">Povabi prijatelje</string>
+    <string name="invite_hero_title">Postavljaj pasti. Lovi prijatelje.</string>
+    <string name="invite_hero_sub">Povabi prijatelje, naj se pridružijo TRAPP</string>
+    <string name="invite_code_label">Tvoja koda povabila</string>
+    <string name="invite_code_copied">Koda povabila kopirana</string>
+    <string name="invite_preview_label">Predogled sporočila</string>
+    <string name="invite_share_cta">Deli povabilo</string>
+    <string name="invite_send_via">Pošlji prek</string>
+    <string name="invite_privacy_note">TRAPP nikoli ne bere tvojih stikov — prejemnika izbereš v aplikaciji, prek katere deliš.</string>
+    <string name="invite_ch_email">E-pošta</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d prijatelj</item>
+        <item quantity="two">%d prijatelja</item>
+        <item quantity="few">%d prijatelji</item>
+        <item quantity="other">%d prijateljev</item>
+    </plurals>
+</resources>

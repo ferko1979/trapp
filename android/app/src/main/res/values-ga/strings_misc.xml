@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">CUIR · GAISTE · GABH</string>
+    <string name="maintenance_title">Faoi chothabháil</string>
+    <string name="maintenance_msg">Tá an aip faoi chothabháil faoi láthair. Bain triail eile as ar ball.</string>
+    <string name="action_retry">Atriail</string>
+    <string name="alert_option_disassemble_title">🛠  Díchóimeáil</string>
+    <string name="alert_option_avoid_title">🚶  Seachain</string>
+</resources>

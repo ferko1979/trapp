@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Lõksukott</string>
+    <string name="bag_weight">Kaal</string>
+    <string name="bag_selected">Valitud</string>
+    <string name="bag_hint_select">Puuduta lõksu, et see valida — PAIGALDA seab selle</string>
+    <string name="bag_section_traps">Sinu lõksud</string>
+    <string name="bag_refill_in">+1 %1$s pärast</string>
+    <string name="bag_status_full">Täis</string>
+    <string name="bag_about_weight">Koti kaalust</string>
+    <string name="bag_trap_details">Lõksu andmed</string>
+    <string name="bag_in_bag">Kotis</string>
+    <string name="bag_refill">Täienemine</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d lõks valmis</item>
+        <item quantity="other">%d lõksu valmis</item>
+    </plurals>
+</resources>

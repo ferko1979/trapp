@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">PLAATS · VAL · VANG</string>
+    <string name="maintenance_title">In onderhoud</string>
+    <string name="maintenance_msg">De app is momenteel in onderhoud. Probeer het later opnieuw.</string>
+    <string name="action_retry">Opnieuw</string>
+    <string name="alert_option_disassemble_title">🛠  Demonteren</string>
+    <string name="alert_option_avoid_title">🚶  Ontwijken</string>
+</resources>

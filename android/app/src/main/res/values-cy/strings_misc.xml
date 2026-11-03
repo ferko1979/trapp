@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">GOSOD · TRAPIO · DAL</string>
+    <string name="maintenance_title">Wrthi’n cynnal a chadw</string>
+    <string name="maintenance_msg">Mae’r ap yn cael ei gynnal a’i gadw ar hyn o bryd. Rho gynnig arall arni nes ymlaen.</string>
+    <string name="action_retry">Ailgynnig</string>
+    <string name="alert_option_disassemble_title">🛠  Datgymalu</string>
+    <string name="alert_option_avoid_title">🚶  Osgoi</string>
+</resources>

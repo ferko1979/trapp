@@ -558,7 +558,6 @@ observeTheme()
                     binding.composeTopHud.isVisible = !overlayUp
                     binding.radarCard.isVisible = !overlayUp
                     binding.rightSideControls.isVisible = !overlayUp
-                    binding.tvPlacementHint.isVisible = false
                     if (phase == PlacementPhase.IDLE) {
                         selectedTrapMarker?.remove()
                         selectedTrapMarker = null
@@ -641,20 +640,6 @@ observeTheme()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 ThemeManager.isDarkMode.collect { isDark ->
-                    val icon = if (isDark)
-                        AppCompatResources.getDrawable(this@GameActivity, android.R.drawable.ic_menu_day) // Sun
-                    else
-                        AppCompatResources.getDrawable(this@GameActivity, android.R.drawable.ic_menu_recent_history) // Moon (using a proxy for ic_brightness_3)
-                    
-                    // Actually, let's use the standard ones or provide better ones.
-                    // The user suggested:
-                    // ic_brightness_high (sun) -> switch to light
-                    // ic_brightness_3 (moon) -> switch to dark
-                    // But these might not exist in android.R.drawable.
-                    
-                    binding.btnToggleTheme.setImageDrawable(icon)
-                    binding.btnToggleTheme.setColorFilter(if (isDark) 0xFFFFB648.toInt() else 0xFFA7B7CC.toInt())
-
                     // Style the banner ad container to match the current theme
                     if (isDark) {
                         binding.bannerAdContainer.setBackgroundColor(0xFF0E1828.toInt())
@@ -876,28 +861,9 @@ stopHeartbeat()
         binding.btnDisarmNearby.setOnClickListener {
             TrapAlertBottomSheet.show(supportFragmentManager)
         }
-        binding.btnHudMenu.setOnClickListener { hud.meOpen = true }
         binding.btnLayers.setOnClickListener { hud.layersOpen = true }
-        // Keep legacy button listeners for any external callers (views are gone)
-        binding.logoutButton.setOnClickListener {
-            auth.signOut()
-            startActivity(Intent(this, LandingActivity::class.java))
-            finish()
-        }
-        binding.friendsButton.setOnClickListener { startActivity(Intent(this, FriendsActivity::class.java)) }
-        binding.btnInbox.setOnClickListener { startActivity(Intent(this, InboxActivity::class.java)) }
-        binding.messagesButton.setOnClickListener { startActivity(Intent(this, ConversationsActivity::class.java)) }
-        binding.settingsButton.setOnClickListener { showSettingsDialog() }
-        binding.profileEditButton.setOnClickListener { showProfileEditDialog() }
         binding.btnToggleRadar.setOnClickListener { toggleTrackingService() }
-        binding.btnReloadMap.setOnClickListener { reloadMapTraps(showFeedback = true) }
-        binding.btnZoomIn.setOnClickListener { map.animateCamera(CameraUpdateFactory.zoomIn()) }
-        binding.btnZoomOut.setOnClickListener { map.animateCamera(CameraUpdateFactory.zoomOut()) }
         binding.myLocationButton.setOnClickListener { centerOnMyLocation() }
-        binding.btnToggleTheme.setOnClickListener { ThemeManager.toggleManualOverride() }
-
-        binding.btnCancelPlacement.setOnClickListener { gameVm.cancelPlacement() }
-        binding.btnCancelPlacementX.setOnClickListener { gameVm.cancelPlacement() }
     }
 
     /** "Me" sheet actions — everything account-related that has no tab of its own. */
@@ -980,28 +946,8 @@ stopHeartbeat()
             state.isExpired -> "⚠ ${state.levelDisplayName} ${getString(R.string.label_member)}"
             else            -> "${state.levelDisplayName} ${getString(R.string.label_member)}"
         }
-        binding.tvMembershipBadge.text = label
         hud.membershipLabel = if (state.loading) null else label
         hud.membershipPaid = state.membership == "paid" && !state.isExpired
-
-        // Tint the background shape (preserves rounded corners from bg_rounded_dark)
-        val bgColor = when {
-            state.isExpired            -> 0xFF92400E.toInt()   // amber-900
-            state.membership == "paid" -> 0xFF15233A.toInt()   // deep blue
-            else                       -> 0xFF15233A.toInt()   // slate (free)
-        }
-        androidx.core.widget.TextViewCompat.setCompoundDrawableTintList(
-            binding.tvMembershipBadge, null
-        )
-        binding.tvMembershipBadge.backgroundTintList =
-            android.content.res.ColorStateList.valueOf(bgColor)
-
-        val textColor = when {
-            state.isExpired            -> 0xFFFFB648.toInt()   // amber-300
-            state.membership == "paid" -> 0xFF38D3F2.toInt()   // sky-300
-            else                       -> 0xFF7D91AB.toInt()   // slate-500 (free)
-        }
-        binding.tvMembershipBadge.setTextColor(textColor)
     }
 
     private fun observeCurrentUser() {
@@ -1164,8 +1110,6 @@ stopHeartbeat()
         isReloadingMap = true
         if (showFeedback) {
             toast(getString(R.string.status_refreshing_map))
-            android.view.animation.AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
-            binding.btnReloadMap.animate().rotationBy(360f).setDuration(600).start()
         }
         Firebase.firestore.collection("traps")
             .whereEqualTo("status", "active")
@@ -1233,58 +1177,14 @@ stopHeartbeat()
     }
 
     private fun updateUiWithUserData() {
-        binding.tvScore.text = "⚡ $currentUserScore"
-        
-        val identity = when {
-            !currentUsername.isNullOrBlank() -> "@$currentUsername"
-            !auth.currentUser?.email.isNullOrBlank() -> auth.currentUser?.email
-            !currentDisplayName.isNullOrBlank() -> currentDisplayName
-            else -> getString(R.string.default_display_name)
-        }
-        binding.tvIdentity.text = identity
-        
         val levelProgress = calculateLevelProgress(currentUserXP, currentUserLevelNumber, progressionLevels)
-        binding.pbLevelProgress.progress = (levelProgress * 100).toInt()
         hud.points = currentUserScore
         hud.level = currentUserLevelNumber
         hud.levelProgress = levelProgress
 
-        // Resolve the XP progression level name:
-        //  1. Look up by level number in the player_progression_levels list (loaded from Firestore)
-        //  2. If that's empty, use users.{uid}.levelName (set by some backend flows)
-        //  3. If neither is available, just show "Lvl X" without a name suffix
-        val progressionName: String? = progressionLevels
-            .find { it.levelNumber == currentUserLevelNumber }
-            ?.name
-            ?.takeIf { it.isNotBlank() }
-            ?: currentUserLevelName.takeIf {
-                // Only use the cached value if it doesn't look like an un-seeded fallback
-                it.isNotBlank() && it != "Novice" || progressionLevels.isNotEmpty()
-            }
-        binding.tvLevelLabel.text = if (progressionName != null) {
-            "${getString(R.string.lvl_format, currentUserLevelNumber)} · $progressionName"
-        } else {
-            getString(R.string.lvl_format, currentUserLevelNumber)
-        }
-        // Long-press shows the effective map zoom from the membership level.
-        binding.tvLevelLabel.setOnLongClickListener {
-            val zoom = gameVm.bagState.value.mapMinZoom.toInt()
-            toast(getString(R.string.msg_zoom_level_info, zoom))
-            true
-        }
-
         // Membership badge is kept up-to-date by observeMembershipState().
         // Sync it here too so it reflects the latest state after any user-doc change.
         updateMembershipBadge(gameVm.membershipState.value)
-
-        if (lastCapturedUsername != null) {
-            binding.lastCapturedContainer.isVisible = true
-            binding.lastCapturedNameTextView.text = getString(R.string.msg_last_caught_format, lastCapturedUsername)
-            binding.btnLastCapturedFriend.setOnClickListener { lastCapturedUserId?.let { sendFriendRequest(it) } }
-            binding.btnLastCapturedMessage.setOnClickListener { lastCapturedUserId?.let { startDirectMessage(it) } }
-        } else {
-            binding.lastCapturedContainer.isVisible = false
-        }
     }
 
     private fun calculateLevelProgress(xp: Int, currentLevel: Int, levels: List<ProgressionLevel>): Float {

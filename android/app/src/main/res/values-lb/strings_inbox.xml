@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Message-Center</string>
+    <string name="inbox_subtitle">Messagen a Support</string>
+    <string name="inbox_search_hint">Messagen sichen…</string>
+    <string name="inbox_empty_messages">Nach keng Messagen</string>
+    <string name="inbox_empty_messages_hint">Fänk e Gespréich mat engem vun denge Frënn un.</string>
+    <string name="inbox_no_results">Keng passend Messagen</string>
+    <string name="inbox_support_sender">Support-Team</string>
+    <string name="inbox_new_ticket_cta">Neit Support-Ticket</string>
+    <string name="inbox_new_ticket_cta_hint">Mell e Feeler oder stell eng Fro — eist Team äntwert hei.</string>
+    <string name="inbox_new_ticket_title">Schéck eis e Message</string>
+    <string name="inbox_ticket_category">Kategorie</string>
+    <string name="inbox_ticket_message_hint">Beschreif däi Problem…</string>
+    <string name="inbox_ticket_send">Ticket schécken</string>
+    <string name="inbox_support_empty_hint">Wann eppes net funktionéiert, maach en Ticket op a mir hëllefen dir.</string>
+    <string name="inbox_your_tickets">Deng Ticketen</string>
+    <string name="inbox_ticket_closed">Dësen Ticket ass zou. Maach en neien op, wann s du nach Hëllef brauchs.</string>
+</resources>

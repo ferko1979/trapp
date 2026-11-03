@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Sohbetlerde ara…</string>
+    <string name="chat_empty_hint">Arkadaşlarından birine mesaj göndermek için + simgesine dokun.</string>
+    <string name="chat_no_results">Aramanla eşleşen sohbet yok.</string>
+    <string name="chat_today">Bugün</string>
+    <string name="chat_yesterday">Dün</string>
+    <string name="chat_sending">Gönderiliyor…</string>
+    <string name="chat_thread_empty">%1$s kişisine merhaba de!</string>
+    <string name="chat_thread_empty_hint">Mesajların burada görünecek.</string>
+    <string name="chat_direct_subtitle">Özel mesaj</string>
+    <string name="chat_title_fallback">Sohbet</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d sohbet</item>
+        <item quantity="other">%d sohbet</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d okunmamış</item>
+        <item quantity="other">%d okunmamış</item>
+    </plurals>
+</resources>

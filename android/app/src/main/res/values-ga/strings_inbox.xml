@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Lárionad teachtaireachtaí</string>
+    <string name="inbox_subtitle">Teachtaireachtaí agus tacaíocht</string>
+    <string name="inbox_search_hint">Cuardaigh teachtaireachtaí…</string>
+    <string name="inbox_empty_messages">Níl aon teachtaireachtaí fós</string>
+    <string name="inbox_empty_messages_hint">Tosaigh comhrá le duine de do chairde.</string>
+    <string name="inbox_no_results">Níl aon teachtaireachtaí ag teacht leis</string>
+    <string name="inbox_support_sender">Foireann tacaíochta</string>
+    <string name="inbox_new_ticket_cta">Ticéad tacaíochta nua</string>
+    <string name="inbox_new_ticket_cta_hint">Tuairiscigh fabht nó cuir ceist — freagróidh ár bhfoireann anseo.</string>
+    <string name="inbox_new_ticket_title">Seol teachtaireacht chugainn</string>
+    <string name="inbox_ticket_category">Catagóir</string>
+    <string name="inbox_ticket_message_hint">Déan cur síos ar do fhadhb…</string>
+    <string name="inbox_ticket_send">Seol ticéad</string>
+    <string name="inbox_support_empty_hint">Mura bhfuil rud éigin ag obair, oscail ticéad agus cabhróimid leat.</string>
+    <string name="inbox_your_tickets">Do thicéid</string>
+    <string name="inbox_ticket_closed">Tá an ticéad seo dúnta. Oscail ticéad nua má theastaíonn tuilleadh cabhrach uait.</string>
+</resources>

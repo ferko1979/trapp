@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Skilaboðamiðstöð</string>
+    <string name="inbox_subtitle">Skilaboð og aðstoð</string>
+    <string name="inbox_search_hint">Leita í skilaboðum…</string>
+    <string name="inbox_empty_messages">Engin skilaboð enn</string>
+    <string name="inbox_empty_messages_hint">Hefðu samtal við einn vina þinna.</string>
+    <string name="inbox_no_results">Engin skilaboð passa</string>
+    <string name="inbox_support_sender">Þjónustuteymi</string>
+    <string name="inbox_new_ticket_cta">Ný aðstoðarbeiðni</string>
+    <string name="inbox_new_ticket_cta_hint">Tilkynntu villu eða spurðu spurningar — teymið okkar svarar hér.</string>
+    <string name="inbox_new_ticket_title">Sendu okkur skilaboð</string>
+    <string name="inbox_ticket_category">Flokkur</string>
+    <string name="inbox_ticket_message_hint">Lýstu vandamálinu…</string>
+    <string name="inbox_ticket_send">Senda beiðni</string>
+    <string name="inbox_support_empty_hint">Ef eitthvað virkar ekki skaltu opna beiðni og við hjálpum.</string>
+    <string name="inbox_your_tickets">Beiðnirnar þínar</string>
+    <string name="inbox_ticket_closed">Þessari beiðni er lokað. Opnaðu nýja beiðni ef þú þarft meiri aðstoð.</string>
+</resources>

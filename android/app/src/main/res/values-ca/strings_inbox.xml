@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Centre de missatges</string>
+    <string name="inbox_subtitle">Missatges i suport</string>
+    <string name="inbox_search_hint">Cerca missatges…</string>
+    <string name="inbox_empty_messages">Encara no hi ha missatges</string>
+    <string name="inbox_empty_messages_hint">Comença una conversa amb un dels teus amics.</string>
+    <string name="inbox_no_results">Cap missatge coincident</string>
+    <string name="inbox_support_sender">Equip de suport</string>
+    <string name="inbox_new_ticket_cta">Tiquet de suport nou</string>
+    <string name="inbox_new_ticket_cta_hint">Informa d\'un error o fes una pregunta — el nostre equip et respondrà aquí.</string>
+    <string name="inbox_new_ticket_title">Envia\'ns un missatge</string>
+    <string name="inbox_ticket_category">Categoria</string>
+    <string name="inbox_ticket_message_hint">Descriu el problema…</string>
+    <string name="inbox_ticket_send">Envia el tiquet</string>
+    <string name="inbox_support_empty_hint">Si alguna cosa no funciona, obre un tiquet i t\'ajudarem.</string>
+    <string name="inbox_your_tickets">Els teus tiquets</string>
+    <string name="inbox_ticket_closed">Aquest tiquet està tancat. Obre\'n un de nou si necessites més ajuda.</string>
+</resources>

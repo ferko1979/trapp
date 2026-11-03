@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">IZVIETO · SLAZDS · NOĶER</string>
+    <string name="maintenance_title">Notiek apkope</string>
+    <string name="maintenance_msg">Lietotnei pašlaik notiek apkope. Lūdzu, mēģini vēlāk.</string>
+    <string name="action_retry">Mēģināt vēlreiz</string>
+    <string name="alert_option_disassemble_title">🛠  Izjaukt</string>
+    <string name="alert_option_avoid_title">🚶  Apiet</string>
+</resources>

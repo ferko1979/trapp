@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Mezu-zentroa</string>
+    <string name="inbox_subtitle">Mezuak eta laguntza</string>
+    <string name="inbox_search_hint">Bilatu mezuak…</string>
+    <string name="inbox_empty_messages">Oraindik ez dago mezurik</string>
+    <string name="inbox_empty_messages_hint">Hasi elkarrizketa bat zure lagunetako batekin.</string>
+    <string name="inbox_no_results">Ez dago bat datorren mezurik</string>
+    <string name="inbox_support_sender">Laguntza-taldea</string>
+    <string name="inbox_new_ticket_cta">Laguntza-txartel berria</string>
+    <string name="inbox_new_ticket_cta_hint">Jakinarazi errore bat edo egin galdera bat — gure taldeak hemen erantzungo dizu.</string>
+    <string name="inbox_new_ticket_title">Bidali mezu bat</string>
+    <string name="inbox_ticket_category">Kategoria</string>
+    <string name="inbox_ticket_message_hint">Deskribatu zure arazoa…</string>
+    <string name="inbox_ticket_send">Bidali txartela</string>
+    <string name="inbox_support_empty_hint">Zerbaitek ez badu funtzionatzen, ireki txartel bat eta lagunduko dizugu.</string>
+    <string name="inbox_your_tickets">Zure txartelak</string>
+    <string name="inbox_ticket_closed">Txartel hau itxita dago. Ireki berri bat laguntza gehiago behar baduzu.</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Hledat konverzace…</string>
+    <string name="chat_empty_hint">Klepni na + a pošli zprávu některému z přátel.</string>
+    <string name="chat_no_results">Hledání neodpovídá žádná konverzace.</string>
+    <string name="chat_today">Dnes</string>
+    <string name="chat_yesterday">Včera</string>
+    <string name="chat_sending">Odesílám…</string>
+    <string name="chat_thread_empty">Pozdrav %1$s!</string>
+    <string name="chat_thread_empty_hint">Tvoje zprávy se zobrazí tady.</string>
+    <string name="chat_direct_subtitle">Soukromá zpráva</string>
+    <string name="chat_title_fallback">Chat</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d konverzace</item>
+        <item quantity="few">%d konverzace</item>
+        <item quantity="many">%d konverzace</item>
+        <item quantity="other">%d konverzací</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d nepřečtená</item>
+        <item quantity="few">%d nepřečtené</item>
+        <item quantity="many">%d nepřečtené</item>
+        <item quantity="other">%d nepřečtených</item>
+    </plurals>
+</resources>

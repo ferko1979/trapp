@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Сумка з пастками</string>
+    <string name="bag_weight">Вага</string>
+    <string name="bag_selected">Обрано</string>
+    <string name="bag_hint_select">Торкнись пастки, щоб обрати — ПОСТАВИТИ зводить її</string>
+    <string name="bag_section_traps">Твої пастки</string>
+    <string name="bag_refill_in">+1 через %1$s</string>
+    <string name="bag_status_full">Повна</string>
+    <string name="bag_about_weight">Про вагу сумки</string>
+    <string name="bag_trap_details">Деталі пастки</string>
+    <string name="bag_in_bag">У сумці</string>
+    <string name="bag_refill">Поповнення</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d пастка готова</item>
+        <item quantity="few">%d пастки готові</item>
+        <item quantity="many">%d пасток готові</item>
+        <item quantity="other">%d пастки готові</item>
+    </plurals>
+</resources>

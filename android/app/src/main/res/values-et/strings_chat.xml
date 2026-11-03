@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Otsi vestlusi…</string>
+    <string name="chat_empty_hint">Puuduta +, et saata sõnum mõnele oma sõbrale.</string>
+    <string name="chat_no_results">Otsingule vastavaid vestlusi pole.</string>
+    <string name="chat_today">Täna</string>
+    <string name="chat_yesterday">Eile</string>
+    <string name="chat_sending">Saatmine…</string>
+    <string name="chat_thread_empty">Ütle %1$s-le tere!</string>
+    <string name="chat_thread_empty_hint">Sinu sõnumid ilmuvad siia.</string>
+    <string name="chat_direct_subtitle">Otsesõnum</string>
+    <string name="chat_title_fallback">Vestlus</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d vestlus</item>
+        <item quantity="other">%d vestlust</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d lugemata</item>
+        <item quantity="other">%d lugemata</item>
+    </plurals>
+</resources>

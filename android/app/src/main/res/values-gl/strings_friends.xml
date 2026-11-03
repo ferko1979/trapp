@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Solicitudes</string>
+    <string name="friends_tab_search">Buscar</string>
+    <string name="friends_mode_username">Por alcume</string>
+    <string name="friends_mode_id">Por ID / correo</string>
+    <string name="friends_hint_search_username">Buscar por alcume…</string>
+    <string name="friends_hint_search_id">ID de usuario ou enderezo de correo</string>
+    <string name="friends_action_find">Atopar</string>
+    <string name="friends_invite_title">Convida os teus contactos</string>
+    <string name="friends_invite_hint">Máis amigos = máis trampas que pór!</string>
+    <string name="friends_empty_hint">Convida os teus amigos ou atópaos polo alcume.</string>
+    <string name="friends_requests_empty_hint">As solicitudes de amizade que envíes ou recibas aparecerán aquí.</string>
+    <string name="friends_search_title">Atopar xogadores</string>
+    <string name="friends_search_hint">Escribe polo menos 2 caracteres dun alcume.</string>
+    <string name="friends_id_search_hint">Introduce un ID de xogador ou un correo e toca Atopar.</string>
+    <string name="friends_action_message">Mensaxe</string>
+    <string name="friends_request_incoming">Quere ser o teu amigo</string>
+    <string name="friends_since">Amigos desde %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Comezar unha conversa</string>
+    <string name="friends_sheet_hint">Buscar amigos…</string>
+    <string name="friends_sheet_empty_hint">Engade amigos para comezar a chatear.</string>
+    <string name="invite_title">Convidar amigos</string>
+    <string name="invite_hero_title">Pon trampas. Atrapa amigos.</string>
+    <string name="invite_hero_sub">Convida os teus amigos a unirse a TRAPP</string>
+    <string name="invite_code_label">O teu código de convite</string>
+    <string name="invite_code_copied">Código de convite copiado</string>
+    <string name="invite_preview_label">Vista previa da mensaxe</string>
+    <string name="invite_share_cta">Compartir convite</string>
+    <string name="invite_send_via">Enviar por</string>
+    <string name="invite_privacy_note">TRAPP nunca le os teus contactos — ti escolles o destinatario na app coa que compartes.</string>
+    <string name="invite_ch_email">Correo</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d amigo</item>
+        <item quantity="other">%d amigos</item>
+    </plurals>
+</resources>

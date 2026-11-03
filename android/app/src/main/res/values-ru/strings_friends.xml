@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Запросы</string>
+    <string name="friends_tab_search">Поиск</string>
+    <string name="friends_mode_username">По нику</string>
+    <string name="friends_mode_id">По ID / e-mail</string>
+    <string name="friends_hint_search_username">Поиск по нику…</string>
+    <string name="friends_hint_search_id">ID пользователя или e-mail</string>
+    <string name="friends_action_find">Найти</string>
+    <string name="friends_invite_title">Пригласи контакты</string>
+    <string name="friends_invite_hint">Больше друзей — больше ловушек!</string>
+    <string name="friends_empty_hint">Пригласи друзей или найди их по нику.</string>
+    <string name="friends_requests_empty_hint">Здесь появятся отправленные и полученные запросы в друзья.</string>
+    <string name="friends_search_title">Найти игроков</string>
+    <string name="friends_search_hint">Введи хотя бы 2 символа ника.</string>
+    <string name="friends_id_search_hint">Введи ID игрока или e-mail и нажми «Найти».</string>
+    <string name="friends_action_message">Написать</string>
+    <string name="friends_request_incoming">Хочет с тобой дружить</string>
+    <string name="friends_since">Друзья с %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Начать разговор</string>
+    <string name="friends_sheet_hint">Поиск друзей…</string>
+    <string name="friends_sheet_empty_hint">Добавь друзей, чтобы общаться.</string>
+    <string name="invite_title">Пригласить друзей</string>
+    <string name="invite_hero_title">Ставь ловушки. Лови друзей.</string>
+    <string name="invite_hero_sub">Пригласи друзей в TRAPP</string>
+    <string name="invite_code_label">Твой код приглашения</string>
+    <string name="invite_code_copied">Код приглашения скопирован</string>
+    <string name="invite_preview_label">Предпросмотр сообщения</string>
+    <string name="invite_share_cta">Поделиться приглашением</string>
+    <string name="invite_send_via">Отправить через</string>
+    <string name="invite_privacy_note">TRAPP никогда не читает твои контакты — получателя ты выбираешь в приложении, через которое делишься.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d друг</item>
+        <item quantity="few">%d друга</item>
+        <item quantity="many">%d друзей</item>
+        <item quantity="other">%d друга</item>
+    </plurals>
+</resources>

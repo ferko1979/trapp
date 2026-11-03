@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Kvietimai</string>
+    <string name="friends_tab_search">Paieška</string>
+    <string name="friends_mode_username">Pagal vardą</string>
+    <string name="friends_mode_id">Pagal ID / el. paštą</string>
+    <string name="friends_hint_search_username">Ieškoti pagal naudotojo vardą…</string>
+    <string name="friends_hint_search_id">Naudotojo ID arba el. pašto adresas</string>
+    <string name="friends_action_find">Rasti</string>
+    <string name="friends_invite_title">Pakviesk savo kontaktus</string>
+    <string name="friends_invite_hint">Daugiau draugų = daugiau spąstų!</string>
+    <string name="friends_empty_hint">Pakviesk draugų arba rask juos pagal naudotojo vardą.</string>
+    <string name="friends_requests_empty_hint">Čia bus rodomi tavo išsiųsti ir gauti draugystės kvietimai.</string>
+    <string name="friends_search_title">Rasti žaidėjų</string>
+    <string name="friends_search_hint">Įvesk bent 2 naudotojo vardo simbolius.</string>
+    <string name="friends_id_search_hint">Įvesk žaidėjo ID arba el. pašto adresą ir bakstelėk „Rasti“.</string>
+    <string name="friends_action_message">Žinutė</string>
+    <string name="friends_request_incoming">Nori būti tavo draugas</string>
+    <string name="friends_since">Draugai nuo %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Pradėti pokalbį</string>
+    <string name="friends_sheet_hint">Ieškoti draugų…</string>
+    <string name="friends_sheet_empty_hint">Pridėk draugų, kad galėtum kalbėtis.</string>
+    <string name="invite_title">Kviesti draugus</string>
+    <string name="invite_hero_title">Dėk spąstus. Gaudyk draugus.</string>
+    <string name="invite_hero_sub">Pakviesk draugus prisijungti prie TRAPP</string>
+    <string name="invite_code_label">Tavo kvietimo kodas</string>
+    <string name="invite_code_copied">Kvietimo kodas nukopijuotas</string>
+    <string name="invite_preview_label">Žinutės peržiūra</string>
+    <string name="invite_share_cta">Dalintis kvietimu</string>
+    <string name="invite_send_via">Siųsti per</string>
+    <string name="invite_privacy_note">TRAPP niekada neskaito tavo kontaktų — gavėją pasirenki programėlėje, per kurią dalijiesi.</string>
+    <string name="invite_ch_email">El. paštas</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d draugas</item>
+        <item quantity="few">%d draugai</item>
+        <item quantity="many">%d draugo</item>
+        <item quantity="other">%d draugų</item>
+    </plurals>
+</resources>

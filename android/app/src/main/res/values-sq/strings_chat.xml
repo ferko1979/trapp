@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Kërko biseda…</string>
+    <string name="chat_empty_hint">Prek + për t\'i dërguar mesazh një miku.</string>
+    <string name="chat_no_results">Asnjë bisedë nuk përputhet me kërkimin.</string>
+    <string name="chat_today">Sot</string>
+    <string name="chat_yesterday">Dje</string>
+    <string name="chat_sending">Po dërgohet…</string>
+    <string name="chat_thread_empty">Përshëndete %1$s!</string>
+    <string name="chat_thread_empty_hint">Mesazhet e tua do të shfaqen këtu.</string>
+    <string name="chat_direct_subtitle">Mesazh i drejtpërdrejtë</string>
+    <string name="chat_title_fallback">Bisedë</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d bisedë</item>
+        <item quantity="other">%d biseda</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d i palexuar</item>
+        <item quantity="other">%d të palexuara</item>
+    </plurals>
+</resources>

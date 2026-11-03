@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Σάκος παγίδων</string>
+    <string name="bag_weight">Βάρος</string>
+    <string name="bag_selected">Επιλεγμένη</string>
+    <string name="bag_hint_select">Πάτα μια παγίδα για επιλογή — το ΤΟΠΟΘΕΤΗΣΗ την οπλίζει</string>
+    <string name="bag_section_traps">Οι παγίδες σου</string>
+    <string name="bag_refill_in">+1 σε %1$s</string>
+    <string name="bag_status_full">Γεμάτος</string>
+    <string name="bag_about_weight">Σχετικά με το βάρος σάκου</string>
+    <string name="bag_trap_details">Λεπτομέρειες παγίδας</string>
+    <string name="bag_in_bag">Στον σάκο</string>
+    <string name="bag_refill">Αναπλήρωση</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d παγίδα έτοιμη</item>
+        <item quantity="other">%d παγίδες έτοιμες</item>
+    </plurals>
+</resources>

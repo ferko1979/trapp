@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Sök konversationer…</string>
+    <string name="chat_empty_hint">Tryck på + för att skicka ett meddelande till en vän.</string>
+    <string name="chat_no_results">Inga konversationer matchar din sökning.</string>
+    <string name="chat_today">Idag</string>
+    <string name="chat_yesterday">Igår</string>
+    <string name="chat_sending">Skickar…</string>
+    <string name="chat_thread_empty">Säg hej till %1$s!</string>
+    <string name="chat_thread_empty_hint">Dina meddelanden visas här.</string>
+    <string name="chat_direct_subtitle">Direktmeddelande</string>
+    <string name="chat_title_fallback">Chatt</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d konversation</item>
+        <item quantity="other">%d konversationer</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d oläst</item>
+        <item quantity="other">%d olästa</item>
+    </plurals>
+</resources>

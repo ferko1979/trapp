@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Kutsed</string>
+    <string name="friends_tab_search">Otsing</string>
+    <string name="friends_mode_username">Kasutajanime järgi</string>
+    <string name="friends_mode_id">ID / e-posti järgi</string>
+    <string name="friends_hint_search_username">Otsi kasutajanime järgi…</string>
+    <string name="friends_hint_search_id">Kasutaja ID või e-posti aadress</string>
+    <string name="friends_action_find">Leia</string>
+    <string name="friends_invite_title">Kutsu oma kontakte</string>
+    <string name="friends_invite_hint">Rohkem sõpru = rohkem lõkse, mida seada!</string>
+    <string name="friends_empty_hint">Kutsu oma sõpru või leia nad kasutajanime järgi.</string>
+    <string name="friends_requests_empty_hint">Saadetud ja saadud sõbrakutsed ilmuvad siia.</string>
+    <string name="friends_search_title">Leia mängijaid</string>
+    <string name="friends_search_hint">Sisesta kasutajanimest vähemalt 2 märki.</string>
+    <string name="friends_id_search_hint">Sisesta mängija ID või e-posti aadress ja puuduta Leia.</string>
+    <string name="friends_action_message">Sõnum</string>
+    <string name="friends_request_incoming">Soovib sinu sõbraks saada</string>
+    <string name="friends_since">Sõbrad alates %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Alusta vestlust</string>
+    <string name="friends_sheet_hint">Otsi sõpru…</string>
+    <string name="friends_sheet_empty_hint">Vestlemiseks lisa sõpru.</string>
+    <string name="invite_title">Kutsu sõpru</string>
+    <string name="invite_hero_title">Sea lõkse. Püüa sõpru.</string>
+    <string name="invite_hero_sub">Kutsu oma sõbrad TRAPPiga liituma</string>
+    <string name="invite_code_label">Sinu kutsekood</string>
+    <string name="invite_code_copied">Kutsekood kopeeritud</string>
+    <string name="invite_preview_label">Sõnumi eelvaade</string>
+    <string name="invite_share_cta">Jaga kutset</string>
+    <string name="invite_send_via">Saada kaudu</string>
+    <string name="invite_privacy_note">TRAPP ei loe kunagi sinu kontakte — saaja valid ise rakenduses, kuhu jagad.</string>
+    <string name="invite_ch_email">E-post</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d sõber</item>
+        <item quantity="other">%d sõpra</item>
+    </plurals>
+</resources>

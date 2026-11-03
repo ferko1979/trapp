@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Zaino trappole</string>
+    <string name="bag_weight">Peso</string>
+    <string name="bag_selected">Selezionata</string>
+    <string name="bag_hint_select">Tocca una trappola per sceglierla — PIAZZA la arma</string>
+    <string name="bag_section_traps">Le tue trappole</string>
+    <string name="bag_refill_in">+1 tra %1$s</string>
+    <string name="bag_status_full">Pieno</string>
+    <string name="bag_about_weight">Info sul peso dello zaino</string>
+    <string name="bag_trap_details">Dettagli trappola</string>
+    <string name="bag_in_bag">Nello zaino</string>
+    <string name="bag_refill">Ricarica</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d trappola pronta</item>
+        <item quantity="many">%d trappole pronte</item>
+        <item quantity="other">%d trappole pronte</item>
+    </plurals>
+</resources>

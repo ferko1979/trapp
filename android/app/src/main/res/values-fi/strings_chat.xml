@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Hae keskusteluja…</string>
+    <string name="chat_empty_hint">Napauta + lähettääksesi viestin kaverillesi.</string>
+    <string name="chat_no_results">Hakuasi vastaavia keskusteluja ei löytynyt.</string>
+    <string name="chat_today">Tänään</string>
+    <string name="chat_yesterday">Eilen</string>
+    <string name="chat_sending">Lähetetään…</string>
+    <string name="chat_thread_empty">Sano moi käyttäjälle %1$s!</string>
+    <string name="chat_thread_empty_hint">Viestisi näkyvät tässä.</string>
+    <string name="chat_direct_subtitle">Yksityisviesti</string>
+    <string name="chat_title_fallback">Chat</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d keskustelu</item>
+        <item quantity="other">%d keskustelua</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d lukematon</item>
+        <item quantity="other">%d lukematonta</item>
+    </plurals>
+</resources>

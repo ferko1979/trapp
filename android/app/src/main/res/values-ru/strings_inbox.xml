@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Центр сообщений</string>
+    <string name="inbox_subtitle">Сообщения и поддержка</string>
+    <string name="inbox_search_hint">Поиск сообщений…</string>
+    <string name="inbox_empty_messages">Сообщений пока нет</string>
+    <string name="inbox_empty_messages_hint">Начни разговор с кем-нибудь из друзей.</string>
+    <string name="inbox_no_results">Нет подходящих сообщений</string>
+    <string name="inbox_support_sender">Служба поддержки</string>
+    <string name="inbox_new_ticket_cta">Новое обращение</string>
+    <string name="inbox_new_ticket_cta_hint">Сообщи об ошибке или задай вопрос — наша команда ответит здесь.</string>
+    <string name="inbox_new_ticket_title">Напиши нам</string>
+    <string name="inbox_ticket_category">Категория</string>
+    <string name="inbox_ticket_message_hint">Опиши проблему…</string>
+    <string name="inbox_ticket_send">Отправить обращение</string>
+    <string name="inbox_support_empty_hint">Если что-то не работает, создай обращение — мы поможем.</string>
+    <string name="inbox_your_tickets">Твои обращения</string>
+    <string name="inbox_ticket_closed">Это обращение закрыто. Создай новое, если нужна помощь.</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Mála gaistí</string>
+    <string name="bag_weight">Meáchan</string>
+    <string name="bag_selected">Roghnaithe</string>
+    <string name="bag_hint_select">Tapáil gaiste chun é a roghnú — gníomhaíonn CUIR é</string>
+    <string name="bag_section_traps">Do ghaistí</string>
+    <string name="bag_refill_in">+1 i %1$s</string>
+    <string name="bag_status_full">Lán</string>
+    <string name="bag_about_weight">Faoi mheáchan an mhála</string>
+    <string name="bag_trap_details">Sonraí an ghaiste</string>
+    <string name="bag_in_bag">Sa mhála</string>
+    <string name="bag_refill">Athlíonadh</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d ghaiste réidh</item>
+        <item quantity="two">%d ghaiste réidh</item>
+        <item quantity="few">%d ghaiste réidh</item>
+        <item quantity="many">%d ngaiste réidh</item>
+        <item quantity="other">%d gaiste réidh</item>
+    </plurals>
+</resources>

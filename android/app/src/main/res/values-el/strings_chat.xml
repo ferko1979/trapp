@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Αναζήτηση συνομιλιών…</string>
+    <string name="chat_empty_hint">Πάτα + για να στείλεις μήνυμα σε έναν φίλο σου.</string>
+    <string name="chat_no_results">Καμία συνομιλία δεν ταιριάζει στην αναζήτηση.</string>
+    <string name="chat_today">Σήμερα</string>
+    <string name="chat_yesterday">Χθες</string>
+    <string name="chat_sending">Αποστολή…</string>
+    <string name="chat_thread_empty">Πες γεια στον/στην %1$s!</string>
+    <string name="chat_thread_empty_hint">Τα μηνύματά σου θα εμφανίζονται εδώ.</string>
+    <string name="chat_direct_subtitle">Άμεσο μήνυμα</string>
+    <string name="chat_title_fallback">Συνομιλία</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d συνομιλία</item>
+        <item quantity="other">%d συνομιλίες</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d μη αναγνωσμένο</item>
+        <item quantity="other">%d μη αναγνωσμένα</item>
+    </plurals>
+</resources>

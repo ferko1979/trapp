@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Център за съобщения</string>
+    <string name="inbox_subtitle">Съобщения и поддръжка</string>
+    <string name="inbox_search_hint">Търси съобщения…</string>
+    <string name="inbox_empty_messages">Все още няма съобщения</string>
+    <string name="inbox_empty_messages_hint">Започни разговор с някой от приятелите си.</string>
+    <string name="inbox_no_results">Няма съвпадащи съобщения</string>
+    <string name="inbox_support_sender">Екип по поддръжка</string>
+    <string name="inbox_new_ticket_cta">Нова заявка за поддръжка</string>
+    <string name="inbox_new_ticket_cta_hint">Съобщи за грешка или задай въпрос — екипът ни ще отговори тук.</string>
+    <string name="inbox_new_ticket_title">Пиши ни</string>
+    <string name="inbox_ticket_category">Категория</string>
+    <string name="inbox_ticket_message_hint">Опиши проблема си…</string>
+    <string name="inbox_ticket_send">Изпрати заявка</string>
+    <string name="inbox_support_empty_hint">Ако нещо не работи, отвори заявка и ще ти помогнем.</string>
+    <string name="inbox_your_tickets">Твоите заявки</string>
+    <string name="inbox_ticket_closed">Тази заявка е затворена. Отвори нова, ако ти трябва още помощ.</string>
+</resources>

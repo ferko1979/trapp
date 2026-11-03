@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">ПОСТАВИ · КАПАН · ХВАНИ</string>
+    <string name="maintenance_title">В процес на поддръжка</string>
+    <string name="maintenance_msg">В момента приложението е в поддръжка. Опитай отново по-късно.</string>
+    <string name="action_retry">Опитай пак</string>
+    <string name="alert_option_disassemble_title">🛠  Разглоби</string>
+    <string name="alert_option_avoid_title">🚶  Избегни</string>
+</resources>

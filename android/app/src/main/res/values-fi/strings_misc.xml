@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">ASETA · VIRITÄ · NAPPAA</string>
+    <string name="maintenance_title">Huoltotauko</string>
+    <string name="maintenance_msg">Sovellusta huolletaan parhaillaan. Yritä myöhemmin uudelleen.</string>
+    <string name="action_retry">Yritä uudelleen</string>
+    <string name="alert_option_disassemble_title">🛠  Pura</string>
+    <string name="alert_option_avoid_title">🚶  Väistä</string>
+</resources>

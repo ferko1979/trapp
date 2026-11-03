@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">PLASSER · FELLE · FANG</string>
+    <string name="maintenance_title">Under vedlikehold</string>
+    <string name="maintenance_msg">Appen er under vedlikehold. Prøv igjen senere.</string>
+    <string name="action_retry">Prøv igjen</string>
+    <string name="alert_option_disassemble_title">🛠  Demonter</string>
+    <string name="alert_option_avoid_title">🚶  Unngå</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">KUR · TUZAK · YAKALA</string>
+    <string name="maintenance_title">Bakımda</string>
+    <string name="maintenance_msg">Uygulama şu anda bakımda. Lütfen daha sonra tekrar dene.</string>
+    <string name="action_retry">Tekrar dene</string>
+    <string name="alert_option_disassemble_title">🛠  Sök</string>
+    <string name="alert_option_avoid_title">🚶  Kaçın</string>
+</resources>

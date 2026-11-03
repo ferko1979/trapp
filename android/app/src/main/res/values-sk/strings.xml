@@ -64,7 +64,7 @@
     <string name="msg_choose_handle">Vyberte si svoj jedinečný identifikátor</string>
     <string name="action_set">Nastaviť</string>
     <string name="msg_username_set">Používateľské meno nastavené na @%1$s</string>
-    <string name="handle_format">@%1$s</string>
+    <string name="handle_format">\@%1$s</string>
     <string name="set_username">Nastaviť používateľské meno</string>
     <string name="error_location_denied">Prístup k polohe bol odmietnutý</string>
     <string name="error_game_inactive">Hra momentálne nie je hrateľná</string>
@@ -999,4 +999,15 @@
         <item quantity="many">%d doplnenia tašky</item>
         <item quantity="other">%d doplnení tašky</item>
     </plurals>
+    <string name="error_too_many_traps_nearby">Tu už máš pasce príliš blízko seba. Rozmiestni ich viac od seba!</string>
+    <string name="error_too_far_to_disassemble_detail">Priblíž sa o %1$dm, aby si mohol rozobrať.</string>
+    <string name="lang_he">עברית (Hebrejčina)</string>
+    <string name="action_awards_cards">OCENENIA A KARTY</string>
+    <string name="warning_return_to_placement">Priblíž sa o %1$dm! Zostáva %2$ds</string>
+    <string name="title_update_required">Vyžaduje sa aktualizácia</string>
+    <string name="msg_update_required">Na pokračovanie v hre je potrebná nová verzia Trap. Aktualizuj aplikáciu v Play Store.</string>
+    <string name="title_update_available">Dostupná aktualizácia</string>
+    <string name="msg_update_available">Je dostupná novšia verzia Trap. Aktualizuj teraz a získaj najnovšie funkcie a vylepšenia.</string>
+    <string name="action_update_now">Aktualizovať teraz</string>
+    <string name="action_later">Neskôr</string>
 </resources>

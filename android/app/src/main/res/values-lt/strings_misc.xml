@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">PADĖK · SPĄSTAI · SUGAUK</string>
+    <string name="maintenance_title">Vyksta techninė priežiūra</string>
+    <string name="maintenance_msg">Šiuo metu programėlėje vyksta techninė priežiūra. Bandyk vėliau.</string>
+    <string name="action_retry">Bandyti dar</string>
+    <string name="alert_option_disassemble_title">🛠  Išardyti</string>
+    <string name="alert_option_avoid_title">🚶  Apeiti</string>
+</resources>

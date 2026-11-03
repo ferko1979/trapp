@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Sõnumikeskus</string>
+    <string name="inbox_subtitle">Sõnumid ja tugi</string>
+    <string name="inbox_search_hint">Otsi sõnumeid…</string>
+    <string name="inbox_empty_messages">Sõnumeid veel pole</string>
+    <string name="inbox_empty_messages_hint">Alusta vestlust mõne oma sõbraga.</string>
+    <string name="inbox_no_results">Sobivaid sõnumeid pole</string>
+    <string name="inbox_support_sender">Tugimeeskond</string>
+    <string name="inbox_new_ticket_cta">Uus tugipöördumine</string>
+    <string name="inbox_new_ticket_cta_hint">Teata veast või esita küsimus — meie meeskond vastab siin.</string>
+    <string name="inbox_new_ticket_title">Saada meile sõnum</string>
+    <string name="inbox_ticket_category">Kategooria</string>
+    <string name="inbox_ticket_message_hint">Kirjelda oma probleemi…</string>
+    <string name="inbox_ticket_send">Saada pöördumine</string>
+    <string name="inbox_support_empty_hint">Kui miski ei tööta, ava pöördumine ja me aitame.</string>
+    <string name="inbox_your_tickets">Sinu pöördumised</string>
+    <string name="inbox_ticket_closed">See pöördumine on suletud. Kui vajad veel abi, ava uus pöördumine.</string>
+</resources>

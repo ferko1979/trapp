@@ -64,7 +64,7 @@
     <string name="msg_choose_handle">Válassz egy egyedi azonosítót</string>
     <string name="action_set">Beállítás</string>
     <string name="msg_username_set">Felhasználónév beállítva: @%1$s</string>
-    <string name="handle_format">@%1$s</string>
+    <string name="handle_format">\@%1$s</string>
     <string name="set_username">Felhasználónév megadása</string>
     <string name="error_location_denied">Helymeghatározás megtagadva</string>
     <string name="error_game_inactive">A játék jelenleg nem aktív</string>
@@ -183,7 +183,7 @@
     <string name="default_display_name">Játékos</string>
     <string name="admin_suffix"> Admin</string>
     <string name="msg_not_found">nem található.</string>
-    <string name="error_user_not_found_named">@%1$s felhasználó nem található.</string>
+    <string name="error_user_not_found_named">\@%1$s felhasználó nem található.</string>
     <string name="msg_friend_request_sent_to">Barátfelkérés elküldve neki: @%1$s</string>
     <string name="distance_m_away">%1$d m távolságra</string>
     <string name="distance_km_away">%1$s km távolságra</string>
@@ -388,7 +388,7 @@
     <string name="msg_send_to_contacts_title">Küldés %1$d névjegynek?</string>
     <string name="msg_send_to_contacts_body">Ez minden névjegyhez megnyitja az SMS-alkalmazást.\n\nÜzenet:\n\"%1$s\"</string>
     <string name="action_send_sms">Küldés</string>
-    <string name="msg_sent_to_next_contact">Elküldve: %1$s. Érintsd meg a „Küldés" gombot a következő névjegyhez.</string>
+    <string name="msg_sent_to_next_contact">Elküldve: %1$s. Érintsd meg a „Küldés\" gombot a következő névjegyhez.</string>
     <string name="action_invite_via">Meghívás…</string>
 
     <!-- ── Email Change Dialog ── -->
@@ -989,4 +989,15 @@
         <item quantity="one">%d táska-feltöltés</item>
         <item quantity="other">%d táska-feltöltés</item>
     </plurals>
+    <string name="error_too_many_traps_nearby">Itt már túl közel vannak egymáshoz a csapdáid. Tedd őket távolabb!</string>
+    <string name="error_too_far_to_disassemble_detail">Menj %1$dm-rel közelebb a leszedéshez.</string>
+    <string name="lang_he">עברית (Héber)</string>
+    <string name="action_awards_cards">DÍJAK ÉS KÁRTYÁK</string>
+    <string name="warning_return_to_placement">Menj %1$dm-rel közelebb! Még %2$ds</string>
+    <string name="title_update_required">Frissítés szükséges</string>
+    <string name="msg_update_required">A játék folytatásához a Trap új verziója szükséges. Frissítsd az appot a Play Store-ból.</string>
+    <string name="title_update_available">Frissítés elérhető</string>
+    <string name="msg_update_available">Elérhető a Trap újabb verziója. Frissíts most a legújabb funkciókért és fejlesztésekért.</string>
+    <string name="action_update_now">Frissítés most</string>
+    <string name="action_later">Később</string>
 </resources>

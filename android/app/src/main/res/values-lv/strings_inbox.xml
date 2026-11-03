@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Ziņu centrs</string>
+    <string name="inbox_subtitle">Ziņas un atbalsts</string>
+    <string name="inbox_search_hint">Meklēt ziņas…</string>
+    <string name="inbox_empty_messages">Vēl nav ziņu</string>
+    <string name="inbox_empty_messages_hint">Sāc sarunu ar kādu no saviem draugiem.</string>
+    <string name="inbox_no_results">Nav atbilstošu ziņu</string>
+    <string name="inbox_support_sender">Atbalsta komanda</string>
+    <string name="inbox_new_ticket_cta">Jauns atbalsta pieteikums</string>
+    <string name="inbox_new_ticket_cta_hint">Ziņo par kļūdu vai uzdod jautājumu — mūsu komanda atbildēs šeit.</string>
+    <string name="inbox_new_ticket_title">Raksti mums</string>
+    <string name="inbox_ticket_category">Kategorija</string>
+    <string name="inbox_ticket_message_hint">Apraksti savu problēmu…</string>
+    <string name="inbox_ticket_send">Sūtīt pieteikumu</string>
+    <string name="inbox_support_empty_hint">Ja kaut kas nedarbojas, izveido pieteikumu, un mēs palīdzēsim.</string>
+    <string name="inbox_your_tickets">Tavi pieteikumi</string>
+    <string name="inbox_ticket_closed">Šis pieteikums ir slēgts. Izveido jaunu, ja vajag papildu palīdzību.</string>
+</resources>

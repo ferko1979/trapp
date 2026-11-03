@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Ieškoti pokalbių…</string>
+    <string name="chat_empty_hint">Bakstelėk +, kad parašytum kuriam nors draugui.</string>
+    <string name="chat_no_results">Pagal paiešką pokalbių nerasta.</string>
+    <string name="chat_today">Šiandien</string>
+    <string name="chat_yesterday">Vakar</string>
+    <string name="chat_sending">Siunčiama…</string>
+    <string name="chat_thread_empty">Pasisveikink su %1$s!</string>
+    <string name="chat_thread_empty_hint">Tavo žinutės bus rodomos čia.</string>
+    <string name="chat_direct_subtitle">Asmeninė žinutė</string>
+    <string name="chat_title_fallback">Pokalbis</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d pokalbis</item>
+        <item quantity="few">%d pokalbiai</item>
+        <item quantity="many">%d pokalbio</item>
+        <item quantity="other">%d pokalbių</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d neperskaityta</item>
+        <item quantity="few">%d neperskaitytos</item>
+        <item quantity="many">%d neperskaitytos</item>
+        <item quantity="other">%d neperskaitytų</item>
+    </plurals>
+</resources>

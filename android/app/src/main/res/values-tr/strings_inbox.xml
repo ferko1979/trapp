@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Mesaj merkezi</string>
+    <string name="inbox_subtitle">Mesajlar ve destek</string>
+    <string name="inbox_search_hint">Mesajlarda ara…</string>
+    <string name="inbox_empty_messages">Henüz mesaj yok</string>
+    <string name="inbox_empty_messages_hint">Arkadaşlarından biriyle bir sohbet başlat.</string>
+    <string name="inbox_no_results">Eşleşen mesaj yok</string>
+    <string name="inbox_support_sender">Destek ekibi</string>
+    <string name="inbox_new_ticket_cta">Yeni destek talebi</string>
+    <string name="inbox_new_ticket_cta_hint">Bir hata bildir ya da soru sor — ekibimiz burada yanıt verecek.</string>
+    <string name="inbox_new_ticket_title">Bize mesaj gönder</string>
+    <string name="inbox_ticket_category">Kategori</string>
+    <string name="inbox_ticket_message_hint">Sorununu anlat…</string>
+    <string name="inbox_ticket_send">Talebi gönder</string>
+    <string name="inbox_support_empty_hint">Bir şey çalışmıyorsa bir talep aç, yardımcı olalım.</string>
+    <string name="inbox_your_tickets">Taleplerin</string>
+    <string name="inbox_ticket_closed">Bu talep kapatıldı. Daha fazla yardıma ihtiyacın olursa yeni bir talep aç.</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Spąstų krepšys</string>
+    <string name="bag_weight">Svoris</string>
+    <string name="bag_selected">Pasirinkta</string>
+    <string name="bag_hint_select">Bakstelėk spąstus, kad pasirinktum — PADĖTI juos užtaiso</string>
+    <string name="bag_section_traps">Tavo spąstai</string>
+    <string name="bag_refill_in">+1 po %1$s</string>
+    <string name="bag_status_full">Pilnas</string>
+    <string name="bag_about_weight">Apie krepšio svorį</string>
+    <string name="bag_trap_details">Spąstų informacija</string>
+    <string name="bag_in_bag">Krepšyje</string>
+    <string name="bag_refill">Papildymas</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">Paruošta spąstų: %d</item>
+        <item quantity="few">Paruošta spąstų: %d</item>
+        <item quantity="many">Paruošta spąstų: %d</item>
+        <item quantity="other">Paruošta spąstų: %d</item>
+    </plurals>
+</resources>

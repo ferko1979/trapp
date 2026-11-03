@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Bossa de paranys</string>
+    <string name="bag_weight">Pes</string>
+    <string name="bag_selected">Seleccionat</string>
+    <string name="bag_hint_select">Toca un parany per seleccionar-lo — COL·LOCA l\'arma</string>
+    <string name="bag_section_traps">Els teus paranys</string>
+    <string name="bag_refill_in">+1 en %1$s</string>
+    <string name="bag_status_full">Plena</string>
+    <string name="bag_about_weight">Sobre el pes de la bossa</string>
+    <string name="bag_trap_details">Detalls del parany</string>
+    <string name="bag_in_bag">A la bossa</string>
+    <string name="bag_refill">Recàrrega</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d parany a punt</item>
+        <item quantity="other">%d paranys a punt</item>
+    </plurals>
+</resources>

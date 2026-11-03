@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Tuzak çantası</string>
+    <string name="bag_weight">Ağırlık</string>
+    <string name="bag_selected">Seçili</string>
+    <string name="bag_hint_select">Seçmek için bir tuzağa dokun — KUR ile kurulur</string>
+    <string name="bag_section_traps">Tuzakların</string>
+    <string name="bag_refill_in">%1$s içinde +1</string>
+    <string name="bag_status_full">Dolu</string>
+    <string name="bag_about_weight">Çanta ağırlığı hakkında</string>
+    <string name="bag_trap_details">Tuzak ayrıntıları</string>
+    <string name="bag_in_bag">Çantada</string>
+    <string name="bag_refill">Dolum</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d tuzak hazır</item>
+        <item quantity="other">%d tuzak hazır</item>
+    </plurals>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Leita í samtölum…</string>
+    <string name="chat_empty_hint">Ýttu á + til að senda einum vina þinna skilaboð.</string>
+    <string name="chat_no_results">Engin samtöl passa við leitina.</string>
+    <string name="chat_today">Í dag</string>
+    <string name="chat_yesterday">Í gær</string>
+    <string name="chat_sending">Sendi…</string>
+    <string name="chat_thread_empty">Heilsaðu %1$s!</string>
+    <string name="chat_thread_empty_hint">Skilaboðin þín birtast hér.</string>
+    <string name="chat_direct_subtitle">Bein skilaboð</string>
+    <string name="chat_title_fallback">Spjall</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d samtal</item>
+        <item quantity="other">%d samtöl</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d ólesið</item>
+        <item quantity="other">%d ólesin</item>
+    </plurals>
+</resources>

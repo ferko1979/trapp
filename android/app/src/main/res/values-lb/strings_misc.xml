@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">SETZEN · FÄNKEN · GEWANNEN</string>
+    <string name="maintenance_title">Am Ënnerhalt</string>
+    <string name="maintenance_msg">D’App gëtt grad ënnerhalen. Probéier et spéider nach eng Kéier.</string>
+    <string name="action_retry">Nach eng Kéier</string>
+    <string name="alert_option_disassemble_title">🛠  Ofbauen</string>
+    <string name="alert_option_avoid_title">🚶  Ausweichen</string>
+</resources>

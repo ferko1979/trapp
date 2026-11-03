@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="chat_search_hint">Meklēt sarunas…</string>
+    <string name="chat_empty_hint">Pieskaries +, lai nosūtītu ziņu kādam no draugiem.</string>
+    <string name="chat_no_results">Neviena saruna neatbilst meklējumam.</string>
+    <string name="chat_today">Šodien</string>
+    <string name="chat_yesterday">Vakar</string>
+    <string name="chat_sending">Sūta…</string>
+    <string name="chat_thread_empty">Sasveicinies ar %1$s!</string>
+    <string name="chat_thread_empty_hint">Tavas ziņas parādīsies šeit.</string>
+    <string name="chat_direct_subtitle">Privāta ziņa</string>
+    <string name="chat_title_fallback">Tērzēšana</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="zero">%d sarunas</item>
+        <item quantity="one">%d saruna</item>
+        <item quantity="other">%d sarunas</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="zero">%d nelasītas</item>
+        <item quantity="one">%d nelasīta</item>
+        <item quantity="other">%d nelasītas</item>
+    </plurals>
+</resources>

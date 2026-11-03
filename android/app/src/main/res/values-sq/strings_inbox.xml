@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Qendra e mesazheve</string>
+    <string name="inbox_subtitle">Mesazhe dhe mbështetje</string>
+    <string name="inbox_search_hint">Kërko mesazhe…</string>
+    <string name="inbox_empty_messages">Ende pa mesazhe</string>
+    <string name="inbox_empty_messages_hint">Nis një bisedë me një nga miqtë e tu.</string>
+    <string name="inbox_no_results">Asnjë mesazh që përputhet</string>
+    <string name="inbox_support_sender">Ekipi i mbështetjes</string>
+    <string name="inbox_new_ticket_cta">Biletë e re mbështetjeje</string>
+    <string name="inbox_new_ticket_cta_hint">Raporto një gabim ose bëj një pyetje — ekipi ynë do të përgjigjet këtu.</string>
+    <string name="inbox_new_ticket_title">Na dërgo një mesazh</string>
+    <string name="inbox_ticket_category">Kategoria</string>
+    <string name="inbox_ticket_message_hint">Përshkruaj problemin…</string>
+    <string name="inbox_ticket_send">Dërgo biletën</string>
+    <string name="inbox_support_empty_hint">Nëse diçka nuk funksionon, hap një biletë dhe do të të ndihmojmë.</string>
+    <string name="inbox_your_tickets">Biletat e tua</string>
+    <string name="inbox_ticket_closed">Kjo biletë është mbyllur. Hap një biletë të re nëse të duhet ndihmë tjetër.</string>
+</resources>

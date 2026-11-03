@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">POSA · PARANY · ATRAPA</string>
+    <string name="maintenance_title">En manteniment</string>
+    <string name="maintenance_msg">L\'app està en manteniment. Torna-ho a provar més tard.</string>
+    <string name="action_retry">Torna-ho a provar</string>
+    <string name="alert_option_disassemble_title">🛠  Desmunta</string>
+    <string name="alert_option_avoid_title">🚶  Esquiva</string>
+</resources>

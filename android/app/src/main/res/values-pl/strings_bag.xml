@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Torba z pułapkami</string>
+    <string name="bag_weight">Waga</string>
+    <string name="bag_selected">Wybrana</string>
+    <string name="bag_hint_select">Dotknij pułapki, aby ją wybrać — POSTAW ją uzbraja</string>
+    <string name="bag_section_traps">Twoje pułapki</string>
+    <string name="bag_refill_in">+1 za %1$s</string>
+    <string name="bag_status_full">Pełna</string>
+    <string name="bag_about_weight">O wadze torby</string>
+    <string name="bag_trap_details">Szczegóły pułapki</string>
+    <string name="bag_in_bag">W torbie</string>
+    <string name="bag_refill">Uzupełnij</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d pułapka gotowa</item>
+        <item quantity="few">%d pułapki gotowe</item>
+        <item quantity="many">%d pułapek gotowych</item>
+        <item quantity="other">%d pułapki gotowe</item>
+    </plurals>
+</resources>

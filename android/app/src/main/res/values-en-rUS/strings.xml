@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- US English: overrides only strings whose spelling differs from the base (UK) English. -->
+<resources>
+    <string name="alert_option_disassemble">Get within %1$dm → hold to reveal → hold to disassemble.\nLeave range for &gt;%2$ds = canceled. Disassembly time shown after reveal.</string>
+    <string name="alert_cancelling_in">⏳ Canceling in %1$ds…</string>
+    <string name="sub_cancelled_toast">Subscription canceled. Access continues until period end.</string>
+    <string name="sub_footer_note">Cancel at any time. No charge if canceled before the billing date. Prices shown in package currency.</string>
+    <string name="sub_status_cancelled">⏸ Canceled</string>
+    <string name="sub_cancelling">Canceling…</string>
+    <string name="sub_cancelled_until">Subscription canceled — access continues until %1$s.</string>
+</resources>

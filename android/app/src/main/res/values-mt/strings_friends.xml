@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Talbiet</string>
+    <string name="friends_tab_search">Fittex</string>
+    <string name="friends_mode_username">Bl-isem tal-utent</string>
+    <string name="friends_mode_id">Bl-ID / e-mail</string>
+    <string name="friends_hint_search_username">Fittex bl-isem tal-utent…</string>
+    <string name="friends_hint_search_id">ID tal-utent jew indirizz e-mail</string>
+    <string name="friends_action_find">Sib</string>
+    <string name="friends_invite_title">Stieden il-kuntatti tiegħek</string>
+    <string name="friends_invite_hint">Aktar ħbieb = aktar nases x’tpoġġi!</string>
+    <string name="friends_empty_hint">Stieden lil sħabek jew sibhom bl-isem tal-utent.</string>
+    <string name="friends_requests_empty_hint">It-talbiet ta’ ħbiberija li tibgħat jew tirċievi se jidhru hawn.</string>
+    <string name="friends_search_title">Sib plejers</string>
+    <string name="friends_search_hint">Ikteb mill-inqas 2 karattri ta’ isem tal-utent.</string>
+    <string name="friends_id_search_hint">Daħħal ID ta’ plejer jew indirizz e-mail, imbagħad agħfas Sib.</string>
+    <string name="friends_action_message">Messaġġ</string>
+    <string name="friends_request_incoming">Irid ikun ħabib tiegħek</string>
+    <string name="friends_since">Ħbieb minn %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Ibda konversazzjoni</string>
+    <string name="friends_sheet_hint">Fittex ħbieb…</string>
+    <string name="friends_sheet_empty_hint">Żid ħbieb biex tibda tiċċettja.</string>
+    <string name="invite_title">Stieden ħbieb</string>
+    <string name="invite_hero_title">Poġġi nases. Aqbad ħbieb.</string>
+    <string name="invite_hero_sub">Stieden lil sħabek jingħaqdu ma’ TRAPP</string>
+    <string name="invite_code_label">Il-kodiċi ta’ stedina tiegħek</string>
+    <string name="invite_code_copied">Kodiċi ta’ stedina kkupjat</string>
+    <string name="invite_preview_label">Previżjoni tal-messaġġ</string>
+    <string name="invite_share_cta">Aqsam l-istedina</string>
+    <string name="invite_send_via">Ibgħat permezz ta’</string>
+    <string name="invite_privacy_note">TRAPP qatt ma jaqra l-kuntatti tiegħek — int tagħżel lil min tibgħat fl-app li taqsam magħha.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d ħabib</item>
+        <item quantity="two">%d ħbieb</item>
+        <item quantity="few">%d ħbieb</item>
+        <item quantity="many">%d-il ħabib</item>
+        <item quantity="other">%d ħabib</item>
+    </plurals>
+</resources>

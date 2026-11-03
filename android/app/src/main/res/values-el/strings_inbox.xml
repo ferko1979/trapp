@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="inbox_title">Κέντρο μηνυμάτων</string>
+    <string name="inbox_subtitle">Μηνύματα και υποστήριξη</string>
+    <string name="inbox_search_hint">Αναζήτηση μηνυμάτων…</string>
+    <string name="inbox_empty_messages">Κανένα μήνυμα ακόμα</string>
+    <string name="inbox_empty_messages_hint">Ξεκίνα συνομιλία με έναν φίλο σου.</string>
+    <string name="inbox_no_results">Κανένα μήνυμα δεν ταιριάζει</string>
+    <string name="inbox_support_sender">Ομάδα υποστήριξης</string>
+    <string name="inbox_new_ticket_cta">Νέο αίτημα υποστήριξης</string>
+    <string name="inbox_new_ticket_cta_hint">Ανέφερε ένα σφάλμα ή κάνε μια ερώτηση — η ομάδα μας θα απαντήσει εδώ.</string>
+    <string name="inbox_new_ticket_title">Στείλε μας μήνυμα</string>
+    <string name="inbox_ticket_category">Κατηγορία</string>
+    <string name="inbox_ticket_message_hint">Περίγραψε το πρόβλημά σου…</string>
+    <string name="inbox_ticket_send">Αποστολή αιτήματος</string>
+    <string name="inbox_support_empty_hint">Αν κάτι δεν λειτουργεί, άνοιξε ένα αίτημα και θα σε βοηθήσουμε.</string>
+    <string name="inbox_your_tickets">Τα αιτήματά σου</string>
+    <string name="inbox_ticket_closed">Αυτό το αίτημα έκλεισε. Άνοιξε νέο αν χρειάζεσαι κι άλλη βοήθεια.</string>
+</resources>

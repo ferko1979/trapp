@@ -64,7 +64,7 @@
     <string name="msg_choose_handle">Wählen Sie Ihr eindeutiges Kürzel</string>
     <string name="action_set">Festlegen</string>
     <string name="msg_username_set">Benutzername auf @%1$s festgelegt</string>
-    <string name="handle_format">@%1$s</string>
+    <string name="handle_format">\@%1$s</string>
     <string name="set_username">Benutzername festlegen</string>
     <string name="error_location_denied">Standortberechtigung verweigert</string>
     <string name="error_game_inactive">Das Spiel ist derzeit nicht spielbar</string>
@@ -388,7 +388,7 @@
     <string name="msg_send_to_contacts_title">An %1$d Kontakte senden?</string>
     <string name="msg_send_to_contacts_body">Dadurch wird die SMS-App für jeden Kontakt geöffnet.\n\nNachricht:\n\"%1$s\"</string>
     <string name="action_send_sms">Senden</string>
-    <string name="msg_sent_to_next_contact">Gesendet an %1$s. Tippe erneut auf „Senden" für den nächsten Kontakt.</string>
+    <string name="msg_sent_to_next_contact">Gesendet an %1$s. Tippe erneut auf „Senden\" für den nächsten Kontakt.</string>
     <string name="action_invite_via">Einladen über…</string>
 
     <!-- ── Settings dialog ── -->
@@ -977,4 +977,15 @@
         <item quantity="one">%d Taschenauffüllung</item>
         <item quantity="other">%d Taschenauffüllungen</item>
     </plurals>
+    <string name="error_too_many_traps_nearby">Du hast hier schon Fallen zu dicht beieinander. Verteil sie mehr!</string>
+    <string name="error_too_far_to_disassemble_detail">Geh %1$dm näher heran, um zu demontieren.</string>
+    <string name="lang_he">עברית (Hebräisch)</string>
+    <string name="action_awards_cards">AUSZEICHNUNGEN &amp; KARTEN</string>
+    <string name="warning_return_to_placement">Geh %1$dm näher! Noch %2$ds</string>
+    <string name="title_update_required">Update erforderlich</string>
+    <string name="msg_update_required">Um weiterzuspielen, brauchst du eine neue Version von Trap. Bitte aktualisiere die App im Play Store.</string>
+    <string name="title_update_available">Update verfügbar</string>
+    <string name="msg_update_available">Eine neuere Version von Trap ist verfügbar. Jetzt aktualisieren für die neuesten Funktionen und Verbesserungen.</string>
+    <string name="action_update_now">Jetzt aktualisieren</string>
+    <string name="action_later">Später</string>
 </resources>

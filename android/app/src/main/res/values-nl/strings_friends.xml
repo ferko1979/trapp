@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Verzoeken</string>
+    <string name="friends_tab_search">Zoeken</string>
+    <string name="friends_mode_username">Op gebruikersnaam</string>
+    <string name="friends_mode_id">Op ID / e-mail</string>
+    <string name="friends_hint_search_username">Zoek op gebruikersnaam…</string>
+    <string name="friends_hint_search_id">Gebruikers-ID of e-mailadres</string>
+    <string name="friends_action_find">Zoeken</string>
+    <string name="friends_invite_title">Nodig je contacten uit</string>
+    <string name="friends_invite_hint">Meer vrienden = meer vallen om te zetten!</string>
+    <string name="friends_empty_hint">Nodig je vrienden uit of zoek ze op gebruikersnaam.</string>
+    <string name="friends_requests_empty_hint">Vriendschapsverzoeken die je stuurt of krijgt, verschijnen hier.</string>
+    <string name="friends_search_title">Spelers zoeken</string>
+    <string name="friends_search_hint">Typ minstens 2 tekens van een gebruikersnaam.</string>
+    <string name="friends_id_search_hint">Vul een speler-ID of e-mailadres in en tik op Zoeken.</string>
+    <string name="friends_action_message">Bericht</string>
+    <string name="friends_request_incoming">Wil je vriend worden</string>
+    <string name="friends_since">Vrienden sinds %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Begin een gesprek</string>
+    <string name="friends_sheet_hint">Vrienden zoeken…</string>
+    <string name="friends_sheet_empty_hint">Voeg vrienden toe om te chatten.</string>
+    <string name="invite_title">Vrienden uitnodigen</string>
+    <string name="invite_hero_title">Zet vallen. Vang vrienden.</string>
+    <string name="invite_hero_sub">Nodig je vrienden uit voor TRAPP</string>
+    <string name="invite_code_label">Je uitnodigingscode</string>
+    <string name="invite_code_copied">Uitnodigingscode gekopieerd</string>
+    <string name="invite_preview_label">Voorbeeld van bericht</string>
+    <string name="invite_share_cta">Uitnodiging delen</string>
+    <string name="invite_send_via">Versturen via</string>
+    <string name="invite_privacy_note">TRAPP leest nooit je contacten — jij kiest de ontvanger in de app waarmee je deelt.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">Sms</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d vriend</item>
+        <item quantity="other">%d vrienden</item>
+    </plurals>
+</resources>

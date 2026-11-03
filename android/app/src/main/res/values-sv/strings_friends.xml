@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="friends_tab_requests">Förfrågningar</string>
+    <string name="friends_tab_search">Sök</string>
+    <string name="friends_mode_username">Via användarnamn</string>
+    <string name="friends_mode_id">Via ID / e-post</string>
+    <string name="friends_hint_search_username">Sök på användarnamn…</string>
+    <string name="friends_hint_search_id">Användar-ID eller e-postadress</string>
+    <string name="friends_action_find">Hitta</string>
+    <string name="friends_invite_title">Bjud in dina kontakter</string>
+    <string name="friends_invite_hint">Fler vänner = fler fällor att gillra!</string>
+    <string name="friends_empty_hint">Bjud in dina vänner eller hitta dem via användarnamn.</string>
+    <string name="friends_requests_empty_hint">Vänförfrågningar du skickar eller får visas här.</string>
+    <string name="friends_search_title">Hitta spelare</string>
+    <string name="friends_search_hint">Skriv minst 2 tecken av ett användarnamn.</string>
+    <string name="friends_id_search_hint">Ange ett spelar-ID eller en e-postadress och tryck på Hitta.</string>
+    <string name="friends_action_message">Meddelande</string>
+    <string name="friends_request_incoming">Vill bli din vän</string>
+    <string name="friends_since">Vänner sedan %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Starta en konversation</string>
+    <string name="friends_sheet_hint">Sök vänner…</string>
+    <string name="friends_sheet_empty_hint">Lägg till vänner för att börja chatta.</string>
+    <string name="invite_title">Bjud in vänner</string>
+    <string name="invite_hero_title">Gillra fällor. Fånga vänner.</string>
+    <string name="invite_hero_sub">Bjud in dina vänner till TRAPP</string>
+    <string name="invite_code_label">Din inbjudningskod</string>
+    <string name="invite_code_copied">Inbjudningskoden kopierad</string>
+    <string name="invite_preview_label">Förhandsgranskning</string>
+    <string name="invite_share_cta">Dela inbjudan</string>
+    <string name="invite_send_via">Skicka via</string>
+    <string name="invite_privacy_note">TRAPP läser aldrig dina kontakter – du väljer mottagare i appen du delar till.</string>
+    <string name="invite_ch_email">E-post</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d vän</item>
+        <item quantity="other">%d vänner</item>
+    </plurals>
+</resources>

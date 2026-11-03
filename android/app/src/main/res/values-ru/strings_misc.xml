@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="splash_tagline">СТАВЬ · ЛОВИ · ПОБЕЖДАЙ</string>
+    <string name="maintenance_title">Техработы</string>
+    <string name="maintenance_msg">В приложении идут технические работы. Попробуй позже.</string>
+    <string name="action_retry">Повторить</string>
+    <string name="alert_option_disassemble_title">🛠  Разобрать</string>
+    <string name="alert_option_avoid_title">🚶  Обойти</string>
+</resources>

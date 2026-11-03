@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="bag_title">Сумка с ловушками</string>
+    <string name="bag_weight">Вес</string>
+    <string name="bag_selected">Выбрано</string>
+    <string name="bag_hint_select">Нажми на ловушку, чтобы выбрать — ПОСТАВИТЬ взводит её</string>
+    <string name="bag_section_traps">Твои ловушки</string>
+    <string name="bag_refill_in">+1 через %1$s</string>
+    <string name="bag_status_full">Полна</string>
+    <string name="bag_about_weight">О весе сумки</string>
+    <string name="bag_trap_details">О ловушке</string>
+    <string name="bag_in_bag">В сумке</string>
+    <string name="bag_refill">Пополнение</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d ловушка готова</item>
+        <item quantity="few">%d ловушки готовы</item>
+        <item quantity="many">%d ловушек готово</item>
+        <item quantity="other">%d ловушки готово</item>
+    </plurals>
+</resources>
