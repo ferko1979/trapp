@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Friends + Invite (Radar UI) -->
+    <string name="friends_tab_requests">בקשות</string>
+    <string name="friends_tab_search">חיפוש</string>
+    <string name="friends_mode_username">לפי שם משתמש</string>
+    <string name="friends_mode_id">לפי מזהה / אימייל</string>
+    <string name="friends_hint_search_username">חיפוש לפי שם משתמש…</string>
+    <string name="friends_hint_search_id">מזהה משתמש או כתובת אימייל</string>
+    <string name="friends_action_find">חפש</string>
+    <string name="friends_invite_title">הזמן את אנשי הקשר שלך</string>
+    <string name="friends_invite_hint">יותר חברים = יותר מלכודות!</string>
+    <string name="friends_empty_hint">הזמן חברים או מצא אותם לפי שם משתמש.</string>
+    <string name="friends_requests_empty_hint">בקשות חברות שנשלחו או התקבלו יופיעו כאן.</string>
+    <string name="friends_search_title">מצא שחקנים</string>
+    <string name="friends_search_hint">הקלד לפחות 2 תווים של שם משתמש.</string>
+    <string name="friends_id_search_hint">הזן מזהה שחקן או כתובת אימייל ולחץ על חפש.</string>
+    <string name="friends_action_message">הודעה</string>
+    <string name="friends_request_incoming">רוצה להיות חבר שלך</string>
+    <string name="friends_since">חברים מאז %1$s</string>
+    <string name="friends_id_label">מזהה: %1$s</string>
+    <string name="friends_sheet_title">התחל שיחה</string>
+    <string name="friends_sheet_hint">חפש חברים…</string>
+    <string name="friends_sheet_empty_hint">הוסף חברים כדי להתחיל לשוחח.</string>
+    <string name="invite_title">הזמן חברים</string>
+    <string name="invite_hero_title">הצב מלכודות. תפוס חברים.</string>
+    <string name="invite_hero_sub">הזמן את החברים שלך ל-TRAPP</string>
+    <string name="invite_code_label">קוד ההזמנה שלך</string>
+    <string name="invite_code_copied">קוד ההזמנה הועתק</string>
+    <string name="invite_preview_label">תצוגה מקדימה של ההודעה</string>
+    <string name="invite_share_cta">שתף הזמנה</string>
+    <string name="invite_send_via">שלח באמצעות</string>
+    <string name="invite_privacy_note">TRAPP לעולם לא קורא את אנשי הקשר שלך — אתה בוחר את הנמען באפליקציה שבה אתה משתף.</string>
+    <string name="invite_ch_email">אימייל</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d חבר</item>
+        <item quantity="two">%d חברים</item>
+        <item quantity="many">%d חברים</item>
+        <item quantity="other">%d חברים</item>
+    </plurals>
+    <string name="action_accept_request">אשר</string>
+    <string name="action_pending">ממתין</string>
+    <string name="action_add_friend_short">הוסף חבר</string>
+    <string name="msg_user_not_found_id">לא נמצא משתמש עם מזהה או אימייל זה.</string>
+    <string name="msg_request_id_not_found">מזהה הבקשה לא נמצא</string>
+    <string name="msg_loading_invite">טוען הודעת הזמנה…</string>
+    <string name="msg_whatsapp_not_installed">WhatsApp אינו מותקן</string>
+    <string name="msg_viber_not_installed">Viber אינו מותקן</string>
+</resources>

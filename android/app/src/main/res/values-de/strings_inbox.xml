@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inbox_title">Nachrichtenzentrale</string>
+    <string name="inbox_subtitle">Nachrichten und Support</string>
+    <string name="inbox_search_hint">Nachrichten durchsuchen…</string>
+    <string name="inbox_empty_messages">Noch keine Nachrichten</string>
+    <string name="inbox_empty_messages_hint">Starte eine Unterhaltung mit einem deiner Freunde.</string>
+    <string name="inbox_no_results">Keine passenden Nachrichten</string>
+    <string name="inbox_support_sender">Support-Team</string>
+    <string name="inbox_new_ticket_cta">Neues Support-Ticket</string>
+    <string name="inbox_new_ticket_cta_hint">Melde einen Fehler oder stelle eine Frage — unser Team antwortet hier.</string>
+    <string name="inbox_new_ticket_title">Schreib uns</string>
+    <string name="inbox_ticket_category">Kategorie</string>
+    <string name="inbox_ticket_message_hint">Beschreibe dein Problem…</string>
+    <string name="inbox_ticket_send">Ticket senden</string>
+    <string name="inbox_support_empty_hint">Wenn etwas nicht funktioniert, eröffne ein Ticket und wir helfen dir.</string>
+    <string name="inbox_your_tickets">Deine Tickets</string>
+    <string name="inbox_ticket_closed">Dieses Ticket ist geschlossen. Eröffne ein neues Ticket, wenn du weitere Hilfe brauchst.</string>
+</resources>

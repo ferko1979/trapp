@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Friends + Invite (Radar UI) -->
+    <string name="friends_tab_requests">Žiadosti</string>
+    <string name="friends_tab_search">Hľadať</string>
+    <string name="friends_mode_username">Podľa používateľského mena</string>
+    <string name="friends_mode_id">Podľa ID / e-mailu</string>
+    <string name="friends_hint_search_username">Hľadať podľa používateľského mena…</string>
+    <string name="friends_hint_search_id">ID používateľa alebo e-mailová adresa</string>
+    <string name="friends_action_find">Hľadať</string>
+    <string name="friends_invite_title">Pozvi svoje kontakty</string>
+    <string name="friends_invite_hint">Viac priateľov = viac pascí!</string>
+    <string name="friends_empty_hint">Pozvi priateľov alebo ich nájdi podľa používateľského mena.</string>
+    <string name="friends_requests_empty_hint">Odoslané a prijaté žiadosti o priateľstvo sa zobrazia tu.</string>
+    <string name="friends_search_title">Nájdi hráčov</string>
+    <string name="friends_search_hint">Zadaj aspoň 2 znaky používateľského mena.</string>
+    <string name="friends_id_search_hint">Zadaj ID hráča alebo e-mailovú adresu a ťukni na Hľadať.</string>
+    <string name="friends_action_message">Správa</string>
+    <string name="friends_request_incoming">Chce byť tvojím priateľom</string>
+    <string name="friends_since">Priatelia od %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Začať konverzáciu</string>
+    <string name="friends_sheet_hint">Hľadať priateľov…</string>
+    <string name="friends_sheet_empty_hint">Pridaj priateľov a môžeš začať chatovať.</string>
+    <string name="invite_title">Pozvať priateľov</string>
+    <string name="invite_hero_title">Nastav pasce. Chyť priateľov.</string>
+    <string name="invite_hero_sub">Pozvi priateľov do TRAPP</string>
+    <string name="invite_code_label">Tvoj pozývací kód</string>
+    <string name="invite_code_copied">Pozývací kód skopírovaný</string>
+    <string name="invite_preview_label">Náhľad správy</string>
+    <string name="invite_share_cta">Zdieľať pozvánku</string>
+    <string name="invite_send_via">Poslať cez</string>
+    <string name="invite_privacy_note">TRAPP nikdy nečíta tvoje kontakty — príjemcu si vyberieš v aplikácii, cez ktorú zdieľaš.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d priateľ</item>
+        <item quantity="few">%d priatelia</item>
+        <item quantity="many">%d priateľa</item>
+        <item quantity="other">%d priateľov</item>
+    </plurals>
+</resources>

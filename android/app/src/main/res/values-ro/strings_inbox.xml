@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inbox_title">Centrul de mesaje</string>
+    <string name="inbox_subtitle">Mesaje și asistență</string>
+    <string name="inbox_search_hint">Caută în mesaje…</string>
+    <string name="inbox_empty_messages">Încă nu ai mesaje</string>
+    <string name="inbox_empty_messages_hint">Începe o conversație cu unul dintre prietenii tăi.</string>
+    <string name="inbox_no_results">Niciun mesaj găsit</string>
+    <string name="inbox_support_sender">Echipa de asistență</string>
+    <string name="inbox_new_ticket_cta">Tichet nou de asistență</string>
+    <string name="inbox_new_ticket_cta_hint">Raportează o eroare sau pune o întrebare — echipa noastră răspunde aici.</string>
+    <string name="inbox_new_ticket_title">Trimite-ne un mesaj</string>
+    <string name="inbox_ticket_category">Categorie</string>
+    <string name="inbox_ticket_message_hint">Descrie problema…</string>
+    <string name="inbox_ticket_send">Trimite tichetul</string>
+    <string name="inbox_support_empty_hint">Dacă ceva nu funcționează, deschide un tichet și te ajutăm.</string>
+    <string name="inbox_your_tickets">Tichetele tale</string>
+    <string name="inbox_ticket_closed">Acest tichet este închis. Deschide un tichet nou dacă ai nevoie de ajutor.</string>
+</resources>

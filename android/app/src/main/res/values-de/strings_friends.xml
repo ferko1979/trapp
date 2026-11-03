@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Friends + Invite (Radar UI) -->
+    <string name="friends_tab_requests">Anfragen</string>
+    <string name="friends_tab_search">Suche</string>
+    <string name="friends_mode_username">Nach Benutzername</string>
+    <string name="friends_mode_id">Nach ID / E-Mail</string>
+    <string name="friends_hint_search_username">Nach Benutzername suchen…</string>
+    <string name="friends_hint_search_id">Benutzer-ID oder E-Mail-Adresse</string>
+    <string name="friends_action_find">Suchen</string>
+    <string name="friends_invite_title">Lade deine Kontakte ein</string>
+    <string name="friends_invite_hint">Mehr Freunde = mehr Fallen zum Aufstellen!</string>
+    <string name="friends_empty_hint">Lade deine Freunde ein oder finde sie über den Benutzernamen.</string>
+    <string name="friends_requests_empty_hint">Gesendete und erhaltene Freundschaftsanfragen erscheinen hier.</string>
+    <string name="friends_search_title">Spieler finden</string>
+    <string name="friends_search_hint">Gib mindestens 2 Zeichen eines Benutzernamens ein.</string>
+    <string name="friends_id_search_hint">Gib eine Spieler-ID oder E-Mail-Adresse ein und tippe auf Suchen.</string>
+    <string name="friends_action_message">Nachricht</string>
+    <string name="friends_request_incoming">Möchte dein Freund sein</string>
+    <string name="friends_since">Befreundet seit %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Unterhaltung starten</string>
+    <string name="friends_sheet_hint">Freunde suchen…</string>
+    <string name="friends_sheet_empty_hint">Füge Freunde hinzu, um zu chatten.</string>
+    <string name="invite_title">Freunde einladen</string>
+    <string name="invite_hero_title">Fallen stellen. Freunde fangen.</string>
+    <string name="invite_hero_sub">Lade deine Freunde zu TRAPP ein</string>
+    <string name="invite_code_label">Dein Einladungscode</string>
+    <string name="invite_code_copied">Einladungscode kopiert</string>
+    <string name="invite_preview_label">Nachrichtenvorschau</string>
+    <string name="invite_share_cta">Einladung teilen</string>
+    <string name="invite_send_via">Senden über</string>
+    <string name="invite_privacy_note">TRAPP liest niemals deine Kontakte — du wählst den Empfänger in der App, mit der du teilst.</string>
+    <string name="invite_ch_email">E-Mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d Freund</item>
+        <item quantity="other">%d Freunde</item>
+    </plurals>
+</resources>

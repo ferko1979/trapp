@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_search_hint">Beszélgetések keresése…</string>
+    <string name="chat_empty_hint">Koppints a + gombra, és írj valamelyik barátodnak.</string>
+    <string name="chat_no_results">Nincs a keresésnek megfelelő beszélgetés.</string>
+    <string name="chat_today">Ma</string>
+    <string name="chat_yesterday">Tegnap</string>
+    <string name="chat_sending">Küldés…</string>
+    <string name="chat_thread_empty">Köszönj be neki: %1$s!</string>
+    <string name="chat_thread_empty_hint">Az üzeneteitek itt jelennek meg.</string>
+    <string name="chat_direct_subtitle">Közvetlen üzenet</string>
+    <string name="chat_title_fallback">Csevegés</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d beszélgetés</item>
+        <item quantity="other">%d beszélgetés</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d olvasatlan</item>
+        <item quantity="other">%d olvasatlan</item>
+    </plurals>
+</resources>

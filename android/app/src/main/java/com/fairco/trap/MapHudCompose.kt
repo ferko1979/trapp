@@ -2,6 +2,8 @@ package com.fairco.trap
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
@@ -474,30 +476,36 @@ fun TrapPickerSheet(
     onPlaceTrap: (TrapInventoryItem) -> Unit,
     onWatchRefillAd: (String) -> Unit,
     onOpenAwards: () -> Unit,
+    selectedTrapTypeId: String? = null,
+    onSelectTrap: ((TrapInventoryItem) -> Unit)? = null,
 ) {
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
         containerColor = Radar.Surface,
         shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp),
-    ) {
-        Column(Modifier.padding(bottom = 16.dp)) {
-            Text(
-                stringResource(R.string.mh_your_bag),
-                color = Radar.TextMuted,
-                fontFamily = RadarFonts.Label,
-                fontWeight = FontWeight.SemiBold,
-                fontSize = 13.sp,
-                letterSpacing = 2.sp,
-                modifier = Modifier.padding(horizontal = 20.dp)
+        dragHandle = {
+            Box(
+                Modifier
+                    .padding(top = 10.dp, bottom = 6.dp)
+                    .size(width = 40.dp, height = 4.dp)
+                    .background(Radar.Line, RoundedCornerShape(2.dp))
             )
-            Spacer(Modifier.height(4.dp))
+        },
+    ) {
+        Column(
+            Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(bottom = 20.dp)
+        ) {
             TrapBagCard(
                 viewModel = viewModel,
                 peekMode = false,
                 onPlaceTrap = onPlaceTrap,
                 onWatchRefillAd = onWatchRefillAd,
                 onOpenAwards = onOpenAwards,
+                selectedTrapTypeId = selectedTrapTypeId,
+                onSelectTrap = onSelectTrap,
             )
         }
     }

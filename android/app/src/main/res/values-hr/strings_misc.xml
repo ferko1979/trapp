@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_tagline">POSTAVI · ZAMKA · ULOVI</string>
+    <string name="maintenance_title">Održavanje u tijeku</string>
+    <string name="maintenance_msg">Aplikacija je trenutno u održavanju. Pokušaj ponovno kasnije.</string>
+    <string name="action_retry">Pokušaj ponovno</string>
+    <string name="alert_option_disassemble_title">🛠  Rastavi</string>
+    <string name="alert_option_avoid_title">🚶  Izbjegni</string>
+</resources>

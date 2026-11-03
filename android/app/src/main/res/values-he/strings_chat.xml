@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_search_hint">חיפוש שיחות…</string>
+    <string name="chat_empty_hint">הקש על + כדי לשלוח הודעה לאחד החברים שלך.</string>
+    <string name="chat_no_results">אין שיחות שתואמות לחיפוש.</string>
+    <string name="chat_today">היום</string>
+    <string name="chat_yesterday">אתמול</string>
+    <string name="chat_sending">שולח…</string>
+    <string name="chat_thread_empty">תגיד שלום ל-%1$s!</string>
+    <string name="chat_thread_empty_hint">ההודעות שלכם יופיעו כאן.</string>
+    <string name="chat_direct_subtitle">הודעה ישירה</string>
+    <string name="chat_title_fallback">צ׳אט</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d שיחה</item>
+        <item quantity="two">%d שיחות</item>
+        <item quantity="many">%d שיחות</item>
+        <item quantity="other">%d שיחות</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d שלא נקראה</item>
+        <item quantity="two">%d שלא נקראו</item>
+        <item quantity="many">%d שלא נקראו</item>
+        <item quantity="other">%d שלא נקראו</item>
+    </plurals>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bag_title">Geanta cu capcane</string>
+    <string name="bag_weight">Greutate</string>
+    <string name="bag_selected">Selectată</string>
+    <string name="bag_hint_select">Atinge o capcană pentru a o selecta — PLASEAZĂ o armează</string>
+    <string name="bag_section_traps">Capcanele tale</string>
+    <string name="bag_refill_in">+1 în %1$s</string>
+    <string name="bag_status_full">Plină</string>
+    <string name="bag_about_weight">Despre greutatea genții</string>
+    <string name="bag_trap_details">Detalii capcană</string>
+    <string name="bag_in_bag">În geantă</string>
+    <string name="bag_refill">Reumplere</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d capcană pregătită</item>
+        <item quantity="few">%d capcane pregătite</item>
+        <item quantity="other">%d de capcane pregătite</item>
+    </plurals>
+</resources>

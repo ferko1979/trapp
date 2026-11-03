@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bag_title">תיק מלכודות</string>
+    <string name="bag_weight">משקל</string>
+    <string name="bag_selected">נבחרה</string>
+    <string name="bag_hint_select">הקש על מלכודת כדי לבחור אותה — הצב מפעיל אותה</string>
+    <string name="bag_section_traps">המלכודות שלך</string>
+    <string name="bag_refill_in">‏+1 בעוד %1$s</string>
+    <string name="bag_status_full">מלא</string>
+    <string name="bag_about_weight">על משקל התיק</string>
+    <string name="bag_trap_details">פרטי המלכודת</string>
+    <string name="bag_in_bag">בתיק</string>
+    <string name="bag_refill">מילוי</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">מלכודת %d מוכנה</item>
+        <item quantity="two">%d מלכודות מוכנות</item>
+        <item quantity="many">%d מלכודות מוכנות</item>
+        <item quantity="other">%d מלכודות מוכנות</item>
+    </plurals>
+</resources>

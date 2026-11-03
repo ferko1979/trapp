@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inbox_title">מרכז ההודעות</string>
+    <string name="inbox_subtitle">הודעות ותמיכה</string>
+    <string name="inbox_search_hint">חיפוש בהודעות…</string>
+    <string name="inbox_empty_messages">עדיין אין הודעות</string>
+    <string name="inbox_empty_messages_hint">התחל שיחה עם אחד מהחברים שלך.</string>
+    <string name="inbox_no_results">לא נמצאו הודעות תואמות</string>
+    <string name="inbox_support_sender">צוות התמיכה</string>
+    <string name="inbox_new_ticket_cta">פנייה חדשה לתמיכה</string>
+    <string name="inbox_new_ticket_cta_hint">דווח על תקלה או שאל שאלה — הצוות שלנו יענה כאן.</string>
+    <string name="inbox_new_ticket_title">שלחו לנו הודעה</string>
+    <string name="inbox_ticket_category">קטגוריה</string>
+    <string name="inbox_ticket_message_hint">תאר את הבעיה…</string>
+    <string name="inbox_ticket_send">שליחת פנייה</string>
+    <string name="inbox_support_empty_hint">אם משהו לא עובד, פתח פנייה ונעזור לך.</string>
+    <string name="inbox_your_tickets">הפניות שלך</string>
+    <string name="inbox_ticket_closed">פנייה זו סגורה. פתח פנייה חדשה אם אתה צריך עזרה נוספת.</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_search_hint">Hľadať konverzácie…</string>
+    <string name="chat_empty_hint">Ťukni na + a napíš niektorému z priateľov.</string>
+    <string name="chat_no_results">Vyhľadávaniu nezodpovedá žiadna konverzácia.</string>
+    <string name="chat_today">Dnes</string>
+    <string name="chat_yesterday">Včera</string>
+    <string name="chat_sending">Odosiela sa…</string>
+    <string name="chat_thread_empty">Pozdrav používateľa %1$s!</string>
+    <string name="chat_thread_empty_hint">Vaše správy sa zobrazia tu.</string>
+    <string name="chat_direct_subtitle">Priama správa</string>
+    <string name="chat_title_fallback">Chat</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d konverzácia</item>
+        <item quantity="few">%d konverzácie</item>
+        <item quantity="many">%d konverzácie</item>
+        <item quantity="other">%d konverzácií</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d neprečítaná</item>
+        <item quantity="few">%d neprečítané</item>
+        <item quantity="many">%d neprečítané</item>
+        <item quantity="other">%d neprečítaných</item>
+    </plurals>
+</resources>

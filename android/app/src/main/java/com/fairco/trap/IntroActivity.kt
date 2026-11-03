@@ -3,15 +3,35 @@ package com.fairco.trap
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
-import com.fairco.trap.databinding.ActivityIntroBinding
+import androidx.activity.compose.setContent
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.fairco.trap.ui.RadarPrimaryButton
+import com.fairco.trap.ui.theme.Radar
+import com.fairco.trap.ui.theme.RadarFonts
+import com.fairco.trap.ui.theme.TrappTheme
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 // ─── Slide data (resource IDs, resolved at runtime for correct locale) ────────
 
@@ -32,46 +52,10 @@ private val SLIDE_RES = listOf(
     SlideRes(R.string.intro_s6_icon, R.string.intro_s6_title, R.string.intro_s6_desc, R.string.intro_s6_tip_icon, R.string.intro_s6_tip),
 )
 
-// ─── Adapter ─────────────────────────────────────────────────────────────────
-
-internal class IntroSlideAdapter(private val slides: List<SlideRes>) :
-    RecyclerView.Adapter<IntroSlideAdapter.SlideViewHolder>() {
-
-    inner class SlideViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val icon: TextView    = view.findViewById(R.id.tvSlideIcon)
-        val title: TextView   = view.findViewById(R.id.tvSlideTitle)
-        val desc: TextView    = view.findViewById(R.id.tvSlideDesc)
-        val tipBox: View      = view.findViewById(R.id.tipBox)
-        val tipIcon: TextView = view.findViewById(R.id.tvTipIcon)
-        val tipText: TextView = view.findViewById(R.id.tvTipText)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SlideViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_intro_slide, parent, false)
-        return SlideViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: SlideViewHolder, position: Int) {
-        val res   = slides[position]
-        val ctx   = holder.itemView.context
-        holder.icon.text  = ctx.getString(res.iconRes)
-        holder.title.text = ctx.getString(res.titleRes)
-        holder.desc.text  = ctx.getString(res.descRes)
-        holder.tipIcon.text = ctx.getString(res.tipIconRes)
-        holder.tipText.text = ctx.getString(res.tipRes)
-        holder.tipBox.visibility = View.VISIBLE
-    }
-
-    override fun getItemCount() = slides.size
-}
-
 // ─── Activity ─────────────────────────────────────────────────────────────────
 
 class IntroActivity : BaseActivity() {
-
-    private lateinit var b: ActivityIntroBinding
-    private val dots = mutableListOf<View>()
+    override val radarBars = true
 
     companion object {
         private const val PREFS     = "Settings"
@@ -89,65 +73,7 @@ class IntroActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        b = ActivityIntroBinding.inflate(layoutInflater)
-        setContentView(b.root)
-
-        setupViewPager()
-        setupDots()
-        updateState(0)
-
-        b.btnNext.setOnClickListener {
-            val current = b.viewPager.currentItem
-            if (current < SLIDE_RES.lastIndex) {
-                b.viewPager.setCurrentItem(current + 1, true)
-            } else {
-                finishIntro()
-            }
-        }
-
-        b.tvSkip.setOnClickListener { finishIntro() }
-    }
-
-    private fun setupViewPager() {
-        b.viewPager.adapter = IntroSlideAdapter(SLIDE_RES)
-        b.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) = updateState(position)
-        })
-    }
-
-    private fun setupDots() {
-        b.dotsContainer.removeAllViews()
-        dots.clear()
-        val dp6  = (6  * resources.displayMetrics.density).toInt()
-        val dp10 = (10 * resources.displayMetrics.density).toInt()
-        repeat(SLIDE_RES.size) {
-            val dot = View(this).apply {
-                layoutParams = LinearLayout.LayoutParams(dp10, dp10).also { lp ->
-                    lp.marginStart = dp6
-                    lp.marginEnd   = dp6
-                }
-            }
-            dots.add(dot)
-            b.dotsContainer.addView(dot)
-        }
-    }
-
-    private fun updateState(position: Int) {
-        val isLast = position == SLIDE_RES.lastIndex
-
-        b.btnNext.text = getString(if (isLast) R.string.intro_btn_start else R.string.intro_btn_next)
-        b.tvSkip.text  = getString(if (isLast) R.string.intro_dont_show else R.string.intro_skip)
-
-        val density = resources.displayMetrics.density
-        dots.forEachIndexed { i, dot ->
-            val active = i == position
-            dot.background = getDrawable(if (active) R.drawable.bg_dot_active else R.drawable.bg_dot_inactive)
-            val sizePx = ((if (active) 10 else 8) * density).toInt()
-            dot.layoutParams = (dot.layoutParams as LinearLayout.LayoutParams).also {
-                it.width  = sizePx
-                it.height = sizePx
-            }
-        }
+        setContent { TrappTheme { IntroScreen(onFinish = ::finishIntro) } }
     }
 
     private fun finishIntro() {
@@ -167,5 +93,84 @@ class IntroActivity : BaseActivity() {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
         finish()
+    }
+}
+
+@Composable
+private fun IntroScreen(onFinish: () -> Unit) {
+    val pager = rememberPagerState { SLIDE_RES.size }
+    val scope = rememberCoroutineScope()
+    val isLast = pager.currentPage == SLIDE_RES.lastIndex
+
+    Column(Modifier.fillMaxSize().background(Radar.Bg)) {
+        HorizontalPager(state = pager, modifier = Modifier.weight(1f).fillMaxWidth()) { page ->
+            IntroSlide(SLIDE_RES[page])
+        }
+        Row(
+            Modifier.fillMaxWidth().padding(vertical = 12.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            repeat(SLIDE_RES.size) { i ->
+                val active = i == pager.currentPage
+                val size by animateDpAsState(if (active) 10.dp else 8.dp, label = "dot")
+                val color by animateColorAsState(if (active) Radar.Accent else Radar.Line, label = "dotColor")
+                Box(Modifier.padding(horizontal = 6.dp).size(size).background(color, CircleShape))
+            }
+        }
+        Column(
+            Modifier.fillMaxWidth().padding(start = 24.dp, end = 24.dp, bottom = 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            RadarPrimaryButton(
+                stringResource(if (isLast) R.string.intro_btn_start else R.string.intro_btn_next),
+                onClick = {
+                    if (pager.currentPage < SLIDE_RES.lastIndex) {
+                        scope.launch { pager.animateScrollToPage(pager.currentPage + 1) }
+                    } else {
+                        onFinish()
+                    }
+                },
+                modifier = Modifier.fillMaxWidth(),
+            )
+            RadarTextAction(stringResource(if (isLast) R.string.intro_dont_show else R.string.intro_skip), onFinish)
+        }
+    }
+}
+
+@Composable
+private fun IntroSlide(res: SlideRes) {
+    Column(
+        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 32.dp, vertical = 24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Box(
+            Modifier.size(132.dp).background(Radar.Surface, CircleShape).border(1.dp, Radar.Line, CircleShape),
+            contentAlignment = Alignment.Center,
+        ) { Text(stringResource(res.iconRes), fontSize = 64.sp) }
+        Spacer(Modifier.height(28.dp))
+        Text(
+            stringResource(res.titleRes), color = Radar.Text, fontSize = 26.sp, fontWeight = FontWeight.ExtraBold,
+            fontFamily = RadarFonts.Body, textAlign = TextAlign.Center, lineHeight = 31.sp,
+        )
+        Spacer(Modifier.height(16.dp))
+        Text(
+            stringResource(res.descRes), color = Radar.TextSec, fontSize = 15.sp,
+            textAlign = TextAlign.Center, lineHeight = 22.sp,
+        )
+        Spacer(Modifier.height(24.dp))
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .background(Radar.Accent.copy(alpha = 0.08f), RoundedCornerShape(14.dp))
+                .border(1.dp, Radar.Accent.copy(alpha = 0.35f), RoundedCornerShape(14.dp))
+                .padding(14.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(stringResource(res.tipIconRes), fontSize = 20.sp)
+            Spacer(Modifier.width(10.dp))
+            Text(stringResource(res.tipRes), color = Radar.Accent, fontSize = 13.sp, lineHeight = 18.sp, modifier = Modifier.weight(1f))
+        }
     }
 }

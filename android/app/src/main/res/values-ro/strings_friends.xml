@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Friends + Invite (Radar UI) -->
+    <string name="friends_tab_requests">Cereri</string>
+    <string name="friends_tab_search">Căutare</string>
+    <string name="friends_mode_username">După nume de utilizator</string>
+    <string name="friends_mode_id">După ID / e-mail</string>
+    <string name="friends_hint_search_username">Caută după numele de utilizator…</string>
+    <string name="friends_hint_search_id">ID utilizator sau adresă de e-mail</string>
+    <string name="friends_action_find">Caută</string>
+    <string name="friends_invite_title">Invită-ți contactele</string>
+    <string name="friends_invite_hint">Mai mulți prieteni = mai multe capcane!</string>
+    <string name="friends_empty_hint">Invită-ți prietenii sau găsește-i după numele de utilizator.</string>
+    <string name="friends_requests_empty_hint">Cererile de prietenie trimise sau primite vor apărea aici.</string>
+    <string name="friends_search_title">Găsește jucători</string>
+    <string name="friends_search_hint">Scrie cel puțin 2 caractere din numele de utilizator.</string>
+    <string name="friends_id_search_hint">Introdu ID-ul jucătorului sau adresa de e-mail, apoi atinge Caută.</string>
+    <string name="friends_action_message">Mesaj</string>
+    <string name="friends_request_incoming">Vrea să fie prietenul tău</string>
+    <string name="friends_since">Prieteni din %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Începe o conversație</string>
+    <string name="friends_sheet_hint">Caută prieteni…</string>
+    <string name="friends_sheet_empty_hint">Adaugă prieteni ca să poți conversa.</string>
+    <string name="invite_title">Invită prieteni</string>
+    <string name="invite_hero_title">Pune capcane. Prinde prieteni.</string>
+    <string name="invite_hero_sub">Invită-ți prietenii în TRAPP</string>
+    <string name="invite_code_label">Codul tău de invitație</string>
+    <string name="invite_code_copied">Cod de invitație copiat</string>
+    <string name="invite_preview_label">Previzualizare mesaj</string>
+    <string name="invite_share_cta">Distribuie invitația</string>
+    <string name="invite_send_via">Trimite prin</string>
+    <string name="invite_privacy_note">TRAPP nu îți citește niciodată contactele — alegi destinatarul în aplicația prin care distribui.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d prieten</item>
+        <item quantity="few">%d prieteni</item>
+        <item quantity="other">%d de prieteni</item>
+    </plurals>
+</resources>

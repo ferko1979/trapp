@@ -379,6 +379,8 @@ observeTheme()
                         }
                     },
                     onOpenAwards = { startActivity(Intent(this@GameActivity, AwardsActivity::class.java)) },
+                    selectedTrapTypeId = resolveSelectedTrap(bag.items, hud.selectedTrapTypeId)?.trapTypeId,
+                    onSelectTrap = { hud.selectedTrapTypeId = it.trapTypeId },
                 )
             }
             if (hud.meOpen) {

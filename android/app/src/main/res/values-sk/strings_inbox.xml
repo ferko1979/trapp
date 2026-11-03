@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inbox_title">Centrum správ</string>
+    <string name="inbox_subtitle">Správy a podpora</string>
+    <string name="inbox_search_hint">Hľadať v správach…</string>
+    <string name="inbox_empty_messages">Zatiaľ žiadne správy</string>
+    <string name="inbox_empty_messages_hint">Začni konverzáciu s niektorým zo svojich priateľov.</string>
+    <string name="inbox_no_results">Žiadne zodpovedajúce správy</string>
+    <string name="inbox_support_sender">Tím podpory</string>
+    <string name="inbox_new_ticket_cta">Nový tiket podpory</string>
+    <string name="inbox_new_ticket_cta_hint">Nahlás chybu alebo sa opýtaj — náš tím odpovie tu.</string>
+    <string name="inbox_new_ticket_title">Napíš nám</string>
+    <string name="inbox_ticket_category">Kategória</string>
+    <string name="inbox_ticket_message_hint">Opíš svoj problém…</string>
+    <string name="inbox_ticket_send">Odoslať tiket</string>
+    <string name="inbox_support_empty_hint">Ak niečo nefunguje, otvor tiket a pomôžeme ti.</string>
+    <string name="inbox_your_tickets">Tvoje tikety</string>
+    <string name="inbox_ticket_closed">Tento tiket je uzavretý. Ak potrebuješ ďalšiu pomoc, otvor nový tiket.</string>
+</resources>

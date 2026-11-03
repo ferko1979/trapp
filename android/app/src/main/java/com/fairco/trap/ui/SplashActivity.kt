@@ -27,6 +27,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
+    override val radarBars = true
 
     private lateinit var b: ActivitySplashBinding
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Friends + Invite (Radar UI) -->
+    <string name="friends_tab_requests">Kérelmek</string>
+    <string name="friends_tab_search">Keresés</string>
+    <string name="friends_mode_username">Felhasználónév</string>
+    <string name="friends_mode_id">Azonosító / e-mail</string>
+    <string name="friends_hint_search_username">Keresés felhasználónévre…</string>
+    <string name="friends_hint_search_id">Felhasználói azonosító vagy e-mail-cím</string>
+    <string name="friends_action_find">Keres</string>
+    <string name="friends_invite_title">Hívd meg az ismerőseidet</string>
+    <string name="friends_invite_hint">Több barát = több csapda!</string>
+    <string name="friends_empty_hint">Hívd meg a barátaidat, vagy keresd meg őket felhasználónév alapján.</string>
+    <string name="friends_requests_empty_hint">Az elküldött és a kapott barátkérelmek itt jelennek meg.</string>
+    <string name="friends_search_title">Játékosok keresése</string>
+    <string name="friends_search_hint">Írj be legalább 2 karaktert a felhasználónévből.</string>
+    <string name="friends_id_search_hint">Add meg a játékos azonosítóját vagy e-mail-címét, majd koppints a Keres gombra.</string>
+    <string name="friends_action_message">Üzenet</string>
+    <string name="friends_request_incoming">Barátod szeretne lenni</string>
+    <string name="friends_since">Barátok %1$s óta</string>
+    <string name="friends_id_label">Azonosító: %1$s</string>
+    <string name="friends_sheet_title">Beszélgetés indítása</string>
+    <string name="friends_sheet_hint">Barátok keresése…</string>
+    <string name="friends_sheet_empty_hint">Adj hozzá barátokat, hogy cseveghess velük.</string>
+    <string name="invite_title">Barátok meghívása</string>
+    <string name="invite_hero_title">Rakj csapdát. Kapd el a barátaidat!</string>
+    <string name="invite_hero_sub">Hívd meg a barátaidat a TRAPP-ba</string>
+    <string name="invite_code_label">A meghívókódod</string>
+    <string name="invite_code_copied">Meghívókód másolva</string>
+    <string name="invite_preview_label">Üzenet előnézete</string>
+    <string name="invite_share_cta">Meghívó megosztása</string>
+    <string name="invite_send_via">Küldés ezzel</string>
+    <string name="invite_privacy_note">A TRAPP soha nem olvassa a névjegyeidet — a címzettet abban az appban választod ki, ahová megosztod.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d barát</item>
+        <item quantity="other">%d barát</item>
+    </plurals>
+</resources>

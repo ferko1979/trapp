@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_tagline">TELEPÍTS · CSAPDÁZZ · ZSÁKMÁNYOLJ</string>
+    <string name="maintenance_title">Karbantartás alatt</string>
+    <string name="maintenance_msg">Az alkalmazás jelenleg karbantartás alatt áll. Kérjük, próbáld újra később.</string>
+    <string name="action_retry">Újra</string>
+    <string name="alert_option_disassemble_title">🛠  Szétszerelés</string>
+    <string name="alert_option_avoid_title">🚶  Kikerülés</string>
+</resources>

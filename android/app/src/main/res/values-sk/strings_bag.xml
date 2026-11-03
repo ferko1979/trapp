@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bag_title">Taška s pascami</string>
+    <string name="bag_weight">Hmotnosť</string>
+    <string name="bag_selected">Vybraná</string>
+    <string name="bag_hint_select">Ťukni na pascu a vyber ju — UMIESTNIŤ ju nastraží</string>
+    <string name="bag_section_traps">Tvoje pasce</string>
+    <string name="bag_refill_in">+1 o %1$s</string>
+    <string name="bag_status_full">Plná</string>
+    <string name="bag_about_weight">O hmotnosti tašky</string>
+    <string name="bag_trap_details">Podrobnosti pasce</string>
+    <string name="bag_in_bag">V taške</string>
+    <string name="bag_refill">Doplnenie</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d pasca pripravená</item>
+        <item quantity="few">%d pasce pripravené</item>
+        <item quantity="many">%d pasce pripravené</item>
+        <item quantity="other">%d pascí pripravených</item>
+    </plurals>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_tagline">PLASEAZĂ · CAPCANĂ · CAPTUREAZĂ</string>
+    <string name="maintenance_title">În mentenanță</string>
+    <string name="maintenance_msg">Aplicația este în prezent în mentenanță. Te rugăm să încerci din nou mai târziu.</string>
+    <string name="action_retry">Reîncearcă</string>
+    <string name="alert_option_disassemble_title">🛠  Dezasamblează</string>
+    <string name="alert_option_avoid_title">🚶  Evită</string>
+</resources>

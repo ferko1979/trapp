@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inbox_title">Message center</string>
+    <string name="inbox_subtitle">Messages and support</string>
+    <string name="inbox_search_hint">Search messages…</string>
+    <string name="inbox_empty_messages">No messages yet</string>
+    <string name="inbox_empty_messages_hint">Start a conversation with one of your friends.</string>
+    <string name="inbox_no_results">No matching messages</string>
+    <string name="inbox_support_sender">Support team</string>
+    <string name="inbox_new_ticket_cta">New support ticket</string>
+    <string name="inbox_new_ticket_cta_hint">Report a bug or ask a question — our team will reply here.</string>
+    <string name="inbox_new_ticket_title">Send us a message</string>
+    <string name="inbox_ticket_category">Category</string>
+    <string name="inbox_ticket_message_hint">Describe your issue…</string>
+    <string name="inbox_ticket_send">Send ticket</string>
+    <string name="inbox_support_empty_hint">If something isn\'t working, open a ticket and we\'ll help.</string>
+    <string name="inbox_your_tickets">Your tickets</string>
+    <string name="inbox_ticket_closed">This ticket is closed. Open a new ticket if you need further help.</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_tagline">PLATZIEREN · FALLE STELLEN · FANGEN</string>
+    <string name="maintenance_title">Wartungsarbeiten</string>
+    <string name="maintenance_msg">Die App wird gerade gewartet. Bitte versuche es später erneut.</string>
+    <string name="action_retry">Erneut versuchen</string>
+    <string name="alert_option_disassemble_title">🛠  Zerlegen</string>
+    <string name="alert_option_avoid_title">🚶  Ausweichen</string>
+</resources>

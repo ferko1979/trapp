@@ -1,13 +1,17 @@
 ﻿package com.fairco.trap
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.fairco.trap.databinding.FragmentInviteFriendsBinding
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.launch
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.fairco.trap.ui.theme.TrappTheme
 import java.util.Locale
 
 /**
@@ -16,33 +20,39 @@ import java.util.Locale
  */
 class InviteFriendsActivity : BaseActivity() {
 
-    private lateinit var binding: FragmentInviteFriendsBinding
+    override val radarBars = true
     private val vm: InviteViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentInviteFriendsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        binding.toolbar.setNavigationOnClickListener { finish() }
-
-        // Share channel buttons
-        binding.btnSendSms.setOnClickListener       { sendSms() }
-        binding.btnShare.setOnClickListener         { openShareSheet() }
-        binding.btnShareWhatsapp.setOnClickListener { shareViaWhatsApp() }
-        binding.btnShareViber.setOnClickListener    { shareViaViber() }
-        binding.btnShareEmail.setOnClickListener    { shareViaEmail() }
-
-        lifecycleScope.launch {
-            vm.inviteConfig.collect { cfg ->
-                binding.tvMessagePreview.text =
-                    cfg?.buildFullMessage() ?: getString(R.string.msg_loading_invite)
+        setContent {
+            TrappTheme {
+                val config by vm.inviteConfig.collectAsState()
+                InviteScreen(
+                    config = config,
+                    onBack = { finish() },
+                    onCopyCode = ::copyCode,
+                    onShare = ::openShareSheet,
+                    onSms = ::sendSms,
+                    onWhatsApp = ::shareViaWhatsApp,
+                    onViber = ::shareViaViber,
+                    onEmail = ::shareViaEmail,
+                )
             }
         }
 
         // Load invite config with current locale
         val lang = Locale.getDefault().language.take(2)
         vm.loadInviteConfig(lang)
+    }
+
+    private fun toast(text: String) = Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+
+    private fun copyCode(code: String) {
+        val cm = getSystemService(ClipboardManager::class.java) ?: return
+        cm.setPrimaryClip(ClipData.newPlainText(getString(R.string.invite_code_label), code))
+        // Android 13+ shows its own clipboard confirmation
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) toast(getString(R.string.invite_code_copied))
     }
 
     // ── Share channels ────────────────────────────────────────────────────────
@@ -83,7 +93,7 @@ class InviteFriendsActivity : BaseActivity() {
         } catch (e: Exception) {
             // WhatsApp not installed — fall back to generic share
             openShareSheet()
-            Snackbar.make(binding.root, getString(R.string.msg_whatsapp_not_installed), Snackbar.LENGTH_SHORT).show()
+            toast(getString(R.string.msg_whatsapp_not_installed))
         }
     }
 
@@ -100,7 +110,7 @@ class InviteFriendsActivity : BaseActivity() {
             })
         } catch (e: Exception) {
             openShareSheet()
-            Snackbar.make(binding.root, getString(R.string.msg_viber_not_installed), Snackbar.LENGTH_SHORT).show()
+            toast(getString(R.string.msg_viber_not_installed))
         }
     }
 

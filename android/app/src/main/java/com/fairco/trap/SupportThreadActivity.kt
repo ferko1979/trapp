@@ -1,62 +1,70 @@
 ﻿package com.fairco.trap
 
-import android.content.res.ColorStateList
 import android.os.Bundle
-import android.text.format.DateUtils
-import android.util.TypedValue
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import com.fairco.trap.BaseActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.fairco.trap.databinding.ActivitySupportThreadBinding
-import com.fairco.trap.databinding.BubbleMessageItemBinding
-import com.google.android.material.snackbar.Snackbar
+import com.fairco.trap.ui.theme.TrappTheme
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
-import java.util.*
 
 class SupportThreadActivity : BaseActivity() {
 
-    private lateinit var binding: ActivitySupportThreadBinding
+    override val radarBars = true
+
     private val viewModel: SupportViewModel by viewModels()
     private lateinit var ticketId: String
     private lateinit var ticketNo: String
-    
+
     private var refreshJob: Job? = null
-    private var previousCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySupportThreadBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         ticketId = intent.getStringExtra("ticketId") ?: ""
         ticketNo = intent.getStringExtra("ticketNo") ?: ""
 
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { finish() }
-        supportActionBar?.title = getString(R.string.support_ticket_title, ticketNo)
+        setContent {
+            TrappTheme {
+                var showNewTicket by rememberSaveable { mutableStateOf(false) }
+                SupportThreadScreen(
+                    ticketNo = ticketNo,
+                    vm = viewModel,
+                    onBack = { finish() },
+                    onSend = ::sendReply,
+                    onNewTicket = { showNewTicket = true },
+                )
+                if (showNewTicket) {
+                    NewTicketSheet(
+                        vm = viewModel,
+                        onDismiss = { showNewTicket = false },
+                        onCreated = { no ->
+                            showNewTicket = false
+                            if (no != null) {
+                                Toast.makeText(this, getString(R.string.support_ticket_submitted_detail, no), Toast.LENGTH_LONG).show()
+                            }
+                        },
+                    )
+                }
+            }
+        }
 
-        setupRecyclerView()
-        observeViewModel()
-
-        binding.btnSend.setOnClickListener {
-            sendReply()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.error.filterNotNull().collect {
+                    Toast.makeText(this@SupportThreadActivity, it, Toast.LENGTH_SHORT).show()
+                    viewModel.error.value = null
+                }
+            }
         }
     }
 
@@ -75,84 +83,7 @@ class SupportThreadActivity : BaseActivity() {
         refreshJob?.cancel()
     }
 
-    private fun setupRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.stackFromEnd = true
-        binding.rvMessages.layoutManager = layoutManager
-    }
-
-    private fun observeViewModel() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    viewModel.threadMessages.collectLatest { list ->
-                        val newCount = list.size
-                        if (newCount > previousCount && previousCount > 0) {
-                            Snackbar.make(binding.root, getString(R.string.support_new_reply), Snackbar.LENGTH_SHORT).show()
-                            binding.rvMessages.scrollToPosition(newCount - 1)
-                        }
-                        previousCount = newCount
-                        binding.rvMessages.adapter = MessagesAdapter(list)
-                    }
-                }
-                launch {
-                    viewModel.currentTicket.collectLatest { ticket ->
-                        if (ticket != null) {
-                            bindTicketHeader(ticket)
-                        }
-                    }
-                }
-                launch {
-                    viewModel.isLoading.collectLatest { loading ->
-                        binding.progressBar.isVisible = loading && viewModel.threadMessages.value.isEmpty()
-                    }
-                }
-                launch {
-                    viewModel.error.collectLatest { err ->
-                        if (err != null) {
-                            Toast.makeText(this@SupportThreadActivity, err, Toast.LENGTH_SHORT).show()
-                            viewModel.error.value = null
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private fun bindTicketHeader(ticket: Map<String, Any>) {
-        val ticketNo = ticket["ticketNo"] as? String ?: ""
-        val subject = ticket["subject"] as? String ?: ""
-        val status = ticket["status"] as? String ?: "open"
-
-        binding.ticketHeaderLayout.tvTicketNo.text = ticketNo
-        binding.ticketHeaderLayout.tvTicketSubject.text = subject
-        
-        val (label, colorRes) = when (status) {
-            "open"           -> getString(R.string.support_status_open)      to R.color.statusBlue
-            "waiting_admin"  -> getString(R.string.support_status_awaiting)  to R.color.statusBlue
-            "waiting_user"   -> getString(R.string.support_status_your_turn) to R.color.statusOrange
-            "answered"       -> getString(R.string.support_status_answered)  to R.color.statusGreen
-            "closed"         -> getString(R.string.support_status_closed)    to R.color.statusGrey
-            else             -> status            to R.color.statusGrey
-        }
-        
-        binding.ticketHeaderLayout.chipStatus.text = label
-        binding.ticketHeaderLayout.chipStatus.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this, colorRes))
-
-        val isClosed = status == "closed"
-        binding.inputContainer.isVisible = !isClosed
-        binding.tvClosedBanner.isVisible = isClosed
-
-        if (status == "waiting_user") {
-            binding.ticketHeaderLayout.bannerReplyPrompt.visibility = View.VISIBLE
-            binding.ticketHeaderLayout.bannerReplyPrompt.text = getString(R.string.support_waiting_for_you)
-        } else {
-            binding.ticketHeaderLayout.bannerReplyPrompt.visibility = View.GONE
-        }
-    }
-
-    private fun sendReply() {
-        val text = binding.etMessage.text.toString().trim()
+    private fun sendReply(text: String) {
         if (text.isBlank()) return
 
         // Optimistic update
@@ -164,11 +95,7 @@ class SupportThreadActivity : BaseActivity() {
             isInternal = false,
             createdAtEpochMs = System.currentTimeMillis()
         )
-        val currentList = viewModel.threadMessages.value.toMutableList()
-        currentList.add(tempMsg)
-        viewModel.threadMessages.value = currentList
-        binding.rvMessages.scrollToPosition(currentList.size - 1)
-        binding.etMessage.setText("")
+        viewModel.threadMessages.value = viewModel.threadMessages.value + tempMsg
 
         viewModel.replyToTicket(ticketId, text) { success ->
             if (!success) {
@@ -176,47 +103,4 @@ class SupportThreadActivity : BaseActivity() {
             }
         }
     }
-
-    private inner class MessagesAdapter(
-        private val list: List<TicketMessage>
-    ) : RecyclerView.Adapter<MessageViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MessageViewHolder(
-            BubbleMessageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
-
-        override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
-            val msg = list[position]
-            val isAdmin = msg.senderType == "admin"
-            val isMe = !isAdmin
-
-            with(holder.binding) {
-                val params = bubbleCard.layoutParams as LinearLayout.LayoutParams
-                params.gravity = if (isMe) Gravity.END else Gravity.START
-                params.marginStart = if (isMe) dpToPx(56) else dpToPx(8)
-                params.marginEnd = if (isMe) dpToPx(8) else dpToPx(56)
-                bubbleCard.layoutParams = params
-
-                bubbleCard.setCardBackgroundColor(ContextCompat.getColor(root.context, if (isMe) R.color.bubbleOutgoing else R.color.bubbleIncoming))
-
-                val senderLabel = if (isAdmin) getString(R.string.support_sender_admin, msg.senderName) else getString(R.string.chat_you)
-                tvSender.text = senderLabel
-                tvSender.setTextColor(ContextCompat.getColor(root.context, if (isAdmin) R.color.adminBlue else R.color.text_muted))
-                tvSender.visibility = if (isAdmin) View.VISIBLE else View.GONE
-
-                tvMessage.text = msg.text
-
-                tvTime.text = msg.createdAtEpochMs?.let { DateUtils.getRelativeTimeSpanString(it) } ?: ""
-            }
-        }
-
-        private fun dpToPx(dp: Int): Int {
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), resources.displayMetrics).toInt()
-        }
-
-        override fun getItemCount() = list.size
-    }
-
-    private inner class MessageViewHolder(val binding: BubbleMessageItemBinding) : RecyclerView.ViewHolder(binding.root)
 }
-

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inbox_title">Üzenetközpont</string>
+    <string name="inbox_subtitle">Üzenetek és ügyfélszolgálat</string>
+    <string name="inbox_search_hint">Keresés az üzenetekben…</string>
+    <string name="inbox_empty_messages">Még nincs üzeneted</string>
+    <string name="inbox_empty_messages_hint">Kezdj beszélgetést valamelyik barátoddal.</string>
+    <string name="inbox_no_results">Nincs találat</string>
+    <string name="inbox_support_sender">Ügyfélszolgálat</string>
+    <string name="inbox_new_ticket_cta">Új hibajegy</string>
+    <string name="inbox_new_ticket_cta_hint">Jelezz hibát vagy kérdezz — csapatunk itt válaszol.</string>
+    <string name="inbox_new_ticket_title">Írj nekünk</string>
+    <string name="inbox_ticket_category">Kategória</string>
+    <string name="inbox_ticket_message_hint">Írd le a problémát…</string>
+    <string name="inbox_ticket_send">Hibajegy küldése</string>
+    <string name="inbox_support_empty_hint">Ha valami nem működik, nyiss egy hibajegyet, és segítünk.</string>
+    <string name="inbox_your_tickets">Hibajegyeid</string>
+    <string name="inbox_ticket_closed">Ez a hibajegy le van zárva. Ha további segítség kell, nyiss újat.</string>
+</resources>

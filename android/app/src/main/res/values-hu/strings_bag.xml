@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bag_title">Csapdatáska</string>
+    <string name="bag_weight">Súly</string>
+    <string name="bag_selected">Kiválasztva</string>
+    <string name="bag_hint_select">Koppints egy csapdára a kiválasztáshoz — az ELHELYEZÉS élesíti</string>
+    <string name="bag_section_traps">Csapdáid</string>
+    <string name="bag_refill_in">+1 ennyi idő múlva: %1$s</string>
+    <string name="bag_status_full">Tele</string>
+    <string name="bag_about_weight">A táska súlyáról</string>
+    <string name="bag_trap_details">Csapda részletei</string>
+    <string name="bag_in_bag">A táskában</string>
+    <string name="bag_refill">Feltöltés</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d csapda bevethető</item>
+        <item quantity="other">%d csapda bevethető</item>
+    </plurals>
+</resources>

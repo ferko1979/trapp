@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_tagline">POLOŽ · PASCA · ULOV</string>
+    <string name="maintenance_title">Prebieha údržba</string>
+    <string name="maintenance_msg">Aplikácia je momentálne v údržbe. Skús to prosím neskôr.</string>
+    <string name="action_retry">Skúsiť znova</string>
+    <string name="alert_option_disassemble_title">🛠  Rozobrať</string>
+    <string name="alert_option_avoid_title">🚶  Vyhnúť sa</string>
+</resources>

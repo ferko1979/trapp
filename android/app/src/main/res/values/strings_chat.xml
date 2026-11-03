@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_search_hint">Search conversations…</string>
+    <string name="chat_empty_hint">Tap + to send a message to one of your friends.</string>
+    <string name="chat_no_results">No conversations match your search.</string>
+    <string name="chat_today">Today</string>
+    <string name="chat_yesterday">Yesterday</string>
+    <string name="chat_sending">Sending…</string>
+    <string name="chat_thread_empty">Say hi to %1$s!</string>
+    <string name="chat_thread_empty_hint">Your messages will appear here.</string>
+    <string name="chat_direct_subtitle">Direct message</string>
+    <string name="chat_title_fallback">Chat</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d conversation</item>
+        <item quantity="other">%d conversations</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d unread</item>
+        <item quantity="other">%d unread</item>
+    </plurals>
+</resources>

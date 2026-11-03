@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bag_title">Fallentasche</string>
+    <string name="bag_weight">Gewicht</string>
+    <string name="bag_selected">Ausgewählt</string>
+    <string name="bag_hint_select">Tippe auf eine Falle, um sie auszuwählen — PLATZIEREN macht sie scharf</string>
+    <string name="bag_section_traps">Deine Fallen</string>
+    <string name="bag_refill_in">+1 in %1$s</string>
+    <string name="bag_status_full">Voll</string>
+    <string name="bag_about_weight">Über das Taschengewicht</string>
+    <string name="bag_trap_details">Fallendetails</string>
+    <string name="bag_in_bag">In der Tasche</string>
+    <string name="bag_refill">Auffüllen</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d Falle einsatzbereit</item>
+        <item quantity="other">%d Fallen einsatzbereit</item>
+    </plurals>
+</resources>

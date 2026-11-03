@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_search_hint">Caută conversații…</string>
+    <string name="chat_empty_hint">Atinge + pentru a trimite un mesaj unui prieten.</string>
+    <string name="chat_no_results">Nicio conversație nu corespunde căutării.</string>
+    <string name="chat_today">Azi</string>
+    <string name="chat_yesterday">Ieri</string>
+    <string name="chat_sending">Se trimite…</string>
+    <string name="chat_thread_empty">Salută-l pe %1$s!</string>
+    <string name="chat_thread_empty_hint">Mesajele voastre vor apărea aici.</string>
+    <string name="chat_direct_subtitle">Mesaj direct</string>
+    <string name="chat_title_fallback">Chat</string>
+    <plurals name="chat_conversation_count">
+        <item quantity="one">%d conversație</item>
+        <item quantity="few">%d conversații</item>
+        <item quantity="other">%d de conversații</item>
+    </plurals>
+    <plurals name="chat_unread_count">
+        <item quantity="one">%d necitită</item>
+        <item quantity="few">%d necitite</item>
+        <item quantity="other">%d necitite</item>
+    </plurals>
+</resources>

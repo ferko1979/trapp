@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Friends + Invite (Radar UI) -->
+    <string name="friends_tab_requests">Requests</string>
+    <string name="friends_tab_search">Search</string>
+    <string name="friends_mode_username">By username</string>
+    <string name="friends_mode_id">By ID / e-mail</string>
+    <string name="friends_hint_search_username">Search by username…</string>
+    <string name="friends_hint_search_id">User ID or e-mail address</string>
+    <string name="friends_action_find">Find</string>
+    <string name="friends_invite_title">Invite your contacts</string>
+    <string name="friends_invite_hint">More friends = more traps to set!</string>
+    <string name="friends_empty_hint">Invite your friends or find them by username.</string>
+    <string name="friends_requests_empty_hint">Friend requests you send or receive will show up here.</string>
+    <string name="friends_search_title">Find players</string>
+    <string name="friends_search_hint">Type at least 2 characters of a username.</string>
+    <string name="friends_id_search_hint">Enter a player ID or e-mail address, then tap Find.</string>
+    <string name="friends_action_message">Message</string>
+    <string name="friends_request_incoming">Wants to be your friend</string>
+    <string name="friends_since">Friends since %1$s</string>
+    <string name="friends_id_label">ID: %1$s</string>
+    <string name="friends_sheet_title">Start a conversation</string>
+    <string name="friends_sheet_hint">Search friends…</string>
+    <string name="friends_sheet_empty_hint">Add friends to start chatting.</string>
+    <string name="invite_title">Invite friends</string>
+    <string name="invite_hero_title">Set traps. Catch friends.</string>
+    <string name="invite_hero_sub">Invite your friends to join TRAPP</string>
+    <string name="invite_code_label">Your invite code</string>
+    <string name="invite_code_copied">Invite code copied</string>
+    <string name="invite_preview_label">Message preview</string>
+    <string name="invite_share_cta">Share invite</string>
+    <string name="invite_send_via">Send via</string>
+    <string name="invite_privacy_note">TRAPP never reads your contacts — you choose the recipient in the app you share to.</string>
+    <string name="invite_ch_email">E-mail</string>
+    <string name="invite_ch_sms">SMS</string>
+    <plurals name="friends_count">
+        <item quantity="one">%d friend</item>
+        <item quantity="other">%d friends</item>
+    </plurals>
+    <string name="invite_ch_whatsapp" translatable="false">WhatsApp</string>
+    <string name="invite_ch_viber" translatable="false">Viber</string>
+</resources>

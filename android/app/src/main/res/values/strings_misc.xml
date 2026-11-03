@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_tagline">PLACE · TRAP · CAPTURE</string>
+    <string name="maintenance_title">Under maintenance</string>
+    <string name="maintenance_msg">The app is currently undergoing maintenance. Please try again later.</string>
+    <string name="action_retry">Retry</string>
+    <string name="alert_option_disassemble_title">🛠  Disassemble</string>
+    <string name="alert_option_avoid_title">🚶  Avoid</string>
+</resources>

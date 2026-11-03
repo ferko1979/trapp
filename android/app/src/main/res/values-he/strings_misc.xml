@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_tagline">הצב · מלכודת · לכידה</string>
+    <string name="maintenance_title">בתחזוקה</string>
+    <string name="maintenance_msg">האפליקציה נמצאת כעת בתחזוקה. נסו שוב מאוחר יותר.</string>
+    <string name="action_retry">נסה שוב</string>
+    <string name="alert_option_disassemble_title">🛠  פירוק</string>
+    <string name="alert_option_avoid_title">🚶  התחמקות</string>
+</resources>

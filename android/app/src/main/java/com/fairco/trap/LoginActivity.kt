@@ -2,188 +2,205 @@ package com.fairco.trap
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.fairco.trap.ui.RadarPrimaryButton
+import com.fairco.trap.ui.theme.Radar
+import com.fairco.trap.ui.theme.TrappTheme
 import com.fairco.trap.util.LocaleManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.Firebase
 import com.google.firebase.functions.functions
 
 class LoginActivity : BaseActivity() {
+    override val radarBars = true
 
     private lateinit var auth: FirebaseAuth
     private val functions by lazy { Firebase.functions("europe-west1") }
+    private lateinit var currentLang: String
+
+    private var email by mutableStateOf("")
+    private var password by mutableStateOf("")
+    private var error by mutableStateOf("")
+    private var statusVisible by mutableStateOf(false)
+    private var resendVisible by mutableStateOf(false)
+    private var forgotVisible by mutableStateOf(true)
+    private var forgotDialog by mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-
         auth = FirebaseAuth.getInstance()
+        currentLang = LocaleManager.getLocale(this)
+        // Keep the typed e-mail across the recreate a language change triggers.
+        email = savedInstanceState?.getString(KEY_EMAIL).orEmpty()
 
-        val email = findViewById<EditText>(R.id.etEmail)
-        val password = findViewById<EditText>(R.id.etPassword)
-        val error = findViewById<TextView>(R.id.tvError)
-        val status = findViewById<TextView>(R.id.tvStatus)
-        val login = findViewById<Button>(R.id.btnDoLogin)
-        val resendBtn = findViewById<Button>(R.id.btnResendVerification)
-        val forgotBtn = findViewById<Button>(R.id.btnForgotPassword)
-        val spinnerLang = findViewById<Spinner>(R.id.spinnerLanguage)
-
-        val languages = APP_LANGUAGES
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages.map { it.second })
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerLang.adapter = adapter
-
-        val currentLang = LocaleManager.getLocale(this)
-        val initialPosition = languages.indexOfFirst { it.first == currentLang }.coerceAtLeast(0)
-        spinnerLang.setSelection(initialPosition)
-
-        var userTriggeredChange = false
-        spinnerLang.setOnTouchListener { _, _ ->
-            userTriggeredChange = true
-            false
-        }
-
-        spinnerLang.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
-                if (!userTriggeredChange) return
-                val selectedLang = languages[position].first
-                if (selectedLang != currentLang) {
-                    setAppLocale(selectedLang) // saves preference + recreates
+        setContent {
+            TrappTheme {
+                AuthPage(title = stringResource(R.string.action_login), onBack = { finish() }) {
+                    Text(stringResource(R.string.msg_login_explanation), color = Radar.TextSec, fontSize = 15.sp, lineHeight = 21.sp)
+                    Spacer(Modifier.height(4.dp))
+                    AuthField(email, { email = it }, stringResource(R.string.label_email), keyboardType = KeyboardType.Email)
+                    AuthField(
+                        password, { password = it }, stringResource(R.string.label_password),
+                        keyboardType = KeyboardType.Password, password = true, imeAction = ImeAction.Done,
+                    )
+                    if (statusVisible) AuthStatusLine(stringResource(R.string.status_logging_in))
+                    if (error.isNotEmpty()) AuthErrorBox(error)
+                    RadarPrimaryButton(stringResource(R.string.action_login), ::login, Modifier.fillMaxWidth())
+                    if (resendVisible) {
+                        RadarSecondaryButton(stringResource(R.string.action_resend_verification), ::resendVerification, Modifier.fillMaxWidth())
+                    }
+                    if (forgotVisible) {
+                        RadarTextAction(stringResource(R.string.action_forgot_password), ::forgotPassword)
+                    }
+                    Spacer(Modifier.height(12.dp))
+                    // Only a user pick reaches here, so a change always recreates in the new locale.
+                    AuthLanguagePicker(currentLang) { selected ->
+                        if (selected != currentLang) setAppLocale(selected) // saves preference + recreates
+                    }
                 }
+                if (forgotDialog) ForgotPasswordDialog()
             }
-            override fun onNothingSelected(parent: android.widget.AdapterView<*>?) {}
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(KEY_EMAIL, email)
+    }
+
+    private companion object {
+        const val KEY_EMAIL = "login_email"
+    }
+
+    @Composable
+    private fun ForgotPasswordDialog() {
+        var input by remember { mutableStateOf("") }
+        RadarDialog(
+            title = stringResource(R.string.action_forgot_password),
+            onDismiss = { forgotDialog = false },
+            confirmLabel = stringResource(R.string.action_send),
+            onConfirm = {
+                forgotDialog = false
+                val emailInput = input.trim()
+                if (emailInput.isNotBlank()) sendPasswordReset(emailInput)
+                else error = getString(R.string.error_enter_email)
+            },
+            dismissLabel = stringResource(R.string.action_cancel),
+        ) {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(stringResource(R.string.error_enter_email), color = Radar.TextSec)
+                AuthField(input, { input = it }, stringResource(R.string.label_email), keyboardType = KeyboardType.Email, imeAction = ImeAction.Done)
+            }
+        }
+    }
+
+    private fun login() {
+        error = ""
+        statusVisible = true
+        resendVisible = false
+
+        val e = email.trim()
+        val p = password
+
+        if (e.isBlank() || p.isBlank()) {
+            error = getString(R.string.error_login_fields_empty)
+            statusVisible = false
+            return
         }
 
-        login.setOnClickListener {
-            error.text = ""
-            status.text = getString(R.string.status_logging_in)
-            status.visibility = android.view.View.VISIBLE
-            resendBtn.visibility = android.view.View.GONE
-
-            val e = email.text.toString().trim()
-            val p = password.text.toString()
-
-            if (e.isBlank() || p.isBlank()) {
-                error.text = getString(R.string.error_login_fields_empty)
-                status.visibility = android.view.View.GONE
-                return@setOnClickListener
+        auth.signInWithEmailAndPassword(e, p)
+            .addOnSuccessListener { result ->
+                val user = result.user
+                if (user != null && !user.isEmailVerified) {
+                    auth.signOut()
+                    error = getString(R.string.error_email_not_verified)
+                    statusVisible = false
+                    resendVisible = true
+                    return@addOnSuccessListener
+                }
+                Toast.makeText(this, getString(R.string.msg_login_success), Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, GameActivity::class.java))
+                finishAffinity()
             }
+            .addOnFailureListener {
+                statusVisible = false
+                error = it.message ?: getString(R.string.error_login_failed)
+                forgotVisible = true
+            }
+    }
 
-            auth.signInWithEmailAndPassword(e, p)
-                .addOnSuccessListener { result ->
-                    val user = result.user
-                    if (user != null && !user.isEmailVerified) {
+    private fun resendVerification() {
+        val e = email.trim()
+        val p = password
+
+        if (e.isBlank() || p.isBlank()) {
+            error = getString(R.string.error_login_fields_empty)
+            return
+        }
+
+        auth.signInWithEmailAndPassword(e, p)
+            .addOnSuccessListener { result ->
+                val user = result.user
+                // Send locale-aware verification email via backend custom template.
+                functions.getHttpsCallable("sendEmailVerificationCustom")
+                    .call(hashMapOf("locale" to currentLang))
+                    .addOnSuccessListener {
+                        functions.getHttpsCallable("recordVerificationSent").call()
+                            .addOnFailureListener { /* non-critical */ }
+                        Toast.makeText(this, getString(R.string.msg_verification_email_sent), Toast.LENGTH_LONG).show()
                         auth.signOut()
-                        error.text = getString(R.string.error_email_not_verified)
-                        status.visibility = android.view.View.GONE
-                        resendBtn.visibility = android.view.View.VISIBLE
-                        return@addOnSuccessListener
+                        resendVisible = false
                     }
-                    Toast.makeText(this, getString(R.string.msg_login_success), Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, GameActivity::class.java))
-                    finishAffinity()
-                }
-                .addOnFailureListener {
-                    status.visibility = android.view.View.GONE
-                    error.text = it.message ?: getString(R.string.error_login_failed)
-                    forgotBtn.visibility = android.view.View.VISIBLE
-                }
-        }
-
-        findViewById<Button>(R.id.btnBack).setOnClickListener {
-            finish()
-        }
-
-        resendBtn.setOnClickListener {
-            val e = email.text.toString().trim()
-            val p = password.text.toString()
-
-            if (e.isBlank() || p.isBlank()) {
-                error.text = getString(R.string.error_login_fields_empty)
-                return@setOnClickListener
-            }
-
-            auth.signInWithEmailAndPassword(e, p)
-                .addOnSuccessListener { result ->
-                    val user = result.user
-                    // Send locale-aware verification email via backend custom template.
-                    functions.getHttpsCallable("sendEmailVerificationCustom")
-                        .call(hashMapOf("locale" to currentLang))
-                        .addOnSuccessListener {
-                            functions.getHttpsCallable("recordVerificationSent").call()
-                                .addOnFailureListener { /* non-critical */ }
-                            Toast.makeText(this, getString(R.string.msg_verification_email_sent), Toast.LENGTH_LONG).show()
-                            auth.signOut()
-                            resendBtn.visibility = android.view.View.GONE
-                        }
-                        .addOnFailureListener {
-                            // Fall back to Firebase built-in
-                            user?.sendEmailVerification()
-                                ?.addOnSuccessListener {
-                                    functions.getHttpsCallable("recordVerificationSent").call()
-                                        .addOnFailureListener { /* non-critical */ }
-                                    Toast.makeText(this, getString(R.string.msg_verification_email_sent), Toast.LENGTH_LONG).show()
-                                    auth.signOut()
-                                    resendBtn.visibility = android.view.View.GONE
-                                }
-                                ?.addOnFailureListener { ex ->
-                                    error.text = ex.message ?: getString(R.string.auth_verification_send_failed)
-                                    auth.signOut()
-                                }
-                        }
-                }
-                .addOnFailureListener {
-                    error.text = it.message ?: getString(R.string.error_login_failed)
-                    forgotBtn.visibility = android.view.View.VISIBLE
-                }
-        }
-
-        forgotBtn.setOnClickListener {
-            val e = email.text.toString().trim()
-            if (e.isBlank()) {
-                val etEmailDialog = EditText(this).apply {
-                    inputType = android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                    hint = getString(R.string.label_email)
-                }
-
-                android.app.AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.action_forgot_password))
-                    .setMessage(getString(R.string.error_enter_email))
-                    .setView(etEmailDialog)
-                    .setPositiveButton(getString(R.string.action_send)) { _, _ ->
-                        val emailInput = etEmailDialog.text.toString().trim()
-                        if (emailInput.isNotBlank()) {
-                            functions.getHttpsCallable("sendPasswordResetCustom")
-                                .call(hashMapOf("email" to emailInput, "locale" to currentLang))
-                                .addOnSuccessListener {
-                                    Toast.makeText(this, getString(R.string.msg_reset_password_sent), Toast.LENGTH_LONG).show()
-                                }
-                                .addOnFailureListener {
-                                    Toast.makeText(this, getString(R.string.msg_reset_password_sent), Toast.LENGTH_LONG).show()
-                                }
-                        } else {
-                            error.text = getString(R.string.error_enter_email)
-                        }
+                    .addOnFailureListener {
+                        // Fall back to Firebase built-in
+                        user?.sendEmailVerification()
+                            ?.addOnSuccessListener {
+                                functions.getHttpsCallable("recordVerificationSent").call()
+                                    .addOnFailureListener { /* non-critical */ }
+                                Toast.makeText(this, getString(R.string.msg_verification_email_sent), Toast.LENGTH_LONG).show()
+                                auth.signOut()
+                                resendVisible = false
+                            }
+                            ?.addOnFailureListener { ex ->
+                                error = ex.message ?: getString(R.string.auth_verification_send_failed)
+                                auth.signOut()
+                            }
                     }
-                    .setNegativeButton(getString(R.string.action_cancel), null)
-                    .show()
-                return@setOnClickListener
             }
+            .addOnFailureListener {
+                error = it.message ?: getString(R.string.error_login_failed)
+                forgotVisible = true
+            }
+    }
 
-            functions.getHttpsCallable("sendPasswordResetCustom")
-                .call(hashMapOf("email" to e, "locale" to currentLang))
-                .addOnSuccessListener {
-                    Toast.makeText(this, getString(R.string.msg_reset_password_sent), Toast.LENGTH_LONG).show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, getString(R.string.msg_reset_password_sent), Toast.LENGTH_LONG).show()
-                }
+    private fun forgotPassword() {
+        val e = email.trim()
+        if (e.isBlank()) {
+            forgotDialog = true
+            return
         }
+        sendPasswordReset(e)
+    }
+
+    private fun sendPasswordReset(address: String) {
+        // Same toast either way so the response does not reveal whether the account exists.
+        functions.getHttpsCallable("sendPasswordResetCustom")
+            .call(hashMapOf("email" to address, "locale" to currentLang))
+            .addOnSuccessListener {
+                Toast.makeText(this, getString(R.string.msg_reset_password_sent), Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, getString(R.string.msg_reset_password_sent), Toast.LENGTH_LONG).show()
+            }
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bag_title">Trap bag</string>
+    <string name="bag_weight">Weight</string>
+    <string name="bag_selected">Selected</string>
+    <string name="bag_hint_select">Tap a trap to select it — PLACE arms it</string>
+    <string name="bag_section_traps">Your traps</string>
+    <string name="bag_refill_in">+1 in %1$s</string>
+    <string name="bag_status_full">Full</string>
+    <string name="bag_about_weight">About bag weight</string>
+    <string name="bag_trap_details">Trap details</string>
+    <string name="bag_in_bag">In bag</string>
+    <string name="bag_refill">Refill</string>
+    <plurals name="bag_traps_ready">
+        <item quantity="one">%d trap ready</item>
+        <item quantity="other">%d traps ready</item>
+    </plurals>
+</resources>
