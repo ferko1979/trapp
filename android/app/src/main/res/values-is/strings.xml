@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Haltu inni í 2 sekúndur til að setja</string>
     <string name="msg_placing_background">Set gildru í bakgrunni…</string>
     <string name="label_loading">Hleð…</string>
-    <string name="label_my_disassembled_trap">Gildran sem þú fjarlægðir</string>
+    <string name="label_my_disassembled_trap">Gildran sem þú tókst í sundur</string>
     <string name="action_disassemble">TAKA Í SUNDUR</string>
     <string name="label_hold_to_disassemble">Haltu inni í 2 sekúndur til að taka í sundur</string>
     <string name="label_disassembling">Tek í sundur…</string>
@@ -363,7 +363,7 @@
     <string name="label_placing_trap">Set gildru… vertu kyrr</string>
     <string name="warning_return_to_radius">Snúðu aftur innan %1$d sekúndna!</string>
     <string name="warning_return_to_placement">Farðu %1$dm nær! %2$ds eftir</string>
-    <string name="warning_return_to_zone">Snúðu aftur á svæðið innan %1$d sekúndna!</string>
+    <string name="warning_return_to_zone">Snúðu aftur á sundurtökusvæðið innan %1$d sekúndna!</string>
     <string name="error_inside_trap_zone">Þú ert inni á gildrusvæðinu. Bakkaðu til að taka í sundur.</string>
     <string name="msg_select_trap_first">Veldu fyrst gildru úr pokanum!</string>
     <string name="msg_drag_marker">Dragðu merkið á áfangastað (mest 50m)</string>
@@ -616,7 +616,7 @@
     <string name="set_lang_search">Leita að tungumáli…</string>
     <string name="alert_trap_detected">⚠️ GILDRA FANNST</string>
     <string name="alert_distance_danger">%1$dm í burtu · hættusvæði: %2$dm radíus</string>
-    <string name="alert_option_disassemble">Farðu innan %1$dm → haltu inni til að afhjúpa → haltu inni til að taka í sundur.\nEf þú ferð út fyrir svæðið í &gt;%2$ds = hætt við. Sundurtökutími sést eftir afhjúpun.</string>
+    <string name="alert_option_disassemble">Farðu innan %1$d m → haltu inni til að afhjúpa → haltu inni til að taka í sundur.\nEf þú ert utan svæðis í yfir %2$d s = hætt við. Sundurtökutími sést eftir afhjúpun.</string>
     <string name="alert_option_avoid">Haltu þig meira en %1$dm frá miðju gildrunnar og farðu í kringum hana. Ýttu á Loka til að halda áfram að ganga.</string>
     <string name="alert_close_enough_hold">Þú ert nógu nálægt — HALTU inni hnappnum til að afhjúpa gildruna!</string>
     <string name="alert_hold_to_reveal">HALTU INNI TIL AÐ AFHJÚPA</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Frábært!</string>
     <string name="disarm_reveal_failed">Afhjúpun mistókst.</string>
     <string name="disarm_move_closer_detail">Farðu %1$dm nær — þú ert %2$dm í burtu, þarft ≤ %3$dm</string>
-    <string name="disarm_start_failed">Ekki tókst að hefja aftengingu.</string>
-    <string name="disarm_failed">Aftenging mistókst.</string>
+    <string name="disarm_start_failed">Ekki tókst að hefja sundurtöku.</string>
+    <string name="disarm_failed">Sundurtaka mistókst.</string>
     <string name="award_time_card_name">Tímafrádráttur</string>
     <string name="award_unit_min">mín</string>
     <string name="award_time_card_title">Tímafrádráttarspjöld</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d áfylling poka</item>
         <item quantity="other">%d áfyllingar poka</item>
     </plurals>
+    <string name="error_network">Næ ekki sambandi við þjóninn. Athugaðu tenginguna og reyndu aftur.</string>
+    <string name="error_trap_gone">Þessi gildra er ekki lengur virk.</string>
+    <string name="error_trap_other_age_group">Þessi gildra tilheyrir öðrum aldurshópi.</string>
+    <string name="error_quota_penalty">Þú varst gripinn og misstir gildrur dagsins. Reyndu aftur á morgun!</string>
+    <string name="error_home_base_too_far">Heimastöðin þín verður að vera innan 200 m frá þér — þú ert %1$d m í burtu.</string>
+    <string name="error_cannot_target_self">Þú getur ekki gert þetta við sjálfan þig.</string>
+    <string name="error_too_many_attempts">Of margar tilraunir. Bíddu aðeins og reyndu aftur.</string>
+    <string name="error_session_expired">Þetta tók of langan tíma — byrjaðu aftur.</string>
+    <string name="error_email_in_use">Þetta netfang er þegar skráð. Skráðu þig frekar inn.</string>
 </resources>

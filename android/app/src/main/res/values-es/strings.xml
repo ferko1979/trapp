@@ -348,13 +348,13 @@
     <string name="label_hold_for_2s">Mantén 2 segundos para colocar</string>
     <string name="msg_placing_background">Colocando trampa en segundo plano…</string>
     <string name="label_loading">Cargando…</string>
-    <string name="label_my_disassembled_trap">Tu trampa retirada</string>
+    <string name="label_my_disassembled_trap">Tu trampa desmontada</string>
     <string name="action_disassemble">DESMONTAR</string>
     <string name="label_hold_to_disassemble">Mantén 2 segundos para desmontar</string>
     <string name="label_disassembling">Desmontando…</string>
     <string name="label_disassemble_countdown">Quedan %1$ds</string>
     <string name="msg_disassemble_success">¡Trampa desmontada!</string>
-    <string name="msg_disassemble_failed">Error al desmontar</string>
+    <string name="msg_disassemble_failed">No se pudo desmontar</string>
     <string name="error_too_far_to_disassemble">Acércate para desmontar</string>
     <string name="label_reveal_first">Revela primero esta trampa para desmontarla</string>
     <string name="label_trap_owner">Dueño: %1$s</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">¡Genial!</string>
     <string name="disarm_reveal_failed">Error al revelar.</string>
     <string name="disarm_move_closer_detail">Acércate %1$d m — estás a %2$d m, necesitas ≤ %3$d m</string>
-    <string name="disarm_start_failed">No se pudo iniciar la desactivación.</string>
-    <string name="disarm_failed">Error al desactivar.</string>
+    <string name="disarm_start_failed">No se pudo empezar a desmontar.</string>
+    <string name="disarm_failed">No se pudo desmontar.</string>
     <string name="award_time_card_name">Reducción de tiempo</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Cartas de reducción de tiempo</string>
@@ -958,4 +958,13 @@
         <item quantity="many">%d recargas de bolsa</item>
         <item quantity="other">%d recargas de bolsa</item>
     </plurals>
+    <string name="error_network">No se puede conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.</string>
+    <string name="error_trap_gone">Esta trampa ya no está activa.</string>
+    <string name="error_trap_other_age_group">Esta trampa es de otro grupo de edad.</string>
+    <string name="error_quota_penalty">Te pillaron y perdiste tus trampas de hoy. ¡Vuelve a intentarlo mañana!</string>
+    <string name="error_home_base_too_far">Tu base debe estar a menos de 200 m de ti: estás a %1$d m.</string>
+    <string name="error_cannot_target_self">No puedes hacer eso contigo mismo.</string>
+    <string name="error_too_many_attempts">Demasiados intentos. Espera un momento e inténtalo de nuevo.</string>
+    <string name="error_session_expired">Ha tardado demasiado: vuelve a empezar.</string>
+    <string name="error_email_in_use">Este correo ya está registrado. Inicia sesión.</string>
 </resources>

@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Żomm 2 sekondi biex tpoġġi</string>
     <string name="msg_placing_background">Qed titpoġġa n-nassa fl-isfond…</string>
     <string name="label_loading">Qed jitgħabba…</string>
-    <string name="label_my_disassembled_trap">In-nassa li neħħejt</string>
+    <string name="label_my_disassembled_trap">In-nassa li żarmajt</string>
     <string name="action_disassemble">ŻARMA</string>
     <string name="label_hold_to_disassemble">Żomm 2 sekondi biex iżżarma</string>
     <string name="label_disassembling">Qed tiżżarma…</string>
@@ -630,7 +630,7 @@
     <string name="alert_stay_still_revealing">Ibqa’ wieqaf — qed jinkixef it-tip tan-nassa…\n%1$ds / %2$ds</string>
     <string name="alert_revealing">Qed tinkixef…</string>
     <string name="alert_move_closer_title">⚠️ Resaq eqreb!</string>
-    <string name="alert_disassembly_paused">Żarmar waqaf — %1$dm ’il bogħod</string>
+    <string name="alert_disassembly_paused">L-iżżarmar waqaf — %1$dm ’il bogħod</string>
     <string name="alert_move_closer_msg">⚠️ Resaq %1$dm eqreb! Erġa’ lura fi %2$dm</string>
     <string name="alert_paused">WAQAF…</string>
     <string name="alert_disassembling_title">🛠 Qed tiżżarma…</string>
@@ -980,4 +980,13 @@
         <item quantity="many">%d-il mili tal-borża</item>
         <item quantity="other">%d mili tal-borża</item>
     </plurals>
+    <string name="error_network">Ma nistgħux nilħqu s-server. Iċċekkja l-konnessjoni u erġa’ pprova.</string>
+    <string name="error_trap_gone">Din in-nassa m’għadhiex attiva.</string>
+    <string name="error_trap_other_age_group">Din in-nassa tappartjeni għal grupp ta’ età ieħor.</string>
+    <string name="error_quota_penalty">Ġejt maqbud, u tlift in-nases tal-lum. Erġa’ pprova għada!</string>
+    <string name="error_home_base_too_far">Il-bażi tiegħek trid tkun fi 200 m minnek — int %1$d m ’il bogħod.</string>
+    <string name="error_cannot_target_self">Ma tistax tagħmel dan miegħek innifsek.</string>
+    <string name="error_too_many_attempts">Wisq tentattivi. Stenna ftit u erġa’ pprova.</string>
+    <string name="error_session_expired">Dan dam wisq — erġa’ ibda mill-ġdid.</string>
+    <string name="error_email_in_use">Din l-email diġà rreġistrata. Idħol minflok.</string>
 </resources>

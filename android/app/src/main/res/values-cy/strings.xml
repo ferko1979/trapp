@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Dal 2 eiliad i osod</string>
     <string name="msg_placing_background">Yn gosod trap yn y cefndir…</string>
     <string name="label_loading">Yn llwytho…</string>
-    <string name="label_my_disassembled_trap">Dy drap a dynnwyd</string>
+    <string name="label_my_disassembled_trap">Dy drap wedi’i ddatgymalu</string>
     <string name="action_disassemble">DATGYMALU</string>
     <string name="label_hold_to_disassemble">Dal 2 eiliad i ddatgymalu</string>
     <string name="label_disassembling">Yn datgymalu…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Gwych!</string>
     <string name="disarm_reveal_failed">Methodd datgelu.</string>
     <string name="disarm_move_closer_detail">Symuda %1$dm yn agosach — rwyt ti %2$dm i ffwrdd, angen ≤ %3$dm</string>
-    <string name="disarm_start_failed">Methwyd dechrau diarfogi.</string>
-    <string name="disarm_failed">Methodd diarfogi.</string>
+    <string name="disarm_start_failed">Methwyd dechrau datgymalu.</string>
+    <string name="disarm_failed">Methodd datgymalu.</string>
     <string name="award_time_card_name">Tynnu amser</string>
     <string name="award_unit_min">mun</string>
     <string name="award_time_card_title">Cardiau tynnu amser</string>
@@ -991,4 +991,13 @@
         <item quantity="many">%d ail-lenwad bag</item>
         <item quantity="other">%d ail-lenwad bag</item>
     </plurals>
+    <string name="error_network">Methu cyrraedd y gweinydd. Gwiria dy gysylltiad a rho gynnig arall arni.</string>
+    <string name="error_trap_gone">Dydy’r trap hwn ddim yn weithredol bellach.</string>
+    <string name="error_trap_other_age_group">Mae’r trap hwn yn perthyn i grŵp oedran arall.</string>
+    <string name="error_quota_penalty">Cest ti dy ddal, felly collaist ti drapiau heddiw. Rho gynnig arall arni yfory!</string>
+    <string name="error_home_base_too_far">Rhaid i dy ganolfan fod o fewn 200 m i ti — rwyt ti %1$d m i ffwrdd.</string>
+    <string name="error_cannot_target_self">Elli di ddim gwneud hynny gyda ti dy hun.</string>
+    <string name="error_too_many_attempts">Gormod o ymdrechion. Aros eiliad a rho gynnig arall arni.</string>
+    <string name="error_session_expired">Cymerodd hynny’n rhy hir — dechreua eto.</string>
+    <string name="error_email_in_use">Mae\'r e-bost hwn wedi\'i gofrestru eisoes. Mewngofnoda yn lle hynny.</string>
 </resources>

@@ -56,7 +56,7 @@
     <string name="error_no_traps_daily_limit">Bugün için kurma hakkın kalmadı</string>
     <string name="error_too_far_to_place">Tuzağı kurmak için yaklaş</string>
     <string name="error_too_many_traps_nearby">Burada tuzakların birbirine çok yakın. Onları daha fazla aralıklı kur!</string>
-    <string name="error_too_far_to_disassemble_detail">Sökmek için %1$dm yaklaş.</string>
+    <string name="error_too_far_to_disassemble_detail">Sökmek için %1$dm daha yaklaş.</string>
     <string name="error_missing_session">Kurulum başarısız: sessionId eksik</string>
     <string name="error_load_inventory">Envanter yüklenemedi</string>
     <string name="hint_username">kullanıcı adı (boşluksuz)</string>
@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Kurmak için 2 saniye basılı tut</string>
     <string name="msg_placing_background">Tuzak arka planda kuruluyor…</string>
     <string name="label_loading">Yükleniyor…</string>
-    <string name="label_my_disassembled_trap">Söktüğün tuzağın</string>
+    <string name="label_my_disassembled_trap">Söktüğün tuzak</string>
     <string name="action_disassemble">SÖK</string>
     <string name="label_hold_to_disassemble">Sökmek için 2 saniye basılı tut</string>
     <string name="label_disassembling">Sökülüyor…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Harika!</string>
     <string name="disarm_reveal_failed">Ortaya çıkarma başarısız.</string>
     <string name="disarm_move_closer_detail">%1$dm yaklaş — %2$dm uzaktasın, gereken ≤ %3$dm</string>
-    <string name="disarm_start_failed">Etkisiz hale getirme başlatılamadı.</string>
-    <string name="disarm_failed">Etkisiz hale getirme başarısız.</string>
+    <string name="disarm_start_failed">Sökme başlatılamadı.</string>
+    <string name="disarm_failed">Sökme başarısız.</string>
     <string name="award_time_card_name">Süre kısaltma</string>
     <string name="award_unit_min">dk</string>
     <string name="award_time_card_title">Süre kısaltma kartları</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d çanta dolumu</item>
         <item quantity="other">%d çanta dolumu</item>
     </plurals>
+    <string name="error_network">Sunucuya ulaşılamıyor. Bağlantını kontrol edip tekrar dene.</string>
+    <string name="error_trap_gone">Bu tuzak artık aktif değil.</string>
+    <string name="error_trap_other_age_group">Bu tuzak başka bir yaş grubuna ait.</string>
+    <string name="error_quota_penalty">Yakalandığın için bugünkü tuzaklarını kaybettin. Yarın tekrar dene!</string>
+    <string name="error_home_base_too_far">Ana üssün sana en fazla 200 m uzaklıkta olmalı — şu an %1$d m uzaktasın.</string>
+    <string name="error_cannot_target_self">Bunu kendinle yapamazsın.</string>
+    <string name="error_too_many_attempts">Çok fazla deneme. Biraz bekleyip tekrar dene.</string>
+    <string name="error_session_expired">Çok uzun sürdü — lütfen baştan başla.</string>
+    <string name="error_email_in_use">Bu e-posta zaten kayıtlı. Giriş yapmayı dene.</string>
 </resources>

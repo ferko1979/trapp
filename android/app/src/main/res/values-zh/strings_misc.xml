@@ -4,6 +4,6 @@
     <string name="maintenance_title">维护中</string>
     <string name="maintenance_msg">应用正在维护。请稍后再试。</string>
     <string name="action_retry">重试</string>
-    <string name="alert_option_disassemble_title">🛠  拆除</string>
+    <string name="alert_option_disassemble_title">🛠  拆解</string>
     <string name="alert_option_avoid_title">🚶  躲开</string>
 </resources>

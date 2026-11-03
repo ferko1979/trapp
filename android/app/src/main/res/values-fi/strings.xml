@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Pidä 2 sekuntia asettaaksesi</string>
     <string name="msg_placing_background">Ansaa asetetaan taustalla…</string>
     <string name="label_loading">Ladataan…</string>
-    <string name="label_my_disassembled_trap">Poistettu ansasi</string>
+    <string name="label_my_disassembled_trap">Purkamasi ansa</string>
     <string name="action_disassemble">PURA</string>
     <string name="label_hold_to_disassemble">Pidä 2 sekuntia purkaaksesi</string>
     <string name="label_disassembling">Puretaan…</string>
@@ -616,7 +616,7 @@
     <string name="set_lang_search">Hae kieliä…</string>
     <string name="alert_trap_detected">⚠️ ANSA HAVAITTU</string>
     <string name="alert_distance_danger">%1$d m päässä · vaara-alue: %2$d m säde</string>
-    <string name="alert_option_disassemble">Mene %1$d m:n päähän → paljasta pitämällä → pura pitämällä.\nPoistut alueelta yli %2$ds = peruttu. Purkuaika näkyy paljastuksen jälkeen.</string>
+    <string name="alert_option_disassemble">Mene %1$d m:n päähän → paljasta pitämällä → pura pitämällä.\nYli %2$d s alueen ulkopuolella = peruttu. Purkuaika näkyy paljastuksen jälkeen.</string>
     <string name="alert_option_avoid">Pysy yli %1$d m:n päässä ansan keskipisteestä ja kierrä se. Napauta Ohita jatkaaksesi kävelyä.</string>
     <string name="alert_close_enough_hold">Olet tarpeeksi lähellä — PIDÄ painiketta paljastaaksesi ansan!</string>
     <string name="alert_hold_to_reveal">PIDÄ PALJASTAAKSESI</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d laukun täydennys</item>
         <item quantity="other">%d laukun täydennystä</item>
     </plurals>
+    <string name="error_network">Palvelimeen ei saada yhteyttä. Tarkista yhteys ja yritä uudelleen.</string>
+    <string name="error_trap_gone">Tämä ansa ei ole enää aktiivinen.</string>
+    <string name="error_trap_other_age_group">Tämä ansa kuuluu eri ikäryhmälle.</string>
+    <string name="error_quota_penalty">Kiinnijääminen vei tämän päivän ansasi. Yritä huomenna uudelleen!</string>
+    <string name="error_home_base_too_far">Kotitukikohtasi täytyy olla enintään 200 m:n päässä sinusta — olet %1$d m:n päässä.</string>
+    <string name="error_cannot_target_self">Et voi tehdä sitä itsellesi.</string>
+    <string name="error_too_many_attempts">Liian monta yritystä. Odota hetki ja yritä uudelleen.</string>
+    <string name="error_session_expired">Se kesti liian kauan — aloita alusta.</string>
+    <string name="error_email_in_use">Tämä sähköposti on jo rekisteröity. Kirjaudu sisään.</string>
 </resources>

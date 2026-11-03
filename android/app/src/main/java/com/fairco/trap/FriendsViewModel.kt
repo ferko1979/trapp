@@ -80,7 +80,7 @@ class FriendsViewModel(application: Application) : AndroidViewModel(application)
                 )
             }
         } catch (e: Exception) {
-            error.value = e.message
+            error.value = ServerErrorText.of(e)
         } finally {
             isLoading.value = false
         }
@@ -113,7 +113,7 @@ class FriendsViewModel(application: Application) : AndroidViewModel(application)
                 )
             }
         } catch (e: Exception) {
-            error.value = e.message
+            error.value = ServerErrorText.of(e)
         }
     }
 
@@ -133,7 +133,7 @@ class FriendsViewModel(application: Application) : AndroidViewModel(application)
                 )
             }
         } catch (e: Exception) {
-            error.value = e.message
+            error.value = ServerErrorText.of(e)
         }
     }
 
@@ -148,7 +148,7 @@ class FriendsViewModel(application: Application) : AndroidViewModel(application)
                 val msg = when {
                     e.message?.contains("already-exists") == true -> str(R.string.msg_already_friends)
                     e.message?.contains("not-found") == true -> str(R.string.friends_username_not_found)
-                    else -> e.message ?: str(R.string.error_request_failed)
+                    else -> ServerErrorText.of(e, R.string.error_request_failed)
                 }
                 onDone(false, msg)
             }
@@ -162,7 +162,7 @@ class FriendsViewModel(application: Application) : AndroidViewModel(application)
             loadFriendRequests()
             if (accept) loadFriends()
         } catch (e: Exception) {
-            error.value = e.message
+            error.value = ServerErrorText.of(e)
         }
     }
 
@@ -172,7 +172,7 @@ class FriendsViewModel(application: Application) : AndroidViewModel(application)
                 .call(mapOf("friendUid" to friendUid)).await()
             loadFriends()
         } catch (e: Exception) {
-            error.value = e.message
+            error.value = ServerErrorText.of(e)
         }
     }
 
@@ -209,7 +209,7 @@ class FriendsViewModel(application: Application) : AndroidViewModel(application)
                 )
             } catch (e: Exception) {
                 _identifierResult.value = IdentifierSearchState.Error(
-                    e.message ?: str(R.string.error_search_failed)
+                    ServerErrorText.of(e, R.string.error_search_failed)
                 )
             }
         }
@@ -232,7 +232,7 @@ class FriendsViewModel(application: Application) : AndroidViewModel(application)
             
             loadFriendRequests()
         } catch (e: Exception) {
-            error.value = e.message ?: str(R.string.error_request_failed)
+            error.value = ServerErrorText.of(e, R.string.error_request_failed)
         }
     }
 
@@ -249,7 +249,7 @@ class FriendsViewModel(application: Application) : AndroidViewModel(application)
             // For now, clearing search or re-searching would be easier, but let's stick to simple.
             clearIdentifierResult()
         } catch (e: Exception) {
-            error.value = e.message
+            error.value = ServerErrorText.of(e)
         }
     }
 }

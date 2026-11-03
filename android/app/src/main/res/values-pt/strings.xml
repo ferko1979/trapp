@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Mantém premido 2 segundos para colocar</string>
     <string name="msg_placing_background">A colocar armadilha em segundo plano…</string>
     <string name="label_loading">A carregar…</string>
-    <string name="label_my_disassembled_trap">A tua armadilha removida</string>
+    <string name="label_my_disassembled_trap">A tua armadilha desmontada</string>
     <string name="action_disassemble">DESMONTAR</string>
     <string name="label_hold_to_disassemble">Mantém premido 2 segundos para desmontar</string>
     <string name="label_disassembling">A desmontar…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Ótimo!</string>
     <string name="disarm_reveal_failed">Falha ao revelar.</string>
     <string name="disarm_move_closer_detail">Aproxima-te %1$dm — estás a %2$dm, precisas de ≤ %3$dm</string>
-    <string name="disarm_start_failed">Não foi possível começar a desarmar.</string>
-    <string name="disarm_failed">Falha ao desarmar.</string>
+    <string name="disarm_start_failed">Não foi possível começar a desmontar.</string>
+    <string name="disarm_failed">Falha ao desmontar.</string>
     <string name="award_time_card_name">Redução de tempo</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Cartas de redução de tempo</string>
@@ -958,4 +958,13 @@
         <item quantity="many">%d reposições da mochila</item>
         <item quantity="other">%d reposições da mochila</item>
     </plurals>
+    <string name="error_network">Não é possível ligar ao servidor. Verifica a ligação e tenta novamente.</string>
+    <string name="error_trap_gone">Esta armadilha já não está ativa.</string>
+    <string name="error_trap_other_age_group">Esta armadilha pertence a outra faixa etária.</string>
+    <string name="error_quota_penalty">Foste apanhado e perdeste as armadilhas de hoje. Tenta amanhã!</string>
+    <string name="error_home_base_too_far">A tua base tem de estar a menos de 200 m de ti — estás a %1$d m.</string>
+    <string name="error_cannot_target_self">Não podes fazer isso contigo próprio.</string>
+    <string name="error_too_many_attempts">Demasiadas tentativas. Espera um momento e tenta novamente.</string>
+    <string name="error_session_expired">Demorou demasiado — começa de novo.</string>
+    <string name="error_email_in_use">Este e-mail já está registado. Inicia sessão.</string>
 </resources>

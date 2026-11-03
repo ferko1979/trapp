@@ -204,7 +204,7 @@ private fun SubscriptionScreen(uid: String) {
                 } catch (_: Exception) { /* retried on next visit */ }
             }
         } catch (e: Exception) {
-            Toast.makeText(context, context.getString(R.string.sub_load_failed, e.message ?: ""), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.sub_load_failed, ServerErrorText.of(context, e)), Toast.LENGTH_SHORT).show()
         } finally {
             loading = false
         }
@@ -255,7 +255,7 @@ private fun SubscriptionScreen(uid: String) {
                 }
             }
         } catch (e: Exception) {
-            Toast.makeText(context, context.getString(R.string.sub_error, e.message ?: ""), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, ServerErrorText.of(context, e), Toast.LENGTH_LONG).show()
         } finally {
             checkoutLoading = false
         }
@@ -276,7 +276,7 @@ private fun SubscriptionScreen(uid: String) {
             Toast.makeText(context, context.getString(R.string.sub_now_active, pkg.levelName.ifBlank { pkg.name }), Toast.LENGTH_LONG).show()
             act.finish()
         } catch (e: Exception) {
-            Toast.makeText(context, context.getString(R.string.sub_error, e.message ?: ""), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, ServerErrorText.of(context, e), Toast.LENGTH_LONG).show()
         } finally {
             checkoutLoading = false
         }
@@ -367,7 +367,7 @@ private fun SubscriptionScreen(uid: String) {
                                         Toast.makeText(context, context.getString(R.string.sub_cancelled_toast), Toast.LENGTH_LONG).show()
                                         activity?.finish()
                                     } catch (e: Exception) {
-                                        Toast.makeText(context, context.getString(R.string.sub_cancel_failed, e.message ?: ""), Toast.LENGTH_LONG).show()
+                                        Toast.makeText(context, context.getString(R.string.sub_cancel_failed, ServerErrorText.of(context, e)), Toast.LENGTH_LONG).show()
                                     } finally {
                                         cancelLoading = false
                                     }

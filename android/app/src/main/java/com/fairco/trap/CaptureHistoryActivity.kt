@@ -83,7 +83,7 @@ private fun CaptureHistoryScreen() {
                 val items = data["items"] as? List<Map<String, Any?>> ?: emptyList()
                 myCaptures.value = items.map { it.toCaptureRecord() }
             } catch (e: Exception) {
-                myError = e.message
+                myError = ServerErrorText.of(e)
             } finally {
                 myLoading = false
             }
@@ -97,7 +97,7 @@ private fun CaptureHistoryScreen() {
                 val items = data["items"] as? List<Map<String, Any?>> ?: emptyList()
                 caughtMe.value = items.map { it.toCaptureRecord() }
             } catch (e: Exception) {
-                caughtError = e.message
+                caughtError = ServerErrorText.of(e)
             } finally {
                 caughtLoading = false
             }
@@ -324,7 +324,7 @@ private fun CaptureRow(record: CaptureRecord, isMyCapture: Boolean) {
                             Toast.makeText(context, context.getString(R.string.capture_friend_request_sent_to, enemyUsername), Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception) {
-                        Toast.makeText(context, context.getString(R.string.error_action_failed, e.message ?: ""), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, ServerErrorText.of(context, e), Toast.LENGTH_SHORT).show()
                     }
                 }
             },

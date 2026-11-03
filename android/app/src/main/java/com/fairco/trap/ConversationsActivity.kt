@@ -121,7 +121,7 @@ class ConversationsActivity : BaseActivity() {
                     friendPicker.value = friends
                 }
             } catch (e: Exception) {
-                Toast.makeText(this@ConversationsActivity, getString(R.string.chat_load_friends_failed, e.message ?: ""), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ConversationsActivity, getString(R.string.chat_load_friends_failed, ServerErrorText.of(this@ConversationsActivity, e)), Toast.LENGTH_SHORT).show()
             } finally {
                 friendsLoading.value = false
             }

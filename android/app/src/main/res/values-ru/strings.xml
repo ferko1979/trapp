@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Удерживай 2 секунды, чтобы поставить</string>
     <string name="msg_placing_background">Ловушка ставится в фоне…</string>
     <string name="label_loading">Загрузка…</string>
-    <string name="label_my_disassembled_trap">Твоя снятая ловушка</string>
+    <string name="label_my_disassembled_trap">Твоя разобранная ловушка</string>
     <string name="action_disassemble">РАЗОБРАТЬ</string>
     <string name="label_hold_to_disassemble">Удерживай 2 секунды, чтобы разобрать</string>
     <string name="label_disassembling">Разбираем…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Отлично!</string>
     <string name="disarm_reveal_failed">Не удалось раскрыть.</string>
     <string name="disarm_move_closer_detail">Подойди на %1$d м ближе — ты в %2$d м, нужно ≤ %3$d м</string>
-    <string name="disarm_start_failed">Не удалось начать обезвреживание.</string>
-    <string name="disarm_failed">Не удалось обезвредить.</string>
+    <string name="disarm_start_failed">Не удалось начать разборку.</string>
+    <string name="disarm_failed">Не удалось разобрать.</string>
     <string name="award_time_card_name">Минус время</string>
     <string name="award_unit_min">мин</string>
     <string name="award_time_card_title">Карты «Минус время»</string>
@@ -969,4 +969,13 @@
         <item quantity="many">%d пополнений сумки</item>
         <item quantity="other">%d пополнения сумки</item>
     </plurals>
+    <string name="error_network">Нет связи с сервером. Проверь подключение и попробуй снова.</string>
+    <string name="error_trap_gone">Эта ловушка больше не активна.</string>
+    <string name="error_trap_other_age_group">Эта ловушка для другой возрастной группы.</string>
+    <string name="error_quota_penalty">Тебя поймали — сегодняшние ловушки сгорели. Попробуй завтра!</string>
+    <string name="error_home_base_too_far">База должна быть не дальше 200 м от тебя — сейчас до неё %1$d м.</string>
+    <string name="error_cannot_target_self">С самим собой так нельзя.</string>
+    <string name="error_too_many_attempts">Слишком много попыток. Подожди немного и попробуй снова.</string>
+    <string name="error_session_expired">Слишком долго — начни заново.</string>
+    <string name="error_email_in_use">Этот email уже зарегистрирован. Лучше войди.</string>
 </resources>

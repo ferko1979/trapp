@@ -350,7 +350,7 @@
     <string name="label_loading">Á lódáil…</string>
     <string name="label_my_disassembled_trap">Do ghaiste díchóimeáilte</string>
     <string name="action_disassemble">DÍCHÓIMEÁIL</string>
-    <string name="label_hold_to_disassemble">Coinnigh 2 shoicind chun díchóimeáil</string>
+    <string name="label_hold_to_disassemble">Coinnigh síos 2 shoicind chun é a dhíchóimeáil</string>
     <string name="label_disassembling">Á dhíchóimeáil…</string>
     <string name="label_disassemble_countdown">%1$ds fágtha</string>
     <string name="msg_disassemble_success">Gaiste díchóimeáilte!</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Ar fheabhas!</string>
     <string name="disarm_reveal_failed">Theip ar an nochtadh.</string>
     <string name="disarm_move_closer_detail">Druid %1$dm níos gaire — tá tú %2$dm uaidh, teastaíonn ≤ %3$dm</string>
-    <string name="disarm_start_failed">Níorbh fhéidir an díarmáil a thosú.</string>
-    <string name="disarm_failed">Theip ar an díarmáil.</string>
+    <string name="disarm_start_failed">Níorbh fhéidir an díchóimeáil a thosú.</string>
+    <string name="disarm_failed">Theip ar an díchóimeáil.</string>
     <string name="award_time_card_name">Asbhaint ama</string>
     <string name="award_unit_min">nóim</string>
     <string name="award_time_card_title">Cártaí asbhainte ama</string>
@@ -980,4 +980,13 @@
         <item quantity="many">%d n-athlíonadh mála</item>
         <item quantity="other">%d athlíonadh mála</item>
     </plurals>
+    <string name="error_network">Ní féidir teacht ar an bhfreastalaí. Seiceáil do nasc agus bain triail eile as.</string>
+    <string name="error_trap_gone">Níl an gaiste seo gníomhach a thuilleadh.</string>
+    <string name="error_trap_other_age_group">Baineann an gaiste seo le haoisghrúpa eile.</string>
+    <string name="error_quota_penalty">Beireadh ort, agus chaill tú gaistí an lae inniu dá bharr. Bain triail eile as amárach!</string>
+    <string name="error_home_base_too_far">Caithfidh do bhunáit bhaile a bheith laistigh de 200 m díot — tá tú %1$d m uaidh.</string>
+    <string name="error_cannot_target_self">Ní féidir leat é sin a dhéanamh leat féin.</string>
+    <string name="error_too_many_attempts">An iomarca iarrachtaí. Fan nóiméad agus bain triail eile as.</string>
+    <string name="error_session_expired">Thóg sé sin rófhada — tosaigh arís, le do thoil.</string>
+    <string name="error_email_in_use">Tá an ríomhphost seo cláraithe cheana. Logáil isteach ina ionad.</string>
 </resources>

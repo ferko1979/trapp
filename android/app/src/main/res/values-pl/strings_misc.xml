@@ -4,6 +4,6 @@
     <string name="maintenance_title">Trwa konserwacja</string>
     <string name="maintenance_msg">Aplikacja jest teraz w trakcie konserwacji. Spróbuj ponownie później.</string>
     <string name="action_retry">Ponów</string>
-    <string name="alert_option_disassemble_title">🛠  Rozbrój</string>
+    <string name="alert_option_disassemble_title">🛠  Rozmontuj</string>
     <string name="alert_option_avoid_title">🚶  Omiń</string>
 </resources>

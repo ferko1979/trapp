@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Држи 2 секунди за поставување</string>
     <string name="msg_placing_background">Стапицата се поставува во позадина…</string>
     <string name="label_loading">Се вчитува…</string>
-    <string name="label_my_disassembled_trap">Твојата отстранета стапица</string>
+    <string name="label_my_disassembled_trap">Твојата расклопена стапица</string>
     <string name="action_disassemble">РАСКЛОПИ</string>
     <string name="label_hold_to_disassemble">Држи 2 секунди за расклопување</string>
     <string name="label_disassembling">Расклопување…</string>
@@ -616,7 +616,7 @@
     <string name="set_lang_search">Пребарај јазици…</string>
     <string name="alert_trap_detected">⚠️ ОТКРИЕНА СТАПИЦА</string>
     <string name="alert_distance_danger">На %1$dm · опасна зона: радиус %2$dm</string>
-    <string name="alert_option_disassemble">Приближи се на %1$dm → држи за откривање → држи за расклопување.\nАко излезеш од опсегот подолго од &gt;%2$ds = откажано. Времето за расклопување се прикажува по откривањето.</string>
+    <string name="alert_option_disassemble">Приближи се на %1$dm → држи за откривање → држи за расклопување.\nНадвор од опсегот &gt;%2$ds = откажано. Времето за расклопување се прикажува по откривањето.</string>
     <string name="alert_option_avoid">Остани подалеку од %1$dm од центарот на стапицата и заобиколи ја. Допри Отфрли за да продолжиш.</string>
     <string name="alert_close_enough_hold">Доволно си близу — ДРЖИ го копчето за да ја откриеш стапицата!</string>
     <string name="alert_hold_to_reveal">ДРЖИ ЗА ОТКРИВАЊЕ</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d полнење торба</item>
         <item quantity="other">%d полнења торба</item>
     </plurals>
+    <string name="error_network">Серверот не е достапен. Провери ја врската и обиди се повторно.</string>
+    <string name="error_trap_gone">Оваа стапица веќе не е активна.</string>
+    <string name="error_trap_other_age_group">Оваа стапица припаѓа на друга возрасна група.</string>
+    <string name="error_quota_penalty">Те фатија, па ги загуби денешните стапици. Обиди се утре!</string>
+    <string name="error_home_base_too_far">Твојата база мора да биде во рамките на 200 m од тебе — ти си на %1$d m.</string>
+    <string name="error_cannot_target_self">Тоа не можеш да го направиш со себе.</string>
+    <string name="error_too_many_attempts">Премногу обиди. Почекај малку и обиди се повторно.</string>
+    <string name="error_session_expired">Траеше предолго — почни одново.</string>
+    <string name="error_email_in_use">Оваа е-пошта е веќе регистрирана. Подобро најави се.</string>
 </resources>

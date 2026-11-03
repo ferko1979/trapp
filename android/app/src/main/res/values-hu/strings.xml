@@ -406,23 +406,23 @@
     <string name="label_hold_for_2s">Tartsd lenyomva 2 másodpercig</string>
     <string name="msg_placing_background">Csapda elhelyezése folyamatban…</string>
     <string name="label_loading">Betöltés…</string>
-    <string name="label_my_disassembled_trap">Eltávolított csapdád</string>
+    <string name="label_my_disassembled_trap">Szétszedett csapdád</string>
     <string name="hint_select_trap_to_place">Válassz csapdát az alábbi táskából</string>
-    <string name="action_disassemble">LESZEDÉS</string>
-    <string name="label_hold_to_disassemble">Tartsd 2 másodpercig a leszedéshez</string>
-    <string name="label_disassembling">Leszedés folyamatban…</string>
+    <string name="action_disassemble">SZÉTSZEDEM</string>
+    <string name="label_hold_to_disassemble">Tartsd nyomva 2 mp-ig a szétszedéshez</string>
+    <string name="label_disassembling">Szétszedés folyamatban…</string>
     <string name="label_disassemble_countdown">%1$ds hátra</string>
-    <string name="msg_disassemble_success">Csapda leszedve!</string>
-    <string name="msg_disassemble_failed">Leszedés sikertelen</string>
-    <string name="error_too_far_to_disassemble">Menj közelebb a leszedéshez</string>
-    <string name="label_reveal_first">Fedezd fel először a csapdát a leszedéshez</string>
+    <string name="msg_disassemble_success">Csapda szétszedve!</string>
+    <string name="msg_disassemble_failed">Nem sikerült szétszedni</string>
+    <string name="error_too_far_to_disassemble">Menj közelebb a szétszedéshez</string>
+    <string name="label_reveal_first">Előbb fedezd fel a csapdát, aztán szétszedheted</string>
     <string name="label_trap_owner">Tulajdonos: %1$s</string>
     <string name="label_your_trap_info">A te csapdád</string>
     <string name="label_others_trap_info">Valaki más csapdája</string>
     <string name="label_placing_trap">Csapda elhelyezése… maradj a helyeden</string>
     <string name="warning_return_to_radius">Térj vissza %1$d másodpercen belül!</string>
-    <string name="warning_return_to_zone">Térj vissza a leszedési zónába %1$d másodpercen belül!</string>
-    <string name="error_inside_trap_zone">A csapda zónájában vagy. Hátrálj el a leszedéshez.</string>
+    <string name="warning_return_to_zone">Térj vissza a szétszedési zónába %1$d másodpercen belül!</string>
+    <string name="error_inside_trap_zone">A csapda zónájában vagy. Hátrálj ki, és onnan szedd szét.</string>
 
     <!-- ── Settings dialog ── -->
     <string name="label_appearance">MEGJELENÉS</string>
@@ -546,7 +546,7 @@
     <string name="dialog_home_base_move">Idehozod az otthoni bázisod?\n(a jelenlegi biztonságos zóna helyébe lép)</string>
     <string name="dialog_home_base_set_new">Ezt állítod be otthoni bázisként?\nImmunis leszel a csapdákra 100 m-en belül.</string>
     <string name="label_ally_rank_you">Szövetség: #%1$d / %2$d</string>
-    <string name="label_confirming_disassembly">Leszedés megerősítése…</string>
+    <string name="label_confirming_disassembly">Szétszedés megerősítése…</string>
     <string name="label_confirming_placement">Elhelyezés megerősítése…</string>
     <string name="label_daily_traps_remaining">%1$d / %2$d napi csapda</string>
     <string name="label_effect_value">Hatás: %1$s</string>
@@ -657,7 +657,7 @@
     <!-- Hardcoded-string sweep 2026-11-03 -->
     <string name="alert_trap_detected">⚠️ CSAPDA ÉSZLELVE</string>
     <string name="alert_distance_danger">%1$d m-re · veszélyzóna: %2$d m sugár</string>
-    <string name="alert_option_disassemble">Menj %1$d m-en belülre → tartsd nyomva a felfedéshez → tartsd nyomva a szétszereléshez.\nHa %2$d mp-nél tovább kint vagy a körből, megszakad. A szétszerelési idő a felfedés után látszik.</string>
+    <string name="alert_option_disassemble">Menj %1$d m-en belülre → tartsd nyomva a felfedéshez → tartsd nyomva a szétszedéshez.\nHa %2$d mp-nél tovább kint vagy a körből, megszakad. A szétszedési idő a felfedés után látszik.</string>
     <string name="alert_option_avoid">Maradj a csapda közepétől %1$d m-en kívül, és kerüld ki. Koppints a Bezárásra, és sétálj tovább.</string>
     <string name="alert_close_enough_hold">Elég közel vagy — TARTSD NYOMVA a gombot a csapda felfedéséhez!</string>
     <string name="alert_hold_to_reveal">TARTSD A FELFEDÉSHEZ</string>
@@ -671,26 +671,26 @@
     <string name="alert_stay_still_revealing">Maradj egy helyben — csapdatípus felfedése…\n%1$d / %2$d mp</string>
     <string name="alert_revealing">Felfedés…</string>
     <string name="alert_move_closer_title">⚠️ Menj közelebb!</string>
-    <string name="alert_disassembly_paused">Szétszerelés szüneteltetve — %1$d m-re vagy</string>
+    <string name="alert_disassembly_paused">Szétszedés szünetel — %1$d m-re vagy</string>
     <string name="alert_move_closer_msg">⚠️ Menj %1$d m-rel közelebb! Gyere vissza %2$d m-en belülre</string>
     <string name="alert_paused">SZÜNETEL…</string>
-    <string name="alert_disassembling_title">🛠 Szétszerelés…</string>
+    <string name="alert_disassembling_title">🛠 Szétszedés…</string>
     <string name="alert_stay_in_position">Maradj a helyeden!</string>
     <string name="alert_hold_position">MARADJ a helyeden — ne mozdulj!</string>
     <string name="alert_seconds_remaining">⏱ még %1$d mp</string>
     <string name="alert_holding">TARTÁS…</string>
     <string name="alert_trapped_title">🪤 Csapdába estél!</string>
     <string name="alert_stepped_in_zone">Beléptél a csapda zónájába</string>
-    <string name="alert_entered_danger_zone">Szétszerelés közben beléptél a veszélyzónába (%1$d m) — a csapda elsült!</string>
+    <string name="alert_entered_danger_zone">Szétszedés közben beléptél a veszélyzónába (%1$d m) — a csapda elsült!</string>
     <string name="alert_error_title">⚠️ Hiba</string>
     <string name="alert_retry">ÚJRA</string>
-    <string name="alert_disassembled_title">✅ Csapda szétszerelve!</string>
+    <string name="alert_disassembled_title">✅ Csapda szétszedve!</string>
     <string name="alert_collected_msg">Megszerezted: %1$s\nMár a táskádban van — irány csapdát állítani!</string>
     <string name="alert_great">Szuper!</string>
     <string name="disarm_reveal_failed">A felfedés nem sikerült.</string>
     <string name="disarm_move_closer_detail">Menj %1$d m-rel közelebb — %2$d m-re vagy, legfeljebb %3$d m kell</string>
-    <string name="disarm_start_failed">Nem sikerült elkezdeni a szétszerelést.</string>
-    <string name="disarm_failed">A szétszerelés nem sikerült.</string>
+    <string name="disarm_start_failed">Nem sikerült elkezdeni a szétszedést.</string>
+    <string name="disarm_failed">A szétszedés nem sikerült.</string>
     <string name="award_time_card_name">Időlevonás</string>
     <string name="award_unit_min">perc</string>
     <string name="award_time_card_title">Időlevonó kártyák</string>
@@ -736,9 +736,9 @@
     <string name="notif_freed_title">🎉 SZABAD vagy!</string>
     <string name="notif_freed_body">Lejárt a büntetőidőd. Irány vissza a játékba!</string>
     <string name="ad_speedup_placement_title">Gyorsítsd fel a lerakást</string>
-    <string name="ad_speedup_disassembly_title">Gyorsítsd fel a szétszerelést</string>
+    <string name="ad_speedup_disassembly_title">Gyorsítsd fel a szétszedést</string>
     <string name="ad_speedup_placement_msg">Nézz meg egy rövid reklámot, és ennyivel rövidül a lerakási idő: %1$s.\n\nA jutalomhoz a teljes videót végig kell nézned.</string>
-    <string name="ad_speedup_disassembly_msg">Nézz meg egy rövid reklámot, és ennyivel rövidül a szétszerelési idő: %1$s.\n\nA jutalomhoz a teljes videót végig kell nézned.</string>
+    <string name="ad_speedup_disassembly_msg">Nézz meg egy rövid reklámot, és ennyivel rövidül a szétszedési idő: %1$s.\n\nA jutalomhoz a teljes videót végig kell nézned.</string>
     <string name="action_watch_ad">Reklám megnézése</string>
     <string name="action_no_thanks">Köszönöm, nem</string>
     <string name="ad_not_available">A reklám még nem érhető el, próbáld újra kicsit később.</string>
@@ -990,7 +990,7 @@
         <item quantity="other">%d táska-feltöltés</item>
     </plurals>
     <string name="error_too_many_traps_nearby">Itt már túl közel vannak egymáshoz a csapdáid. Tedd őket távolabb!</string>
-    <string name="error_too_far_to_disassemble_detail">Menj %1$dm-rel közelebb a leszedéshez.</string>
+    <string name="error_too_far_to_disassemble_detail">Menj %1$d m-rel közelebb a szétszedéshez.</string>
     <string name="lang_he">עברית (Héber)</string>
     <string name="action_awards_cards">DÍJAK ÉS KÁRTYÁK</string>
     <string name="warning_return_to_placement">Menj %1$dm-rel közelebb! Még %2$ds</string>
@@ -1000,4 +1000,13 @@
     <string name="msg_update_available">Elérhető a Trap újabb verziója. Frissíts most a legújabb funkciókért és fejlesztésekért.</string>
     <string name="action_update_now">Frissítés most</string>
     <string name="action_later">Később</string>
+    <string name="error_network">Nem érem el a szervert. Nézd meg a netet, és próbáld újra.</string>
+    <string name="error_trap_gone">Ez a csapda már nem aktív.</string>
+    <string name="error_trap_other_age_group">Ez a csapda másik korosztályé.</string>
+    <string name="error_quota_penalty">Elkaptak, így mára elfogytak a csapdáid. Holnap újra próbálhatod!</string>
+    <string name="error_home_base_too_far">A bázisodnak 200 m-en belül kell lennie — most %1$d m-re vagy.</string>
+    <string name="error_cannot_target_self">Ezt saját magaddal nem teheted meg.</string>
+    <string name="error_too_many_attempts">Túl sok próbálkozás. Várj egy kicsit, és próbáld újra.</string>
+    <string name="error_session_expired">Ez túl sokáig tartott — kezdd újra.</string>
+    <string name="error_email_in_use">Ezzel az e-mail-címmel már regisztráltak. Lépj be inkább.</string>
 </resources>

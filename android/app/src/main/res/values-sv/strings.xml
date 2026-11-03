@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Håll i 2 sekunder för att placera</string>
     <string name="msg_placing_background">Placerar fälla i bakgrunden…</string>
     <string name="label_loading">Laddar…</string>
-    <string name="label_my_disassembled_trap">Din borttagna fälla</string>
+    <string name="label_my_disassembled_trap">Din demonterade fälla</string>
     <string name="action_disassemble">DEMONTERA</string>
     <string name="label_hold_to_disassemble">Håll i 2 sekunder för att demontera</string>
     <string name="label_disassembling">Demonterar…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Toppen!</string>
     <string name="disarm_reveal_failed">Avslöjandet misslyckades.</string>
     <string name="disarm_move_closer_detail">Gå %1$d m närmare – du är %2$d m bort, behöver ≤ %3$d m</string>
-    <string name="disarm_start_failed">Kunde inte starta desarmeringen.</string>
-    <string name="disarm_failed">Desarmeringen misslyckades.</string>
+    <string name="disarm_start_failed">Kunde inte starta demonteringen.</string>
+    <string name="disarm_failed">Demonteringen misslyckades.</string>
     <string name="award_time_card_name">Tidsavdrag</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Tidsavdragskort</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d väskpåfyllning</item>
         <item quantity="other">%d väskpåfyllningar</item>
     </plurals>
+    <string name="error_network">Når inte servern. Kolla din anslutning och försök igen.</string>
+    <string name="error_trap_gone">Den här fällan är inte längre aktiv.</string>
+    <string name="error_trap_other_age_group">Den här fällan tillhör en annan åldersgrupp.</string>
+    <string name="error_quota_penalty">Du åkte fast och miste dagens fällor. Försök igen i morgon!</string>
+    <string name="error_home_base_too_far">Din hemmabas måste ligga inom 200 m från dig – du är %1$d m bort.</string>
+    <string name="error_cannot_target_self">Det kan du inte göra med dig själv.</string>
+    <string name="error_too_many_attempts">För många försök. Vänta en stund och försök igen.</string>
+    <string name="error_session_expired">Det tog för lång tid – börja om.</string>
+    <string name="error_email_in_use">Den här e-posten är redan registrerad. Logga in i stället.</string>
 </resources>

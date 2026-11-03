@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Задръж 2 секунди, за да поставиш</string>
     <string name="msg_placing_background">Капанът се поставя във фонов режим…</string>
     <string name="label_loading">Зареждане…</string>
-    <string name="label_my_disassembled_trap">Твоят премахнат капан</string>
+    <string name="label_my_disassembled_trap">Твоят разглобен капан</string>
     <string name="action_disassemble">РАЗГЛОБИ</string>
     <string name="label_hold_to_disassemble">Задръж 2 секунди, за да разглобиш</string>
     <string name="label_disassembling">Разглобяване…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Супер!</string>
     <string name="disarm_reveal_failed">Разкриването не успя.</string>
     <string name="disarm_move_closer_detail">Приближи се с %1$dm — на %2$dm си, нужно е ≤ %3$dm</string>
-    <string name="disarm_start_failed">Обезвреждането не можа да започне.</string>
-    <string name="disarm_failed">Обезвреждането не успя.</string>
+    <string name="disarm_start_failed">Разглобяването не можа да започне.</string>
+    <string name="disarm_failed">Разглобяването не успя.</string>
     <string name="award_time_card_name">Съкращаване на време</string>
     <string name="award_unit_min">мин</string>
     <string name="award_time_card_title">Карти за съкращаване на време</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d зареждане на торбата</item>
         <item quantity="other">%d зареждания на торбата</item>
     </plurals>
+    <string name="error_network">Няма връзка със сървъра. Провери връзката си и опитай пак.</string>
+    <string name="error_trap_gone">Този капан вече не е активен.</string>
+    <string name="error_trap_other_age_group">Този капан е от друга възрастова група.</string>
+    <string name="error_quota_penalty">Хванаха те и загуби днешните си капани. Опитай пак утре!</string>
+    <string name="error_home_base_too_far">Базата ти трябва да е до 200 м от теб — ти си на %1$d м.</string>
+    <string name="error_cannot_target_self">Не можеш да направиш това със себе си.</string>
+    <string name="error_too_many_attempts">Твърде много опити. Изчакай малко и опитай пак.</string>
+    <string name="error_session_expired">Това отне твърде дълго — започни отначало.</string>
+    <string name="error_email_in_use">Този имейл вече е регистриран. Влез в профила си.</string>
 </resources>

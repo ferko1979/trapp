@@ -17,6 +17,7 @@ class TrapApplication : Application(), OnMapsSdkInitializedCallback {
 
     override fun onCreate() {
         super.onCreate()
+        ServerErrorText.init(this)
 
         // Register SVG decoder so Coil can render trap image data URIs (image/svg+xml).
         Coil.setImageLoader(

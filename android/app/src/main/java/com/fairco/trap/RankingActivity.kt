@@ -86,7 +86,7 @@ private fun RankingScreen(myUid: String) {
                 captureCount = (data["captureCount"] as? Number)?.toInt() ?: 0
             )
         } catch (e: Exception) {
-            allianceState.value = LeaderboardState.Error(e.message ?: ctx.getString(R.string.rank_load_failed))
+            allianceState.value = LeaderboardState.Error(ServerErrorText.of(ctx, e, R.string.rank_load_failed))
         }
     }
 
@@ -112,7 +112,7 @@ private fun RankingScreen(myUid: String) {
             else
                 LeaderboardState.Loaded(entries)
         } catch (e: Exception) {
-            globalState.value = LeaderboardState.Error(e.message ?: ctx.getString(R.string.rank_load_failed))
+            globalState.value = LeaderboardState.Error(ServerErrorText.of(ctx, e, R.string.rank_load_failed))
         }
     }
 
@@ -143,7 +143,7 @@ private fun RankingScreen(myUid: String) {
             friendsState.value = if (entries.isEmpty()) LeaderboardState.Empty(ctx.getString(R.string.rank_no_friends))
             else LeaderboardState.Loaded(entries)
         } catch (e: Exception) {
-            friendsState.value = LeaderboardState.Error(e.message ?: ctx.getString(R.string.rank_load_failed))
+            friendsState.value = LeaderboardState.Error(ServerErrorText.of(ctx, e, R.string.rank_load_failed))
         }
     }
 

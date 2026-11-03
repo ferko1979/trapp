@@ -188,10 +188,10 @@ class SupportViewModel(application: Application) : AndroidViewModel(application)
                 FirebaseFunctionsException.Code.ALREADY_EXISTS -> str(R.string.error_already_exists)
                 FirebaseFunctionsException.Code.PERMISSION_DENIED -> str(R.string.error_permission_denied)
                 FirebaseFunctionsException.Code.INTERNAL -> str(R.string.error_internal_retrying)
-                else -> e.message ?: str(R.string.error_generic_retry)
+                else -> ServerErrorText.of(e)
             }
         } else {
-            e.message ?: str(R.string.error_generic_retry)
+            ServerErrorText.of(e)
         }
     }
 }

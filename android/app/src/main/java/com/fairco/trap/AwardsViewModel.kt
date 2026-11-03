@@ -156,7 +156,7 @@ class AwardsViewModel(private val locale: String) : ViewModel() {
                     cardTypes       = cardTypes,
                 )
             } catch (e: Exception) {
-                _state.value = AwardsUiState(loading = false, error = e.message ?: "")
+                _state.value = AwardsUiState(loading = false, error = ServerErrorText.of(e))
             }
         }
     }

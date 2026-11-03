@@ -414,23 +414,23 @@
     <string name="label_hold_for_2s">Drž 2 sekundy na umiestnenie</string>
     <string name="msg_placing_background">Pasca sa umiestňuje…</string>
     <string name="label_loading">Načítava sa…</string>
-    <string name="label_my_disassembled_trap">Tvoja odstránená pasca</string>
+    <string name="label_my_disassembled_trap">Tvoja rozobratá pasca</string>
     <string name="hint_select_trap_to_place">Vyber pascu z tašky nižšie</string>
     <string name="action_disassemble">ROZOBRAŤ</string>
-    <string name="label_hold_to_disassemble">Drž 2 sekundy pre rozobratím</string>
-    <string name="label_disassembling">Rozobieranie…</string>
+    <string name="label_hold_to_disassemble">Drž 2 sekundy na rozobratie</string>
+    <string name="label_disassembling">Rozoberám…</string>
     <string name="label_disassemble_countdown">%1$ds zostáva</string>
-    <string name="msg_disassemble_success">Pasca rozobraná!</string>
-    <string name="msg_disassemble_failed">Rozobratí zlyhalo</string>
-    <string name="error_too_far_to_disassemble">Priblíž sa pre rozobratím</string>
-    <string name="label_reveal_first">Najprv odhaľ pascu pre rozobratím</string>
+    <string name="msg_disassemble_success">Pasca rozobratá!</string>
+    <string name="msg_disassemble_failed">Rozobratie zlyhalo</string>
+    <string name="error_too_far_to_disassemble">Na rozobratie musíš byť bližšie</string>
+    <string name="label_reveal_first">Najprv odhaľ pascu, potom ju rozoberieš</string>
     <string name="label_trap_owner">Vlastník: %1$s</string>
     <string name="label_your_trap_info">Tvoja pasca</string>
     <string name="label_others_trap_info">Cudzia pasca</string>
     <string name="label_placing_trap">Umiestňovanie pasce… zostaň na mieste</string>
     <string name="warning_return_to_radius">Vráť sa do %1$d sekúnd!</string>
-    <string name="warning_return_to_zone">Vráť sa do zóny demontáže do %1$d sekúnd!</string>
-    <string name="error_inside_trap_zone">Si v zóne pasce. Oddiaľ sa pre demontáž.</string>
+    <string name="warning_return_to_zone">Vráť sa do zóny rozoberania do %1$d sekúnd!</string>
+    <string name="error_inside_trap_zone">Si v zóne pasce. Ustúp, potom ju rozoberieš.</string>
 
     <!-- ── Ranking ── -->
     <string name="action_ranking">REBRÍČEK</string>
@@ -534,7 +534,7 @@
     <string name="dialog_home_base_move">Presunúť domovskú základňu sem?\n(nahradí aktuálnu bezpečnostnú zónu)</string>
     <string name="dialog_home_base_set_new">Nastaviť toto ako domovskú základňu?\nBudeš imúnny voči pasciam v okruhu 100 m.</string>
     <string name="label_ally_rank_you">Aliancia: #%1$d / %2$d</string>
-    <string name="label_confirming_disassembly">Potvrdzovanie demontáže…</string>
+    <string name="label_confirming_disassembly">Potvrdzujem rozobratie…</string>
     <string name="label_confirming_placement">Potvrdzovanie umiestnenia…</string>
     <string name="label_daily_traps_remaining">%1$d / %2$d denných pascí</string>
     <string name="label_effect_value">Účinok: %1$s</string>
@@ -645,7 +645,7 @@
     <!-- Hardcoded-string sweep 2026-11-03 -->
     <string name="alert_trap_detected">⚠️ PASCA ZISTENÁ</string>
     <string name="alert_distance_danger">%1$d m ďaleko · nebezpečná zóna: polomer %2$d m</string>
-    <string name="alert_option_disassemble">Priblíž sa na %1$d m → podrž na odhalenie → podrž na rozobratie.\nAk opustíš dosah na viac ako %2$d s, zruší sa to. Čas rozobratia uvidíš po odhalení.</string>
+    <string name="alert_option_disassemble">Priblíž sa na %1$d m → podrž na odhalenie → podrž na rozobratie.\nAk budeš mimo dosahu &gt;%2$d s, zruší sa to. Čas rozoberania uvidíš po odhalení.</string>
     <string name="alert_option_avoid">Drž sa viac ako %1$d m od stredu pasce a obíď ju. Ťukni na Zavrieť a pokračuj v chôdzi.</string>
     <string name="alert_close_enough_hold">Si dosť blízko — PODRŽ tlačidlo a odhaľ pascu!</string>
     <string name="alert_hold_to_reveal">PODRŽ NA ODHALENIE</string>
@@ -662,7 +662,7 @@
     <string name="alert_disassembly_paused">Rozoberanie pozastavené — %1$d m ďaleko</string>
     <string name="alert_move_closer_msg">⚠️ Priblíž sa o %1$d m! Vráť sa do %2$d m</string>
     <string name="alert_paused">POZASTAVENÉ…</string>
-    <string name="alert_disassembling_title">🛠 Rozoberanie…</string>
+    <string name="alert_disassembling_title">🛠 Rozoberám…</string>
     <string name="alert_stay_in_position">Zostaň na mieste!</string>
     <string name="alert_hold_position">DRŽ pozíciu — nehýb sa!</string>
     <string name="alert_seconds_remaining">⏱ zostáva %1$d s</string>
@@ -724,9 +724,9 @@
     <string name="notif_freed_title">🎉 Si VOĽNÝ!</string>
     <string name="notif_freed_body">Tvoj trest vypršal. Vráť sa do hry!</string>
     <string name="ad_speedup_placement_title">Zrýchli umiestnenie</string>
-    <string name="ad_speedup_disassembly_title">Zrýchli rozobratie</string>
+    <string name="ad_speedup_disassembly_title">Zrýchli rozoberanie</string>
     <string name="ad_speedup_placement_msg">Pozri si krátku reklamu a skráť čas umiestnenia o %1$s.\n\nNa získanie odmeny musíš pozrieť celé video.</string>
-    <string name="ad_speedup_disassembly_msg">Pozri si krátku reklamu a skráť čas rozobratia o %1$s.\n\nNa získanie odmeny musíš pozrieť celé video.</string>
+    <string name="ad_speedup_disassembly_msg">Pozri si krátku reklamu a skráť čas rozoberania o %1$s.\n\nNa získanie odmeny musíš pozrieť celé video.</string>
     <string name="action_watch_ad">Pozrieť reklamu</string>
     <string name="action_no_thanks">Nie, ďakujem</string>
     <string name="ad_not_available">Reklama zatiaľ nie je dostupná, skús to o chvíľu znova.</string>
@@ -1000,7 +1000,7 @@
         <item quantity="other">%d doplnení tašky</item>
     </plurals>
     <string name="error_too_many_traps_nearby">Tu už máš pasce príliš blízko seba. Rozmiestni ich viac od seba!</string>
-    <string name="error_too_far_to_disassemble_detail">Priblíž sa o %1$dm, aby si mohol rozobrať.</string>
+    <string name="error_too_far_to_disassemble_detail">Na rozobratie sa priblíž o %1$d m.</string>
     <string name="lang_he">עברית (Hebrejčina)</string>
     <string name="action_awards_cards">OCENENIA A KARTY</string>
     <string name="warning_return_to_placement">Priblíž sa o %1$dm! Zostáva %2$ds</string>
@@ -1010,4 +1010,13 @@
     <string name="msg_update_available">Je dostupná novšia verzia Trap. Aktualizuj teraz a získaj najnovšie funkcie a vylepšenia.</string>
     <string name="action_update_now">Aktualizovať teraz</string>
     <string name="action_later">Neskôr</string>
+    <string name="error_network">Server je nedostupný. Skontroluj pripojenie a skús to znova.</string>
+    <string name="error_trap_gone">Táto pasca už nie je aktívna.</string>
+    <string name="error_trap_other_age_group">Táto pasca patrí inej vekovej skupine.</string>
+    <string name="error_quota_penalty">Chytili ťa, a tak prichádzaš o dnešné pasce. Skús to zajtra!</string>
+    <string name="error_home_base_too_far">Domovská základňa musí byť do 200 m od teba — si %1$d m ďaleko.</string>
+    <string name="error_cannot_target_self">Toto so sebou urobiť nemôžeš.</string>
+    <string name="error_too_many_attempts">Príliš veľa pokusov. Chvíľu počkaj a skús to znova.</string>
+    <string name="error_session_expired">Trvalo to príliš dlho — začni znova.</string>
+    <string name="error_email_in_use">Tento e-mail je už zaregistrovaný. Radšej sa prihlás.</string>
 </resources>

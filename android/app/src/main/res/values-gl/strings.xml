@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Mantén premido 2 segundos para colocar</string>
     <string name="msg_placing_background">Colocando a trampa en segundo plano…</string>
     <string name="label_loading">Cargando…</string>
-    <string name="label_my_disassembled_trap">A túa trampa retirada</string>
+    <string name="label_my_disassembled_trap">A túa trampa desmontada</string>
     <string name="action_disassemble">DESMONTAR</string>
     <string name="label_hold_to_disassemble">Mantén premido 2 segundos para desmontar</string>
     <string name="label_disassembling">Desmontando…</string>
@@ -616,7 +616,7 @@
     <string name="set_lang_search">Buscar idiomas…</string>
     <string name="alert_trap_detected">⚠️ TRAMPA DETECTADA</string>
     <string name="alert_distance_danger">A %1$dm · zona de perigo: radio de %2$dm</string>
-    <string name="alert_option_disassemble">Achégate a %1$dm → mantén premido para revelar → mantén premido para desmontar.\nSe saes do radio &gt;%2$ds = cancelado. O tempo de desmontaxe amósase despois de revelala.</string>
+    <string name="alert_option_disassemble">Achégate a %1$d m → mantén premido para revelar → mantén premido para desmontar.\nFóra do radio máis de %2$d s = cancelado. O tempo de desmontaxe amósase despois de revelala.</string>
     <string name="alert_option_avoid">Mantente a máis de %1$dm do centro da trampa e rodéaa. Toca Descartar para seguir camiñando.</string>
     <string name="alert_close_enough_hold">Xa estás preto abondo — MANTÉN PREMIDO o botón para revelar a trampa!</string>
     <string name="alert_hold_to_reveal">PREME PARA REVELAR</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Xenial!</string>
     <string name="disarm_reveal_failed">Non se puido revelar.</string>
     <string name="disarm_move_closer_detail">Achégate %1$dm — estás a %2$dm, precisas ≤ %3$dm</string>
-    <string name="disarm_start_failed">Non se puido iniciar a desactivación.</string>
-    <string name="disarm_failed">Non se puido desactivar.</string>
+    <string name="disarm_start_failed">Non se puido iniciar a desmontaxe.</string>
+    <string name="disarm_failed">Non se puido desmontar.</string>
     <string name="award_time_card_name">Redución de tempo</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Cartas de redución de tempo</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d recarga de bolsa</item>
         <item quantity="other">%d recargas de bolsa</item>
     </plurals>
+    <string name="error_network">Non se pode conectar co servidor. Comproba a conexión e téntao de novo.</string>
+    <string name="error_trap_gone">Esta trampa xa non está activa.</string>
+    <string name="error_trap_other_age_group">Esta trampa pertence a outro grupo de idade.</string>
+    <string name="error_quota_penalty">Que te pillasen custouche as trampas de hoxe. Téntao de novo mañá!</string>
+    <string name="error_home_base_too_far">A túa base ten que estar a menos de 200 m de ti — estás a %1$d m.</string>
+    <string name="error_cannot_target_self">Non podes facer iso contigo mesmo.</string>
+    <string name="error_too_many_attempts">Demasiados intentos. Agarda un momento e téntao de novo.</string>
+    <string name="error_session_expired">Tardaches demasiado — comeza de novo.</string>
+    <string name="error_email_in_use">Este correo xa está rexistrado. Inicia sesión.</string>
 </resources>

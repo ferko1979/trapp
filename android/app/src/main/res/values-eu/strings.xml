@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Eutsi 2 segundoz jartzeko</string>
     <string name="msg_placing_background">Tranpa atzeko planoan jartzen…</string>
     <string name="label_loading">Kargatzen…</string>
-    <string name="label_my_disassembled_trap">Kendutako zure tranpa</string>
+    <string name="label_my_disassembled_trap">Desmuntatutako zure tranpa</string>
     <string name="action_disassemble">DESMUNTATU</string>
     <string name="label_hold_to_disassemble">Eutsi 2 segundoz desmuntatzeko</string>
     <string name="label_disassembling">Desmuntatzen…</string>
@@ -616,7 +616,7 @@
     <string name="set_lang_search">Bilatu hizkuntzak…</string>
     <string name="alert_trap_detected">⚠️ TRANPA DETEKTATUTA</string>
     <string name="alert_distance_danger">%1$dm-ra · arrisku-eremua: %2$dm-ko erradioa</string>
-    <string name="alert_option_disassemble">Hurbildu %1$dm-ra → eutsi agerrarazteko → eutsi desmuntatzeko.\nEremutik &gt;%2$ds irtenez gero = bertan behera. Desmuntatze-denbora agertu ondoren ikusiko da.</string>
+    <string name="alert_option_disassemble">Hurbildu %1$d m-ra → eutsi agerrarazteko → eutsi desmuntatzeko.\nEremutik %2$d s baino gehiago kanpoan = bertan behera. Desmuntatze-denbora agerrarazi ondoren ikusiko da.</string>
     <string name="alert_option_avoid">Egon tranparen erditik %1$dm baino urrunago eta inguratu. Sakatu Baztertu oinez jarraitzeko.</string>
     <string name="alert_close_enough_hold">Nahikoa gertu zaude — EUTSI botoia tranpa agerrarazteko!</string>
     <string name="alert_hold_to_reveal">EUTSI AGERRARAZTEKO</string>
@@ -630,7 +630,7 @@
     <string name="alert_stay_still_revealing">Ez mugitu — tranpa mota agerrarazten…\n%1$ds / %2$ds</string>
     <string name="alert_revealing">Agerrarazten…</string>
     <string name="alert_move_closer_title">⚠️ Hurbildu!</string>
-    <string name="alert_disassembly_paused">Desmuntatzea etenda — %1$dm-ra</string>
+    <string name="alert_disassembly_paused">Desmuntatzea etenda — %1$d m-ra zaude</string>
     <string name="alert_move_closer_msg">⚠️ Hurbildu %1$dm! Itzuli %2$dm-ra</string>
     <string name="alert_paused">ETENDA…</string>
     <string name="alert_disassembling_title">🛠 Desmuntatzen…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Bikain!</string>
     <string name="disarm_reveal_failed">Ezin izan da agerrarazi.</string>
     <string name="disarm_move_closer_detail">Hurbildu %1$dm — %2$dm-ra zaude, ≤ %3$dm behar da</string>
-    <string name="disarm_start_failed">Ezin izan da desaktibatzea hasi.</string>
-    <string name="disarm_failed">Desaktibatzeak huts egin du.</string>
+    <string name="disarm_start_failed">Ezin izan da desmuntatzea hasi.</string>
+    <string name="disarm_failed">Desmuntatzeak huts egin du.</string>
     <string name="award_time_card_name">Denbora-murrizketa</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Denbora-murrizketa kartak</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d poltsa-birkarga</item>
         <item quantity="other">%d poltsa-birkarga</item>
     </plurals>
+    <string name="error_network">Ezin da zerbitzarira konektatu. Egiaztatu konexioa eta saiatu berriro.</string>
+    <string name="error_trap_gone">Tranpa hau ez dago aktibo jada.</string>
+    <string name="error_trap_other_age_group">Tranpa hau beste adin-talde batekoa da.</string>
+    <string name="error_quota_penalty">Harrapatu zaituztenez, gaurko tranpak galdu dituzu. Saiatu berriro bihar!</string>
+    <string name="error_home_base_too_far">Zure etxe-baseak zuregandik gehienez 200 m-ra egon behar du — %1$d m-ra zaude.</string>
+    <string name="error_cannot_target_self">Ezin duzu hori zeure buruarekin egin.</string>
+    <string name="error_too_many_attempts">Saiakera gehiegi. Itxaron pixka bat eta saiatu berriro.</string>
+    <string name="error_session_expired">Gehiegi luzatu da — hasi berriro, mesedez.</string>
+    <string name="error_email_in_use">Helbide elektroniko hau erregistratuta dago jada. Hasi saioa.</string>
 </resources>

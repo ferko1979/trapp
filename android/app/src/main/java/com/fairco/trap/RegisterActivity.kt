@@ -295,7 +295,7 @@ class RegisterActivity : BaseActivity() {
                     }
                     .addOnFailureListener {
                         busy = false
-                        message = it.message ?: getString(R.string.error_registration_failed_plain)
+                        message = ServerErrorText.of(this, it, R.string.error_registration_failed_plain)
                     }
             }
             .addOnFailureListener {
@@ -328,10 +328,6 @@ class RegisterActivity : BaseActivity() {
     }
 
     private fun extractError(throwable: Throwable): String {
-        return if (throwable is FirebaseFunctionsException) {
-            throwable.details?.toString() ?: throwable.message ?: getString(R.string.error_generic_retry)
-        } else {
-            throwable.message ?: getString(R.string.error_generic_retry)
-        }
+        return ServerErrorText.of(this, throwable)
     }
 }

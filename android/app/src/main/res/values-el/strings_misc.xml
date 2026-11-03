@@ -4,6 +4,6 @@
     <string name="maintenance_title">Σε συντήρηση</string>
     <string name="maintenance_msg">Η εφαρμογή βρίσκεται σε συντήρηση. Δοκίμασε ξανά αργότερα.</string>
     <string name="action_retry">Επανάληψη</string>
-    <string name="alert_option_disassemble_title">🛠  Αποσυναρμολόγηση</string>
+    <string name="alert_option_disassemble_title">🛠  Ξεμοντάρισμα</string>
     <string name="alert_option_avoid_title">🚶  Αποφυγή</string>
 </resources>

@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Turi 2 sekundes, lai izvietotu</string>
     <string name="msg_placing_background">Izvieto slazdu fonā…</string>
     <string name="label_loading">Ielādē…</string>
-    <string name="label_my_disassembled_trap">Tavs noņemtais slazds</string>
+    <string name="label_my_disassembled_trap">Tavs izjauktais slazds</string>
     <string name="action_disassemble">IZJAUKT</string>
     <string name="label_hold_to_disassemble">Turi 2 sekundes, lai izjauktu</string>
     <string name="label_disassembling">Izjauc…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Lieliski!</string>
     <string name="disarm_reveal_failed">Atklāšana neizdevās.</string>
     <string name="disarm_move_closer_detail">Pieej %1$d m tuvāk — tu esi %2$d m attālumā, vajag ≤ %3$d m</string>
-    <string name="disarm_start_failed">Neizdevās sākt atbruņošanu.</string>
-    <string name="disarm_failed">Atbruņošana neizdevās.</string>
+    <string name="disarm_start_failed">Neizdevās sākt izjaukšanu.</string>
+    <string name="disarm_failed">Izjaukšana neizdevās.</string>
     <string name="award_time_card_name">Laika atskaitījums</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Laika atskaitījuma kārtis</string>
@@ -958,4 +958,13 @@
         <item quantity="one">%d somas papildināšana</item>
         <item quantity="other">%d somas papildināšanas</item>
     </plurals>
+    <string name="error_network">Nevar sasniegt serveri. Pārbaudi savienojumu un mēģini vēlreiz.</string>
+    <string name="error_trap_gone">Šis slazds vairs nav aktīvs.</string>
+    <string name="error_trap_other_age_group">Šis slazds pieder citai vecuma grupai.</string>
+    <string name="error_quota_penalty">Tevi noķēra, tāpēc zaudēji šodienas slazdus. Mēģini rīt!</string>
+    <string name="error_home_base_too_far">Tavai bāzei jābūt 200 m rādiusā no tevis — tu esi %1$d m attālumā.</string>
+    <string name="error_cannot_target_self">To nevari darīt ar sevi.</string>
+    <string name="error_too_many_attempts">Pārāk daudz mēģinājumu. Pagaidi brīdi un mēģini vēlreiz.</string>
+    <string name="error_session_expired">Tas aizņēma pārāk ilgu laiku — lūdzu, sāc no jauna.</string>
+    <string name="error_email_in_use">Šis e-pasts jau ir reģistrēts. Labāk pieslēdzies.</string>
 </resources>

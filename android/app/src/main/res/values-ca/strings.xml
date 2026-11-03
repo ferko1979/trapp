@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Mantén premut 2 segons per col·locar</string>
     <string name="msg_placing_background">Col·locant el parany en segon pla…</string>
     <string name="label_loading">Carregant…</string>
-    <string name="label_my_disassembled_trap">El teu parany retirat</string>
+    <string name="label_my_disassembled_trap">El teu parany desmuntat</string>
     <string name="action_disassemble">DESMUNTA</string>
     <string name="label_hold_to_disassemble">Mantén premut 2 segons per desmuntar</string>
     <string name="label_disassembling">Desmuntant…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Genial!</string>
     <string name="disarm_reveal_failed">No s\'ha pogut revelar.</string>
     <string name="disarm_move_closer_detail">Apropa\'t %1$dm — ets a %2$dm, cal ≤ %3$dm</string>
-    <string name="disarm_start_failed">No s\'ha pogut començar a desactivar.</string>
-    <string name="disarm_failed">No s\'ha pogut desactivar.</string>
+    <string name="disarm_start_failed">No s\'ha pogut començar a desmuntar.</string>
+    <string name="disarm_failed">No s\'ha pogut desmuntar.</string>
     <string name="award_time_card_name">Reducció de temps</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Cartes de reducció de temps</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d recàrrega de bossa</item>
         <item quantity="other">%d recàrregues de bossa</item>
     </plurals>
+    <string name="error_network">No es pot connectar amb el servidor. Comprova la connexió i torna-ho a provar.</string>
+    <string name="error_trap_gone">Aquest parany ja no està actiu.</string>
+    <string name="error_trap_other_age_group">Aquest parany és d\'un altre grup d\'edat.</string>
+    <string name="error_quota_penalty">T\'han enxampat i has perdut els paranys d\'avui. Torna-ho a provar demà!</string>
+    <string name="error_home_base_too_far">La teva base ha d\'estar a menys de 200 m de tu — ets a %1$d m.</string>
+    <string name="error_cannot_target_self">No pots fer això amb tu mateix.</string>
+    <string name="error_too_many_attempts">Massa intents. Espera una mica i torna-ho a provar.</string>
+    <string name="error_session_expired">Ha trigat massa — torna a començar.</string>
+    <string name="error_email_in_use">Aquest correu ja està registrat. Inicia la sessió.</string>
 </resources>

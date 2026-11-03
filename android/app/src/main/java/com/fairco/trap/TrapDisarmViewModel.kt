@@ -15,9 +15,11 @@ import kotlinx.coroutines.tasks.await
 
 class TrapDisarmViewModel : ViewModel() {
 
-    /** Server text when present, otherwise a localized fallback resource. */
-    private fun errorOr(msg: String?, @StringRes fallback: Int): DisarmState.Error =
-        if (msg.isNullOrBlank()) DisarmState.Error(resId = fallback) else DisarmState.Error(msg)
+    /** Known server error → its localized text, otherwise the localized fallback (never raw server text). */
+    private fun errorOr(msg: String?, @StringRes fallback: Int): DisarmState.Error {
+        val res = ServerErrorText.resolveMessage(msg)
+        return if (res != null) DisarmState.Error(resId = res.id, args = res.args) else DisarmState.Error(resId = fallback)
+    }
     private val functions = Firebase.functions("europe-west1")
 
     val disarmState = MutableStateFlow<DisarmState>(DisarmState.Idle)

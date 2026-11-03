@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Maintiens 2 secondes pour poser</string>
     <string name="msg_placing_background">Pose du piège en arrière-plan…</string>
     <string name="label_loading">Chargement…</string>
-    <string name="label_my_disassembled_trap">Ton piège retiré</string>
+    <string name="label_my_disassembled_trap">Ton piège démonté</string>
     <string name="action_disassemble">DÉMONTER</string>
     <string name="label_hold_to_disassemble">Maintiens 2 secondes pour démonter</string>
     <string name="label_disassembling">Démontage…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Super !</string>
     <string name="disarm_reveal_failed">Échec de la révélation.</string>
     <string name="disarm_move_closer_detail">Rapproche-toi de %1$d m — tu es à %2$d m, il faut ≤ %3$d m</string>
-    <string name="disarm_start_failed">Impossible de lancer le désarmement.</string>
-    <string name="disarm_failed">Échec du désarmement.</string>
+    <string name="disarm_start_failed">Impossible de lancer le démontage.</string>
+    <string name="disarm_failed">Échec du démontage.</string>
     <string name="award_time_card_name">Réduction de temps</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Cartes de réduction de temps</string>
@@ -958,4 +958,13 @@
         <item quantity="many">%d recharges de sac</item>
         <item quantity="other">%d recharges de sac</item>
     </plurals>
+    <string name="error_network">Impossible de joindre le serveur. Vérifie ta connexion et réessaie.</string>
+    <string name="error_trap_gone">Ce piège n\'est plus actif.</string>
+    <string name="error_trap_other_age_group">Ce piège appartient à une autre tranche d\'âge.</string>
+    <string name="error_quota_penalty">Te faire attraper t\'a coûté tes pièges du jour. Réessaie demain !</string>
+    <string name="error_home_base_too_far">Ta base doit être à moins de 200 m de toi — tu es à %1$d m.</string>
+    <string name="error_cannot_target_self">Tu ne peux pas faire ça avec toi-même.</string>
+    <string name="error_too_many_attempts">Trop de tentatives. Attends un instant et réessaie.</string>
+    <string name="error_session_expired">Ça a pris trop de temps — recommence.</string>
+    <string name="error_email_in_use">Cet e-mail est déjà inscrit. Connecte-toi plutôt.</string>
 </resources>

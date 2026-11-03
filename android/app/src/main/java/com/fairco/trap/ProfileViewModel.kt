@@ -171,7 +171,7 @@ class ProfileViewModel : ViewModel() {
                 _usernameCheckState.value = if (available)
                     UsernameCheckState.Available else UsernameCheckState.Taken
             } catch (e: Exception) {
-                _usernameCheckState.value = UsernameCheckState.Error(e.message ?: "Check failed")
+                _usernameCheckState.value = UsernameCheckState.Error(ServerErrorText.of(e))
             }
         }
     }
@@ -216,7 +216,7 @@ class ProfileViewModel : ViewModel() {
                 _userData.value = _userData.value?.copy(displayName = name, username = currentUsername)
                 _saveState.value = SaveState.Saved
             } catch (e: Exception) {
-                _saveState.value = SaveState.Error(R.string.profile_save_failed, e.message)
+                _saveState.value = SaveState.Error(R.string.profile_save_failed, ServerErrorText.resolve(e)?.let { ServerErrorText.of(e) })
             }
         }
     }

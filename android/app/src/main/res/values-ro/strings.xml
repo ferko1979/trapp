@@ -414,23 +414,23 @@
     <string name="label_hold_for_2s">Ține apăsat 2 secunde</string>
     <string name="msg_placing_background">Capcana este plasată…</string>
     <string name="label_loading">Se încarcă…</string>
-    <string name="label_my_disassembled_trap">Capcana ta dezactivată</string>
+    <string name="label_my_disassembled_trap">Capcana ta demontată</string>
     <string name="hint_select_trap_to_place">Selectează o capcană din geantă</string>
-    <string name="action_disassemble">DEZASAMBLARE</string>
-    <string name="label_hold_to_disassemble">Ține apăsat 2 secunde pentru dezasamblare</string>
-    <string name="label_disassembling">Dezasamblare în curs…</string>
+    <string name="action_disassemble">DEMONTEAZĂ</string>
+    <string name="label_hold_to_disassemble">Ține apăsat 2 secunde ca s-o demontezi</string>
+    <string name="label_disassembling">Se demontează…</string>
     <string name="label_disassemble_countdown">%1$ds rămase</string>
-    <string name="msg_disassemble_success">Capcana dezasamblată!</string>
-    <string name="msg_disassemble_failed">Dezasamblarea a eșuat</string>
-    <string name="error_too_far_to_disassemble">Apropie-te pentru dezasamblare</string>
-    <string name="label_reveal_first">Dezvăluie întâi capcana pentru dezasamblare</string>
+    <string name="msg_disassemble_success">Capcană demontată!</string>
+    <string name="msg_disassemble_failed">Demontarea a eșuat</string>
+    <string name="error_too_far_to_disassemble">Apropie-te ca s-o demontezi</string>
+    <string name="label_reveal_first">Dezvăluie întâi capcana ca s-o poți demonta</string>
     <string name="label_trap_owner">Proprietar: %1$s</string>
     <string name="label_your_trap_info">Capcana ta</string>
     <string name="label_others_trap_info">Capcana cuiva</string>
     <string name="label_placing_trap">Se plasează capcana… rămâi pe loc</string>
     <string name="warning_return_to_radius">Întoarce-te în %1$d secunde!</string>
-    <string name="warning_return_to_zone">Întoarce-te în zona de dezasamblare în %1$d secunde!</string>
-    <string name="error_inside_trap_zone">Ești în zona capcanei. Îndepărtează-te pentru a dezasambla.</string>
+    <string name="warning_return_to_zone">Întoarce-te în zona de demontare în %1$d secunde!</string>
+    <string name="error_inside_trap_zone">Ești în zona capcanei. Îndepărtează-te ca s-o demontezi.</string>
 
     <!-- ── Ranking ── -->
     <string name="action_ranking">CLASAMENT</string>
@@ -534,7 +534,7 @@
     <string name="dialog_home_base_move">Muți baza de acasă aici?\n(înlocuiește zona de siguranță actuală)</string>
     <string name="dialog_home_base_set_new">Setezi aceasta ca bază de acasă?\nVei fi imun la capcane în raza de 100 m.</string>
     <string name="label_ally_rank_you">Alianță: #%1$d / %2$d</string>
-    <string name="label_confirming_disassembly">Se confirmă dezasamblarea…</string>
+    <string name="label_confirming_disassembly">Se confirmă demontarea…</string>
     <string name="label_confirming_placement">Se confirmă plasarea…</string>
     <string name="label_daily_traps_remaining">%1$d / %2$d capcane zilnice</string>
     <string name="label_effect_value">Efect: %1$s</string>
@@ -645,7 +645,7 @@
     <!-- Hardcoded-string sweep 2026-11-03 -->
     <string name="alert_trap_detected">⚠️ CAPCANĂ DETECTATĂ</string>
     <string name="alert_distance_danger">la %1$d m · zonă periculoasă: rază de %2$d m</string>
-    <string name="alert_option_disassemble">Apropie-te la %1$d m → ține apăsat pentru dezvăluire → ține apăsat pentru dezasamblare.\nDacă ieși din rază mai mult de %2$d s, se anulează. Timpul de dezasamblare apare după dezvăluire.</string>
+    <string name="alert_option_disassemble">Apropie-te la %1$d m → ține apăsat ca s-o dezvălui → ține apăsat ca s-o demontezi.\nDacă ieși din rază mai mult de %2$d s, se anulează. Timpul de demontare apare după dezvăluire.</string>
     <string name="alert_option_avoid">Rămâi la peste %1$d m de centrul capcanei și ocolește-o. Atinge Închide pentru a continua să mergi.</string>
     <string name="alert_close_enough_hold">Ești destul de aproape — ȚINE APĂSAT butonul pentru a dezvălui capcana!</string>
     <string name="alert_hold_to_reveal">ȚINE PENTRU DEZVĂLUIRE</string>
@@ -659,26 +659,26 @@
     <string name="alert_stay_still_revealing">Stai pe loc — se dezvăluie tipul capcanei…\n%1$d s / %2$d s</string>
     <string name="alert_revealing">Dezvăluire…</string>
     <string name="alert_move_closer_title">⚠️ Apropie-te!</string>
-    <string name="alert_disassembly_paused">Dezasamblare întreruptă — la %1$d m</string>
+    <string name="alert_disassembly_paused">Demontare întreruptă — la %1$d m</string>
     <string name="alert_move_closer_msg">⚠️ Apropie-te cu %1$d m! Revino la %2$d m</string>
     <string name="alert_paused">ÎN PAUZĂ…</string>
-    <string name="alert_disassembling_title">🛠 Dezasamblare…</string>
+    <string name="alert_disassembling_title">🛠 Se demontează…</string>
     <string name="alert_stay_in_position">Rămâi pe poziție!</string>
     <string name="alert_hold_position">MENȚINE poziția — nu te mișca!</string>
     <string name="alert_seconds_remaining">⏱ au mai rămas %1$d s</string>
     <string name="alert_holding">SE ȚINE…</string>
     <string name="alert_trapped_title">🪤 Ai căzut în capcană!</string>
     <string name="alert_stepped_in_zone">Ai intrat în zona capcanei</string>
-    <string name="alert_entered_danger_zone">Ai intrat în zona periculoasă (%1$d m) în timpul dezasamblării — capcana s-a declanșat!</string>
+    <string name="alert_entered_danger_zone">Ai intrat în zona periculoasă (%1$d m) în timpul demontării — capcana s-a declanșat!</string>
     <string name="alert_error_title">⚠️ Eroare</string>
     <string name="alert_retry">REÎNCEARCĂ</string>
-    <string name="alert_disassembled_title">✅ Capcană dezasamblată!</string>
+    <string name="alert_disassembled_title">✅ Capcană demontată!</string>
     <string name="alert_collected_msg">Ai colectat: %1$s\nAcum este în geanta ta — mergi și pune o capcană!</string>
     <string name="alert_great">Grozav!</string>
     <string name="disarm_reveal_failed">Dezvăluirea a eșuat.</string>
     <string name="disarm_move_closer_detail">Apropie-te cu %1$d m — ești la %2$d m, e nevoie de ≤ %3$d m</string>
-    <string name="disarm_start_failed">Dezasamblarea nu a putut începe.</string>
-    <string name="disarm_failed">Dezasamblarea a eșuat.</string>
+    <string name="disarm_start_failed">Demontarea nu a putut începe.</string>
+    <string name="disarm_failed">Demontarea a eșuat.</string>
     <string name="award_time_card_name">Reducere de timp</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Cărți de reducere a timpului</string>
@@ -724,9 +724,9 @@
     <string name="notif_freed_title">🎉 Ești LIBER!</string>
     <string name="notif_freed_body">Penalizarea ta a expirat. Întoarce-te în joc!</string>
     <string name="ad_speedup_placement_title">Accelerează plasarea</string>
-    <string name="ad_speedup_disassembly_title">Accelerează dezasamblarea</string>
+    <string name="ad_speedup_disassembly_title">Accelerează demontarea</string>
     <string name="ad_speedup_placement_msg">Urmărește o reclamă scurtă pentru a reduce timpul de plasare cu %1$s.\n\nTrebuie să urmărești tot videoclipul pentru a primi recompensa.</string>
-    <string name="ad_speedup_disassembly_msg">Urmărește o reclamă scurtă pentru a reduce timpul de dezasamblare cu %1$s.\n\nTrebuie să urmărești tot videoclipul pentru a primi recompensa.</string>
+    <string name="ad_speedup_disassembly_msg">Urmărește o reclamă scurtă ca să reduci timpul de demontare cu %1$s.\n\nTrebuie să urmărești tot videoclipul ca să primești recompensa.</string>
     <string name="action_watch_ad">Urmărește reclama</string>
     <string name="action_no_thanks">Nu, mulțumesc</string>
     <string name="ad_not_available">Reclama nu este încă disponibilă, încearcă din nou în curând.</string>
@@ -989,7 +989,7 @@
         <item quantity="other">%d de reumpleri ale genții</item>
     </plurals>
     <string name="error_too_many_traps_nearby">Ai deja capcane prea apropiate una de alta aici. Distanțează-le mai mult!</string>
-    <string name="error_too_far_to_disassemble_detail">Apropie-te cu %1$dm pentru dezasamblare.</string>
+    <string name="error_too_far_to_disassemble_detail">Apropie-te cu %1$d m ca s-o demontezi.</string>
     <string name="lang_he">עברית (Ebraică)</string>
     <string name="action_awards_cards">PREMII ȘI CĂRȚI</string>
     <string name="warning_return_to_placement">Apropie-te cu %1$dm! Mai ai %2$ds</string>
@@ -999,4 +999,13 @@
     <string name="msg_update_available">Este disponibilă o versiune mai nouă a Trap. Actualizează acum pentru cele mai noi funcții și îmbunătățiri.</string>
     <string name="action_update_now">Actualizează acum</string>
     <string name="action_later">Mai târziu</string>
+    <string name="error_network">Serverul nu poate fi accesat. Verifică-ți conexiunea și încearcă din nou.</string>
+    <string name="error_trap_gone">Această capcană nu mai este activă.</string>
+    <string name="error_trap_other_age_group">Această capcană aparține altei grupe de vârstă.</string>
+    <string name="error_quota_penalty">Ai fost prins, așa că ai pierdut capcanele de azi. Încearcă mâine!</string>
+    <string name="error_home_base_too_far">Baza ta trebuie să fie la cel mult 200 m de tine — ești la %1$d m.</string>
+    <string name="error_cannot_target_self">Nu poți face asta cu tine însuți.</string>
+    <string name="error_too_many_attempts">Prea multe încercări. Așteaptă puțin și încearcă din nou.</string>
+    <string name="error_session_expired">A durat prea mult — începe din nou.</string>
+    <string name="error_email_in_use">Acest e-mail este deja înregistrat. Mai bine conectează-te.</string>
 </resources>

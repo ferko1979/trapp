@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Paigaldamiseks hoia 2 sekundit</string>
     <string name="msg_placing_background">Lõksu paigaldamine taustal…</string>
     <string name="label_loading">Laadimine…</string>
-    <string name="label_my_disassembled_trap">Sinu eemaldatud lõks</string>
+    <string name="label_my_disassembled_trap">Sinu lahtivõetud lõks</string>
     <string name="action_disassemble">VÕTA LAHTI</string>
     <string name="label_hold_to_disassemble">Lahtivõtmiseks hoia 2 sekundit</string>
     <string name="label_disassembling">Lahtivõtmine…</string>
@@ -616,7 +616,7 @@
     <string name="set_lang_search">Otsi keeli…</string>
     <string name="alert_trap_detected">⚠️ LÕKS TUVASTATUD</string>
     <string name="alert_distance_danger">%1$dm kaugusel · ohuala: %2$dm raadius</string>
-    <string name="alert_option_disassemble">Mine %1$dm lähedale → hoia paljastamiseks → hoia lahtivõtmiseks.\nKui lahkud alast kauemaks kui &gt;%2$ds, tühistatakse. Lahtivõtmise aeg kuvatakse pärast paljastamist.</string>
+    <string name="alert_option_disassemble">Mine %1$d m lähedale → hoia paljastamiseks → hoia lahtivõtmiseks.\nKui oled alast väljas üle %2$d s, see tühistatakse. Lahtivõtmise aeg kuvatakse pärast paljastamist.</string>
     <string name="alert_option_avoid">Püsi lõksu keskpunktist kaugemal kui %1$dm ja mine sellest ümber. Kõndimise jätkamiseks puuduta Loobu.</string>
     <string name="alert_close_enough_hold">Oled piisavalt lähedal — HOIA nuppu, et lõks paljastada!</string>
     <string name="alert_hold_to_reveal">HOIA PALJASTAMISEKS</string>
@@ -630,7 +630,7 @@
     <string name="alert_stay_still_revealing">Püsi paigal — lõksu tüübi paljastamine…\n%1$ds / %2$ds</string>
     <string name="alert_revealing">Paljastamine…</string>
     <string name="alert_move_closer_title">⚠️ Mine lähemale!</string>
-    <string name="alert_disassembly_paused">Lahtivõtmine peatatud — %1$dm kaugusel</string>
+    <string name="alert_disassembly_paused">Lahtivõtmine peatatud — oled %1$d m kaugusel</string>
     <string name="alert_move_closer_msg">⚠️ Mine %1$dm lähemale! Tule tagasi %2$dm piiresse</string>
     <string name="alert_paused">PEATATUD…</string>
     <string name="alert_disassembling_title">🛠 Lahtivõtmine…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Super!</string>
     <string name="disarm_reveal_failed">Paljastamine ebaõnnestus.</string>
     <string name="disarm_move_closer_detail">Mine %1$dm lähemale — oled %2$dm kaugusel, vaja ≤ %3$dm</string>
-    <string name="disarm_start_failed">Kahjutustamist ei õnnestunud alustada.</string>
-    <string name="disarm_failed">Kahjutustamine ebaõnnestus.</string>
+    <string name="disarm_start_failed">Lahtivõtmist ei õnnestunud alustada.</string>
+    <string name="disarm_failed">Lahtivõtmine ebaõnnestus.</string>
     <string name="award_time_card_name">Ajavähendus</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Ajavähenduse kaardid</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d koti täiendus</item>
         <item quantity="other">%d koti täiendust</item>
     </plurals>
+    <string name="error_network">Serveriga ei saa ühendust. Kontrolli ühendust ja proovi uuesti.</string>
+    <string name="error_trap_gone">See lõks pole enam aktiivne.</string>
+    <string name="error_trap_other_age_group">See lõks kuulub teisele vanuserühmale.</string>
+    <string name="error_quota_penalty">Vahelejäämine maksis sulle tänased lõksud. Proovi homme uuesti!</string>
+    <string name="error_home_base_too_far">Sinu kodubaas peab olema sinust kuni 200 m kaugusel — oled %1$d m kaugusel.</string>
+    <string name="error_cannot_target_self">Iseendaga ei saa seda teha.</string>
+    <string name="error_too_many_attempts">Liiga palju katseid. Oota hetk ja proovi uuesti.</string>
+    <string name="error_session_expired">See võttis liiga kaua aega — alusta palun uuesti.</string>
+    <string name="error_email_in_use">See e-post on juba registreeritud. Logi parem sisse.</string>
 </resources>

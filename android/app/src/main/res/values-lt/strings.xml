@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Laikyk 2 sekundes, kad padėtum</string>
     <string name="msg_placing_background">Spąstai dedami fone…</string>
     <string name="label_loading">Įkeliama…</string>
-    <string name="label_my_disassembled_trap">Tavo nuimti spąstai</string>
+    <string name="label_my_disassembled_trap">Tavo išardyti spąstai</string>
     <string name="action_disassemble">IŠARDYTI</string>
     <string name="label_hold_to_disassemble">Laikyk 2 sekundes, kad išardytum</string>
     <string name="label_disassembling">Ardoma…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Puiku!</string>
     <string name="disarm_reveal_failed">Atskleisti nepavyko.</string>
     <string name="disarm_move_closer_detail">Prieik %1$dm arčiau — esi už %2$dm, reikia ≤ %3$dm</string>
-    <string name="disarm_start_failed">Nepavyko pradėti nukenksminimo.</string>
-    <string name="disarm_failed">Nukenksminti nepavyko.</string>
+    <string name="disarm_start_failed">Nepavyko pradėti ardymo.</string>
+    <string name="disarm_failed">Išardyti nepavyko.</string>
     <string name="award_time_card_name">Laiko atskaita</string>
     <string name="award_unit_min">min.</string>
     <string name="award_time_card_title">Laiko atskaitos kortelės</string>
@@ -969,4 +969,13 @@
         <item quantity="many">%d krepšio papildymo</item>
         <item quantity="other">%d krepšio papildymų</item>
     </plurals>
+    <string name="error_network">Nepavyksta pasiekti serverio. Patikrink ryšį ir bandyk dar kartą.</string>
+    <string name="error_trap_gone">Šie spąstai nebeaktyvūs.</string>
+    <string name="error_trap_other_age_group">Šie spąstai priklauso kitai amžiaus grupei.</string>
+    <string name="error_quota_penalty">Kadangi tave pagavo, šiandienos spąstų netekai. Bandyk rytoj!</string>
+    <string name="error_home_base_too_far">Tavo bazė turi būti ne toliau kaip 200 m nuo tavęs — esi už %1$d m.</string>
+    <string name="error_cannot_target_self">To negali daryti su savimi.</string>
+    <string name="error_too_many_attempts">Per daug bandymų. Palauk akimirką ir bandyk dar kartą.</string>
+    <string name="error_session_expired">Užtruko per ilgai — pradėk iš naujo.</string>
+    <string name="error_email_in_use">Šis el. paštas jau užregistruotas. Geriau prisijunk.</string>
 </resources>

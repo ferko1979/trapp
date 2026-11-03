@@ -911,7 +911,7 @@
     <string name="action_push">לחץ</string>
     <string name="label_hold_for_2s">החזק 2 שניות להצבה</string>
     <string name="msg_placing_background">מציב מלכודת ברקע…</string>
-    <string name="label_my_disassembled_trap">המלכודת שהסרת</string>
+    <string name="label_my_disassembled_trap">המלכודת שפירקת</string>
     <string name="action_disassemble">פירוק</string>
     <string name="label_hold_to_disassemble">החזק 2 שניות לפירוק</string>
     <string name="label_disassembling">מפרק…</string>
@@ -1008,4 +1008,21 @@
     <string name="intro_s6_desc">הוסף חברים, צור קבוצות ברית ותאם את אסטרטגיית הלכידה שלכם.\n\nבדוק בטבלת המובילים מי בראש — ואז צא לנצח אותם.</string>
     <string name="intro_s6_tip_icon">🏆</string>
     <string name="intro_s6_tip">כל יום הוא התחלה חדשה. המלכודות מתאפסות, הניקוד מצטבר. בהצלחה!</string>
+    <string name="error_network">אין חיבור לשרת. בדוק את החיבור ונסה שוב.</string>
+    <string name="error_trap_gone">המלכודת הזאת כבר לא פעילה.</string>
+    <string name="error_trap_other_age_group">המלכודת הזאת שייכת לקבוצת גיל אחרת.</string>
+    <string name="error_quota_penalty">נתפסת, ולכן הפסדת את המלכודות של היום. נסה שוב מחר!</string>
+    <string name="error_home_base_too_far">הבסיס הביתי שלך חייב להיות עד 200 מ׳ ממך — אתה במרחק %1$d מ׳.</string>
+    <string name="error_cannot_target_self">אי אפשר לעשות את זה עם עצמך.</string>
+    <string name="error_too_many_attempts">יותר מדי ניסיונות. חכה רגע ונסה שוב.</string>
+    <string name="error_session_expired">זה לקח יותר מדי זמן — התחל מחדש.</string>
+    <string name="action_accept_request">אשר</string>
+    <string name="action_pending">ממתין</string>
+    <string name="action_add_friend_short">הוסף חבר</string>
+    <string name="msg_user_not_found_id">לא נמצא משתמש עם מזהה או אימייל זה.</string>
+    <string name="msg_request_id_not_found">מזהה הבקשה לא נמצא</string>
+    <string name="msg_loading_invite">טוען הודעת הזמנה…</string>
+    <string name="msg_whatsapp_not_installed">WhatsApp אינו מותקן</string>
+    <string name="msg_viber_not_installed">Viber אינו מותקן</string>
+    <string name="error_email_in_use">האימייל הזה כבר רשום. עדיף להתחבר.</string>
 </resources>

@@ -134,7 +134,7 @@ class LoginActivity : BaseActivity() {
             }
             .addOnFailureListener {
                 statusVisible = false
-                error = it.message ?: getString(R.string.error_login_failed)
+                error = ServerErrorText.of(this, it, R.string.error_login_failed)
                 forgotVisible = true
             }
     }
@@ -172,13 +172,13 @@ class LoginActivity : BaseActivity() {
                                 resendVisible = false
                             }
                             ?.addOnFailureListener { ex ->
-                                error = ex.message ?: getString(R.string.auth_verification_send_failed)
+                                error = ServerErrorText.of(this, ex, R.string.auth_verification_send_failed)
                                 auth.signOut()
                             }
                     }
             }
             .addOnFailureListener {
-                error = it.message ?: getString(R.string.error_login_failed)
+                error = ServerErrorText.of(this, it, R.string.error_login_failed)
                 forgotVisible = true
             }
     }

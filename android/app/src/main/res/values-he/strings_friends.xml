@@ -39,12 +39,4 @@
         <item quantity="many">%d חברים</item>
         <item quantity="other">%d חברים</item>
     </plurals>
-    <string name="action_accept_request">אשר</string>
-    <string name="action_pending">ממתין</string>
-    <string name="action_add_friend_short">הוסף חבר</string>
-    <string name="msg_user_not_found_id">לא נמצא משתמש עם מזהה או אימייל זה.</string>
-    <string name="msg_request_id_not_found">מזהה הבקשה לא נמצא</string>
-    <string name="msg_loading_invite">טוען הודעת הזמנה…</string>
-    <string name="msg_whatsapp_not_installed">WhatsApp אינו מותקן</string>
-    <string name="msg_viber_not_installed">Viber אינו מותקן</string>
 </resources>

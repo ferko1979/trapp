@@ -617,7 +617,7 @@ observeTheme()
                     }
                     state?.error?.let { err ->
                         if (err.isNotEmpty()) {
-                            toast(getString(R.string.error_placement_failed, err))
+                            toast(getString(R.string.error_placement_failed, ServerErrorText.ofMessage(err)))
                             gameVm.dismissPlacementProgress()
                         }
                     }
@@ -887,7 +887,7 @@ stopHeartbeat()
         functions.getHttpsCallable("sendFriendRequest")
             .call(mapOf("toUid" to userId))
             .addOnSuccessListener { toast(getString(R.string.msg_friend_request_sent)) }
-            .addOnFailureListener { e -> toast(getString(R.string.error_action_failed, e.message ?: "")) }
+            .addOnFailureListener { e -> toast(ServerErrorText.of(this, e)) }
     }
 
     private fun startDirectMessage(userId: String) {
@@ -1223,20 +1223,8 @@ stopHeartbeat()
 
                 gameVm.startPlacementProgress(sessionId, holdSecs, leaveSecs)
             } catch (e: Exception) {
-                val serverMsg = e.message ?: ""
-                val toastMsg = when {
-                    serverMsg.contains("No traps available for today") -> getString(R.string.error_no_traps_daily_limit)
-                    serverMsg.contains("Move closer") || serverMsg.contains("too far away", ignoreCase = true) -> {
-                        val excess = Regex("You are (\\d+) m too far").find(serverMsg)
-                            ?.groupValues?.get(1)?.toIntOrNull()
-                        if (excess != null) getString(R.string.error_target_far, excess)
-                        else getString(R.string.error_too_far_to_place)
-                    }
-                    serverMsg.contains("No trap of this type available") -> getString(R.string.error_no_traps)
-                    serverMsg.contains("Space your traps out", ignoreCase = true) ||
-                    serverMsg.contains("trap(s) within", ignoreCase = true) -> serverMsg
-                    else -> getString(R.string.error_placement_failed, serverMsg.ifBlank { getString(R.string.error_unknown_reason) })
-                }
+                val toastMsg = if (e.message?.contains("Move closer") == true) getString(R.string.error_too_far_to_place)
+                    else ServerErrorText.of(this@GameActivity, e)
                 // Show error inside the overlay (keeps it visible so user can read it and tap Close)
                 gameVm.notifyPlacementStartFailed(toastMsg)
             }
@@ -1385,7 +1373,7 @@ stopHeartbeat()
                 toast(getString(R.string.home_base_set_toast))
                 // Circle will redraw automatically when the Firestore snapshot fires.
             } catch (e: Exception) {
-                toast(getString(R.string.home_base_set_failed, e.message ?: ""))
+                toast(getString(R.string.home_base_set_failed, ServerErrorText.of(this@GameActivity, e)))
             }
         }
     }
@@ -1403,7 +1391,7 @@ stopHeartbeat()
                 wasInSafeZone = false
                 toast(getString(R.string.home_base_removed))
             } catch (e: Exception) {
-                toast(getString(R.string.home_base_remove_failed, e.message ?: ""))
+                toast(getString(R.string.home_base_remove_failed, ServerErrorText.of(this@GameActivity, e)))
             }
         }
     }
@@ -1638,7 +1626,7 @@ stopHeartbeat()
                 "category" to "email_change"
             ))
             .addOnSuccessListener { toast(getString(R.string.msg_email_change_request_sent)) }
-            .addOnFailureListener { e -> toast(getString(R.string.error_action_failed, e.message ?: "")) }
+            .addOnFailureListener { e -> toast(ServerErrorText.of(this, e)) }
     }
 
     private fun setupMap() {
@@ -2251,7 +2239,7 @@ stopHeartbeat()
                     if (state == null) optimisticFlipDone = false
                     state?.error?.let { err ->
                         if (err.isNotEmpty()) {
-                            gameVm.onDisassembleError(err)
+                            gameVm.onDisassembleError(ServerErrorText.ofMessage(err, R.string.msg_disassemble_failed))
                             gameVm.dismissDisassemblyProgress()
                         }
                     }
@@ -2458,24 +2446,8 @@ stopHeartbeat()
                 gameVm.startDisassemblyProgress(sessionId, holdSecs)
 
             } catch (e: Exception) {
-                val serverMsg = e.message ?: ""
-                val msg = when {
-                    serverMsg.contains("inside the trap zone", ignoreCase = true) ->
-                        getString(R.string.error_inside_trap_zone)
-                    serverMsg.startsWith("closer:") -> {
-                        val parts = serverMsg.split(":")
-                        val needed = parts.getOrNull(1)?.toIntOrNull() ?: 0
-                        if (needed > 0) getString(R.string.error_too_far_to_disassemble_detail, needed)
-                        else getString(R.string.error_too_far_to_disassemble)
-                    }
-                    serverMsg.contains("Move closer", ignoreCase = true) ||
-                    serverMsg.contains("too far", ignoreCase = true) ->
-                        getString(R.string.error_too_far_to_disassemble)
-                    serverMsg.contains("reveal", ignoreCase = true) ->
-                        getString(R.string.label_reveal_first)
-                    serverMsg.isNotBlank() -> serverMsg
-                    else -> getString(R.string.msg_disassemble_failed)
-                }
+                val msg = if (e.message?.contains("Move closer", ignoreCase = true) == true) getString(R.string.error_too_far_to_disassemble)
+                    else ServerErrorText.of(this@GameActivity, e, R.string.msg_disassemble_failed)
                 gameVm.onDisassembleError(msg)
             }
         }

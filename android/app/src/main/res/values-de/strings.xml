@@ -414,23 +414,23 @@
     <string name="label_hold_for_2s">2 Sekunden gedrückt halten</string>
     <string name="msg_placing_background">Falle wird platziert…</string>
     <string name="label_loading">Laden…</string>
-    <string name="label_my_disassembled_trap">Deine entfernte Falle</string>
+    <string name="label_my_disassembled_trap">Deine zerlegte Falle</string>
     <string name="hint_select_trap_to_place">Wähle eine Falle aus der Tasche unten</string>
-    <string name="action_disassemble">DEMONTIEREN</string>
-    <string name="label_hold_to_disassemble">2 Sekunden halten zum Demontieren</string>
-    <string name="label_disassembling">Demontage läuft…</string>
+    <string name="action_disassemble">ZERLEGEN</string>
+    <string name="label_hold_to_disassemble">2 Sekunden halten zum Zerlegen</string>
+    <string name="label_disassembling">Wird zerlegt…</string>
     <string name="label_disassemble_countdown">%1$ds verbleibend</string>
-    <string name="msg_disassemble_success">Falle demontiert!</string>
-    <string name="msg_disassemble_failed">Demontage fehlgeschlagen</string>
-    <string name="error_too_far_to_disassemble">Näher herangehen zum Demontieren</string>
-    <string name="label_reveal_first">Zuerst Falle aufdecken um zu demontieren</string>
+    <string name="msg_disassemble_success">Falle zerlegt!</string>
+    <string name="msg_disassemble_failed">Zerlegen fehlgeschlagen</string>
+    <string name="error_too_far_to_disassemble">Geh näher ran zum Zerlegen</string>
+    <string name="label_reveal_first">Deck die Falle erst auf, um sie zu zerlegen</string>
     <string name="label_trap_owner">Besitzer: %1$s</string>
     <string name="label_your_trap_info">Deine Falle</string>
     <string name="label_others_trap_info">Jemand anderes Falle</string>
     <string name="label_placing_trap">Falle wird platziert… bleib auf der Stelle</string>
     <string name="warning_return_to_radius">In %1$d Sekunden zurückkehren!</string>
-    <string name="warning_return_to_zone">In %1$d Sekunden zur Demontagezone zurückkehren!</string>
-    <string name="error_inside_trap_zone">Du befindest dich in der Fallenzone. Geh zurück zum Demontieren.</string>
+    <string name="warning_return_to_zone">Geh innerhalb von %1$d Sekunden zurück in die Zerlegezone!</string>
+    <string name="error_inside_trap_zone">Du bist in der Fallenzone. Geh zurück, um sie zu zerlegen.</string>
 
     <!-- ── Ranking ── -->
     <string name="action_ranking">RANGLISTE</string>
@@ -534,7 +534,7 @@
     <string name="dialog_home_base_move">Heimatbasis hierher verlegen?\n(ersetzt die aktuelle Sicherheitszone)</string>
     <string name="dialog_home_base_set_new">Dies als Heimatbasis festlegen?\nDu bist innerhalb von 100 m immun gegen Fallen.</string>
     <string name="label_ally_rank_you">Allianz: #%1$d / %2$d</string>
-    <string name="label_confirming_disassembly">Demontage wird bestätigt…</string>
+    <string name="label_confirming_disassembly">Zerlegen wird bestätigt…</string>
     <string name="label_confirming_placement">Platzierung wird bestätigt…</string>
     <string name="label_daily_traps_remaining">%1$d / %2$d tägliche Fallen</string>
     <string name="label_effect_value">Effekt: %1$s</string>
@@ -645,7 +645,7 @@
     <!-- Hardcoded-string sweep 2026-11-03 -->
     <string name="alert_trap_detected">⚠️ FALLE ENTDECKT</string>
     <string name="alert_distance_danger">%1$d m entfernt · Gefahrenzone: %2$d m Radius</string>
-    <string name="alert_option_disassemble">Komm auf %1$d m heran → halten zum Aufdecken → halten zum Abbauen.\nVerlässt du den Bereich länger als %2$d s, wird abgebrochen. Die Abbauzeit siehst du nach dem Aufdecken.</string>
+    <string name="alert_option_disassemble">Komm auf %1$d m heran → halten zum Aufdecken → halten zum Zerlegen.\nVerlässt du den Bereich länger als %2$d s, wird abgebrochen. Die Zerlegezeit siehst du nach dem Aufdecken.</string>
     <string name="alert_option_avoid">Bleib mehr als %1$d m vom Fallenzentrum entfernt und geh drumherum. Tippe auf Schließen, um weiterzugehen.</string>
     <string name="alert_close_enough_hold">Du bist nah genug — HALTE den Knopf gedrückt, um die Falle aufzudecken!</string>
     <string name="alert_hold_to_reveal">HALTEN ZUM AUFDECKEN</string>
@@ -659,26 +659,26 @@
     <string name="alert_stay_still_revealing">Bleib stehen — Fallentyp wird aufgedeckt…\n%1$d s / %2$d s</string>
     <string name="alert_revealing">Aufdecken…</string>
     <string name="alert_move_closer_title">⚠️ Geh näher ran!</string>
-    <string name="alert_disassembly_paused">Abbau pausiert — %1$d m entfernt</string>
+    <string name="alert_disassembly_paused">Zerlegen pausiert — %1$d m entfernt</string>
     <string name="alert_move_closer_msg">⚠️ Geh %1$d m näher! Komm auf %2$d m zurück</string>
     <string name="alert_paused">PAUSIERT…</string>
-    <string name="alert_disassembling_title">🛠 Abbau läuft…</string>
+    <string name="alert_disassembling_title">🛠 Wird zerlegt…</string>
     <string name="alert_stay_in_position">Bleib in Position!</string>
     <string name="alert_hold_position">Position HALTEN — nicht bewegen!</string>
     <string name="alert_seconds_remaining">⏱ noch %1$d s</string>
     <string name="alert_holding">HALTEN…</string>
     <string name="alert_trapped_title">🪤 Du bist in die Falle getappt!</string>
     <string name="alert_stepped_in_zone">Du hast die Fallenzone betreten</string>
-    <string name="alert_entered_danger_zone">Du hast beim Abbau die Gefahrenzone (%1$d m) betreten — die Falle hat ausgelöst!</string>
+    <string name="alert_entered_danger_zone">Du hast beim Zerlegen die Gefahrenzone (%1$d m) betreten — die Falle hat ausgelöst!</string>
     <string name="alert_error_title">⚠️ Fehler</string>
     <string name="alert_retry">ERNEUT</string>
-    <string name="alert_disassembled_title">✅ Falle abgebaut!</string>
+    <string name="alert_disassembled_title">✅ Falle zerlegt!</string>
     <string name="alert_collected_msg">Eingesammelt: %1$s\nSie ist jetzt in deiner Tasche — stell eine Falle!</string>
     <string name="alert_great">Super!</string>
     <string name="disarm_reveal_failed">Aufdecken fehlgeschlagen.</string>
     <string name="disarm_move_closer_detail">Geh %1$d m näher — du bist %2$d m entfernt, nötig sind ≤ %3$d m</string>
-    <string name="disarm_start_failed">Abbau konnte nicht gestartet werden.</string>
-    <string name="disarm_failed">Abbau fehlgeschlagen.</string>
+    <string name="disarm_start_failed">Zerlegen konnte nicht gestartet werden.</string>
+    <string name="disarm_failed">Zerlegen fehlgeschlagen.</string>
     <string name="award_time_card_name">Zeitabzug</string>
     <string name="award_unit_min">Min.</string>
     <string name="award_time_card_title">Zeitabzug-Karten</string>
@@ -724,9 +724,9 @@
     <string name="notif_freed_title">🎉 Du bist FREI!</string>
     <string name="notif_freed_body">Deine Zeitstrafe ist abgelaufen. Zurück ins Spiel!</string>
     <string name="ad_speedup_placement_title">Platzierung beschleunigen</string>
-    <string name="ad_speedup_disassembly_title">Abbau beschleunigen</string>
+    <string name="ad_speedup_disassembly_title">Schneller zerlegen</string>
     <string name="ad_speedup_placement_msg">Sieh dir eine kurze Werbung an, um deine Platzierungszeit um %1$s zu verkürzen.\n\nDu musst das ganze Video ansehen, um die Belohnung zu erhalten.</string>
-    <string name="ad_speedup_disassembly_msg">Sieh dir eine kurze Werbung an, um deine Abbauzeit um %1$s zu verkürzen.\n\nDu musst das ganze Video ansehen, um die Belohnung zu erhalten.</string>
+    <string name="ad_speedup_disassembly_msg">Sieh dir eine kurze Werbung an, um deine Zerlegezeit um %1$s zu verkürzen.\n\nDu musst das ganze Video ansehen, um die Belohnung zu erhalten.</string>
     <string name="action_watch_ad">Werbung ansehen</string>
     <string name="action_no_thanks">Nein danke</string>
     <string name="ad_not_available">Werbung noch nicht verfügbar, bitte versuche es gleich noch einmal.</string>
@@ -978,7 +978,7 @@
         <item quantity="other">%d Taschenauffüllungen</item>
     </plurals>
     <string name="error_too_many_traps_nearby">Du hast hier schon Fallen zu dicht beieinander. Verteil sie mehr!</string>
-    <string name="error_too_far_to_disassemble_detail">Geh %1$dm näher heran, um zu demontieren.</string>
+    <string name="error_too_far_to_disassemble_detail">Geh %1$d m näher ran, um sie zu zerlegen.</string>
     <string name="lang_he">עברית (Hebräisch)</string>
     <string name="action_awards_cards">AUSZEICHNUNGEN &amp; KARTEN</string>
     <string name="warning_return_to_placement">Geh %1$dm näher! Noch %2$ds</string>
@@ -988,4 +988,13 @@
     <string name="msg_update_available">Eine neuere Version von Trap ist verfügbar. Jetzt aktualisieren für die neuesten Funktionen und Verbesserungen.</string>
     <string name="action_update_now">Jetzt aktualisieren</string>
     <string name="action_later">Später</string>
+    <string name="error_network">Server nicht erreichbar. Prüf deine Verbindung und versuch es nochmal.</string>
+    <string name="error_trap_gone">Diese Falle ist nicht mehr aktiv.</string>
+    <string name="error_trap_other_age_group">Diese Falle gehört zu einer anderen Altersgruppe.</string>
+    <string name="error_quota_penalty">Du wurdest erwischt – deine Fallen für heute sind weg. Versuch es morgen wieder!</string>
+    <string name="error_home_base_too_far">Deine Basis muss höchstens 200 m von dir entfernt sein – du bist %1$d m weg.</string>
+    <string name="error_cannot_target_self">Das geht nicht mit dir selbst.</string>
+    <string name="error_too_many_attempts">Zu viele Versuche. Warte kurz und versuch es nochmal.</string>
+    <string name="error_session_expired">Das hat zu lange gedauert – bitte fang neu an.</string>
+    <string name="error_email_in_use">Diese E-Mail ist schon registriert. Melde dich lieber an.</string>
 </resources>

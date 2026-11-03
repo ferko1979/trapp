@@ -377,7 +377,7 @@
     <string name="label_hold_for_2s">Hold 2 seconds to place</string>
     <string name="msg_placing_background">Placing trap in background…</string>
     <string name="label_loading">Loading…</string>
-    <string name="label_my_disassembled_trap">Your removed trap</string>
+    <string name="label_my_disassembled_trap">Your disassembled trap</string>
 
     <!-- ── Disassemble flow ── -->
     <string name="action_disassemble">DISASSEMBLE</string>
@@ -385,7 +385,7 @@
     <string name="label_disassembling">Disassembling…</string>
     <string name="label_disassemble_countdown">%1$ds remaining</string>
     <string name="msg_disassemble_success">Trap disassembled!</string>
-    <string name="msg_disassemble_failed">Disassemble failed</string>
+    <string name="msg_disassemble_failed">Disassembly failed</string>
     <string name="error_too_far_to_disassemble">Move closer to disassemble</string>
     <string name="label_reveal_first">Reveal this trap first to disassemble</string>
     <string name="label_trap_owner">Owner: %1$s</string>
@@ -627,6 +627,15 @@
     <string name="delete_account_done">Your account has been deleted.</string>
     <string name="delete_account_failed">Account deletion failed. Please try again or contact support.</string>
     <string name="error_generic_retry">Something went wrong. Please try again.</string>
+    <string name="error_network">Can\'t reach the server. Check your connection and try again.</string>
+    <string name="error_trap_gone">This trap is no longer active.</string>
+    <string name="error_trap_other_age_group">This trap belongs to a different age group.</string>
+    <string name="error_quota_penalty">Getting caught cost you today\'s traps. Try again tomorrow!</string>
+    <string name="error_home_base_too_far">Your home base must be within 200 m of you — you are %1$d m away.</string>
+    <string name="error_cannot_target_self">You can\'t do that with yourself.</string>
+    <string name="error_too_many_attempts">Too many attempts. Wait a moment and try again.</string>
+    <string name="error_session_expired">That took too long — please start again.</string>
+    <string name="error_email_in_use">This email is already registered. Log in instead.</string>
     <!-- Map HUD / dock / hold-to-arm (redesign) -->
     <string name="mh_pts">PTS</string>
     <string name="mh_inbox">Inbox</string>
@@ -738,8 +747,8 @@
     <string name="alert_great">Great!</string>
     <string name="disarm_reveal_failed">Reveal failed.</string>
     <string name="disarm_move_closer_detail">Move %1$dm closer — you are %2$dm away, need ≤ %3$dm</string>
-    <string name="disarm_start_failed">Could not start disarm.</string>
-    <string name="disarm_failed">Disarm failed.</string>
+    <string name="disarm_start_failed">Could not start disassembly.</string>
+    <string name="disarm_failed">Disassembly failed.</string>
     <string name="award_time_card_name">Time Deduction</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Time Deduction Cards</string>

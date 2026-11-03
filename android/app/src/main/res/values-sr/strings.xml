@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Држи 2 секунде за постављање</string>
     <string name="msg_placing_background">Постављам замку у позадини…</string>
     <string name="label_loading">Учитавам…</string>
-    <string name="label_my_disassembled_trap">Твоја уклоњена замка</string>
+    <string name="label_my_disassembled_trap">Твоја растављена замка</string>
     <string name="action_disassemble">РАСТАВИ</string>
     <string name="label_hold_to_disassemble">Држи 2 секунде за растављање</string>
     <string name="label_disassembling">Растављам…</string>
@@ -356,7 +356,7 @@
     <string name="msg_disassemble_success">Замка растављена!</string>
     <string name="msg_disassemble_failed">Растављање није успело</string>
     <string name="error_too_far_to_disassemble">Приђи ближе да је раставиш</string>
-    <string name="label_reveal_first">Прво откриј ову замку да би је раставио</string>
+    <string name="label_reveal_first">Прво откриј ову замку, па је растави</string>
     <string name="label_trap_owner">Власник: %1$s</string>
     <string name="label_your_trap_info">Твоја замка</string>
     <string name="label_others_trap_info">Туђа замка</string>
@@ -364,7 +364,7 @@
     <string name="warning_return_to_radius">Врати се у року од %1$d секунди!</string>
     <string name="warning_return_to_placement">Приђи %1$d m ближе! Још %2$ds</string>
     <string name="warning_return_to_zone">Врати се у зону растављања у року од %1$d секунди!</string>
-    <string name="error_inside_trap_zone">Налазиш се у зони замке. Повуци се да би је раставио.</string>
+    <string name="error_inside_trap_zone">Налазиш се у зони замке. Повуци се, па је растави.</string>
     <string name="msg_select_trap_first">Прво изабери замку из торбе!</string>
     <string name="msg_drag_marker">Превуци ознаку на циљно место (највише 50 m)</string>
     <string name="msg_too_far">Предалеко! Помери ознаку ближе себи (највише 50 m).</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Супер!</string>
     <string name="disarm_reveal_failed">Откривање није успело.</string>
     <string name="disarm_move_closer_detail">Приђи %1$d m ближе — %2$d m си далеко, потребно ≤ %3$d m</string>
-    <string name="disarm_start_failed">Разоружавање није могло да почне.</string>
-    <string name="disarm_failed">Разоружавање није успело.</string>
+    <string name="disarm_start_failed">Растављање није могло да почне.</string>
+    <string name="disarm_failed">Растављање није успело.</string>
     <string name="award_time_card_name">Скраћење времена</string>
     <string name="award_unit_min">мин</string>
     <string name="award_time_card_title">Карте за скраћење времена</string>
@@ -958,4 +958,13 @@
         <item quantity="few">%d допуне торбе</item>
         <item quantity="other">%d допуна торбе</item>
     </plurals>
+    <string name="error_network">Сервер није доступан. Провери везу и покушај поново.</string>
+    <string name="error_trap_gone">Ова замка више није активна.</string>
+    <string name="error_trap_other_age_group">Ова замка припада другој узрасној групи.</string>
+    <string name="error_quota_penalty">Ухватили су те — данашње замке су пропале. Пробај сутра!</string>
+    <string name="error_home_base_too_far">Матична база мора бити до 200 m од тебе — удаљена је %1$d m.</string>
+    <string name="error_cannot_target_self">То не можеш да урадиш са самим собом.</string>
+    <string name="error_too_many_attempts">Превише покушаја. Сачекај мало и покушај поново.</string>
+    <string name="error_session_expired">Предуго је трајало — почни испочетка.</string>
+    <string name="error_email_in_use">Ова е-пошта је већ регистрована. Боље се пријави.</string>
 </resources>

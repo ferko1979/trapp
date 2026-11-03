@@ -414,7 +414,7 @@
     <string name="label_hold_for_2s">Drži 2 sekunde za postavljanje</string>
     <string name="msg_placing_background">Zamka se postavlja…</string>
     <string name="label_loading">Učitavanje…</string>
-    <string name="label_my_disassembled_trap">Tvoja uklonjena zamka</string>
+    <string name="label_my_disassembled_trap">Tvoja rastavljena zamka</string>
     <string name="hint_select_trap_to_place">Odaberi zamku iz torbe ispod</string>
     <string name="action_disassemble">RASTAVI</string>
     <string name="label_hold_to_disassemble">Drži 2 sekunde za rastavljanje</string>
@@ -423,14 +423,14 @@
     <string name="msg_disassemble_success">Zamka rastavljena!</string>
     <string name="msg_disassemble_failed">Rastavljanje nije uspjelo</string>
     <string name="error_too_far_to_disassemble">Priđi bliže za rastavljanje</string>
-    <string name="label_reveal_first">Prvo otkrij zamku za rastavljanje</string>
+    <string name="label_reveal_first">Prvo otkrij zamku da bi je rastavio</string>
     <string name="label_trap_owner">Vlasnik: %1$s</string>
     <string name="label_your_trap_info">Tvoja zamka</string>
     <string name="label_others_trap_info">Nečija zamka</string>
     <string name="label_placing_trap">Postavljanje zamke… ostani na mjestu</string>
     <string name="warning_return_to_radius">Vrati se za %1$d sekundi!</string>
-    <string name="warning_return_to_zone">Vrati se u zonu demontaže za %1$d sekundi!</string>
-    <string name="error_inside_trap_zone">Nalaziš se unutar zone zamke. Udalji se za demontažu.</string>
+    <string name="warning_return_to_zone">Vrati se u zonu rastavljanja unutar %1$d s!</string>
+    <string name="error_inside_trap_zone">Nalaziš se unutar zone zamke. Udalji se da je rastaviš.</string>
 
     <!-- ── Ranking ── -->
     <string name="action_ranking">RANG LISTA</string>
@@ -999,4 +999,13 @@
     <string name="msg_update_available">Dostupna je novija verzija Trapa. Ažuriraj sada za najnovije značajke i poboljšanja.</string>
     <string name="action_update_now">Ažuriraj sada</string>
     <string name="action_later">Kasnije</string>
+    <string name="error_network">Poslužitelj nije dostupan. Provjeri vezu i pokušaj ponovno.</string>
+    <string name="error_trap_gone">Ova zamka više nije aktivna.</string>
+    <string name="error_trap_other_age_group">Ova zamka pripada drugoj dobnoj skupini.</string>
+    <string name="error_quota_penalty">Uhvatili su te pa si izgubio današnje zamke. Pokušaj ponovno sutra!</string>
+    <string name="error_home_base_too_far">Tvoja baza mora biti unutar 200 m od tebe — udaljen si %1$d m.</string>
+    <string name="error_cannot_target_self">To ne možeš napraviti sam sa sobom.</string>
+    <string name="error_too_many_attempts">Previše pokušaja. Pričekaj trenutak i pokušaj ponovno.</string>
+    <string name="error_session_expired">Predugo je trajalo — kreni ispočetka.</string>
+    <string name="error_email_in_use">Ovaj e-mail je već registriran. Radije se prijavi.</string>
 </resources>

@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Drži 2 sekundi za postavitev</string>
     <string name="msg_placing_background">Postavljam past v ozadju…</string>
     <string name="label_loading">Nalagam…</string>
-    <string name="label_my_disassembled_trap">Tvoja odstranjena past</string>
+    <string name="label_my_disassembled_trap">Tvoja razstavljena past</string>
     <string name="action_disassemble">RAZSTAVI</string>
     <string name="label_hold_to_disassemble">Drži 2 sekundi za razstavitev</string>
     <string name="label_disassembling">Razstavljam…</string>
@@ -616,7 +616,7 @@
     <string name="set_lang_search">Išči jezike…</string>
     <string name="alert_trap_detected">⚠️ ZAZNANA PAST</string>
     <string name="alert_distance_danger">%1$d m stran · nevarno območje: polmer %2$d m</string>
-    <string name="alert_option_disassemble">Približaj se na %1$d m → drži za razkritje → drži za razstavitev.\nČe greš iz dosega za &gt;%2$ds = preklicano. Čas razstavitve je prikazan po razkritju.</string>
+    <string name="alert_option_disassemble">Približaj se na %1$d m → drži za razkritje → drži za razstavitev.\nČe greš iz dosega za &gt;%2$ds = preklicano. Čas razstavljanja je prikazan po razkritju.</string>
     <string name="alert_option_avoid">Ostani dlje kot %1$d m od središča pasti in jo obidi. Tapni Opusti in hodi naprej.</string>
     <string name="alert_close_enough_hold">Dovolj blizu si — DRŽI gumb, da razkriješ past!</string>
     <string name="alert_hold_to_reveal">DRŽI ZA RAZKRITJE</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Super!</string>
     <string name="disarm_reveal_failed">Razkritje ni uspelo.</string>
     <string name="disarm_move_closer_detail">Približaj se za %1$d m — si %2$d m stran, potrebno ≤ %3$d m</string>
-    <string name="disarm_start_failed">Razoroževanja ni bilo mogoče začeti.</string>
-    <string name="disarm_failed">Razoroževanje ni uspelo.</string>
+    <string name="disarm_start_failed">Razstavljanja ni bilo mogoče začeti.</string>
+    <string name="disarm_failed">Razstavljanje ni uspelo.</string>
     <string name="award_time_card_name">Skrajšanje časa</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Karte za skrajšanje časa</string>
@@ -695,9 +695,9 @@
     <string name="notif_freed_title">🎉 PROST SI!</string>
     <string name="notif_freed_body">Tvoja kazen zamrznitve je potekla. Vrni se v igro!</string>
     <string name="ad_speedup_placement_title">Pospeši postavitev</string>
-    <string name="ad_speedup_disassembly_title">Pospeši razstavitev</string>
+    <string name="ad_speedup_disassembly_title">Pospeši razstavljanje</string>
     <string name="ad_speedup_placement_msg">Oglej si kratek oglas in skrajšaj čas postavitve za %1$s.\n\nZa nagrado moraš pogledati celoten video.</string>
-    <string name="ad_speedup_disassembly_msg">Oglej si kratek oglas in skrajšaj čas razstavitve za %1$s.\n\nZa nagrado moraš pogledati celoten video.</string>
+    <string name="ad_speedup_disassembly_msg">Oglej si kratek oglas in skrajšaj čas razstavljanja za %1$s.\n\nZa nagrado moraš pogledati celoten video.</string>
     <string name="action_watch_ad">Oglej si oglas</string>
     <string name="action_no_thanks">Ne, hvala</string>
     <string name="ad_not_available">Oglas še ni na voljo, poskusi znova čez trenutek.</string>
@@ -969,4 +969,13 @@
         <item quantity="few">%d polnjenja torbe</item>
         <item quantity="other">%d polnjenj torbe</item>
     </plurals>
+    <string name="error_network">Strežnik ni dosegljiv. Preveri povezavo in poskusi znova.</string>
+    <string name="error_trap_gone">Ta past ni več aktivna.</string>
+    <string name="error_trap_other_age_group">Ta past pripada drugi starostni skupini.</string>
+    <string name="error_quota_penalty">Ujeli so te, zato so današnje pasti izgubljene. Poskusi jutri!</string>
+    <string name="error_home_base_too_far">Domača baza mora biti največ 200 m od tebe — zdaj je %1$d m stran.</string>
+    <string name="error_cannot_target_self">Tega ne moreš narediti sam s sabo.</string>
+    <string name="error_too_many_attempts">Preveč poskusov. Malo počakaj in poskusi znova.</string>
+    <string name="error_session_expired">To je trajalo predolgo — začni znova.</string>
+    <string name="error_email_in_use">Ta e-pošta je že registrirana. Raje se prijavi.</string>
 </resources>

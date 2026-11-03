@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Houd 2 seconden vast om te plaatsen</string>
     <string name="msg_placing_background">Val wordt op de achtergrond geplaatst…</string>
     <string name="label_loading">Laden…</string>
-    <string name="label_my_disassembled_trap">Je verwijderde val</string>
+    <string name="label_my_disassembled_trap">Je gedemonteerde val</string>
     <string name="action_disassemble">DEMONTEREN</string>
     <string name="label_hold_to_disassemble">Houd 2 seconden vast om te demonteren</string>
     <string name="label_disassembling">Demonteren…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Top!</string>
     <string name="disarm_reveal_failed">Onthullen mislukt.</string>
     <string name="disarm_move_closer_detail">Kom %1$dm dichterbij — je bent %2$dm weg, nodig ≤ %3$dm</string>
-    <string name="disarm_start_failed">Ontmantelen kon niet starten.</string>
-    <string name="disarm_failed">Ontmantelen mislukt.</string>
+    <string name="disarm_start_failed">Demonteren kon niet starten.</string>
+    <string name="disarm_failed">Demonteren mislukt.</string>
     <string name="award_time_card_name">Tijdaftrek</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Tijdaftrekkaarten</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d tasaanvulling</item>
         <item quantity="other">%d tasaanvullingen</item>
     </plurals>
+    <string name="error_network">Kan de server niet bereiken. Controleer je verbinding en probeer het opnieuw.</string>
+    <string name="error_trap_gone">Deze val is niet meer actief.</string>
+    <string name="error_trap_other_age_group">Deze val hoort bij een andere leeftijdsgroep.</string>
+    <string name="error_quota_penalty">Je bent gepakt en je vallen van vandaag zijn weg. Probeer het morgen opnieuw!</string>
+    <string name="error_home_base_too_far">Je thuisbasis moet binnen 200 m van je zijn — je bent %1$d m verwijderd.</string>
+    <string name="error_cannot_target_self">Dat kun je niet met jezelf doen.</string>
+    <string name="error_too_many_attempts">Te veel pogingen. Wacht even en probeer het opnieuw.</string>
+    <string name="error_session_expired">Dat duurde te lang — begin opnieuw.</string>
+    <string name="error_email_in_use">Dit e-mailadres is al geregistreerd. Log liever in.</string>
 </resources>

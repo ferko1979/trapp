@@ -348,9 +348,9 @@
     <string name="label_hold_for_2s">Podrž 2 sekundy a polož</string>
     <string name="msg_placing_background">Pokládám past na pozadí…</string>
     <string name="label_loading">Načítám…</string>
-    <string name="label_my_disassembled_trap">Tvoje odstraněná past</string>
+    <string name="label_my_disassembled_trap">Tvoje rozebraná past</string>
     <string name="action_disassemble">ROZEBRAT</string>
-    <string name="label_hold_to_disassemble">Podrž 2 sekundy a rozeber</string>
+    <string name="label_hold_to_disassemble">Podrž 2 sekundy pro rozebrání</string>
     <string name="label_disassembling">Rozebírám…</string>
     <string name="label_disassemble_countdown">Zbývá %1$ds</string>
     <string name="msg_disassemble_success">Past rozebrána!</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Super!</string>
     <string name="disarm_reveal_failed">Odhalení selhalo.</string>
     <string name="disarm_move_closer_detail">Přibliž se o %1$d m — jsi %2$d m daleko, potřeba ≤ %3$d m</string>
-    <string name="disarm_start_failed">Zneškodnění se nepodařilo spustit.</string>
-    <string name="disarm_failed">Zneškodnění selhalo.</string>
+    <string name="disarm_start_failed">Rozebírání se nepodařilo spustit.</string>
+    <string name="disarm_failed">Rozebrání selhalo.</string>
     <string name="award_time_card_name">Zkrácení času</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Karty zkrácení času</string>
@@ -969,4 +969,13 @@
         <item quantity="many">%d doplnění batohu</item>
         <item quantity="other">%d doplnění batohu</item>
     </plurals>
+    <string name="error_network">Nedaří se spojit se serverem. Zkontroluj připojení a zkus to znovu.</string>
+    <string name="error_trap_gone">Tahle past už není aktivní.</string>
+    <string name="error_trap_other_age_group">Tahle past patří jiné věkové skupině.</string>
+    <string name="error_quota_penalty">Chytili tě, a tak jsi přišel o dnešní pasti. Zkus to zítra!</string>
+    <string name="error_home_base_too_far">Tvoje základna musí být do 200 m od tebe — jsi %1$d m daleko.</string>
+    <string name="error_cannot_target_self">Tohle se sebou udělat nemůžeš.</string>
+    <string name="error_too_many_attempts">Příliš mnoho pokusů. Chvíli počkej a zkus to znovu.</string>
+    <string name="error_session_expired">Trvalo to moc dlouho — začni znovu.</string>
+    <string name="error_email_in_use">Tento e-mail už je zaregistrovaný. Raději se přihlas.</string>
 </resources>

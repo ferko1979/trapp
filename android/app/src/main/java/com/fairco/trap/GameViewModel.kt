@@ -248,7 +248,7 @@ class GameViewModel : ViewModel() {
                     loadBag(lang)
                 }
             } catch (e: Exception) {
-                _membershipState.update { it.copy(loading = false, error = e.message) }
+                _membershipState.update { it.copy(loading = false, error = ServerErrorText.of(e)) }
             }
         }
     }
@@ -606,6 +606,7 @@ class GameViewModel : ViewModel() {
                     } catch (e: Exception) {
                         val msg = e.message ?: ""
                         val isZoneError = msg.contains("closer", ignoreCase = true) ||
+                            msg.startsWith("inside-trap-zone") ||
                             msg.contains("inside the trap zone", ignoreCase = true) ||
                             msg.contains("Move closer", ignoreCase = true)
                         if (isZoneError) {
@@ -621,7 +622,7 @@ class GameViewModel : ViewModel() {
                                    msg.contains("not found", ignoreCase = true) ||
                                    msg.contains("aborted", ignoreCase = true)) {
                             // Session no longer valid — surface to overlay and stop
-                            _disassembleUiState.update { it.copy(error = msg.ifBlank { "Disassembly session expired." }) }
+                            _disassembleUiState.update { it.copy(error = ServerErrorText.ofMessage(msg, R.string.error_session_expired)) }
                             cancelActiveDisassembly()
                         }
                         // Other transient network errors are skipped; device timer keeps running.
@@ -838,7 +839,7 @@ class GameViewModel : ViewModel() {
                     mapMinZoom = mapMinZoom,
                 )
             } catch (e: Exception) {
-                _bagState.update { it.copy(loading = false, error = e.message) }
+                _bagState.update { it.copy(loading = false, error = ServerErrorText.of(e)) }
             }
         }
         loadBagJob?.invokeOnCompletion {

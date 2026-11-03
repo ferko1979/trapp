@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Утримуй 2 секунди, щоб поставити</string>
     <string name="msg_placing_background">Пастка ставиться у фоні…</string>
     <string name="label_loading">Завантаження…</string>
-    <string name="label_my_disassembled_trap">Твоя знята пастка</string>
+    <string name="label_my_disassembled_trap">Твоя розібрана пастка</string>
     <string name="action_disassemble">РОЗІБРАТИ</string>
     <string name="label_hold_to_disassemble">Утримуй 2 секунди, щоб розібрати</string>
     <string name="label_disassembling">Розбираємо…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Чудово!</string>
     <string name="disarm_reveal_failed">Не вдалося розкрити.</string>
     <string name="disarm_move_closer_detail">Підійди на %1$d м ближче — ти за %2$d м, треба ≤ %3$d м</string>
-    <string name="disarm_start_failed">Не вдалося почати знешкодження.</string>
-    <string name="disarm_failed">Не вдалося знешкодити.</string>
+    <string name="disarm_start_failed">Не вдалося почати розбирання.</string>
+    <string name="disarm_failed">Не вдалося розібрати.</string>
     <string name="award_time_card_name">Мінус час</string>
     <string name="award_unit_min">хв</string>
     <string name="award_time_card_title">Картки «Мінус час»</string>
@@ -969,4 +969,13 @@
         <item quantity="many">%d поповнень сумки</item>
         <item quantity="other">%d поповнення сумки</item>
     </plurals>
+    <string name="error_network">Немає зв’язку з сервером. Перевір з’єднання і спробуй ще раз.</string>
+    <string name="error_trap_gone">Ця пастка вже неактивна.</string>
+    <string name="error_trap_other_age_group">Ця пастка належить до іншої вікової групи.</string>
+    <string name="error_quota_penalty">Тебе спіймали — сьогоднішні пастки згоріли. Спробуй завтра!</string>
+    <string name="error_home_base_too_far">База має бути не далі ніж за 200 м від тебе — зараз до неї %1$d м.</string>
+    <string name="error_cannot_target_self">Із собою так не можна.</string>
+    <string name="error_too_many_attempts">Забагато спроб. Зачекай трохи й спробуй ще раз.</string>
+    <string name="error_session_expired">Це тривало надто довго — почни спочатку.</string>
+    <string name="error_email_in_use">Цей email уже зареєстровано. Краще увійди.</string>
 </resources>

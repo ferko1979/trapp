@@ -349,7 +349,7 @@
     <string name="label_hold_for_2s">Mbaj 2 sekonda për ta vendosur</string>
     <string name="msg_placing_background">Po vendoset kurthi në sfond…</string>
     <string name="label_loading">Po ngarkohet…</string>
-    <string name="label_my_disassembled_trap">Kurthi yt i hequr</string>
+    <string name="label_my_disassembled_trap">Kurthi yt i çmontuar</string>
     <string name="action_disassemble">ÇMONTO</string>
     <string name="label_hold_to_disassemble">Mbaj 2 sekonda për ta çmontuar</string>
     <string name="label_disassembling">Po çmontohet…</string>
@@ -649,8 +649,8 @@
     <string name="alert_great">Shkëlqyeshëm!</string>
     <string name="disarm_reveal_failed">Zbulimi dështoi.</string>
     <string name="disarm_move_closer_detail">Afrohu %1$dm — je %2$dm larg, duhet ≤ %3$dm</string>
-    <string name="disarm_start_failed">Çaktivizimi nuk mund të nisej.</string>
-    <string name="disarm_failed">Çaktivizimi dështoi.</string>
+    <string name="disarm_start_failed">Çmontimi nuk mund të nisej.</string>
+    <string name="disarm_failed">Çmontimi dështoi.</string>
     <string name="award_time_card_name">Zbritje kohe</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Karta zbritjeje kohe</string>
@@ -948,4 +948,13 @@
         <item quantity="one">%d rimbushje çante</item>
         <item quantity="other">%d rimbushje çante</item>
     </plurals>
+    <string name="error_network">Serveri nuk arrihet. Kontrollo lidhjen dhe provo sërish.</string>
+    <string name="error_trap_gone">Ky kurth nuk është më aktiv.</string>
+    <string name="error_trap_other_age_group">Ky kurth i përket një grupmoshe tjetër.</string>
+    <string name="error_quota_penalty">Të kapën, ndaj humbe kurthet e sotme. Provo nesër!</string>
+    <string name="error_home_base_too_far">Baza jote duhet të jetë brenda 200 m nga ti — je %1$d m larg.</string>
+    <string name="error_cannot_target_self">Këtë nuk mund ta bësh me veten.</string>
+    <string name="error_too_many_attempts">Shumë përpjekje. Prit pak dhe provo sërish.</string>
+    <string name="error_session_expired">Zgjati shumë — fillo nga e para.</string>
+    <string name="error_email_in_use">Ky email është regjistruar tashmë. Më mirë hyr.</string>
 </resources>

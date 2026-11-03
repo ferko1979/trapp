@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Hold i 2 sekunder for å plassere</string>
     <string name="msg_placing_background">Plasserer felle i bakgrunnen…</string>
     <string name="label_loading">Laster…</string>
-    <string name="label_my_disassembled_trap">Den fjernede fellen din</string>
+    <string name="label_my_disassembled_trap">Den demonterte fellen din</string>
     <string name="action_disassemble">DEMONTER</string>
     <string name="label_hold_to_disassemble">Hold i 2 sekunder for å demontere</string>
     <string name="label_disassembling">Demonterer…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Supert!</string>
     <string name="disarm_reveal_failed">Avsløring mislyktes.</string>
     <string name="disarm_move_closer_detail">Gå %1$dm nærmere – du er %2$dm unna, må være ≤ %3$dm</string>
-    <string name="disarm_start_failed">Kunne ikke starte desarmering.</string>
-    <string name="disarm_failed">Desarmering mislyktes.</string>
+    <string name="disarm_start_failed">Kunne ikke starte demonteringen.</string>
+    <string name="disarm_failed">Demontering mislyktes.</string>
     <string name="award_time_card_name">Tidsfradrag</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Tidsfradragskort</string>
@@ -947,4 +947,13 @@
         <item quantity="one">%d sekkpåfyll</item>
         <item quantity="other">%d sekkpåfyll</item>
     </plurals>
+    <string name="error_network">Får ikke kontakt med serveren. Sjekk tilkoblingen og prøv igjen.</string>
+    <string name="error_trap_gone">Denne fellen er ikke aktiv lenger.</string>
+    <string name="error_trap_other_age_group">Denne fellen tilhører en annen aldersgruppe.</string>
+    <string name="error_quota_penalty">Du ble tatt, så du mistet dagens feller. Prøv igjen i morgen!</string>
+    <string name="error_home_base_too_far">Hjemmebasen din må være innen 200 m fra deg – du er %1$d m unna.</string>
+    <string name="error_cannot_target_self">Det kan du ikke gjøre med deg selv.</string>
+    <string name="error_too_many_attempts">For mange forsøk. Vent litt og prøv igjen.</string>
+    <string name="error_session_expired">Det tok for lang tid – start på nytt.</string>
+    <string name="error_email_in_use">Denne e-posten er allerede registrert. Logg inn i stedet.</string>
 </resources>

@@ -348,7 +348,7 @@
     <string name="label_hold_for_2s">Tieni premuto 2 secondi per piazzare</string>
     <string name="msg_placing_background">Piazzamento trappola in background…</string>
     <string name="label_loading">Caricamento…</string>
-    <string name="label_my_disassembled_trap">La tua trappola rimossa</string>
+    <string name="label_my_disassembled_trap">La tua trappola smontata</string>
     <string name="action_disassemble">SMONTA</string>
     <string name="label_hold_to_disassemble">Tieni premuto 2 secondi per smontare</string>
     <string name="label_disassembling">Smontaggio…</string>
@@ -648,8 +648,8 @@
     <string name="alert_great">Grande!</string>
     <string name="disarm_reveal_failed">Rivelazione non riuscita.</string>
     <string name="disarm_move_closer_detail">Avvicinati di %1$d m — sei a %2$d m, serve ≤ %3$d m</string>
-    <string name="disarm_start_failed">Impossibile avviare il disinnesco.</string>
-    <string name="disarm_failed">Disinnesco non riuscito.</string>
+    <string name="disarm_start_failed">Impossibile avviare lo smontaggio.</string>
+    <string name="disarm_failed">Smontaggio non riuscito.</string>
     <string name="award_time_card_name">Riduzione tempo</string>
     <string name="award_unit_min">min</string>
     <string name="award_time_card_title">Carte riduzione tempo</string>
@@ -958,4 +958,13 @@
         <item quantity="many">%d ricariche zaino</item>
         <item quantity="other">%d ricariche zaino</item>
     </plurals>
+    <string name="error_network">Impossibile raggiungere il server. Controlla la connessione e riprova.</string>
+    <string name="error_trap_gone">Questa trappola non è più attiva.</string>
+    <string name="error_trap_other_age_group">Questa trappola appartiene a un\'altra fascia d\'età.</string>
+    <string name="error_quota_penalty">Farti beccare ti è costato le trappole di oggi. Riprova domani!</string>
+    <string name="error_home_base_too_far">La tua base deve essere entro 200 m da te: sei a %1$d m.</string>
+    <string name="error_cannot_target_self">Non puoi farlo con te stesso.</string>
+    <string name="error_too_many_attempts">Troppi tentativi. Aspetta un attimo e riprova.</string>
+    <string name="error_session_expired">Ci hai messo troppo: ricomincia da capo.</string>
+    <string name="error_email_in_use">Questa email è già registrata. Accedi invece.</string>
 </resources>
