@@ -24,6 +24,7 @@ import UserDataPanel from "./UserDataPanel";
 import RecalculatePointsPanel from "./RecalculatePointsPanel";
 import AppTranslationsPanel from "./AppTranslationsPanel";
 import AiSettingsPanel from "./AiSettingsPanel";
+import PerformancePanel from "./PerformancePanel";
 import PlayerMapPanel from "./PlayerMapPanel";
 import TrapGeneratorPanel from "./TrapGeneratorPanel";
 import EmailTemplatesPanel from "./EmailTemplatesPanel";
@@ -55,6 +56,7 @@ const SECTION_TITLES: Record<AdminSection, string> = {
   recalculate_points:  "Recalculate Points",
   translations:        "App Translations",
   ai_settings:         "AI / API Keys",
+  performance:         "Performance / Keep warm",
   email_templates:     "Email Templates",
   newsletter:          "Newsletter",
   awards:              "Awards & Cards",
@@ -88,6 +90,7 @@ export default function Dashboard({ user }: { user: User }) {
       case "recalculate_points": return <RecalculatePointsPanel />;
       case "translations":       return <AppTranslationsPanel />;
       case "ai_settings":        return <AiSettingsPanel />;
+      case "performance":        return <PerformancePanel />;
       case "email_templates":    return <EmailTemplatesPanel />;
       case "newsletter":         return <NewsletterPanel />;
       case "awards":             return <AwardsPanel />;

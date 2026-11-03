@@ -28,6 +28,7 @@ import { verify } from "crypto";
 import { FieldValue } from "firebase-admin/firestore";
 import { HttpsError, onCall, onRequest } from "firebase-functions/v2/https";
 import { logger } from "firebase-functions";
+import { cachedDocData } from "./shared/cache";
 import { getDb } from "./shared/firebase";
 import { requireUser } from "./shared/appCheck";
 
@@ -42,8 +43,7 @@ interface AdRewardSettings {
 }
 
 async function loadAdRewardSettings(): Promise<AdRewardSettings> {
-  const snap = await getDb().collection("game_settings").doc("global").get();
-  const d = snap.data() ?? {};
+  const d = (await cachedDocData("game_settings", "global")) ?? {};
   return {
     rewardedAdEnabled:          Boolean(d.rewardedAdEnabled          ?? true),
     rewardedAdReductionType:    String( d.rewardedAdReductionType    ?? "seconds"),

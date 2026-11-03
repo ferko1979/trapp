@@ -1,5 +1,4 @@
 import { createHash } from "crypto";
-import { androidpublisher, auth } from "@googleapis/androidpublisher";
 import { logger } from "firebase-functions";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
@@ -30,6 +29,9 @@ const PACKAGE_NAME = "com.fairco.trap";
 const RTDN_TOPIC = "play-billing-rtdn";
 
 function publisher() {
+  // Required on first use: the Google API client is heavy and most calls never need it.
+  const { androidpublisher, auth } =
+    require("@googleapis/androidpublisher") as typeof import("@googleapis/androidpublisher");
   return androidpublisher({
     version: "v3",
     auth: new auth.GoogleAuth({ scopes: ["https://www.googleapis.com/auth/androidpublisher"] }),

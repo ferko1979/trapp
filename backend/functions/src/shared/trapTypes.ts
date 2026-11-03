@@ -1,5 +1,5 @@
 import { HttpsError } from "firebase-functions/v2/https";
-import { getDb } from "./firebase";
+import { cachedDocData } from "./cache";
 
 export type TrapEffectKind =
   | "laughter"
@@ -161,9 +161,7 @@ export function assertTrapDefinitionShape(
 }
 
 export async function getTrapDefinition(trapTypeId: string): Promise<TrapDefinition> {
-  const db = getDb();
-  const snap = await db.collection("trap_definitions").doc(trapTypeId).get();
-  const def = assertTrapDefinitionShape(snap.id, snap.data());
+  const def = assertTrapDefinitionShape(trapTypeId, await cachedDocData("trap_definitions", trapTypeId));
 
   if (!def.enabled) {
     throw new HttpsError(

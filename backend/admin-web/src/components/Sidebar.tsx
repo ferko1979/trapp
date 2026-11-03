@@ -25,6 +25,7 @@ export type AdminSection =
   | "recalculate_points"
   | "translations"
   | "ai_settings"
+  | "performance"
   | "email_templates"
   | "newsletter"
   | "awards";
@@ -124,6 +125,7 @@ const NAV: (TopLevelItem | TopLevelGroup)[] = [
       { key: "recalculate_points", label: "Recalculate Points",  icon: "🔄" },
       { key: "translations",       label: "App Translations",    icon: "🌍" },
       { key: "ai_settings",        label: "AI / API Keys",       icon: "🤖" },
+      { key: "performance",        label: "Performance / Keep warm", icon: "⚡" },
     ],
   },
 ];

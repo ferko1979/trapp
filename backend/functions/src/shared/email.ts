@@ -1,5 +1,5 @@
-import nodemailer from "nodemailer";
-import { SESClient, SendRawEmailCommand } from "@aws-sdk/client-ses";
+// Types only: the SDKs are required on first use so modules importing this file start faster.
+import type nodemailer from "nodemailer";
 
 export type EmailProviderConfig =
   | {
@@ -22,7 +22,10 @@ export type EmailProviderConfig =
     };
 
 export function createTransporter(config: EmailProviderConfig): nodemailer.Transporter {
+  const mailer = require("nodemailer") as typeof import("nodemailer");
   if (config.provider === "ses") {
+    const { SESClient, SendRawEmailCommand } =
+      require("@aws-sdk/client-ses") as typeof import("@aws-sdk/client-ses");
     const ses = new SESClient({
       region: config.region || "eu-west-1",
       credentials: {
@@ -32,9 +35,9 @@ export function createTransporter(config: EmailProviderConfig): nodemailer.Trans
     });
     // nodemailer SES transport with AWS SDK v3
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return nodemailer.createTransport({ SES: { ses, aws: { SendRawEmailCommand } } } as any);
+    return mailer.createTransport({ SES: { ses, aws: { SendRawEmailCommand } } } as any);
   }
-  return nodemailer.createTransport({
+  return mailer.createTransport({
     host: config.host,
     port: config.port,
     secure: config.secure,

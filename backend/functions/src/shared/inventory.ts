@@ -1,4 +1,5 @@
 import { FieldValue } from "firebase-admin/firestore";
+import { cachedDocData, cachedEnabledTrapDefinitions } from "./cache";
 import { getDb } from "./firebase";
 
 function asNumber(value: unknown, fallback: number): number {
@@ -22,19 +23,15 @@ export async function refillUserInventoryToMaximum(uid: string) {
       ? userData.levelId.trim()
       : "free";
 
-  const levelSnap = await db.collection("user_levels").doc(levelId).get();
-  const levelData = levelSnap.data() ?? null;
+  const levelData = (await cachedDocData("user_levels", levelId)) ?? null;
   const membershipDefaults = getMembershipDefaults(levelData);
 
-  const trapDefsSnap = await db
-    .collection("trap_definitions")
-    .where("enabled", "==", true)
-    .get();
+  const trapDefs = await cachedEnabledTrapDefinitions();
 
   const batch = db.batch();
 
-  for (const doc of trapDefsSnap.docs) {
-    const trapData = doc.data();
+  for (const doc of trapDefs) {
+    const trapData = doc.data;
     const trapTypeId = doc.id;
 
     const trapMaxSlots = asNumber(trapData.maxBagSlots, 2);

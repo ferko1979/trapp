@@ -14,6 +14,7 @@ import {
 } from "geofire-common";
 
 import { getDatePartsForTimezone } from "../shared/dates";
+import { cachedDocData, cachedEnabledTrapDefinitions } from "../shared/cache";
 import { getDb } from "../shared/firebase";
 import { getTrapDefinition } from "../shared/trapTypes";
 import { ensureDailyState, getUserTimeZone } from "../shared/user";
@@ -108,12 +109,11 @@ function pickLocalized(
  */
 async function getAppTranslationStrings(lang: string): Promise<Record<string, string>> {
   try {
-    const db = getDb();
-    const snap = await db.collection("app_translations").doc(lang).get();
-    if (snap.exists) return (snap.data()?.strings ?? {}) as Record<string, string>;
+    const doc = await cachedDocData("app_translations", lang);
+    if (doc) return (doc.strings ?? {}) as Record<string, string>;
     if (lang !== "en") {
-      const enSnap = await db.collection("app_translations").doc("en").get();
-      return (enSnap.data()?.strings ?? {}) as Record<string, string>;
+      const enDoc = await cachedDocData("app_translations", "en");
+      return (enDoc?.strings ?? {}) as Record<string, string>;
     }
   } catch {
     // Non-fatal — fall through to embedded maps
@@ -306,9 +306,7 @@ async function getUserLevelModifiers(uid: string): Promise<LevelModifiers> {
     };
   }
 
-  const levelSnap = await db.collection("user_levels").doc(levelId).get();
-  const levelData = levelSnap.data() ?? {};
-  const levelRecord = levelData as Record<string, unknown>;
+  const levelRecord = (await cachedDocData("user_levels", levelId)) ?? {};
 
   const disarmReductionPercent = clampPercent(
     levelRecord.disarmReductionPercent
@@ -344,8 +342,7 @@ async function getUserBagWeightCapacity(uid: string): Promise<number> {
 
   const levelId = asString(userData.levelId, "free");
   if (levelId) {
-    const levelSnap = await db.collection("user_levels").doc(levelId).get();
-    const levelData = levelSnap.data() ?? {};
+    const levelData = (await cachedDocData("user_levels", levelId)) ?? {};
     if (
       typeof levelData.bagWeightCapacity === "number" &&
       Number.isFinite(levelData.bagWeightCapacity)
@@ -360,11 +357,7 @@ async function getUserBagWeightCapacity(uid: string): Promise<number> {
     }
   }
 
-  const generalSettingsSnap = await db
-    .collection("general_settings")
-    .doc("global")
-    .get();
-  const generalSettings = generalSettingsSnap.data() ?? {};
+  const generalSettings = (await cachedDocData("general_settings", "global")) ?? {};
   if (
     typeof generalSettings.defaultBagWeightCapacity === "number" &&
     Number.isFinite(generalSettings.defaultBagWeightCapacity)
@@ -382,29 +375,30 @@ async function getUserBagWeightCapacity(uid: string): Promise<number> {
 }
 
 async function getAllowSelfTrapTrigger(): Promise<boolean> {
-  const db = getDb();
-  const snap = await db.collection("game_settings").doc("global").get();
-  const data = snap.data() ?? {};
+  const data = (await cachedDocData("game_settings", "global")) ?? {};
   return typeof data.allowSelfTrapTrigger === "boolean"
     ? data.allowSelfTrapTrigger
     : false;
 }
 
+/** Own traps never fire on their owner (unless self-trigger testing is on), so the owner may
+ *  disassemble them while standing inside the capture zone — e.g. right after placing one. */
+async function captureZoneApplies(trapOwnerUid: unknown, uid: string): Promise<boolean> {
+  if (trapOwnerUid !== uid) return true;
+  return getAllowSelfTrapTrigger();
+}
+
 async function listEnabledTrapDefinitions(
   ageGroup?: AgeGroup
 ): Promise<TrapDefinitionRecord[]> {
-  const db = getDb();
-  const snap = await db
-    .collection("trap_definitions")
-    .where("enabled", "==", true)
-    .get();
+  const docs = await cachedEnabledTrapDefinitions();
 
-  return snap.docs
+  return docs
     .map(
       (doc) =>
         ({
           id: doc.id,
-          ...(doc.data() as Record<string, unknown>),
+          ...doc.data,
         }) as TrapDefinitionRecord
     )
     .filter((trapDef) => {
@@ -872,8 +866,7 @@ export const getMyTrapInventory = onCall(async (request) => {
     let mapMinZoom = 10;
     let mapVisibilityRadiusMeters = 2000;
     if (levelId2) {
-      const levelSnap = await db2.collection("user_levels").doc(levelId2).get();
-      const ld = levelSnap.data() ?? {};
+      const ld = (await cachedDocData("user_levels", levelId2)) ?? {};
       if (typeof ld.mapVisibilityRadiusMeters === "number") {
         mapVisibilityRadiusMeters = ld.mapVisibilityRadiusMeters;
       }
@@ -1170,14 +1163,14 @@ export const startTrapPlacement = onCall(async (request) => {
 
     // #17 — Area rate-limiting: configurable max traps within configurable radius
     const db0 = getDb();
-    const [areaSettingsSnap, ownActiveSnap] = await Promise.all([
-      db0.collection("game_settings").doc("global").get(),
+    const [areaSettings, ownActiveSnap] = await Promise.all([
+      cachedDocData("game_settings", "global"),
       db0.collection("traps")
         .where("ownerUid", "==", uid)
         .where("status", "==", "active")
         .get(),
     ]);
-    const areaSettingsData = areaSettingsSnap.data() ?? {};
+    const areaSettingsData = areaSettings ?? {};
     const AREA_LIMIT_RADIUS_METERS =
       typeof areaSettingsData.areaTrapLimitRadiusMeters === "number" &&
       Number.isFinite(areaSettingsData.areaTrapLimitRadiusMeters) &&
@@ -1549,8 +1542,7 @@ export const updatePlayerLocation = onCall(async (request) => {
     let playerRangeMultiplier = 1;
     let playerLeaveMultiplier = 1;
     if (levelId) {
-      const levelSnap = await db.collection("user_levels").doc(levelId).get();
-      const ld = levelSnap.data() ?? {};
+      const ld = (await cachedDocData("user_levels", levelId)) ?? {};
       if (typeof ld.mapVisibilityRadiusMeters === "number" && ld.mapVisibilityRadiusMeters > 0) {
         // Allow up to 5 km; never less than the hard minimum so captures always work.
         trapSearchRadiusMeters = Math.min(
@@ -1956,7 +1948,7 @@ export const revealNearbyTrap = onCall(async (request) => {
       const distanceMeters = metersBetween(playerLoc.lat, playerLoc.lng, trap.lat, trap.lng);
 
       // Stepped inside capture zone during reveal → fire trap immediately
-      if (distanceMeters <= trapRadius) {
+      if (distanceMeters <= trapRadius && await captureZoneApplies(trap.ownerUid, uid)) {
         throw new HttpsError(
           "failed-precondition",
           `inside-trap-zone:${trapRadius}`
@@ -2085,7 +2077,7 @@ export const startTrapDisarm = onCall(async (request) => {
     const distanceMeters = metersBetween(playerLoc.lat, playerLoc.lng, trap.lat, trap.lng);
 
     // Stepped inside the capture zone → this counts as being trapped
-    if (distanceMeters <= trapRadius) {
+    if (distanceMeters <= trapRadius && await captureZoneApplies(trap.ownerUid, uid)) {
       throw new HttpsError(
         "failed-precondition",
         `inside-trap-zone:${trapRadius}`
@@ -2217,7 +2209,7 @@ export const tapTrapDisarm = onCall(async (request) => {
         const tapDist = metersBetween(tapPlayerLoc.lat, tapPlayerLoc.lng, sessionTrapLat, sessionTrapLng);
 
         // Entered capture zone while disarming → trap fires
-        if (tapDist <= sessionTrapRadius) {
+        if (tapDist <= sessionTrapRadius && await captureZoneApplies(trap.ownerUid, uid)) {
           tx.update(sessionRef, { status: "aborted", abortedAt: FieldValue.serverTimestamp() });
           throw new HttpsError("failed-precondition", `inside-trap-zone:${sessionTrapRadius}`);
         }
